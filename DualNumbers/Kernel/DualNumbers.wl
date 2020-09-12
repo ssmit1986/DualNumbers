@@ -321,8 +321,8 @@ Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefi
 Dual::maprepack = "Failed to re-pack after mapping `f`";
 Scan[
     Function[mapper,
-        Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, lvlSpec : _ : {1}] := With[{
-            try = PackDualArray @ mapper[fun, UnpackDualArray[dualArr], lvlSpec]
+        Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, rest___] := With[{
+            try = PackDualArray @ mapper[fun, UnpackDualArray[dualArr], rest]
         },
             try /; Replace[DualArrayQ[try], False :> (Message[Dual::maprepack, fun]; False)]
         ];
