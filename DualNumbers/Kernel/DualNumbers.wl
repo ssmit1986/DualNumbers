@@ -49,7 +49,8 @@ GeneralUtilities`SetUsage[UnpackDualArray,
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
     "AddDualHandling[f$, {f$1, f$2, $$}] specifies derivatives for f$ to use with Dual numbers.
-AddDualHandling[f$, n$] uses Derivative to infer n$ derivatives of f$."
+AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with $n arguments.
+AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -371,7 +372,8 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
-AddDualHandling[f_, n_Integer] := AddDualHandling[f, Derivative[##][f]& @@@ IdentityMatrix[n]];
+AddDualHandling[f_, n_Integer?Positive] := AddDualHandling[f, Derivative[##][f]& @@@ IdentityMatrix[n]];
+AddDualHandling[f_, nList : {__Integer?Positive}] := Scan[AddDualHandling[f, #]&, nList];
 AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
     Dual /: f[first___, d_Dual, rest___] := With[{
         args = {first, d, rest}
