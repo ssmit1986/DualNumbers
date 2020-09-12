@@ -1,6 +1,6 @@
 (* Wolfram Language Package *)
 
-BeginPackage["DualNumbers`", {"GeneralUtilities`"}]
+BeginPackage["DualNumbers`", {"GeneralUtilities`", "Developer`"}]
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$."];
 GeneralUtilities`SetUsage[Standard,
@@ -24,9 +24,10 @@ GeneralUtilities`SetUsage[DualSimplify,
 GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
 GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
+GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
 GeneralUtilities`SetUsage[DualSquareMatrixQ, "DualSquareMatrixQ[expr$] tests if expr$ is a square matrix of dual numbers."]
-GeneralUtilities`SetUsage[ScalarQ, "ScalarQ[expr$] = !DualQ[expr$]"];
+GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ is a standard number. It is equivalaent to !DualQ[expr$]"];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
 ];
@@ -38,6 +39,12 @@ GeneralUtilities`SetUsage[FindDualSolution,
 ];
 GeneralUtilities`SetUsage[DualLinearSolveFunction,
     "DualLinearSolveFunction[ls$, b$] is produced from LinearSolve[Dual[a$, b$]]. A DualLinearSolveFunction can be applied to Dual arrays."
+];
+GeneralUtilities`SetUsage[PackDualArray,
+    "PackDualArray[array$] converts an array of numbers (possibly duals) to the form Dual[std$, nonstd$]."
+];
+GeneralUtilities`SetUsage[UnpackDualArray,
+    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -52,15 +59,18 @@ derivativePatt = Except[Function[D[__]], _Function];
 Dual /: DualQ[Dual[_, _]] := True;
 DualQ[_] := False;
 
+Dual /: DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
+DualScalarQ[_] := False;
+
 Dual /: DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
 
 Dual /: DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualSquareMatrixQ[_] := False;
 
-Dual /: ScalarQ[Dual[_, _]] := False;
-ScalarQ[_] := True;
-scalarPatt = Except[_Dual];
+Dual /: StandardQ[Dual[_, _]] := False;
+StandardQ[_] := True;
+standardPatt = Except[_Dual];
 
 Dual[] = DualEpsilon = Dual[0, 1];
 InactiveEpsilon = Inactive[Dual][0, 1];
@@ -68,6 +78,16 @@ InactiveEpsilon = Inactive[Dual][0, 1];
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
+
+PackDualArray[array_?ArrayQ] := Dual[
+    Developer`ToPackedArray @ Standard[array],
+    Developer`ToPackedArray @ NonStandard[array]
+];
+Dual /: UnpackDualArray[Dual[a_, b_]?DualArrayQ] := MapThread[
+    Dual,
+    {a, b},
+    ArrayDepth[a]
+];
 
 SetAttributes[Standard, Listable];
 Dual /: Standard[Dual[a_, _]] := a;
@@ -102,9 +122,9 @@ Derivative[1, 0][Dual] = 1&;
 Derivative[0, 1][Dual] = Dual[0, 1]&;
 
 Dual /: Dual[a_, 0] := a;
-Dual /: (c : scalarPatt) + Dual[a_, b_] := Dual[c + a, b];
+Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
-Dual /: (c : scalarPatt) * Dual[a_, b_] := Dual[c * a, c * b];
+Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
 Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[a1, a2], Subtract[b1, b2]];
@@ -132,11 +152,11 @@ Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b * Sign[a]];
 Dual /: Sign[Dual[a_, b_]] := Sign[a];
 
 (* Special cases for Clip *)
-Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}] := Dual[
+Dual /: Clip[Dual[a_, b_], {xmin : standardPatt, xmax : standardPatt}] := Dual[
     Clip[a, {xmin, xmax}],
     b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
 ];
-Dual /: Clip[Dual[a_, b_], {xmin : scalarPatt, xmax : scalarPatt}, {ymin : scalarPatt, ymax : scalarPatt}] := Dual[
+Dual /: Clip[Dual[a_, b_], {xmin : standardPatt, xmax : standardPatt}, {ymin : standardPatt, ymax : standardPatt}] := Dual[
     Clip[a, {xmin, xmax}, {ymin, ymax}],
     b * Piecewise[{{1, xmin<= a <= xmax}}, 0]
 ];
@@ -244,7 +264,7 @@ Dual /: LinearSolve[
 
 Dual /: LinearSolve[
     Dual[a_, b_]?DualSquareMatrixQ,
-    x : (_?ArrayQ | _?DualArrayQ),
+    x : (_?ArrayQ | _Dual?DualArrayQ),
     opts : OptionsPattern[]
 ] := With[{
     ls = LinearSolve[a, opts]
@@ -280,7 +300,7 @@ Scan[
         Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
     ],
     {
-        MatrixQ, VectorQ, ArrayQ, Dimensions, Length
+        MatrixQ, VectorQ, Dimensions, Length
     }
 ];
 
@@ -332,7 +352,7 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
-Dual /: f_Symbol[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
+Dual /: (f : Except[_Dual | _List, _Symbol])[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
     args = {first, d, rest}
 }, With[{
     dualPos = Flatten @ Position[args, _Dual?DualQ, {1}, Heads -> False],
