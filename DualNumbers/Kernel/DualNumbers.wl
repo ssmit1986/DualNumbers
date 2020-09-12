@@ -47,7 +47,10 @@ GeneralUtilities`SetUsage[PackDualArray,
 GeneralUtilities`SetUsage[UnpackDualArray,
     "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
 ];
-\[Epsilon];
+GeneralUtilities`SetUsage[AddDualHandling,
+    "AddDualHandling[f$, {f$1, f$2, $$}] specifies derivatives for f$ to use with Dual numbers.
+AddDualHandling[f$, n$] uses Derivative to infer n$ derivatives of f$."
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -58,7 +61,8 @@ Begin["`Private`"] (* Begin Private Context *)
 
 derivativePatt = Except[Function[D[__]], _Function];
 
-Dual /: DualQ[Dual[_, _]] := True;
+dualPatt = Dual[_, _];
+Dual /: DualQ[dualPatt] := True;
 DualQ[_] := False;
 
 Dual /: DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
@@ -367,22 +371,27 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
-Dual /: (f : Except[_Dual | _List, _Symbol])[first___, d_Dual, rest___] /; MemberQ[Attributes[f], NumericFunction] := With[{
-    args = {first, d, rest}
-}, With[{
-    dualPos = Flatten @ Position[args, _Dual?DualQ, {1}, Heads -> False],
-    inputs = std[args]
-}, With[{
-    derrivs = Derivative[##][f]& @@@ IdentityMatrix[Length[args]][[dualPos]]
-},
-    Dual[
-        f @@ inputs,
-        Dot[
-            Function[# @@ inputs] /@ derrivs,
-            args[[dualPos, 2]]
-        ]
-    ] /; MatchQ[derrivs, {derivativePatt..}]
-]]];
+AddDualHandling[f_, n_Integer] := AddDualHandling[f, Derivative[##][f]& @@@ IdentityMatrix[n]];
+AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
+    Dual /: f[first___, d_Dual, rest___] := With[{
+        args = {first, d, rest}
+    },
+        With[{
+            dualPos = Flatten @ Position[args, dualPatt, {1}, Heads -> False],
+            inputs = std[args]
+        },
+            With[{dlist = derivatives[[dualPos]]},
+                Dual[
+                    f @@ inputs,
+                    Dot[
+                        Through[dlist[Sequence @@ inputs]],
+                        args[[dualPos, 2]]
+                    ]
+                ] /; ListQ[dlist]
+            ]
+        ] /; Length[args] === n
+    ]
+];
 
 (* Helper functions for equation solving with Dual numbers *)
 
