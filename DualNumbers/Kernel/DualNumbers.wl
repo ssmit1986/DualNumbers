@@ -1,6 +1,8 @@
 (* Wolfram Language Package *)
 
 BeginPackage["DualNumbers`", {"GeneralUtilities`", "Developer`"}]
+ClearAll["DualNumbers`*", "DualNumbers`*`*"];
+
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$."];
 GeneralUtilities`SetUsage[Standard,
@@ -21,8 +23,7 @@ GeneralUtilities`SetUsage[DualFactor,
 GeneralUtilities`SetUsage[DualSimplify,
     "DualSimplify[expr$, eps$] expands expr$ around eps$ = 0, keeping only the 0th and 1st order terms."
 ];
-GeneralUtilities`SetUsage[DualEpsilon, "DualEpsilon = Dual[0, 1]."];
-GeneralUtilities`SetUsage[InactiveEpsilon, "InactiveEpsilon is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
+GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
@@ -46,6 +47,7 @@ GeneralUtilities`SetUsage[PackDualArray,
 GeneralUtilities`SetUsage[UnpackDualArray,
     "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
 ];
+\[Epsilon];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -72,8 +74,8 @@ Dual /: StandardQ[Dual[_, _]] := False;
 StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
-Dual[] = DualEpsilon = Dual[0, 1];
-InactiveEpsilon = Inactive[Dual][0, 1];
+Dual[] := Dual[0, 1];
+\[Epsilon] = Inactive[Dual][0, 1];
 
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
@@ -99,13 +101,13 @@ NonStandard[_?NumericQ] := 0;
 
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
 
-DualExpand[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[
+DualExpand[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[
     expr,
     Dual[a_, b_] :> a + b * eps
 ];
-DualFactor[expr_, eps : _ : InactiveEpsilon] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
+DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
 
-DualSimplify[expr_, eps : _ : InactiveEpsilon] := Normal @ Series[expr, {eps, 0, 1}];
+DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
 SetAttributes[std, Listable];
 std[Dual[a_, _]] := a;
