@@ -63,19 +63,19 @@ Begin["`Private`"] (* Begin Private Context *)
 derivativePatt = Except[Function[D[__]], _Function];
 
 dualPatt = Dual[_, _];
-Dual /: DualQ[dualPatt] := True;
+DualQ[dualPatt] := True;
 DualQ[_] := False;
 
-Dual /: DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
+DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
 DualScalarQ[_] := False;
 
-Dual /: DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
 
-Dual /: DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualSquareMatrixQ[_] := False;
 
-Dual /: StandardQ[Dual[_, _]] := False;
+StandardQ[Dual[_, _]] := False;
 StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
@@ -86,22 +86,26 @@ Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
 
+Dual::arrayQ = "`1` is not an array.";
 PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-Dual /: UnpackDualArray[Dual[a_, b_]?DualArrayQ] := MapThread[
+PackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
+
+UnpackDualArray[Dual[a_, b_]?DualArrayQ] := MapThread[
     Dual,
     {a, b},
     ArrayDepth[a]
 ];
+UnpackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
 
 SetAttributes[Standard, Listable];
-Dual /: Standard[Dual[a_, _]] := a;
+Standard[Dual[a_, _]] := a;
 Standard[x_?NumericQ] := x;
 
 SetAttributes[NonStandard, Listable];
-Dual /: NonStandard[Dual[_, b_]] := b;
+NonStandard[Dual[_, b_]] := b;
 NonStandard[_?NumericQ] := 0;
 
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
@@ -128,7 +132,7 @@ Dual[a_, Dual[b_, _]] ^:= Dual[a, b];
 Derivative[1, 0][Dual] = 1&;
 Derivative[0, 1][Dual] = Dual[0, 1]&;
 
-Dual /: Dual[a_, 0] := a;
+Dual[a_, 0] := a;
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
@@ -313,6 +317,19 @@ Dual /: Join[arrays__Dual?DualArrayQ] := With[{
     ]
 ];
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
+
+Dual::maprepack = "Failed to re-pack after mapping `f`";
+Scan[
+    Function[mapper,
+        Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, lvlSpec : _ : {1}] := With[{
+            try = PackDualArray @ mapper[fun, UnpackDualArray[dualArr], lvlSpec]
+        },
+            try /; Replace[DualArrayQ[try], False :> (Message[Dual::maprepack, fun]; False)]
+        ];
+        Dual /: mapper[_, _Dual, ___] /; (Message[Dual::arrayOp, mapper]; False) := Undefined;
+    ],
+    {Map, MapIndexed}
+];
 
 Scan[
     Function[fun,
