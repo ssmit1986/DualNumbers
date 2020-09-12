@@ -296,6 +296,19 @@ Scan[
     }
 ];
 
+Dual::join = "Warning: Join attempted, but it did not produce a valid DualArray.";
+Dual /: Join[arrays__Dual?DualArrayQ] := With[{
+    a = Standard[{arrays}],
+    b = NonStandard[{arrays}]
+},
+    With[{
+        try = Dual[Join[Sequence @@ a], Join[Sequence @@ b]]
+    },
+        try /; Replace[DualArrayQ[try], False :> (Message[Dual::join]; False)]
+    ]
+];
+Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
+
 Scan[
     Function[fun,
         Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest];
