@@ -93,10 +93,24 @@ PackDualArray[array_?ArrayQ] := Dual[
 ];
 PackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
 
-UnpackDualArray[Dual[a_, b_]?DualArrayQ] := MapThread[
-    Dual,
-    {a, b},
-    ArrayDepth[a]
+UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
+With[{
+    testArray = Developer`ToPackedArray[{0}]
+},
+    UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
+        If[ TrueQ @ Quiet @ Check[ (* test if packing messages are on *)
+                Developer`FromPackedArray @ testArray,
+                True,
+                {FromPackedArray::punpack}
+            ],
+            Message[UnpackDualArray::unpack, Dimensions[a]]
+        ];
+        MapThread[
+            Dual,
+            {a, b},
+            ArrayDepth[a]
+        ]
+    )
 ];
 UnpackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
 
@@ -176,8 +190,10 @@ With[{
     clipDerivatives3arg2 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
     clipDerivatives3arg3 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&,
     clipDerivatives5arg1 = Piecewise[{{1, #[[2]] <= #[[1]] <= #[[3]]}}, 0]&,
+    (*
     clipDerivatives5arg2 = 0&,
     clipDerivatives5arg3 = 0&,
+    *)
     clipDerivatives5arg4 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
     clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
 },
