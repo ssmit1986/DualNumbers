@@ -252,6 +252,36 @@ With[{
 ];
 
 (* Array operations *)
+
+Dual::norm = "Encountered array of depth `1`. Cannot compute norms of dual arrays of depth > 1.";
+Dual::infnorm = "Infinite norms can only be computed for numeric dual vectors.";
+Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, p : Except[DirectedInfinity[1]] : 2] := Dual[
+    Norm[a, p],
+    Times[
+        Total[Abs[a]^p]^Subtract[Divide[1, p], 1],
+        b . (Abs[a]^Subtract[p, 1] * Sign[a])
+    ]
+];
+Dual /: Norm[Dual[a : Except[_?VectorQ], b_]?DualArrayQ, ___] /; (Message[Dual::norm, ArrayDepth[a]]; False) := Undefined;
+Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
+    absA = Abs[a]
+},
+    With[{
+        max = Max[absA]
+    },
+        With[{
+            pos = Position[absA, _?(EqualTo[max]), {1}, Heads -> False]
+        },
+            Dual[
+                max,
+                Mean[Sign[Extract[a, pos]] * Extract[b, pos]]
+            ]
+        ] /; Head[max] =!= Max
+    ]
+];
+Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
+Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
+
 Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
 Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
 
