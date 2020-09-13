@@ -28,7 +28,7 @@ GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
 GeneralUtilities`SetUsage[DualSquareMatrixQ, "DualSquareMatrixQ[expr$] tests if expr$ is a square matrix of dual numbers."]
-GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ is a standard number. It is equivalaent to !DualQ[expr$]"];
+GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ has a head different from Dual."];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
 ];
@@ -66,9 +66,10 @@ Begin["`Private`"] (* Begin Private Context *)
 *)
 
 derivativePatt = Except[Function[D[__]], _Function];
+arrayPattern = _List | _SparseArray | _QuantityArray;
 
 dualPatt = Dual[_, _];
-DualQ[dualPatt] := True;
+DualQ[expr : dualPatt] := DualScalarQ[expr] || DualArrayQ[expr];
 DualQ[_] := False;
 
 DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
@@ -77,10 +78,10 @@ DualScalarQ[_] := False;
 DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
 
-DualSquareMatrixQ[Dual[a_?SquareMatrixQ, b_?SquareMatrixQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualSquareMatrixQ[Dual[a_, b_]?DualArrayQ] := SquareMatrixQ[a];
 DualSquareMatrixQ[_] := False;
 
-StandardQ[Dual[_, _]] := False;
+StandardQ[_Dual] := False;
 StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
@@ -90,8 +91,6 @@ Dual[] := Dual[0, 1];
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
-
-arrayPattern = _List | _SparseArray | _QuantityArray;
 
 (* Messages to warn when invalid Dual arrays have been constructed *)
 Dual::array = "Mismatching dimensions `1` and `2` found for the standard and non-standard parts of `3`";
@@ -184,7 +183,7 @@ Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[
 
 Dual /: HoldPattern @ Divide[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
     Divide[a1, a2],
-    Subtract[Divide[b1, a2], Divide[a1 * b2, , a2^2]]
+    Subtract[Divide[b1, a2], Divide[a1 * b2, a2^2]]
 ];
 
 Dual /: Power[Dual[a_, b_], 1] := Dual[a, b];
