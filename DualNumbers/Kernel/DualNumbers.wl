@@ -27,7 +27,6 @@ GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0,
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
-GeneralUtilities`SetUsage[DualSquareMatrixQ, "DualSquareMatrixQ[expr$] tests if expr$ is a square matrix of dual numbers."]
 GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ has a head different from Dual."];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
@@ -77,9 +76,6 @@ DualScalarQ[_] := False;
 
 DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
-
-DualSquareMatrixQ[Dual[a_, b_]?DualArrayQ] := SquareMatrixQ[a];
-DualSquareMatrixQ[_] := False;
 
 StandardQ[_Dual] := False;
 StandardQ[_] := True;
@@ -295,7 +291,7 @@ Dual /: Dot[
 ] := Dual[a1.a2, a1.b2 + b1.a2];
 
 Dual /: MatrixPower[
-    d_Dual?DualSquareMatrixQ,
+    d_Dual?SquareMatrixQ,
     n_Integer?Positive
 ] := Fold[
     Function[
@@ -305,12 +301,12 @@ Dual /: MatrixPower[
     Rest[IntegerDigits[n, 2]]
 ];
 Dual /: MatrixPower[
-    d_Dual?DualSquareMatrixQ,
+    d_Dual?SquareMatrixQ,
     n_Integer?Negative
 ] := Inverse @ MatrixPower[d, -n];
 
 Dual /: Inverse[
-    Dual[a_, b_]?DualSquareMatrixQ
+    Dual[a_, b_]?SquareMatrixQ
 ] := With[{inv = Inverse[a]},
     Dual[
         inv,
@@ -338,7 +334,7 @@ DualLinearSolveFunction[ls_LinearSolveFunction, b_?SquareMatrixQ][
 ];
 
 Dual /: LinearSolve[
-    Dual[a_, b_]?DualSquareMatrixQ,
+    Dual[a_, b_]?SquareMatrixQ,
     opts : OptionsPattern[]
 ] := With[{
     ls = LinearSolve[a, opts]
@@ -347,7 +343,7 @@ Dual /: LinearSolve[
 ];
 
 Dual /: LinearSolve[
-    Dual[a_, b_]?DualSquareMatrixQ,
+    Dual[a_, b_]?SquareMatrixQ,
     x : (_?ArrayQ | _Dual?DualArrayQ),
     opts : OptionsPattern[]
 ] := With[{
@@ -409,14 +405,14 @@ Scan[
         Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest]
     ],
     {
-        MatrixQ, VectorQ, Dimensions, Length, ArrayDepth
+        MatrixQ, VectorQ, SquareMatrixQ, Dimensions, Length, ArrayDepth
     }
 ];
 Scan[
     Function[fun,
         Dual /: HoldPattern[fun[Dual[_, _], ___]] := False;
     ],
-    {MatrixQ, VectorQ}
+    {MatrixQ, VectorQ, SquareMatrixQ}
 ];
 Dual /: HoldPattern[Length[Dual[_, _]]] := 0;
 Dual /: HoldPattern[Dimensions[Dual[_, _]]] := {};
