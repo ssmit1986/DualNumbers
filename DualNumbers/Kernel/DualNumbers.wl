@@ -33,7 +33,12 @@ GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
 ];
 GeneralUtilities`SetUsage[DualFindMinimum,
-    "DualFindMinimum works like DualFindMinimum, but allows for Dual numbers in the objective function.\nDualFindMinimum does not support constraints on the independent variables."
+    "DualFindMinimum works like FindMinimum, but allows for Dual numbers in the objective function.
+DualFindMinimum does not support constraints on the independent variables."
+];
+GeneralUtilities`SetUsage[DualFindMaximum,
+    "DualFindMaximum works like FindMaximum, but allows for Dual numbers in the objective function.
+DualFindMaximum does not support constraints on the independent variables."
 ];
 GeneralUtilities`SetUsage[FindDualSolution,
     "FindDualSolution[eqs$, sol$] finds a Dual-valued solution to eqs$ where sol$ is the standard-valued solution."
@@ -546,28 +551,36 @@ DualFindRoot[eqs_, spec : {{_, __?NumericQ}..}, rest___] := Module[{
     Quiet[firstSol @ FindDualSolution[equations, stdSol], {FindDualSolution::nonsol}]
 ];
 
-DualFindMinimum[eq_, spec : {_, __?NumericQ}, rest___] := DualFindMinimum[eq, {spec}, rest];
-DualFindMinimum[fun : Except[_List], spec : {{_, __?NumericQ}..}, rest___] := Module[{
-    stdfun, stdSol,
-    vars = spec[[All, 1]],
-    dualSol
-},
-    stdfun = StandardAll[DualFactor[fun]];
-    stdSol = FindMinimum[stdfun, spec, rest];
-    If[ !MatchQ[stdSol, {_?NumericQ, {(_ -> _?NumericQ)..}}],
-        Return[$Failed]
-    ];
-    dualSol = Quiet[
-        firstSol @ FindDualSolution[
-            D[fun, {vars}],
-            Last @ stdSol
-        ],
-        {FindDualSolution::nonsol}
-    ];
-    If[ MatchQ[dualSol, {__Rule}],
-        {fun /. dualSol, dualSol},
-        dualSol
-    ]
+KeyValueMap[
+    Function[{existingFun, newFun},
+        newFun[eq_, spec : {_, __?NumericQ}, rest___] := newFun[eq, {spec}, rest];
+        newFun[fun : Except[_List], spec : {{_, __?NumericQ}..}, rest___] := Module[{
+            stdfun, stdSol,
+            vars = spec[[All, 1]],
+            dualSol
+        },
+            stdfun = StandardAll[DualFactor[fun]];
+            stdSol = existingFun[stdfun, spec, rest];
+            If[ !MatchQ[stdSol, {_?NumericQ, {(_ -> _?NumericQ)..}}],
+                Return[$Failed]
+            ];
+            dualSol = Quiet[
+                firstSol @ FindDualSolution[
+                    D[fun, {vars}],
+                    Last @ stdSol
+                ],
+                {FindDualSolution::nonsol}
+            ];
+            If[ MatchQ[dualSol, {__Rule}],
+                {fun /. dualSol, dualSol},
+                dualSol
+            ]
+        ];
+    ],
+    <|
+        FindMinimum -> DualFindMinimum,
+        FindMaximum -> DualFindMaximum
+    |>
 ];
 
 End[] (* End Private Context *)
