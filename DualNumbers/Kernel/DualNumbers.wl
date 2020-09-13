@@ -48,7 +48,7 @@ GeneralUtilities`SetUsage[UnpackDualArray,
     "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
-    "AddDualHandling[f$, {f$1, f$2, $$}] specifies derivatives for f$ to use with Dual numbers.
+    "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
 AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with $n arguments.
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
@@ -374,7 +374,7 @@ KeyValueMap[
         Function[f,
             Derivative[##][f]& @@@ IdentityMatrix[2]
         ],
-        {Power, Mod, Binomial, Gamma}
+        {Power, Log, Mod, Binomial, Gamma}
     ]
 ];
 
