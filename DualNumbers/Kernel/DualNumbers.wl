@@ -184,7 +184,7 @@ Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[
 
 Dual /: HoldPattern @ Divide[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
     Divide[a1, a2],
-    Divide[Subtract[b1 * a2, a1 * b2] , a2^2]
+    Subtract[Divide[b1, a2], Divide[a1 * b2, , a2^2]]
 ];
 
 Dual /: Power[Dual[a_, b_], 1] := Dual[a, b];
