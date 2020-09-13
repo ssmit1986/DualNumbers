@@ -4,7 +4,7 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 
 ## Installation instructions
 
-To install the package, simply download the paclet from the [GitHub repository](https://github.com/ssmit1986/DualNumbers) and run:
+To install the package, download the paclet file from the [GitHub repository](https://github.com/ssmit1986/DualNumbers) and run:
 
     PacletInstall["/path/to/DualNumbers-1.0.paclet"]
     <<DualNumbers`
@@ -20,8 +20,33 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 
 ## Features
 
+* Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the non-standard part gives you the exact (directional) derivative.
+
+* You can define packed dual arrays and efficiently perform structural operations on them.
+
+
+* Built-in functions with support for dual numbers and dual arrays:
+
+    * Elementary arithmetic: `Plus`, `Times`, `Power`, `Subtract`, `Divide`.
+    * Many elementary functions: `Exp`, `Log`, `Abs`, `Sign`, `Clip`, `Gamma`, etc.
+    * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
+    * Array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`, `Transpose`
+    * Array manipulation: `Map`, `MapIndexed`, `Part`, `Take`, `Drop`, `Join`.
+    * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
+
+
+* Helper functions:
+    * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
+    * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
+    * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
+    * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b * eps`.
 
 ## Sources:
 * [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration.
 * [Dual number - Wikipedia](https://en.wikipedia.org/wiki/Dual_number)
 * [Automatic differentiation - Wikipedia](https://en.wikipedia.org/wiki/Automatic_differentiation)
+
+## Version history
+
+* 2020-09-14
+    * Release of V1.0.
