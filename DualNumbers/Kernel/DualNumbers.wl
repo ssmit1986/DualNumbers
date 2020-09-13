@@ -86,14 +86,34 @@ Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
 
-Dual::arrayQ = "`1` is not an array.";
+arrayPattern = _List | _SparseArray | _QuantityArray;
+
+(* Messages to warn when invalid Dual arrays have been constructed *)
+Dual::array = "Mismatching dimensions `1` and `2` found for the standard and non-standard parts of `3`";
+Dual[a : arrayPattern, b_] /; And[
+    !DualArrayQ[Unevaluated @ Dual[a, b]],
+    (
+        Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
+        False
+    )
+] := Undefined;
+Dual[a : Except[arrayPattern], b : arrayPattern] /; And[
+    !DualArrayQ[Unevaluated @ Dual[a, b]],
+    (
+        Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
+        False
+    )
+] := Undefined;
+
+PackDualArray::arrayQ = "`1` is not an array.";
 PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
+PackDualArray[other_] /; (Message[PackDualArray::arrayQ, Short[other]]; False) := Undefined;
 
 UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
+UnpackDualArray::badarray = "Cannot unpack expression `1`."
 With[{
     testArray = Developer`ToPackedArray[{0}]
 },
@@ -115,7 +135,7 @@ With[{
         ]
     )
 ];
-UnpackDualArray[other_] /; (Message[Dual::arrayQ, Short[other]]; False) := Undefined;
+UnpackDualArray[other_] /; (Message[UnpackDualArray::badarray, Short[other]]; False) := Undefined;
 
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
@@ -352,13 +372,21 @@ Scan[
 
 Scan[
     Function[fun,
-        Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest];
-        Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
+        Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest]
     ],
     {
-        MatrixQ, VectorQ, Dimensions, Length
+        MatrixQ, VectorQ, Dimensions, Length, ArrayDepth
     }
 ];
+Scan[
+    Function[fun,
+        Dual /: HoldPattern[fun[Dual[_, _], ___]] := False;
+    ],
+    {MatrixQ, VectorQ}
+];
+Dual /: HoldPattern[Length[Dual[_, _]]] := 0;
+Dual /: HoldPattern[Dimensions[Dual[_, _]]] := {};
+Dual /: HoldPattern[ArrayDepth[Dual[_, _]]] := 0;
 
 (* Set upvalues for most built-in numeric functions where possible *)
 KeyValueMap[
