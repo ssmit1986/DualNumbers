@@ -16,6 +16,8 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
     PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one containing this README file *)
     <<DualNumbers`
 
+**Note on the Paclet version:** the paclet is configured to work with Mathematica version 12.1 and higher because that is what it has been tested on. Most of the code in this repository should work with older versions of Mathematica if you `Get` the DualNumbers.wl file directly.
+
 ## Introduction
 
 ## Features

@@ -1,11 +1,11 @@
 (* Paclet Info File *)
 
-(* created 2019/10/02*)
+(* created 2020/09/11 *)
 
 Paclet[
     Name -> "DualNumbers",
     Version -> "1.0",
-    MathematicaVersion -> "12.0+",
+    MathematicaVersion -> "12.1+",
     Creator -> "Sjoerd Smit",
     Extensions -> {
         {
