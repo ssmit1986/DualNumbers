@@ -30,7 +30,7 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 * Built-in functions with support for dual numbers and dual arrays:
 
     * Elementary arithmetic: `Plus`, `Times`, `Power`, `Subtract`, `Divide`.
-    * Many elementary functions: `Exp`, `Log`, `Abs`, `Sign`, `Clip`, `Gamma`, etc.
+    * Many elementary functions: `Exp`, `Log`, `Sin`, `Cos`, `Abs`, `Sign`, `Clip`, `Gamma`, etc.
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
     * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
     * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
@@ -46,6 +46,19 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
     * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b * eps`.
+
+## Know issues and limitations
+
+* Because `Plus`, `Times` and `Power` have the `Listable` attribute, it's not possible to correctly add (multiply, etc.) a packed dual array to a normal array:
+
+    In[]:= Dual[{1, 2}, {3, 4}] + {5, 6}
+    Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]} (* Should be Dual[{6, 8}, {3, 4}]*)
+
+There is no good way around this because the `Listable` attribute always takes precedence over any `UpValue` (see, e.g., [this discussion](https://mathematica.stackexchange.com/questions/19067/apply-upvalues-before-listability)).
+The best way around this, is to cast the normal array to a dual array:
+
+    In[]:= Dual[{1, 2}, {3, 4}] + Dual @ {5, 6}
+    Out[]= Dual[{6, 8}, {3, 4}]
 
 ## Sources:
 * [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration.
