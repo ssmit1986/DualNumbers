@@ -53,7 +53,7 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 * Because `Plus`, `Times` and `Power` have the `Listable` attribute, it's not possible to correctly add (multiply, etc.) a packed dual array to a normal array:
 
     In[]:= Dual[{1, 2}, {3, 4}] + {5, 6}
-    Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]} (* Should be Dual[{6, 8}, {3, 4}]*)
+    Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]}
 
 There is no good way around this because the `Listable` attribute always takes precedence over any `UpValue` (see, e.g., [this discussion](https://mathematica.stackexchange.com/questions/19067/apply-upvalues-before-listability)).
 The best way around this, is to cast the normal array to a dual array:
