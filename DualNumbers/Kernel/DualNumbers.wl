@@ -423,6 +423,10 @@ Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] :=
 },
     Dual[Extract[a, pos], Extract[b, pos]]
 ];
+Dual /: Select[_Dual, ___] /; (Message[Dual::arrayOp, Select]; False) := Undefined;
+
+Dual /: Position[Dual[a_, _]?DualArrayQ, rest___] := Position[a, rest];
+Dual /: Position[_Dual, ___] /; (Message[Dual::arrayOp, Position]; False) := Undefined;
 
 Dual::maprepack = "Failed to re-pack after mapping `f`";
 Scan[
