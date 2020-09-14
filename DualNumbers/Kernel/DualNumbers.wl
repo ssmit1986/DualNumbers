@@ -35,6 +35,7 @@ GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0,
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
+GeneralUtilities`SetUsage[UnpackedDualArrayQ, "UnpackedDualArrayQ[expr$] tests if expr$ is a regular array where only Dual occurs as a head at the deepest level."];
 GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ has a head different from Dual."];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
@@ -90,6 +91,9 @@ DualScalarQ[_] := False;
 
 DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
+
+UnpackedDualArrayQ[a_?ArrayQ] := MatchQ[Level[a, {ArrayDepth[a]}], {__Dual}];
+UnpackedDualArrayQ[_] := False;
 
 StandardQ[_Dual] := False;
 StandardQ[_] := True;
@@ -149,6 +153,15 @@ Dual[a : Except[arrayPattern], b : arrayPattern] /; And[
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
+PackDualArray[array_?UnpackedDualArrayQ] := With[{
+    depth = ArrayDepth[array]
+},
+    Dual[
+        Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 1],
+        Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 2]
+    ]
+];
+(* Backup definition in case normal numbers are mixed in *)
 PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
@@ -203,6 +216,7 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
 (* Basic properties of dual numbers *)
+Dual[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[a1, a2 + b1];
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
 Dual[a_, Dual[b_, _]] := Dual[a, b];
 
