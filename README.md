@@ -39,6 +39,7 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 
 
 * Helper functions:
+    * `ToDual`: construct dual numbers from scalars or arrays.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).

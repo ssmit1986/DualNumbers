@@ -4,15 +4,21 @@ BeginPackage["DualNumbers`", {"GeneralUtilities`", "Developer`"}]
 ClearAll["DualNumbers`*", "DualNumbers`*`*"];
 
 (* Exported symbols added here with SymbolName::usage *)
-GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$."];
+GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$.
+Dual[array$1, array$2] represents an array of dual numbers. The arrays should have the same shape (i.e., Dimensions[array$1] === Dimensions[array$2])
+Dual[a$] constructs a dual number or array with 0 non-standard part."
+];
+GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scalar or array with constant non-standard part. \
+The default value for const$ is 1."
+];
 GeneralUtilities`SetUsage[Standard,
     "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument)."
 ];
-GeneralUtilities`SetUsage[StandardAll,
-    "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
-];
 GeneralUtilities`SetUsage[NonStandard,
     "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument)."
+];
+GeneralUtilities`SetUsage[StandardAll,
+    "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
 ];
 GeneralUtilities`SetUsage[DualExpand,
     "DualExpand[expr$, eps$] replaces each dual number Dual[a$, b$] with a$ + b$ * eps$."
@@ -101,9 +107,20 @@ nonstd[x_] := 0;
 
 (* Constructors *)
 Dual[] := Dual[0, 1];
-Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
-Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
-Dual[a_] := Dual[a, 1];
+Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 0]]
+Dual[a_?ArrayQ] := Dual[a, ConstantArray[0, Dimensions[a]]];
+Dual[a_] := Dual[a, 0];
+
+ToDual::cons = "Cannot construct a dual quantity from arguments `1`";
+(* Take a standard quantities and give it a constant non-standard part *)
+ToDual[a_SparseArray?ArrayQ, const : Except[_?ArrayQ] : 1] := Dual[a, SparseArray[{}, Dimensions[a], const]];
+ToDual[a_?ArrayQ, const : Except[_?ArrayQ] : 1] := Dual[a, ConstantArray[const, Dimensions[a]]];
+ToDual[a_?ArrayQ, b_?ArrayQ] := Dual[a, b];
+ToDual[a : standardPatt, const : Except[_?ArrayQ] : 1] := Dual[a, const];
+ToDual[a : standardPatt, arr_SparseArray?ArrayQ] := Dual[SparseArray[{}, Dimensions[arr], a], arr];
+ToDual[a : standardPatt, arr_?ArrayQ] := Dual[ConstantArray[a, Dimensions[arr]], arr];
+ToDual[d_Dual, ___] := d;
+ToDual[args__] /; (Message[ToDual::cons, Short /@ {args}]; False) := Undefined
 
 (* Messages to warn when invalid Dual arrays have been constructed *)
 Dual::array = "Mismatching dimensions `1` and `2` found for the standard and non-standard parts of `3`";
@@ -178,8 +195,9 @@ DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
 Dual[a_, Dual[b_, _]] := Dual[a, b];
 
+(* I found that making Dual randomly disappear is more trouble than it's worth. Enable this at your own peril. *)
+(* Dual[a_, 0] := a; *)
 
-Dual[a_, 0] := a;
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
