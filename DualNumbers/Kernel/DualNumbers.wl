@@ -67,6 +67,7 @@ Begin["`Private`"] (* Begin Private Context *)
 derivativePatt = Except[Function[D[__]], _Function];
 arrayPattern = _List | _SparseArray | _QuantityArray;
 
+(* Boolean functions to test validity of Dual objects *)
 dualPatt = Dual[_, _];
 DualQ[expr : dualPatt] := DualScalarQ[expr] || DualArrayQ[expr];
 DualQ[_] := False;
@@ -81,8 +82,25 @@ StandardQ[_Dual] := False;
 StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
-Dual[] := Dual[0, 1];
+(* Accessing standard and non-standard parts *)
+SetAttributes[Standard, Listable];
+Standard[Dual[a_, _]] := a;
+Standard[x_?NumericQ] := x;
 
+SetAttributes[NonStandard, Listable];
+NonStandard[Dual[_, b_]] := b;
+NonStandard[_?NumericQ] := 0;
+
+SetAttributes[std, Listable];
+std[Dual[a_, _]] := a;
+std[x_] := x;
+
+SetAttributes[nonstd, Listable];
+nonstd[Dual[_, b_]] := b;
+nonstd[x_] := 0;
+
+(* Constructors *)
+Dual[] := Dual[0, 1];
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
 Dual[a_] := Dual[a, 1];
@@ -104,6 +122,7 @@ Dual[a : Except[arrayPattern], b : arrayPattern] /; And[
     )
 ] := Undefined;
 
+(* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
 PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
@@ -144,14 +163,7 @@ UnpackDualArray[other_] := (
     other
 );
 
-SetAttributes[Standard, Listable];
-Standard[Dual[a_, _]] := a;
-Standard[x_?NumericQ] := x;
-
-SetAttributes[NonStandard, Listable];
-NonStandard[Dual[_, b_]] := b;
-NonStandard[_?NumericQ] := 0;
-
+(* Manipulating expressions with dual numbers *)
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
 
 DualExpand[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[
@@ -162,19 +174,10 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
-SetAttributes[std, Listable];
-std[Dual[a_, _]] := a;
-std[x_] := x;
+(* Basic properties of dual numbers *)
+Dual[Dual[a_, b_], c_] := Dual[a, b + c];
+Dual[a_, Dual[b_, _]] := Dual[a, b];
 
-SetAttributes[nonstd, Listable];
-nonstd[Dual[_, b_]] := b;
-nonstd[x_] := 0;
-
-Dual[Dual[a_, b_], c_] ^:= Dual[a, b + c];
-Dual[a_, Dual[b_, _]] ^:= Dual[a, b];
-
-Derivative[1, 0][Dual] = 1&;
-Derivative[0, 1][Dual] = Dual[0, 1]&;
 
 Dual[a_, 0] := a;
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
@@ -182,6 +185,7 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 
+(* Divide and Subtract are generally faster than the - and / infix operators. That's why they get dedicated rules *)
 Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[a1, a2], Subtract[b1, b2]];
 
 Dual /: HoldPattern @ Divide[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
@@ -189,11 +193,12 @@ Dual /: HoldPattern @ Divide[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[
     Subtract[Divide[b1, a2], Divide[a1 * b2, a2^2]]
 ];
 
+(* Special rules for power; the general rule is covered elsewhere. *)
 Dual /: Power[Dual[a_, b_], 1] := Dual[a, b];
 Dual /: Power[Dual[Except[0 | 0.], _], 0] := 1;
 Dual /: Power[Dual[a_, b_], -1] := Dual[Divide[1, a], -Divide[b, a^2]];
 
-(* (* This definition can be helpful for calculating very large Powers *)
+(* (* This definition can be helpful for calculating very large Powers. *)
 Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
     Function[If[#2 === 1, d * #1, #1] * #1],
     d,
@@ -201,6 +206,49 @@ Dual /: Power[d_Dual, n_Integer?Positive] := Fold[
 ];
 *)
 
+(* This makes sure that D[expr, var] works for expressions involving dual numbers *)
+Derivative[1, 0][Dual] = 1&;
+Derivative[0, 1][Dual] = Dual[0, 1]&;
+
+(* Set upvalues for most built-in numeric functions where possible (e.g., Exp, Log, Sin, etc.) *)
+KeyValueMap[
+    Function[{fun, derriv},
+        Dual /: HoldPattern[fun[Dual[a_, b_]]] := Dual[fun[a], derriv[a] * b]
+    ],
+    KeyDrop[{Power, Times, Plus}] @ Select[
+        AssociationMap[
+            Derivative[1],
+            Symbol /@ Select[
+                Names["System`*"],
+                MemberQ[Attributes[#], NumericFunction]&
+            ]
+        ],
+        MatchQ[derivativePatt]
+    ]
+];
+
+(* Set upvalues for some 2-argument functions, including Power *)
+KeyValueMap[
+    Function[{fun, derriv},
+        With[{d1 = derriv[[1]], d2 = derriv[[2]]},
+            Dual /: HoldPattern[fun[Dual[a1_, b1_], Dual[a2_, b2_]]] := Dual[
+                fun[a1, a2],
+                d1[a1, a2] * b1 + d2[a1, a2] * b2
+            ];
+            Dual /: HoldPattern[fun[Dual[a_, b_], c_]] := Dual[fun[a, c], d1[a, c] * b];
+            Dual /: HoldPattern[fun[c_, Dual[a_, b_]]] := Dual[fun[c, a], d2[c, a] * b]
+        ]
+    ],
+    Quiet[
+        AssociationMap[
+            Function[f,
+                Derivative[##][f]& @@@ IdentityMatrix[2]
+            ],
+            {Power, Log, Mod, Binomial, Gamma}
+        ],
+        {FromPackedArray::punpack1} (* generated by IdentityMatrix[2] when packing messages are on *)
+    ]
+];
 
 (* Special cases *)
 Dual /: Abs[Dual[a_, b_]] := Dual[Abs[a], b * Sign[a]];
@@ -227,7 +275,7 @@ With[{
     clipDerivatives5arg4 = Piecewise[{{1, #[[1]] < #[[2]]}}, 0]&,
     clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
 },
-    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] := With[{
+    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] /; NoneTrue[{xmin, xmax}, DualArrayQ] := With[{
         stdargs = {a, std @ xmin, std @ xmax}
     },
         Dual[
@@ -239,7 +287,11 @@ With[{
             ]
         ]
     ];
-    Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}, {ymin_, ymax_}] := With[{
+    Dual /: Clip[
+        Dual[a_, b_],
+        {xmin_, xmax_},
+        {ymin_, ymax_}
+    ] /; NoneTrue[{xmin, xmax, ymin, ymax}, DualArrayQ] := With[{
         stdargs = {a, std @ xmin, std @ xmax, std @ ymin, std @ ymax}
     },
         Dual[
@@ -260,6 +312,9 @@ With[{
 
 (* Array operations *)
 
+(* This comes up frequently enough to warrant a dedicated function *)
+listPosition[list_, patt_, lvl : _ : {1}] := Position[list, patt, lvl, Heads -> False];
+
 Dual::norm = "Encountered array of depth `1`. Cannot compute norms of dual arrays of depth > 1.";
 Dual::infnorm = "Infinite norms can only be computed for numeric dual vectors.";
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, p : Except[DirectedInfinity[1]] : 2] := Dual[
@@ -277,7 +332,7 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
         max = Max[absA]
     },
         With[{
-            pos = Position[absA, _?(EqualTo[max]), {1}, Heads -> False]
+            pos = listPosition[absA, _?(EqualTo[max])]
         },
             Dual[
                 max,
@@ -419,7 +474,7 @@ Dual /: Join[arrays__Dual?DualArrayQ] := With[{
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
 Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
-    pos = Position[a, _?selFun, {1}, n, Heads -> False]
+    pos = listPosition[a, _?selFun]
 },
     Dual[Extract[a, pos], Extract[b, pos]]
 ];
@@ -427,6 +482,19 @@ Dual /: Select[_Dual, ___] /; (Message[Dual::arrayOp, Select]; False) := Undefin
 
 Dual /: Position[Dual[a_, _]?DualArrayQ, rest___] := Position[a, rest];
 Dual /: Position[_Dual, ___] /; (Message[Dual::arrayOp, Position]; False) := Undefined;
+
+Dual /: Pick[list_Dual?DualArrayQ, sel_, patt : _ : True] /; Length[list] === Length[sel] := With[{
+    pos = listPosition[sel, patt]
+},
+    Extract[list, pos]
+];
+Dual /: Pick[list_, sel_Dual?DualArrayQ, patt : _ : True] /; Length[list] === Length[sel] := With[{
+    pos = listPosition[sel, patt]
+},
+    Extract[list, pos]
+];
+Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
+Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
 
 Dual::maprepack = "Failed to re-pack after mapping `f`";
 Scan[
@@ -459,46 +527,6 @@ Dual /: HoldPattern[Length[Dual[_, _]]] := 0;
 Dual /: HoldPattern[Dimensions[Dual[_, _]]] := {};
 Dual /: HoldPattern[ArrayDepth[Dual[_, _]]] := 0;
 
-(* Set upvalues for most built-in numeric functions where possible *)
-KeyValueMap[
-    Function[{fun, derriv},
-        Dual /: HoldPattern[fun[Dual[a_, b_]]] := Dual[fun[a], derriv[a] * b]
-    ],
-    KeyDrop[{Power, Times, Plus}] @ Select[
-        AssociationMap[
-            Derivative[1],
-            Symbol /@ Select[
-                Names["System`*"],
-                MemberQ[Attributes[#], NumericFunction]&
-            ]
-        ],
-        MatchQ[derivativePatt]
-    ]
-];
-
-(* Set upvalues for some 2-argument functions *)
-KeyValueMap[
-    Function[{fun, derriv},
-        With[{d1 = derriv[[1]], d2 = derriv[[2]]},
-            Dual /: HoldPattern[fun[Dual[a1_, b1_], Dual[a2_, b2_]]] := Dual[
-                fun[a1, a2],
-                d1[a1, a2] * b1 + d2[a1, a2] * b2
-            ];
-            Dual /: HoldPattern[fun[Dual[a_, b_], c_]] := Dual[fun[a, c], d1[a, c] * b];
-            Dual /: HoldPattern[fun[c_, Dual[a_, b_]]] := Dual[fun[c, a], d2[c, a] * b]
-        ]
-    ],
-    Quiet[
-        AssociationMap[
-            Function[f,
-                Derivative[##][f]& @@@ IdentityMatrix[2]
-            ],
-            {Power, Log, Mod, Binomial, Gamma}
-        ],
-        {FromPackedArray::punpack1} (* generated by IdentityMatrix[2] when packing messages are on *)
-    ]
-];
-
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
         Dual /: HoldPattern[fun[first___, d : Dual[_?NumericQ, _], rest___]] := With[{
@@ -517,7 +545,7 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
         args = {first, d, rest}
     },
         With[{
-            dualPos = Flatten @ Position[args, dualPatt, {1}, Heads -> False],
+            dualPos = Flatten @ listPosition[args, dualPatt],
             inputs = std[args]
         },
             With[{dlist = derivatives[[dualPos]]},
