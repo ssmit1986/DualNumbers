@@ -6,15 +6,19 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 
 To install the package, download the paclet file from the [GitHub repository](https://github.com/ssmit1986/DualNumbers) and run:
 
-    PacletInstall["/path/to/DualNumbers-1.0.paclet"]
-    <<DualNumbers`
+```
+PacletInstall["/path/to/DualNumbers-1.0.paclet"]
+<<DualNumbers`
+```
 
 The easiest way to get the full path to the file is with the `Insert > File Path...` option from the menu bar.
 
 Alternatively, if you want to edit the code for your own purposes, you can also load the package from the source code by cloning the GitHub repository and then using:
 
-    PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one containing this README file *)
-    <<DualNumbers`
+```
+PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one containing this README file *)
+<<DualNumbers`
+```
 
 **Note on the Paclet version:** the paclet is configured to work with Mathematica version 12.1 and higher because that is what it has been tested on. Most of the code in this repository should work with older versions of Mathematica if you `Get` the DualNumbers.wl file directly.
 
@@ -52,14 +56,18 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 
 * Because `Plus`, `Times` and `Power` have the `Listable` attribute, it's not possible to correctly add (multiply, etc.) a packed dual array to a normal array:
 
-    In[]:= Dual[{1, 2}, {3, 4}] + {5, 6}
-    Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]}
+```
+In[]:= Dual[{1, 2}, {3, 4}] + {5, 6}
+Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]} (* Should be Dual[{6, 8}, {3, 4}]*)
+```
 
 There is no good way around this because the `Listable` attribute always takes precedence over any `UpValue` (see, e.g., [this discussion](https://mathematica.stackexchange.com/questions/19067/apply-upvalues-before-listability)).
 The best way around this, is to cast the normal array to a dual array:
 
-    In[]:= Dual[{1, 2}, {3, 4}] + Dual @ {5, 6}
-    Out[]= Dual[{6, 8}, {3, 4}]
+```
+In[]:= Dual[{1, 2}, {3, 4}] + Dual @ {5, 6}
+Out[]= Dual[{6, 8}, {3, 4}]
+```
 
 ## Sources:
 * [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration.
