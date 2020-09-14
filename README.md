@@ -41,6 +41,7 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
 * Helper functions:
     * `ToDual`: construct dual numbers from scalars or arrays.
     * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
+    * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`: testing different types of dual expressions.
     * `DualApply`: apply functions directly to the standard and non-standard parts of a dual quantity.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
