@@ -377,11 +377,29 @@ Scan[
         Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
     ],
     {
-        Total, Mean, Transpose, Part, Take, Drop
+        Total, Mean, Transpose, 
+        Part, Extract, Take, Drop,
+        First, Last, Rest, Most
     }
 ];
 
 Dual::join = "Warning: Join attempted, but it did not produce a valid DualArray.";
+Dual /: Join[arrays__Dual?DualArrayQ, n_Integer] := With[{
+    a = Standard[{arrays}],
+    b = NonStandard[{arrays}]
+},
+    With[{
+        try = Dual[Join[Sequence @@ a, n], Join[Sequence @@ b, n]]
+    },
+        If[ DualArrayQ[try]
+            ,
+            try
+            ,
+            Message[Dual::join];
+            Inactive[Join][arrays] (* Stop the evaluation chain to prevent Join's Flat attribute from trying other combinations *)
+        ]
+    ]
+];
 Dual /: Join[arrays__Dual?DualArrayQ] := With[{
     a = Standard[{arrays}],
     b = NonStandard[{arrays}]
@@ -389,10 +407,22 @@ Dual /: Join[arrays__Dual?DualArrayQ] := With[{
     With[{
         try = Dual[Join[Sequence @@ a], Join[Sequence @@ b]]
     },
-        try /; Replace[DualArrayQ[try], False :> (Message[Dual::join]; False)]
+        If[ DualArrayQ[try]
+            ,
+            try
+            ,
+            Message[Dual::join];
+            Inactive[Join][arrays] (* Stop the evaluation chain to prevent Join's Flat attribute from trying other combinations *)
+        ]
     ]
 ];
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
+
+Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
+    pos = Position[a, _?selFun, {1}, n, Heads -> False]
+},
+    Dual[Extract[a, pos], Extract[b, pos]]
+];
 
 Dual::maprepack = "Failed to re-pack after mapping `f`";
 Scan[

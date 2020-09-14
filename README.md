@@ -30,8 +30,9 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
     * Elementary arithmetic: `Plus`, `Times`, `Power`, `Subtract`, `Divide`.
     * Many elementary functions: `Exp`, `Log`, `Abs`, `Sign`, `Clip`, `Gamma`, etc.
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
-    * Array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`, `Transpose`
-    * Array manipulation: `Map`, `MapIndexed`, `Part`, `Take`, `Drop`, `Join`.
+    * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
+    * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
+    * Structural array manipulation: `Map`, `MapIndexed`, `Join`, `Select`.
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
 
 
