@@ -152,6 +152,7 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
+PackDualArray[d_Dual] := d;
 PackDualArray[other_] := (
     Message[PackDualArray::arrayQ, Short[other]];
     other
@@ -168,6 +169,7 @@ With[{
 ];
 
 UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
+UnpackDualArray::notArray = "Cannot unpack dual scalar `1`.";
 UnpackDualArray::badarray = "Cannot unpack expression `1`."
 UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
     If[ packingMessagesEnabledQ[],
@@ -182,6 +184,7 @@ UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
         ArrayDepth[a]
     ]
 );
+UnpackDualArray[d_Dual?DualScalarQ] := (Message[UnpackDualArray::notArray, Short[d]]; d);
 UnpackDualArray[other_] := (
     Message[UnpackDualArray::badarray, Short[other]];
     other
@@ -457,7 +460,7 @@ Scan[
         Dual /: HoldPattern[fun[Dual[_, _], ___]] /; (Message[Dual::arrayOp, fun]; False):= Undefined
     ],
     {
-        Total, Mean, Transpose, 
+        Total, Mean, Transpose, Flatten,
         Part, Extract, Take, Drop,
         First, Last, Rest, Most
     }
@@ -521,17 +524,14 @@ Dual /: Pick[list_, sel_Dual?DualArrayQ, patt : _ : True] /; Length[list] === Le
 Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
 Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
 
-Dual::maprepack = "Failed to re-pack after mapping `f`";
 Scan[
     Function[mapper,
-        Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, rest___] := With[{
-            try = PackDualArray @ mapper[fun, UnpackDualArray[dualArr], rest]
-        },
-            try /; Replace[DualArrayQ[try], False :> (Message[Dual::maprepack, fun]; False)]
+        Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, rest___] := PackDualArray[
+            mapper[fun, UnpackDualArray[dualArr], rest]
         ];
         Dual /: mapper[_, _Dual, ___] /; (Message[Dual::arrayOp, mapper]; False) := Undefined;
     ],
-    {Map, MapIndexed}
+    {Map, MapIndexed, Apply}
 ];
 
 Scan[

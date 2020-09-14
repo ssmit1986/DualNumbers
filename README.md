@@ -34,7 +34,7 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
     * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
     * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
-    * Structural array manipulation: `Map`, `MapIndexed`, `Join`, `Select`, `Pick`, `Position`.
+    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Join`, `Select`, `Pick`, `Position`.
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
 
 
