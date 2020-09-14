@@ -58,7 +58,7 @@ PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one contai
 
 ```
 In[]:= Dual[{1, 2}, {3, 4}] + {5, 6}
-Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]} (* Should be Dual[{6, 8}, {3, 4}]*)
+Out[]= {Dual[{6, 7}, {3, 4}], Dual[{7, 8}, {3, 4}]} (* Should be Dual[{6, 8}, {3, 4}] *)
 ```
 
 There is no good way around this because the `Listable` attribute always takes precedence over any `UpValue` (see, e.g., [this discussion](https://mathematica.stackexchange.com/questions/19067/apply-upvalues-before-listability)).
