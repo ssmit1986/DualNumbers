@@ -82,7 +82,6 @@ StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
 Dual[] := Dual[0, 1];
-\[Epsilon] = Inactive[Dual][0, 1];
 
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 1]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[1, Dimensions[a]]];
@@ -110,32 +109,40 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[other_] /; (Message[PackDualArray::arrayQ, Short[other]]; False) := Undefined;
+PackDualArray[other_] := (
+    Message[PackDualArray::arrayQ, Short[other]];
+    other
+);
 
-UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
-UnpackDualArray::badarray = "Cannot unpack expression `1`."
 With[{
     testArray = Developer`ToPackedArray[{0}]
 },
-    UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
-        If[ TrueQ @ Quiet @ Check[ (* test if packing messages are on *)
-                Developer`FromPackedArray @ testArray,
-                True,
-                {FromPackedArray::punpack}
-            ],
-            Quiet[
-                Message[UnpackDualArray::unpack, Dimensions[a]],
-                {FromPackedArray::unpack, FromPackedArray::punpack1}
-            ]
-        ];
-        MapThread[
-            Dual,
-            {a, b},
-            ArrayDepth[a]
-        ]
-    )
+    packingMessagesEnabledQ[] := TrueQ @ Quiet @ Check[ (* test if packing messages are on (i.e., from On["Packing"]) *)
+        Developer`FromPackedArray @ testArray,
+        True,
+        {FromPackedArray::punpack}
+    ]
 ];
-UnpackDualArray[other_] /; (Message[UnpackDualArray::badarray, Short[other]]; False) := Undefined;
+
+UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
+UnpackDualArray::badarray = "Cannot unpack expression `1`."
+UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
+    If[ packingMessagesEnabledQ[],
+        Quiet[
+            Message[UnpackDualArray::unpack, Dimensions[a]],
+            {FromPackedArray::unpack, FromPackedArray::punpack1}
+        ]
+    ];
+    MapThread[
+        Dual,
+        {a, b},
+        ArrayDepth[a]
+    ]
+);
+UnpackDualArray[other_] := (
+    Message[UnpackDualArray::badarray, Short[other]];
+    other
+);
 
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
