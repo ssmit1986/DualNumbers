@@ -114,6 +114,7 @@ nonstd[x_] := 0;
 
 (* Constructors *)
 Dual[] := Dual[0, 1];
+Dual[d_Dual] := d;
 Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 0]]
 Dual[a_?ArrayQ] := Dual[a, ConstantArray[0, Dimensions[a]]];
 Dual[a_] := Dual[a, 0];
