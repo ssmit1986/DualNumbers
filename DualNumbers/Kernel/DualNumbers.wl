@@ -12,10 +12,12 @@ GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scala
 The default value for const$ is 1."
 ];
 GeneralUtilities`SetUsage[Standard,
-    "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument)."
+    "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument).
+Does not evaluate for symbolic arguments. Threads over lists."
 ];
 GeneralUtilities`SetUsage[NonStandard,
-    "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument)."
+    "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument).
+Does not evaluate for symbolic arguments. Threads over lists."
 ];
 GeneralUtilities`SetUsage[StandardAll,
     "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
@@ -61,6 +63,11 @@ GeneralUtilities`SetUsage[AddDualHandling,
     "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
 AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with $n arguments.
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
+];
+GeneralUtilities`SetUsage[DualApply,
+    "DualApply[{f$a, f$b}, Dual[a$, b$]] yields Dual[f$a[a$], f$b[b$]].
+DualApply[f$, Dual[a$, b$]] yields Dual[f$[a$], f$[b$]].
+DualApply[f$] is the operator form of DualApply."
 ];
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -556,6 +563,7 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
 
+(* Set UpValues for custom functions to be used with Dual *)
 AddDualHandling[f_, n_Integer?Positive] := AddDualHandling[f, Derivative[##][f]& @@@ IdentityMatrix[n]];
 AddDualHandling[f_, nList : {__Integer?Positive}] := Scan[AddDualHandling[f, #]&, nList];
 AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
@@ -578,6 +586,11 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
         ] /; Length[args] === n
     ]
 ];
+
+(* Modify standard and non-standard parts directly *)
+DualApply[{funa_, funb_}, Dual[a_, b_]] := Dual[funa[a], funb[b]];
+DualApply[fun_, Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
 
