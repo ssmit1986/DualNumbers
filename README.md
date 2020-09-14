@@ -34,11 +34,14 @@ Alternatively, if you want to edit the code for your own purposes, you can also 
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
     * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
     * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
-    * Structural array manipulation: `Map`, `MapIndexed`, `Join`, `Select`.
+    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Join`, `Select`, `Pick`, `Position`.
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
 
 
 * Helper functions:
+    * `ToDual`: construct dual numbers from scalars or arrays.
+    * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
+    * `DualApply`: apply functions directly to the standard and non-standard parts of a dual quantity.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
