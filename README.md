@@ -72,7 +72,7 @@ Out[]= Dual[{6, 8}, {3, 4}]
 ```
 
 ## Sources:
-* [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration.
+* [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration
 * [Dual number - Wikipedia](https://en.wikipedia.org/wiki/Dual_number)
 * [Automatic differentiation - Wikipedia](https://en.wikipedia.org/wiki/Automatic_differentiation)
 
