@@ -34,7 +34,7 @@ GeneralUtilities`SetUsage[DualSimplify,
 GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
-GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
+GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is a valid packed array of dual numbers."];
 GeneralUtilities`SetUsage[UnpackedDualArrayQ, "UnpackedDualArrayQ[expr$] tests if expr$ is an ordinary array where only Dual occurs as a head at the deepest level."];
 GeneralUtilities`SetUsage[DualFreeArrayQ,
     "DualFreeArrayQ[expr$] tests if expr$ is an ordinary array that has no dual numbers at the deepest level."
@@ -84,6 +84,8 @@ Begin["`Private`"] (* Begin Private Context *)
 derivativePatt = Except[Function[D[__]], _Function];
 arrayPattern = _List | _SparseArray;
 
+numericArrayQ = Function[ArrayQ[#, _, NumericQ]];
+
 (* Boolean functions to test validity of Dual objects *)
 dualPatt = Dual[_, _];
 DualQ[expr : dualPatt] := DualScalarQ[expr] || DualArrayQ[expr];
@@ -92,18 +94,12 @@ DualQ[_] := False;
 DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
 DualScalarQ[_] := False;
 
-numericarrayQ = Function[ArrayQ[#, _, NumericQ]];
-
-UnpackedDualArrayQ[a_?ArrayQ] := And[
-    !numericarrayQ[a],
-    FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False]
-];
+UnpackedDualArrayQ[a_?Developer`PackedArrayQ] := False;
+UnpackedDualArrayQ[a_?ArrayQ] := FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False];
 UnpackedDualArrayQ[_] := False;
 
-DualFreeArrayQ[a_?ArrayQ] := Or[
-    numericarrayQ[a],
-    FreeQ[a, _Dual, {ArrayDepth[a]}, Heads -> False]
-];
+DualFreeArrayQ[a_?Developer`PackedArrayQ] := True
+DualFreeArrayQ[a_?ArrayQ] := FreeQ[a, _Dual, {ArrayDepth[a]}, Heads -> False];
 DualFreeArrayQ[_] := False;
 
 DualArrayQ[Dual[a_?DualFreeArrayQ, b_?DualFreeArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
@@ -225,7 +221,7 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
 (* Basic properties of dual numbers *)
-Dual[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[a1, a2 + b1];
+Dual[Dual[a1_, b1_], Dual[a2_, _]] := Dual[a1, a2 + b1];
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
 Dual[a_, Dual[b_, _]] := Dual[a, b];
 
