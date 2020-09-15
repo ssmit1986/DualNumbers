@@ -75,6 +75,77 @@ Dual[f[a], f'[a]]]
 Of course, you need to make sure that all operations performed in the computation of `f` can deal with dual numbers to get this result, 
 and that is precisely what this package tries to achieve.
 
+## Example
+
+Here's a simple example of a programmatic function that Mathematica cannot provide a simple derivative for:
+
+```
+In[]:= f[a_] := Module[{x = 1., y, i = 0},
+    While[ Not[(y = Cos[a x]) == x],
+        x = y;
+        i++
+    ];
+    x
+];
+Derivative[1] @ f
+
+Out[]= 0&
+```
+
+The derivative returned by `Derivative` is incorrect because While resists symbolic differentiation. Of course, in this case it would,
+in principle, be possible to find a derivative for the fixed point with some mathematical insight, but that would difficult to spot programmatically.
+The function can be easily differentiated using dual numbers:
+
+```
+<<DualNumbers`;
+In[]:= f[Dual[0.5, 1.]]
+
+Out[]= Dual[0.900367, -0.321771]
+```
+
+Check that the nonstandard part really gives the right derivative with a simple differential quotient:
+
+In[]:= With[{h = 0.001, a = 0.5}, (f[a + h] - f[a - h])/(2 h)]
+
+Out[]= -0.321771
+
+It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions for comparison functions like `Equal` (so the `While` gate evaluates) and 
+elementary functions like `Cos` and `Sin` (both numerically and symbolically):
+
+```
+In[]:= Dual[0.5, 1] == 0.5
+Dual[0.5, 1] == Dual[0.5, 2]
+
+Out[]= True
+
+Out[]= True
+```
+
+```
+In[]:= Cos[Dual[Pi/2, 1]]
+Cos[Dual[a, b]]
+
+Out[]= Dual[0, -1]
+
+Out[] = Dual[Cos[a], -b Sin[a]]
+```
+
+Note that `Equal` only cares about the standard part of dual numbers. In addition, if the comparison does not yield `True` or `False`, the equation is left alone:
+
+```
+In[]:= Dual[x, 1] == Dual[y, 2]
+
+Out[]= Dual[x, 1] == Dual[y, 2]
+```
+
+Because the termination of the `While` loop is independent of the nonstandard part, it's even possible to call `f` with a symbolic nonstandard part:
+
+```
+In{}:= f[Dual[0.5, b]]
+
+Out[]= Dual[0.900367, -0.321771 b]
+```
+
 ## Features
 
 * Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the nonstandard part gives you the exact (directional) derivative.
