@@ -69,8 +69,9 @@ AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ i
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
 GeneralUtilities`SetUsage[DualApply,
-    "DualApply[{f$a, f$b}, Dual[a$, b$]] yields Dual[f$a[a$], f$b[b$]].
-DualApply[f$, Dual[a$, b$]] yields Dual[f$[a$], f$[b$]].
+    "DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
+DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][[2]]]. f$All should return a List of length 2.
+DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
 DualApply[f$] is the operator form of DualApply."
 ];
 
@@ -608,8 +609,17 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
 ];
 
 (* Modify standard and non-standard parts directly *)
+DualApply::resultlength = "Function `1` did not return a list of length 2."
 DualApply[{funa_, funb_}, Dual[a_, b_]] := Dual[funa[a], funb[b]];
-DualApply[fun_, Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[fun : Except[_List], Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[{funAll_}, Dual[a_, b_]] := With[{
+    try = funAll[a, b]
+},
+    Dual @@ try /; Replace[
+        MatchQ[try, {_, _}],
+        False :> (Message[DualApply::resultlength, Short[funAll]]; False)
+    ]
+];
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
