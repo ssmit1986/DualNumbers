@@ -11,24 +11,73 @@ PacletInstall["/path/to/DualNumbers-1.0.paclet"]
 <<DualNumbers`
 ```
 
-The easiest way to get the full path to the file is with the `Insert > File Path...` option from the menu bar.
+The easiest way to get the full path to the file is with the `Insert > File Path...` option from 
+the menu bar.
 
-Alternatively, if you want to edit the code for your own purposes, you can also load the package from the source code by cloning the GitHub repository and then using:
+Alternatively, if you want to edit the code for your own purposes, you can also load the package 
+from the source code by cloning the GitHub repository and then using:
 
 ```
 PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one containing this README file *)
 <<DualNumbers`
 ```
 
-**Note on the Paclet version:** the paclet is configured to work with Mathematica version 12.1 and higher because that is what it has been tested on. Most of the code in this repository should work with older versions of Mathematica if you `Get` the DualNumbers.wl file directly.
+**Note on the Paclet version:** the paclet is configured to work with Mathematica version 12.1 and 
+higher because that is what it has been tested on. Most of the code in this repository should work with 
+older versions of Mathematica if you `Get` the DualNumbers.wl file directly.
 
 ## Introduction
 
-Coming soon.
+This package is developed primarily for automatic (or algorithmic) differentiation (abbreviated as AD) 
+in Wolfram Language. AD is the middle ground between symbolic differentiation 
+(which is handled by `D` and `Derivative`) and numerical differentiation 
+(which can be done with [ND](http://reference.wolfram.com/language/NumericalCalculus/ref/ND.html)). 
+The main idea behind AD is that most programs take many small differentiable steps even if it's 
+not possible to find a general symbolic derivative the program as a whole. So to find the derivative 
+of a program, all you need to do is keep track of the derivative at each step of the computation.
+
+One way to accomplish this task of keeping track of derivatives, is to implement dual numbers. 
+Dual numbers are somewhat similar to complex numbers in that they can be written in the form:
+
+```
+d == a + b ϵ
+```
+
+where `ϵ`, (like the imaginary unit `i`) is a new number not found on the real line. It is defined by the property that `ϵ^2 == 0`, but `ϵ != 0`.
+You can think of `ϵ` as the algebraic version of an infinitesimal. So a dual number can be considered to be a tuple of 2 numbers (`a` and `b`) that
+in this package will be represented as: 
+
+```
+Dual[a, b]
+```
+
+The first argument `a` will be called the *standard* part while the second argument `b` will be called the *nonstandard* part (this terminology has been borrowed from [https://en.wikipedia.org/wiki/Nonstandard_analysis](nonstandard analysis)). 
+You can add and multiply duals much like normal numbers. The standard part behaves exactly as real numbers would and will never be influenced by the nonstandard part. For this reason, you can think of the standard part as the most important part of a dual number. The nonstandard part, on the other hand, keeps track of the derivative and can be thought of as a very tiny perturbation on the standard part. You can see this by expanding a general function as a Taylor series in `ϵ`:
+
+```
+In[]:= Normal @ Series[f[a + b ϵ], {ϵ, 0, 4}] /. Power[ϵ, _?(GreaterEqualThan[2])] -> 0
+
+Out[]= f[a] + b ϵ f'[a]
+```
+
+Since `ϵ^2 == 0`, the series has only two terms and produces a new dual number `Dual[f[a], b f'[a]]`. So if you call the function as:
+
+```
+f[Dual[a, 1]]
+```
+
+you get:
+
+```
+Dual[f[a], f'[a]]]
+```
+
+Of course, you need to make sure that all operations performed in the computation of `f` can deal with dual numbers to get this result, 
+and that is precisely what this package tries to achieve.
 
 ## Features
 
-* Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the non-standard part gives you the exact (directional) derivative.
+* Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the nonstandard part gives you the exact (directional) derivative.
 
 * You can define packed dual arrays and efficiently perform structural operations on them.
 
@@ -48,11 +97,11 @@ Coming soon.
     * `ToDual`: construct dual numbers from scalars or arrays.
     * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
     * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`: testing different types of dual expressions.
-    * `DualApply`: apply functions directly to the standard and non-standard parts of a dual quantity.
+    * `DualApply`: apply functions directly to the standard and nonstandard parts of a dual quantity.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
-    * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b * eps`.
+    * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b ϵ`.
 
 ## Know issues and limitations
 
