@@ -35,7 +35,10 @@ GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0,
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is an array of dual numbers."];
-GeneralUtilities`SetUsage[UnpackedDualArrayQ, "UnpackedDualArrayQ[expr$] tests if expr$ is a regular array where only Dual occurs as a head at the deepest level."];
+GeneralUtilities`SetUsage[UnpackedDualArrayQ, "UnpackedDualArrayQ[expr$] tests if expr$ is an ordinary array where only Dual occurs as a head at the deepest level."];
+GeneralUtilities`SetUsage[DualFreeArrayQ,
+    "DualFreeArrayQ[expr$] tests if expr$ is an ordinary array that has no dual numbers at the deepest level."
+]
 GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ has a head different from Dual."];
 GeneralUtilities`SetUsage[DualFindRoot,
     "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
@@ -79,7 +82,7 @@ Begin["`Private`"] (* Begin Private Context *)
 *)
 
 derivativePatt = Except[Function[D[__]], _Function];
-arrayPattern = _List | _SparseArray | _QuantityArray;
+arrayPattern = _List | _SparseArray;
 
 (* Boolean functions to test validity of Dual objects *)
 dualPatt = Dual[_, _];
@@ -89,11 +92,22 @@ DualQ[_] := False;
 DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
 DualScalarQ[_] := False;
 
-DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
-DualArrayQ[_] := False;
+numericarrayQ = Function[ArrayQ[#, _, NumericQ]];
 
-UnpackedDualArrayQ[a_?ArrayQ] := FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False];
+UnpackedDualArrayQ[a_?ArrayQ] := And[
+    !numericarrayQ[a],
+    FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False]
+];
 UnpackedDualArrayQ[_] := False;
+
+DualFreeArrayQ[a_?ArrayQ] := Or[
+    numericarrayQ[a],
+    FreeQ[a, _Dual, {ArrayDepth[a]}, Heads -> False]
+];
+DualFreeArrayQ[_] := False;
+
+DualArrayQ[Dual[a_?DualFreeArrayQ, b_?DualFreeArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualArrayQ[_] := False;
 
 StandardQ[_Dual] := False;
 StandardQ[_] := True;
@@ -118,20 +132,18 @@ nonstd[x_] := 0;
 
 (* Constructors *)
 Dual[] := Dual[0, 1];
-Dual[d_Dual] := d;
-Dual[a_SparseArray?ArrayQ] := Dual[a, SparseArray[{}, Dimensions[a], 0]]
-Dual[a_?ArrayQ] := Dual[a, ConstantArray[0, Dimensions[a]]];
-Dual[a_] := Dual[a, 0];
+Dual[a_] := ToDual[a, 0];
 
 ToDual::cons = "Cannot construct a dual quantity from arguments `1`";
 (* Take a standard quantities and give it a constant non-standard part *)
-ToDual[a_SparseArray?ArrayQ, const : Except[_?ArrayQ] : 1] := Dual[a, SparseArray[{}, Dimensions[a], const]];
-ToDual[a_?ArrayQ, const : Except[_?ArrayQ] : 1] := Dual[a, ConstantArray[const, Dimensions[a]]];
-ToDual[a_?ArrayQ, b_?ArrayQ] := Dual[a, b];
-ToDual[a : standardPatt, const : Except[_?ArrayQ] : 1] := Dual[a, const];
-ToDual[a : standardPatt, arr_SparseArray?ArrayQ] := Dual[SparseArray[{}, Dimensions[arr], a], arr];
-ToDual[a : standardPatt, arr_?ArrayQ] := Dual[ConstantArray[a, Dimensions[arr]], arr];
 ToDual[d_Dual, ___] := d;
+ToDual[a_SparseArray?DualFreeArrayQ, const : Except[_?ArrayQ] : 0] := Dual[a, SparseArray[{}, Dimensions[a], const]];
+ToDual[a_?DualFreeArrayQ, const : Except[_?ArrayQ] : 0] := Dual[a, ConstantArray[const, Dimensions[a]]];
+ToDual[a_?ArrayQ /; !DualFreeArrayQ[a], const : Except[_?ArrayQ] : 0] := PackDualArray @ Map[ToDual[#, const]&, a, {ArrayDepth[a]}];
+ToDual[a_?DualFreeArrayQ, b_?DualFreeArrayQ] := Dual[a, b];
+ToDual[a : Except[_?ArrayQ], arr_SparseArray?DualFreeArrayQ] := Dual[SparseArray[{}, Dimensions[arr], a], arr];
+ToDual[a : Except[_?ArrayQ], arr_?DualFreeArrayQ] := Dual[ConstantArray[a, Dimensions[arr]], arr];
+ToDual[a_, const : Except[_?ArrayQ] : 0] := Dual[a, const];
 ToDual[args__] /; (Message[ToDual::cons, Short /@ {args}]; False) := Undefined
 
 (* Messages to warn when invalid Dual arrays have been constructed *)
@@ -143,13 +155,10 @@ Dual[a : arrayPattern, b_] /; And[
         False
     )
 ] := Undefined;
-Dual[a : Except[arrayPattern], b : arrayPattern] /; And[
-    !DualArrayQ[Unevaluated @ Dual[a, b]],
-    (
-        Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
-        False
-    )
-] := Undefined;
+Dual[a : Except[arrayPattern], b : arrayPattern] /; (
+    Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
+    False
+) := Undefined;
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
