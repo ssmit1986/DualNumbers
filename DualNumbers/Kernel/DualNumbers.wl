@@ -92,7 +92,7 @@ DualScalarQ[_] := False;
 DualArrayQ[Dual[a_?ArrayQ, b_?ArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
 DualArrayQ[_] := False;
 
-UnpackedDualArrayQ[a_?ArrayQ] := MatchQ[Level[a, {ArrayDepth[a]}], {__Dual}];
+UnpackedDualArrayQ[a_?ArrayQ] := FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False];
 UnpackedDualArrayQ[_] := False;
 
 StandardQ[_Dual] := False;
