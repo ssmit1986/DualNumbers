@@ -6,10 +6,10 @@ ClearAll["DualNumbers`*", "DualNumbers`*`*"];
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$.
 Dual[array$1, array$2] represents an array of dual numbers. The arrays should have the same shape (i.e., Dimensions[array$1] === Dimensions[array$2])
-Dual[a$] constructs a dual number or array with 0 non-standard part."
+Dual[a$] uses ToDual[a, 0] to construct a dual quantity."
 ];
 GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scalar or array with constant non-standard part. \
-The default value for const$ is 1."
+The default value for const$ is 0."
 ];
 GeneralUtilities`SetUsage[Standard,
     "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument).
