@@ -24,6 +24,8 @@ PacletDirectoryLoad["/path/to/DualNumbers/"] (* Same directory as the one contai
 
 ## Introduction
 
+Coming soon.
+
 ## Features
 
 * Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the non-standard part gives you the exact (directional) derivative.
@@ -77,4 +79,4 @@ Out[]= Dual[{6, 8}, {3, 4}]
 ## Version history
 
 * 2020-09-14
-    * Release of V1.0.
+    * Release of V1.0 . This release is still subject to change because no stable version has been reached yet.
