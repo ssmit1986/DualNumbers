@@ -147,7 +147,7 @@ ToDual[a_, const : Except[_?ArrayQ] : 0] := Dual[a, const];
 ToDual[args__] /; (Message[ToDual::cons, Short /@ {args}]; False) := Undefined
 
 (* Messages to warn when invalid Dual arrays have been constructed *)
-Dual::array = "Mismatching dimensions `1` and `2` found for the standard and non-standard parts of `3`";
+Dual::array = "Bad packed dual array found. Dimensions `1` and `2` found for the standard and non-standard parts of `3`";
 Dual[a : arrayPattern, b_] /; And[
     !DualArrayQ[Unevaluated @ Dual[a, b]],
     (
