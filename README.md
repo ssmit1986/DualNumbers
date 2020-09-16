@@ -123,8 +123,7 @@ Out[]= -0.321771
 ```
 
 
-It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions for comparison functions like `Equal` (so the `While` gate evaluates) and 
-elementary functions like `Cos` and `Sin` (both numerically and symbolically):
+It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions to evaluate comparison functions like `Equal` (so the `While` gate evaluates) and elementary functions like `Cos` and `Sin` (for both numerical and symbolic dual numbers):
 
 ```
 In[]:= Dual[0.5, 1] == 0.5
