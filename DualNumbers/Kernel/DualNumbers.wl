@@ -8,7 +8,7 @@ GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with stan
 Dual[array$1, array$2] represents an array of dual numbers. The arrays should have the same shape (i.e., Dimensions[array$1] === Dimensions[array$2])
 Dual[a$] uses ToDual[a, 0] to construct a dual quantity."
 ];
-GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scalar or array with constant non-standard part. \
+GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scalar or array with constant nonstandard part. \
 The default value for const$ is 0."
 ];
 GeneralUtilities`SetUsage[Standard,
@@ -16,7 +16,7 @@ GeneralUtilities`SetUsage[Standard,
 Does not evaluate for symbolic arguments. Threads over lists."
 ];
 GeneralUtilities`SetUsage[NonStandard,
-    "NonStandard[d$] extracts the non-standard part of a dual number d$ (i.e., the second argument).
+    "NonStandard[d$] extracts the nonstandard part of a dual number d$ (i.e., the second argument).
 Does not evaluate for symbolic arguments. Threads over lists."
 ];
 GeneralUtilities`SetUsage[StandardAll,
@@ -69,8 +69,9 @@ AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ i
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
 GeneralUtilities`SetUsage[DualApply,
-    "DualApply[{f$a, f$b}, Dual[a$, b$]] yields Dual[f$a[a$], f$b[b$]].
-DualApply[f$, Dual[a$, b$]] yields Dual[f$[a$], f$[b$]].
+    "DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
+DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][[2]]]. f$All should return a List of length 2.
+DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
 DualApply[f$] is the operator form of DualApply."
 ];
 
@@ -109,7 +110,7 @@ StandardQ[_Dual] := False;
 StandardQ[_] := True;
 standardPatt = Except[_Dual];
 
-(* Accessing standard and non-standard parts *)
+(* Accessing standard and nonstandard parts *)
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
 Standard[x_?NumericQ] := x;
@@ -131,7 +132,7 @@ Dual[] := Dual[0, 1];
 Dual[a_] := ToDual[a, 0];
 
 ToDual::cons = "Cannot construct a dual quantity from arguments `1`";
-(* Take a standard quantities and give it a constant non-standard part *)
+(* Take a standard quantities and give it a constant nonstandard part *)
 ToDual[d_Dual, ___] := d;
 ToDual[a_SparseArray?DualFreeArrayQ, const : Except[_?ArrayQ] : 0] := Dual[a, SparseArray[{}, Dimensions[a], const]];
 ToDual[a_?DualFreeArrayQ, const : Except[_?ArrayQ] : 0] := Dual[a, ConstantArray[const, Dimensions[a]]];
@@ -143,7 +144,7 @@ ToDual[a_, const : Except[_?ArrayQ] : 0] := Dual[a, const];
 ToDual[args__] /; (Message[ToDual::cons, Short /@ {args}]; False) := Undefined
 
 (* Messages to warn when invalid Dual arrays have been constructed *)
-Dual::array = "Bad packed dual array found. Dimensions `1` and `2` found for the standard and non-standard parts of `3`";
+Dual::array = "Bad packed dual array found. Dimensions `1` and `2` found for the standard and nonstandard parts of `3`";
 Dual[a : arrayPattern, b_] /; And[
     !DualArrayQ[Unevaluated @ Dual[a, b]],
     (
@@ -171,7 +172,7 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[d_Dual] := d;
+PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[other_] := (
     Message[PackDualArray::arrayQ, Short[other]];
     other
@@ -607,9 +608,18 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
     ]
 ];
 
-(* Modify standard and non-standard parts directly *)
+(* Modify standard and nonstandard parts directly *)
+DualApply::resultlength = "Function `1` did not return a list of length 2."
 DualApply[{funa_, funb_}, Dual[a_, b_]] := Dual[funa[a], funb[b]];
-DualApply[fun_, Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[fun : Except[_List], Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[{funAll_}, Dual[a_, b_]] := With[{
+    try = funAll[a, b]
+},
+    Dual @@ try /; Replace[
+        MatchQ[try, {_, _}],
+        False :> (Message[DualApply::resultlength, Short[funAll]]; False)
+    ]
+];
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
