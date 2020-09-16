@@ -229,10 +229,12 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 (* I found that making Dual randomly disappear is more trouble than it's worth. Enable this at your own peril. *)
 (* Dual[a_, 0] := a; *)
 
-Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
-Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
-Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
+Dual /: Plus[first___, d : Longest[__Dual], rest___] := Dual[
+    Plus[first, Total[{d}[[All, 1]]], rest],
+    Total[{d}[[All, 2]]]
+];
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
+Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 
 (* Divide and Subtract are generally faster than the - and / infix operators. That's why they get dedicated rules *)
 Dual /: HoldPattern @ Subtract[Dual[a1_, b1_], Dual[a2_, b2_]] := Dual[Subtract[a1, a2], Subtract[b1, b2]];
