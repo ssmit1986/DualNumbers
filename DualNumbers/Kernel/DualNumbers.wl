@@ -499,7 +499,7 @@ Scan[
 ];
 
 Dual::join = "Warning: Join attempted, but it did not produce a valid DualArray.";
-Dual /: Join[arrays__Dual?DualArrayQ, n_Integer] := With[{
+Dual /: Join[arrays : Longest[__Dual?DualArrayQ], n_Integer] := With[{
     a = Standard[{arrays}],
     b = NonStandard[{arrays}]
 },
@@ -515,7 +515,7 @@ Dual /: Join[arrays__Dual?DualArrayQ, n_Integer] := With[{
         ]
     ]
 ];
-Dual /: Join[arrays__Dual?DualArrayQ] := With[{
+Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
     a = Standard[{arrays}],
     b = NonStandard[{arrays}]
 },
