@@ -116,9 +116,12 @@ Out[]= -0.321771
 
 Check that the nonstandard part really gives the right derivative with a simple differential quotient:
 
+```
 In[]:= With[{h = 0.001, a = 0.5}, (f[a + h] - f[a - h])/(2 h)]
 
 Out[]= -0.321771
+```
+
 
 It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions for comparison functions like `Equal` (so the `While` gate evaluates) and 
 elementary functions like `Cos` and `Sin` (both numerically and symbolically):
@@ -152,7 +155,7 @@ Out[]= Dual[x, 1] == Dual[y, 2]
 Because the termination of the `While` loop is independent of the nonstandard part, it's even possible to call `f` with a symbolic nonstandard part:
 
 ```
-In{}:= f[Dual[0.5, b]]
+In[]:= f[Dual[0.5, b]]
 
 Out[]= Dual[0.900367, -0.321771 b]
 ```
