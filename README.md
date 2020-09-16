@@ -98,9 +98,20 @@ The function can be easily differentiated using dual numbers:
 
 ```
 <<DualNumbers`;
-In[]:= f[Dual[0.5, 1.]]
+In[]:= d = f[Dual[0.5, 1.]]
 
 Out[]= Dual[0.900367, -0.321771]
+```
+
+You can extract the returned value and derivative with `Standard` and `NonStandard`:
+
+```
+In[]:= Standard[d]
+NonStandard[d]
+
+Out[]= 0.900367
+
+Out[]= -0.321771
 ```
 
 Check that the nonstandard part really gives the right derivative with a simple differential quotient:
