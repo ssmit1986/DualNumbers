@@ -218,7 +218,7 @@ This works just fine, but because `dvec` is not a list of normal numbers, the `D
 In[]:= dvec = Dual[#, 1.] & /@ RandomReal[1, 10^3];
 dvec.dvec // RepeatedTiming
 
-Out[]= {0.013, Dual[335.28, 992.399]}
+Out[]= {0.011, Dual[335.28, 992.399]}
 ```
 
 You can use `PackDualArray` to create a more efficient representation of `dvec`, which looks like `Dual[aArray, bArray]`:

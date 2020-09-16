@@ -229,10 +229,19 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 (* I found that making Dual randomly disappear is more trouble than it's worth. Enable this at your own peril. *)
 (* Dual[a_, 0] := a; *)
 
-Dual /: Plus[first___, d : Longest[__Dual], rest___] := Dual[
-    Plus[first, Total[{d}[[All, 1]]], rest],
-    Total[{d}[[All, 2]]]
+(* Plus UpValue for long sums. The /; True condition makes sure this one gets priority when possible *)
+Dual /: Plus[
+    d1_Dual,
+    d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
+    rest___
+] /; True := Dual[
+    Plus[Total[{d1, d2}[[All, 1]]], rest],
+    Total[{d1, d2}[[All, 2]]]
 ];
+(* And one that's faster for short ones *)
+Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
+Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
+
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 
