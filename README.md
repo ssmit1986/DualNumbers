@@ -123,8 +123,7 @@ Out[]= -0.321771
 ```
 
 
-It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions for comparison functions like `Equal` (so the `While` gate evaluates) and 
-elementary functions like `Cos` and `Sin` (both numerically and symbolically):
+It's possible to evaluate `f[Dual[0.5, 1]]` because `Dual` has definitions to evaluate comparison functions like `Equal` (so the `While` gate evaluates) and elementary functions like `Cos` and `Sin` (for both numerical and symbolic dual numbers):
 
 ```
 In[]:= Dual[0.5, 1] == 0.5
@@ -160,6 +159,104 @@ In[]:= f[Dual[0.5, b]]
 Out[]= Dual[0.900367, -0.321771 b]
 ```
 
+This can be particularly useful for functions with more than one argument.
+
+## Functions with more than one argument
+
+When you have a function that takes multiple arguments and outputs a single number, you can use dual numbers to calculate [directional derivatives](https://en.wikipedia.org/wiki/Directional_derivative). Here is a simple example using a function for which we can also find a symbolic derivative (for comparison):
+
+```
+In[]:= g[x_, y_] := Sin[x * y]/(x^2 + y^2);
+d = g[Dual[0.5, b1], Dual[2., b2]] // Simplify
+
+Out[]= Dual[0.197993, 0.207673 b1 - 0.122782 b2]
+``` 
+
+The gradient of `g` at `{x -> 0.5, y -> 2.}` is:
+
+```
+In[]:= grad = D[g[x, y], {{x, y}}] /. {x -> 0.5, y -> 2.}
+
+Out[]= {0.207673, -0.122782}
+```
+
+Note how the coefficients of `b1` and `b2` correspond to the components of the gradient. In other words, the nonstandard part of `d` satisfies:
+
+```
+In[]:= NonStandard[d] == {b1, b2} . grad
+
+Out[]= True
+```
+
+So if you want to calculate the full gradient of `g` with dual numbers, you can either use symbolic nonstandard parts for the input arguments and then collect the coefficients afterwards or you can invoke `g` twice to obtain the coordinates independently:
+
+```
+In[]:= {g[Dual[0.5, 1.], 2.], g[0.5, Dual[2., 1.]]}
+
+Out[]= {Dual[0.197993, 0.207673], Dual[0.197993, -0.122782]}
+```
+
+In many situations, directional derivatives are quite powerful by themselves and it's not always necessary to compute all components of the gradient.
+
+## Dual arrays
+
+In many programs it's not enough to deal with only scalar values, which is why this package also features *packed dual arrays* to facilitate efficient array operations.
+
+As a simple example, suppose you have a list of dual numbers and you want to compute its square norm:
+
+```
+In[]:= dvec = Dual[#, 1.] & /@ RandomReal[1, 5]
+dvec . dvec
+
+Out[]= {Dual[0.704343, 1.], Dual[0.384163, 1.], Dual[0.189591, 1.], Dual[0.266149, 1.], Dual[0.528375, 1.]}
+Out[]= Dual[1.02964, 4.14524]
+``` 
+
+This works just fine, but because `dvec` is not a list of normal numbers, the `Dot` operation doesn't evaluate as fast as it can be:
+
+```
+In[]:= dvec = Dual[#, 1.] & /@ RandomReal[1, 10^3];
+dvec.dvec // RepeatedTiming
+
+Out[]= {0.011, Dual[335.28, 992.399]}
+```
+
+You can use `PackDualArray` to create a more efficient representation of `dvec`, which looks like `Dual[aArray, bArray]`:
+
+```
+In[33]:= dvecPacked = PackDualArray[dvec];
+dvecPacked // Short
+
+Out[]= Dual[{0.104868,<<998>>,0.981509},{1.,<<998>>,1.}]
+```
+
+Many vector operations support this packed format (see [Features section](#features)) and are also significantly faster this way:
+
+```
+In[]:= dvecPacked . dvecPacked // RepeatedTiming
+
+Out[]= {0.000079, Dual[335.28, 992.399]}
+```
+
+You can convert back to the `dvecPacked` back to `dvec` if necessary with `UnpackDualArray`:
+
+```
+In[]:= UnpackDualArray[dvecPacked] === dvec
+
+Out[]= True
+```
+
+You can test if a dual array is in packed form with `DualArrayQ` or in unpacked form with `UnpackedDualArrayQ`:
+
+```
+In[]:= DualArrayQ[dvecPacked]
+UnpackedDualArrayQ[dvec]
+
+Out[]= True
+
+Out[]= True
+```
+
 ## Features
 
 * Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the nonstandard part gives you the exact (directional) derivative.
@@ -181,7 +278,7 @@ Out[]= Dual[0.900367, -0.321771 b]
 * Helper functions:
     * `ToDual`: construct dual numbers from scalars or arrays.
     * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
-    * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`: testing different types of dual expressions.
+    * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`, `DualFreeArrayQ`: testing different types of dual expressions.
     * `DualApply`: apply functions directly to the standard and nonstandard parts of a dual quantity.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
