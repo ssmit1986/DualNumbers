@@ -172,7 +172,7 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[d_Dual] := d;
+PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[other_] := (
     Message[PackDualArray::arrayQ, Short[other]];
     other
