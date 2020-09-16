@@ -159,6 +159,45 @@ In[]:= f[Dual[0.5, b]]
 Out[]= Dual[0.900367, -0.321771 b]
 ```
 
+This can be particularly useful for functions with more than one argument.
+
+### Functions with more than one argument
+
+When you have a function that takes multiple arguments and outputs a single number, you can use dual numbers to calculate [directional derivatives](https://en.wikipedia.org/wiki/Directional_derivative). Here is a simple example using a function for which we can also find a symbolic derivative (for comparison):
+
+```
+In[]:= g[x_, y_] := Sin[x * y]/(x^2 + y^2);
+d = g[Dual[0.5, b1], Dual[2., b2]] // Simplify
+
+Out[]= Dual[0.197993, 0.207673 b1 - 0.122782 b2]
+``` 
+
+The gradient of `g` at `{x -> 0.5, y -> 2.}` is:
+
+```
+In[]:= grad = D[g[x, y], {{x, y}}] /. {x -> 0.5, y -> 2.}
+
+Out[]= {0.207673, -0.122782}
+```
+
+Note how the coefficients of `b1` and `b2` correspond to the components of the gradient. In other words, the nonstandard part of `d` satisfies:
+
+```
+In[]:= NonStandard[d] == {b1, b2} . grad
+
+Out[]= True
+```
+
+So if you want to calculate the full gradient of `g` with dual numbers, you can either use symbolic nonstandard parts for the input arguments and then collect the coefficients afterwards or you can invoke `g` twice to obtain the coordinates independently:
+
+```
+In[]:= {g[Dual[0.5, 1.], 2.], g[0.5, Dual[2., 1.]]}
+
+Out[]= {Dual[0.197993, 0.207673], Dual[0.197993, -0.122782]}
+```
+
+In many situations, directional derivatives are quite powerful by themselves and it's not always necessary to compute all components of the gradient.
+
 ## Features
 
 * Calculate derivatives of programs by passing dual numbers as arguments. The standard part of the returned result is the function value and the nonstandard part gives you the exact (directional) derivative.
