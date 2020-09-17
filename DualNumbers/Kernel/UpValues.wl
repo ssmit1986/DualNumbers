@@ -337,6 +337,29 @@ Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
 ];
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
+Scan[
+    Function[{orderer},
+        Dual /: orderer[Dual[a_, b_]?DualArrayQ, rest___] := orderer[a, rest];
+    ],
+    {Ordering, OrderingBy}
+];
+Dual /: Sort[Dual[a_, b_]?DualArrayQ, rest___] := With[{
+    perm = Ordering @@ Insert[{a, rest}, All, 2]
+},
+    Dual[a[[perm]], b[[perm]]]
+];
+Dual /: SortBy[Dual[a_, b_]?DualArrayQ, rest__] := With[{
+    perm = OrderingBy @@ Insert[{a, rest}, All, 3]
+},
+    Dual[a[[perm]], b[[perm]]]
+];
+Scan[
+    Function[sorter,
+        Dual /: sorter[_Dual, ___] /; (Message[Dual::arrayOp, sorter]; False) := Undefined
+    ],
+    {Sort, SortBy, Ordering, OrderingBy}
+];
+
 Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
     pos = listPosition[a, _?selFun, {1}, n]
 },
