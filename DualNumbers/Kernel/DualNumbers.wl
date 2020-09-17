@@ -234,10 +234,10 @@ DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 dualTuples[dList : {__Dual}] := Map[Extract[dList, #]&, dualTuples[Length[dList]]];
 dualTuples[n_Integer] := With[{
     perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
-    rng = Range[n]
+    range = Range[n]
 },
     Map[
-        Transpose[{rng, #}]&,
+        Transpose[{range, #}]&,
         perm
     ]
 ];
@@ -251,7 +251,7 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 (* I found that making Dual randomly disappear is more trouble than it's worth. Enable this at your own peril. *)
 (* Dual[a_, 0] := a; *)
 
-(* Plus UpValue for long sums. The /; True condition makes sure this one gets priority when possible *)
+(* Plus UpValue for long sums. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Plus[
     d1_Dual,
     d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
@@ -264,6 +264,19 @@ Dual /: Plus[
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 
+(* Times UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
+Dual /: Times[
+    d1_Dual,
+    d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
+    rest___
+] /; True := Dual[
+    Times[Times @@ {d1, d2}[[All, 1]], rest],
+    Times[
+        Total[Times @@@ dualTuples[{d1, d2}]],
+        rest
+    ]
+];
+(* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 
