@@ -276,8 +276,8 @@ Out[]= True
     * Many elementary functions: `Exp`, `Log`, `Sin`, `Cos`, `Abs`, `Sign`, `Clip`, `Gamma`, etc.
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
     * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
-    * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
-    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Join`, `Select`, `GroupBy`, `Pick` (level 1 only), `Position`,
+    * Accessing and modifying arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`, `Join`, `Append`, `Prepend`.
+    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Select`, `GroupBy`, `Pick` (level 1 only), `Position`,
 `Fold`, `FoldList`.
     * Sorting: `Sort`, `SortBy`, `Ordering`, `OrderingBy`.
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.

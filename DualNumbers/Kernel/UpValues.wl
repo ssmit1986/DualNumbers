@@ -356,6 +356,16 @@ MapThread[
     }
 ];
 
+(* Append and Prepend *)
+Scan[
+    Function[{pender},
+        Dual /: pender[Dual[a1_, b1_]?DualArrayQ, Dual[a2_, b2_]] := Dual[pender[a1, a2], pender[b1, b2]];
+        Dual /: pender[d_Dual, a2 : standardPatt] := pender[d, ToDual[a2, 0]];
+        Dual /: pender[_Dual, ___] /; (Message[Dual::arrayOp, pender]; False) := Undefined;
+    ],
+    {Append, Prepend}
+];
+
 Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
     pos = listPosition[a, _?selFun, {1}, n]
 },
