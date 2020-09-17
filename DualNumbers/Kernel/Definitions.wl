@@ -13,11 +13,11 @@ The default value for const$ is 0."
 ];
 GeneralUtilities`SetUsage[Standard,
     "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument).
-Does not evaluate for symbolic arguments. Threads over lists."
+Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
 GeneralUtilities`SetUsage[NonStandard,
     "NonStandard[d$] extracts the nonstandard part of a dual number d$ (i.e., the second argument).
-Does not evaluate for symbolic arguments. Threads over lists."
+Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
 GeneralUtilities`SetUsage[StandardAll,
     "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
@@ -125,11 +125,11 @@ standardPatt = Except[_Dual];
 (* Accessing standard and nonstandard parts *)
 SetAttributes[Standard, Listable];
 Standard[Dual[a_, _]] := a;
-Standard[x_?NumericQ] := x;
+Standard[x_] := x;
 
 SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
-NonStandard[_?NumericQ] := 0;
+NonStandard[_] := 0;
 
 SetAttributes[std, Listable];
 std[Dual[a_, _]] := a;

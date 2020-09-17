@@ -410,6 +410,27 @@ Scan[
     {Map, MapIndexed, Apply}
 ];
 
+Dual /: FoldList[fun_, dualArr_Dual?DualArrayQ] := PackDualArray[
+    FoldList[fun, UnpackDualArray[dualArr]]
+];
+Dual /: FoldList[fun_, val_, dualArr_Dual?DualArrayQ] := PackDualArray[
+    FoldList[fun, val, UnpackDualArray[dualArr]]
+];
+Dual /: Fold[fun_, dualArr_Dual?DualArrayQ] := ( 
+    Fold[fun, UnpackDualArray[dualArr]]
+);
+Dual /: Fold[fun_, val_, dualArr_Dual?DualArrayQ] := ( 
+    Fold[fun, val, UnpackDualArray[dualArr]]
+);
+Scan[
+    Function[folder,
+        Dual /: folder[fun_][d_Dual] := folder[fun, d];
+        Dual /: folder[fun_][x_, d_Dual] := folder[fun, x, d];
+        Dual /: folder[__, _Dual, ___] /; (Message[Dual::arrayOp, folder]; False) := Undefined;
+    ],
+    {Fold, FoldList}
+];
+
 Scan[
     Function[fun,
         Dual /: HoldPattern[fun[Dual[a_, b_]?DualArrayQ, rest___]] := fun[a, rest]
