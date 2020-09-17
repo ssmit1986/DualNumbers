@@ -231,7 +231,10 @@ DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
         {a1, a2, a3, ..., bn}
     }
 *)
-dualTuples[dList : {__Dual}] := Map[Extract[dList, #]&, dualTuples[Length[dList]]];
+dualTuples[dList : {__Dual}] := Map[
+    Extract[dList, #]&,
+    dualTuples[Length[dList]]
+];
 dualTuples[n_Integer] := With[{
     perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
     range = Range[n]
@@ -439,13 +442,27 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
-Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
-Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
-
+(* Dot UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
+Dual /: Dot[
+    d1_Dual?DualArrayQ,
+    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}]
+] /; True := Dual[
+    Dot @@ {d1, d2}[[All, 1]],
+    Total[
+        Dot @@@ Map[
+            Developer`ToPackedArray,
+            dualTuples[{d1, d2}],
+            {2}
+        ]
+    ]
+];
+(* UpValues for shorter arguments *)
 Dual /: Dot[
     Dual[a1_, b1_]?DualArrayQ,
     Dual[a2_, b2_]?DualArrayQ
 ] := Dual[a1.a2, a1.b2 + b1.a2];
+Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
+Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
 
 Dual /: MatrixPower[
     d_Dual?SquareMatrixQ,
