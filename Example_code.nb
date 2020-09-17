@@ -4,10 +4,6 @@ Cell[CellGroupData[{
 Cell["Initialization", \
 "Section",ExpressionUUID->"0231796b-6132-4fd1-9fee-40bf487c529a"],
 
-Cell[BoxData["Quit"], "Input",
- CellLabel->
-  "In[137]:=",ExpressionUUID->"fccd45a6-7438-4791-b5c4-75cd54c23dbe"],
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
@@ -15,7 +11,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "DualNumbers`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[18]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"]
+ CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -41,7 +37,7 @@ Cell[BoxData[{
  RowBox[{"?", "Standard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "NonStandard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "StandardAll"}]}], "Input",
- CellLabel->"In[71]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
+ CellLabel->"In[26]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -109,20 +105,37 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     TooltipStyle->"TextStyling"],
                     Annotation[#, "UpValues", "Tooltip"]& ], GridBox[{
                     {
+                    RowBox[{"Dual", "/:", 
                     RowBox[{
-                    RowBox[{
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
-                     "]"}], "+", 
+                    RowBox[{"DualNumbers`Private`d1_Dual", "+", 
                     RowBox[{"(", 
-                    RowBox[{"DualNumbers`Private`c", ":", 
-                    RowBox[{"Except", "[", "_Dual", "]"}]}], ")"}]}], "^:=", 
+                    RowBox[{"DualNumbers`Private`d2", ":", 
+                    RowBox[{"Longest", "[", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"_Dual", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"20", ",", "\[Infinity]"}], "}"}]}], "]"}], 
+                    "]"}]}], ")"}], "+", "DualNumbers`Private`rest___"}], "/;",
+                     "True"}], ":=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     RowBox[{
-                    "DualNumbers`Private`c", "+", "DualNumbers`Private`a"}], 
-                    ",", "DualNumbers`Private`b"}], "]"}]}]},
+                    RowBox[{"Total", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}], 
+                    "]"}], "+", "DualNumbers`Private`rest"}], ",", 
+                    RowBox[{"Total", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    "]"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{
@@ -148,18 +161,50 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
-                     "]"}], " ", 
+                     "]"}], "+", 
                     RowBox[{"(", 
                     RowBox[{"DualNumbers`Private`c", ":", 
                     RowBox[{"Except", "[", "_Dual", "]"}]}], ")"}]}], "^:=", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
                     RowBox[{
-                    "DualNumbers`Private`c", " ", "DualNumbers`Private`a"}], 
-                    ",", 
+                    "DualNumbers`Private`c", "+", "DualNumbers`Private`a"}], 
+                    ",", "DualNumbers`Private`b"}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
                     RowBox[{
-                    "DualNumbers`Private`c", " ", "DualNumbers`Private`b"}]}],
-                     "]"}]}]},
+                    RowBox[{"DualNumbers`Private`d1_Dual", " ", 
+                    RowBox[{"(", 
+                    RowBox[{"DualNumbers`Private`d2", ":", 
+                    RowBox[{"Longest", "[", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"_Dual", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"20", ",", "\[Infinity]"}], "}"}]}], "]"}], 
+                    "]"}]}], ")"}], " ", "DualNumbers`Private`rest___"}], "/;",
+                     "True"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Times", "@@", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}]}], 
+                    " ", "DualNumbers`Private`rest"}], ",", 
+                    RowBox[{
+                    RowBox[{"Total", "[", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Times", ",", 
+                    RowBox[{"DualTuples", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "]"}], ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}], "]"}], " ", 
+                    "DualNumbers`Private`rest"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{
@@ -183,6 +228,24 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "DualNumbers`Private`a1", " ", 
                     "DualNumbers`Private`b2"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{"DualNumbers`Private`c", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ")"}]}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualNumbers`Private`c", " ", "DualNumbers`Private`a"}], 
+                    ",", 
+                    RowBox[{
+                    "DualNumbers`Private`c", " ", "DualNumbers`Private`b"}]}],
+                     "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
@@ -971,6 +1034,35 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"CatalanNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CatalanNumber", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"CatalanNumber", "[", "#1", "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "4", "]"}], "+", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"#1", "+", 
+                    FractionBox["1", "2"]}], "]"}], "-", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"#1", "+", "2"}], "]"}]}], ")"}]}], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"CauchyWindow", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -1040,6 +1132,24 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     ",", "Indeterminate"}], "]"}], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"ChampernowneNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "ChampernowneNumber", "[", "DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"0", "&"}], ")"}], "[", "DualNumbers`Private`a$", 
+                    "]"}], " ", "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
@@ -1157,6 +1267,26 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"CoshIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CoshIntegral", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Cosh", "[", "#1", "]"}], "#1"], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"CosineWindow", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -1195,6 +1325,26 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     FractionBox["1", "2"]}]}], "}"}]}], "}"}], ",", 
                     "Indeterminate"}], "]"}], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"CosIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "CosIntegral", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Cos", "[", "#1", "]"}], "#1"], "&"}], ")"}], "[",
+                     "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
@@ -1329,6 +1479,163 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"DirichletBeta", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DirichletBeta", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", 
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]]}], " ", 
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"Zeta", "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["1", "4"]}], "]"}]}], "-", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"Zeta", "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["3", "4"]}], "]"}]}]}], ")"}]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", 
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]]}], " ", 
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"Zeta", "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["1", "4"]}], "]"}]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"Zeta", "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["3", "4"]}], "]"}]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{
+                    SuperscriptBox["Zeta", 
+                    TagBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", ",", "0"}], ")"}],
+                    Derivative],
+                    MultilineFunction->None], "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["1", "4"]}], "]"}]}], "-", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{
+                    SuperscriptBox["Zeta", 
+                    TagBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", ",", "0"}], ")"}],
+                    Derivative],
+                    MultilineFunction->None], "[", 
+                    RowBox[{"#1", ",", 
+                    FractionBox["3", "4"]}], "]"}]}]}], ")"}]}]}], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"DirichletEta", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DirichletEta", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"1", "-", "#1"}]], " ", 
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"1", "-", 
+                    SuperscriptBox["2", 
+                    RowBox[{"1", "-", "#1"}]]}], ")"}], " ", 
+                    RowBox[{
+                    SuperscriptBox["Zeta", "\[Prime]",
+                    MultilineFunction->None], "[", "#1", "]"}]}]}], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"DirichletLambda", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DirichletLambda", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "-", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", 
+                    SuperscriptBox["2", "#1"]}], ")"}], " ", 
+                    RowBox[{"Log", "[", "2", "]"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["2", 
+                    RowBox[{"-", "#1"}]], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", 
+                    SuperscriptBox["2", "#1"]}], ")"}], " ", 
+                    RowBox[{
+                    SuperscriptBox["Zeta", "\[Prime]",
+                    MultilineFunction->None], "[", "#1", "]"}]}]}], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"DirichletWindow", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -1423,6 +1730,36 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"2", " ", 
                     RowBox[{"(", 
                     RowBox[{"1", "-", "#1"}], ")"}], " ", "#1"}]], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"EllipticNomeQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "EllipticNomeQ", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox[
+                    RowBox[{
+                    SuperscriptBox["\[Pi]", "2"], " ", 
+                    RowBox[{"EllipticNomeQ", "[", "#1", "]"}]}], 
+                    RowBox[{"4", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}], ")"}], " ", "#1", " ", 
+                    SuperscriptBox[
+                    RowBox[{"EllipticK", "[", "#1", "]"}], "2"]}]]}], "&"}], 
                     ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
@@ -1800,6 +2137,92 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"FresnelC", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"FresnelC", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", 
+                    FractionBox[
+                    RowBox[{"\[Pi]", " ", 
+                    SuperscriptBox["#1", "2"]}], "2"], "]"}], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"FresnelF", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"FresnelF", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "\[Pi]"}], " ", "#1", " ", 
+                    RowBox[{"FresnelG", "[", "#1", "]"}]}], "&"}], ")"}], "[",
+                     "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"FresnelG", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"FresnelG", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"\[Pi]", " ", "#1", " ", 
+                    RowBox[{"FresnelF", "[", "#1", "]"}]}], "-", "1"}], "&"}],
+                     ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"FresnelS", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"FresnelS", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Sin", "[", 
+                    FractionBox[
+                    RowBox[{"\[Pi]", " ", 
+                    SuperscriptBox["#1", "2"]}], "2"], "]"}], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"Gamma", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -2043,6 +2466,30 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"HarmonicNumber", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "HarmonicNumber", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox[
+                    SuperscriptBox["\[Pi]", "2"], "6"], "-", 
+                    RowBox[{"HarmonicNumber", "[", 
+                    RowBox[{"#1", ",", "2"}], "]"}]}], "&"}], ")"}], "[", 
+                    "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"Haversine", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -2119,6 +2566,37 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Hyperfactorial", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Hyperfactorial", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Hyperfactorial", "[", "#1", "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{"1", "-", 
+                    RowBox[{"Log", "[", 
+                    RowBox[{"2", " ", "\[Pi]"}], "]"}]}], ")"}]}], "+", 
+                    RowBox[{"LogGamma", "[", 
+                    RowBox[{"1", "+", "#1"}], "]"}], "+", "#1"}], ")"}]}], 
+                    "&"}], ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"IntegerPart", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -2155,6 +2633,91 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     TemplateBox[{},
                     "Integers"]}]}], ")"}]}]}], "}"}], "}"}], ",", 
                     "Indeterminate"}], "]"}], "&"}], ")"}], "[", 
+                    "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"InverseEllipticNomeQ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "InverseEllipticNomeQ", "[", "DualNumbers`Private`a$", 
+                    "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"System`EllipticDump`t", "=", 
+                    RowBox[{"InverseEllipticNomeQ", "[", "#1", "]"}]}], "}"}],
+                     ",", 
+                    FractionBox[
+                    RowBox[{"4", " ", 
+                    SuperscriptBox[
+                    RowBox[{"EllipticK", "[", "System`EllipticDump`t", "]"}], 
+                    "2"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{"1", "-", "System`EllipticDump`t"}], ")"}], " ", 
+                    "System`EllipticDump`t"}], 
+                    RowBox[{"#1", " ", 
+                    SuperscriptBox["\[Pi]", "2"]}]]}], "]"}], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"InverseErf", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "InverseErf", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    SuperscriptBox["\[ExponentialE]", 
+                    SuperscriptBox[
+                    RowBox[{"InverseErf", "[", 
+                    RowBox[{"0", ",", "#1"}], "]"}], "2"]], " ", 
+                    SqrtBox["\[Pi]"]}], "&"}], ")"}], "[", 
+                    "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"InverseErfc", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "InverseErfc", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox["1", "2"]}], " ", 
+                    SuperscriptBox["\[ExponentialE]", 
+                    SuperscriptBox[
+                    RowBox[{"InverseErfc", "[", "#1", "]"}], "2"]], " ", 
+                    SqrtBox["\[Pi]"]}], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
@@ -2420,6 +2983,61 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     SqrtBox["2"]}]], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"KleinInvariantJ", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "KleinInvariantJ", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"System`EllipticDump`t", "=", 
+                    RowBox[{"ModularLambda", "[", "#1", "]"}]}], "}"}], ",", 
+                    RowBox[{"-", 
+                    FractionBox[
+                    RowBox[{"16", " ", "\[ImaginaryI]", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "2"}], "+", "System`EllipticDump`t"}], ")"}],
+                     " ", 
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", "System`EllipticDump`t"}], ")"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", 
+                    RowBox[{"2", " ", "System`EllipticDump`t"}]}], ")"}], " ", 
+                    SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "System`EllipticDump`t"}], ")"}],
+                     " ", "System`EllipticDump`t"}]}], ")"}], "2"], " ", 
+                    SuperscriptBox[
+                    RowBox[{"EllipticK", "[", "System`EllipticDump`t", "]"}], 
+                    "2"]}], 
+                    RowBox[{"27", " ", "\[Pi]", " ", 
+                    SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "System`EllipticDump`t"}], ")"}],
+                     "2"], " ", 
+                    SuperscriptBox["System`EllipticDump`t", "2"]}]]}]}], 
+                    "]"}], "&"}], ")"}], "[", "DualNumbers`Private`a$", "]"}],
+                     " ", "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
@@ -2726,6 +3344,38 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{"-", "1"}], "&"}], ")"}], "[", 
+                    "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"ModularLambda", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "ModularLambda", "[", "DualNumbers`Private`a$", "]"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"System`EllipticDump`t", "=", 
+                    RowBox[{"ModularLambda", "[", "#1", "]"}]}], "}"}], ",", 
+                    FractionBox[
+                    RowBox[{"4", " ", "\[ImaginaryI]", " ", 
+                    RowBox[{"(", 
+                    RowBox[{"1", "-", "System`EllipticDump`t"}], ")"}], " ", 
+                    "System`EllipticDump`t", " ", 
+                    SuperscriptBox[
+                    RowBox[{"EllipticK", "[", "System`EllipticDump`t", "]"}], 
+                    "2"]}], "\[Pi]"]}], "]"}], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
@@ -3162,6 +3812,75 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"RiemannXi", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"RiemannXi", "[", "DualNumbers`Private`a$", "]"}],
+                     ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    SuperscriptBox["\[Pi]", 
+                    RowBox[{"-", 
+                    FractionBox["#1", "2"]}]], " ", 
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"1", "+", 
+                    FractionBox["#1", "2"]}], "]"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "-", 
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    SuperscriptBox["\[Pi]", 
+                    RowBox[{"-", 
+                    FractionBox["#1", "2"]}]], " ", 
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"1", "+", 
+                    FractionBox["#1", "2"]}], "]"}], " ", 
+                    RowBox[{"Log", "[", "\[Pi]", "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}], ")"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "+", 
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    SuperscriptBox["\[Pi]", 
+                    RowBox[{"-", 
+                    FractionBox["#1", "2"]}]], " ", 
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"1", "+", 
+                    FractionBox["#1", "2"]}], "]"}], " ", 
+                    RowBox[{"PolyGamma", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"1", "+", 
+                    FractionBox["#1", "2"]}]}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}], ")"}], " ", 
+                    RowBox[{"Zeta", "[", "#1", "]"}]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["\[Pi]", 
+                    RowBox[{"-", 
+                    FractionBox["#1", "2"]}]], " ", 
+                    RowBox[{"Gamma", "[", 
+                    RowBox[{"1", "+", 
+                    FractionBox["#1", "2"]}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "+", "#1"}], ")"}], " ", 
+                    RowBox[{
+                    SuperscriptBox["Zeta", "\[Prime]",
+                    MultilineFunction->None], "[", "#1", "]"}]}]}], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     RowBox[{"Round", "[", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -3348,6 +4067,45 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{"HoldPattern", "[", 
+                    RowBox[{"SinhIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "SinhIntegral", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"Sinh", "[", "#1", "]"}], "#1"], "&"}], ")"}], 
+                    "[", "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"SinIntegral", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "SinIntegral", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Sinc", "[", "#1", "]"}], "&"}], ")"}], "[", 
+                    "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
                     SqrtBox[
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -3364,6 +4122,42 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"2", " ", 
                     SqrtBox["#1"]}]], "&"}], ")"}], "[", 
                     "DualNumbers`Private`a$", "]"}], " ", 
+                    "DualNumbers`Private`b$"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"HoldPattern", "[", 
+                    RowBox[{"Subfactorial", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], "]"}], "]"}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Subfactorial", "[", "DualNumbers`Private`a$", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"\[ImaginaryI]", " ", "\[Pi]", " ", 
+                    RowBox[{"Subfactorial", "[", "#1", "]"}]}], "+", 
+                    FractionBox[
+                    RowBox[{"MeijerG", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", 
+                    RowBox[{"1", "+", "#1"}]}], "}"}], ",", 
+                    RowBox[{"{", "}"}]}], "}"}], ",", 
+                    RowBox[{"-", "1"}]}], "]"}], "\[ExponentialE]"]}], "&"}], 
+                    ")"}], "[", "DualNumbers`Private`a$", "]"}], " ", 
                     "DualNumbers`Private`b$"}]}], "]"}]}]},
                     {
                     RowBox[{
@@ -4081,8 +4875,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"0", ",", "0", ",", "#1"}], "}"}], ",", 
                     RowBox[{"{", "}"}]}], "}"}], ",", "#2"}], "]"}]}], "&"}], 
                     ")"}], "[", 
-                    RowBox[{
-                    "DualNumbers`Private`a1$", ",", 
+                    RowBox[{"DualNumbers`Private`a1$", ",", 
                     "DualNumbers`Private`a2$"}], "]"}], " ", 
                     "DualNumbers`Private`b1$"}], "+", 
                     RowBox[{
@@ -4220,8 +5013,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"{", 
                     RowBox[{"{", 
                     RowBox[{"1", ",", 
-                    RowBox[{
-                    "DualNumbers`Private`xmin", "\[LessEqual]", 
+                    RowBox[{"DualNumbers`Private`xmin", "\[LessEqual]", 
                     "DualNumbers`Private`a", "\[LessEqual]", 
                     "DualNumbers`Private`xmax"}]}], "}"}], "}"}], ",", "0"}], 
                     "]"}]}]}], "]"}]}]},
@@ -4264,8 +5056,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"{", 
                     RowBox[{"{", 
                     RowBox[{"1", ",", 
-                    RowBox[{
-                    "DualNumbers`Private`xmin", "\[LessEqual]", 
+                    RowBox[{"DualNumbers`Private`xmin", "\[LessEqual]", 
                     "DualNumbers`Private`a", "\[LessEqual]", 
                     "DualNumbers`Private`xmax"}]}], "}"}], "}"}], ",", "0"}], 
                     "]"}]}]}], "]"}]}]},
@@ -4333,7 +5124,8 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "#1", "\[LeftDoubleBracket]", "1", 
                     "\[RightDoubleBracket]"}], "\[LessEqual]", 
-                    RowBox[{"#1", "\[LeftDoubleBracket]", "3", 
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "3", 
                     "\[RightDoubleBracket]"}]}]}], "}"}], "}"}], ",", "0"}], 
                     "]"}], "&"}], ")"}], "[", "DualNumbers`Private`stdargs$", 
                     "]"}]}], "+", 
@@ -4433,7 +5225,8 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "DualNumbers`Private`std", "[", 
                     "DualNumbers`Private`xmax$", "]"}], ",", 
-                    RowBox[{"DualNumbers`Private`std", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`std", "[", 
                     "DualNumbers`Private`ymin$", "]"}], ",", 
                     RowBox[{
                     "DualNumbers`Private`std", "[", 
@@ -4682,6 +5475,72 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
                     "]"}], "]"}]}]},
                     {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "DualNumbers`Private`d1_Dual", "?", "DualArrayQ"}], ".", 
+                    RowBox[{"(", 
+                    RowBox[{"DualNumbers`Private`d2", ":", 
+                    RowBox[{"Longest", "[", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{
+                    RowBox[{"_Dual", "?", "DualArrayQ"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", "\[Infinity]"}], "}"}]}], "]"}], 
+                    "]"}]}], ")"}]}], "/;", "True"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Dot", "@@", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}]}], 
+                    ",", 
+                    RowBox[{"Total", "[", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Dot", ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"ToPackedArray", ",", 
+                    RowBox[{"DualTuples", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`d1", ",", "DualNumbers`Private`d2"}],
+                     "}"}], "]"}], ",", 
+                    RowBox[{"{", "2", "}"}]}], "]"}], ",", 
+                    RowBox[{"{", "1", "}"}]}], "]"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a1_", ",", 
+                    "DualNumbers`Private`b1_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ".", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a2_", ",", 
+                    "DualNumbers`Private`b2_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}]}], "^:=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "DualNumbers`Private`a1", ".", "DualNumbers`Private`a2"}],
+                     ",", 
+                    RowBox[{
+                    RowBox[{
+                    "DualNumbers`Private`a1", ".", "DualNumbers`Private`b2"}],
+                     "+", 
+                    RowBox[{
+                    "DualNumbers`Private`b1", ".", 
+                    "DualNumbers`Private`a2"}]}]}], "]"}]}]},
+                    {
                     RowBox[{
                     RowBox[{
                     RowBox[{"DualNumbers`Private`c_", "?", "ArrayQ"}], ".", 
@@ -4717,35 +5576,6 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "DualNumbers`Private`b", ".", "DualNumbers`Private`c"}]}],
                      "]"}]}]},
-                    {
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`a1_", ",", 
-                    "DualNumbers`Private`b1_"}], "]"}], ")"}], "?", 
-                    "DualArrayQ"}], ".", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`a2_", ",", 
-                    "DualNumbers`Private`b2_"}], "]"}], ")"}], "?", 
-                    "DualArrayQ"}]}], "^:=", 
-                    RowBox[{"Dual", "[", 
-                    RowBox[{
-                    RowBox[{
-                    "DualNumbers`Private`a1", ".", "DualNumbers`Private`a2"}],
-                     ",", 
-                    RowBox[{
-                    RowBox[{
-                    "DualNumbers`Private`a1", ".", "DualNumbers`Private`b2"}],
-                     "+", 
-                    RowBox[{
-                    "DualNumbers`Private`b1", ".", 
-                    "DualNumbers`Private`a2"}]}]}], "]"}]}]},
                     {
                     RowBox[{"Dual", "/:", 
                     RowBox[{"MatrixPower", "[", 
@@ -4814,9 +5644,9 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     RowBox[{"(", 
                     RowBox[{"Dual", "[", 
-                    RowBox[{"DualNumbers`Private`a_", ",", 
-                    "DualNumbers`Private`b_"}], "]"}], ")"}], "?", 
-                    "SquareMatrixQ"}], ",", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "SquareMatrixQ"}], ",", 
                     RowBox[{"DualNumbers`Private`opts", ":", 
                     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], "^:=", 
                     RowBox[{"With", "[", 
@@ -4856,7 +5686,8 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"{", 
                     RowBox[{"DualNumbers`Private`ls", "=", 
                     RowBox[{"LinearSolve", "[", 
-                    RowBox[{"DualNumbers`Private`a", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", 
                     "DualNumbers`Private`opts"}], "]"}]}], "}"}], ",", 
                     RowBox[{
                     RowBox[{
@@ -5455,9 +6286,10 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"Dual", "/:", 
                     RowBox[{"Join", "[", 
                     RowBox[{
-                    RowBox[{
-                    "DualNumbers`Private`arrays__Dual", "?", "DualArrayQ"}], 
-                    ",", "DualNumbers`Private`n_Integer"}], "]"}], ":=", 
+                    RowBox[{"DualNumbers`Private`arrays", ":", 
+                    RowBox[{"Longest", "[", 
+                    RowBox[{"__Dual", "?", "DualArrayQ"}], "]"}]}], ",", 
+                    "DualNumbers`Private`n_Integer"}], "]"}], ":=", 
                     RowBox[{"With", "[", 
                     RowBox[{
                     RowBox[{"{", 
@@ -5503,11 +6335,11 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     "DualNumbers`Private`arrays", "]"}]}]}], "]"}]}], "]"}]}],
                      "]"}]}]},
                     {
-                    RowBox[{
+                    RowBox[{"Dual", "/:", 
                     RowBox[{"Join", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`arrays__Dual", "?", "DualArrayQ"}], 
-                    "]"}], "^:=", 
+                    RowBox[{"DualNumbers`Private`arrays", ":", 
+                    RowBox[{"Longest", "[", 
+                    RowBox[{"__Dual", "?", "DualArrayQ"}], "]"}]}], "]"}], ":=", 
                     RowBox[{"With", "[", 
                     RowBox[{
                     RowBox[{"{", 
@@ -5582,7 +6414,8 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{"DualNumbers`Private`pos", "=", 
                     RowBox[{"DualNumbers`Private`listPosition", "[", 
                     RowBox[{"DualNumbers`Private`a", ",", 
-                    RowBox[{"_", "?", "DualNumbers`Private`selFun"}]}], 
+                    RowBox[{"_", "?", "DualNumbers`Private`selFun"}], ",", 
+                    RowBox[{"{", "1", "}"}], ",", "DualNumbers`Private`n"}], 
                     "]"}]}], "}"}], ",", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -5594,6 +6427,15 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "DualNumbers`Private`b", ",", "DualNumbers`Private`pos"}],
                      "]"}]}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Select", "[", "DualNumbers`Private`fun_", "]"}], 
+                    "[", "DualNumbers`Private`d_Dual", "]"}], "^:=", 
+                    RowBox[{"Select", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`d", ",", "DualNumbers`Private`fun"}],
+                     "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{
@@ -5698,7 +6540,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     StyleBox[
                     RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
-                    "Dual"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
+                    "Pick"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
                     "Undefined"}]},
                     {
                     RowBox[{
@@ -5711,8 +6553,292 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     StyleBox[
                     RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
-                    "Dual"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
+                    "Pick"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
                     "Undefined"}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], ",", 
+                    RowBox[{
+                    "DualNumbers`Private`fun1_", "\[Rule]", 
+                    "DualNumbers`Private`fun2_"}], ",", 
+                    RowBox[{"DualNumbers`Private`red_", ":", "Identity"}]}], 
+                    "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"DualNumbers`Private`vals", "=", 
+                    RowBox[{
+                    "DualNumbers`Private`fun1", "/@", 
+                    "DualNumbers`Private`a"}]}], "}"}], ",", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"DualNumbers`Private`uniqueVals", "=", 
+                    RowBox[{
+                    "DeleteDuplicates", "[", "DualNumbers`Private`vals", 
+                    "]"}]}], "}"}], ",", 
+                    RowBox[{"AssociationMap", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DualNumbers`Private`red", "[", 
+                    RowBox[{"DualNumbers`Private`fun2", "/@", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"ToPackedArray", "[", 
+                    RowBox[{"Pick", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`vals", 
+                    ",", "#1"}], "]"}], "]"}], ",", 
+                    RowBox[{"ToPackedArray", "[", 
+                    RowBox[{"Pick", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`b", ",", "DualNumbers`Private`vals", 
+                    ",", "#1"}], "]"}], "]"}]}], "]"}]}], "]"}], "&"}], ",", 
+                    "DualNumbers`Private`uniqueVals"}], "]"}]}], "]"}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{"DualNumbers`Private`d_Dual", ",", 
+                    RowBox[{"DualNumbers`Private`fun", ":", 
+                    RowBox[{"Except", "[", "_List", "]"}]}], ",", 
+                    "DualNumbers`Private`rest___"}], "]"}], ":=", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{"DualNumbers`Private`d", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`fun", "\[Rule]", "Identity"}], ",", 
+                    "DualNumbers`Private`rest"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"GroupBy", "[", "DualNumbers`Private`fun_", "]"}],
+                     "[", "DualNumbers`Private`d_Dual", "]"}], "^:=", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`d", ",", "DualNumbers`Private`fun"}],
+                     "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], ",", 
+                    "DualNumbers`Private`fun_", ",", "___"}], "]"}], "/;", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Dual", "::", "groupbyfun"}], "MessageName"], ",", 
+                    RowBox[{"Short", "[", "DualNumbers`Private`fun", "]"}]}], 
+                    "]"}], ";", "False"}], ")"}]}], "^:=", "Undefined"}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{"_Dual", ",", "___"}], "]"}], "/;", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
+                    "GroupBy"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
+                    "Undefined"}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Identity", "/@", 
+                    RowBox[{
+                    "DualNumbers`Private`d_Dual", "?", "DualArrayQ"}]}], ":=",
+                     "DualNumbers`Private`d"}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"First", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "First", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "First", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Last", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Last", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Last", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Most", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Most", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Most", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Rest", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Rest", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Rest", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Transpose", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Transpose", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Transpose", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Mean", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Mean", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Mean", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Total", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Total", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Total", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{"Dual", "/:", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{"Flatten", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a$_", ",", 
+                    "DualNumbers`Private`b$_"}], "]"}], ")"}], "?", 
+                    "DualArrayQ"}], ",", "DualNumbers`Private`rest$___"}], 
+                    "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Flatten", ",", "DualNumbers`Private`a$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "Flatten", ",", "DualNumbers`Private`b$", ",", 
+                    "DualNumbers`Private`rest$"}], "]"}]}], "]"}]}]},
                     {
                     RowBox[{
                     RowBox[{"Map", "[", 
@@ -5726,6 +6852,14 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     RowBox[{
                     "UnpackDualArray", "[", "DualNumbers`Private`dualArr$", 
                     "]"}], ",", "DualNumbers`Private`rest$"}], "]"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Map", "[", "DualNumbers`Private`fun$_", "]"}], 
+                    "[", "DualNumbers`Private`d$_Dual", "]"}], "^:=", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", "/@", 
+                    "DualNumbers`Private`d$"}]}]},
                     {
                     RowBox[{
                     RowBox[{
@@ -5755,6 +6889,16 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{
+                    RowBox[{
+                    "MapIndexed", "[", "DualNumbers`Private`fun$_", "]"}], 
+                    "[", "DualNumbers`Private`d$_Dual", "]"}], "^:=", 
+                    RowBox[{"MapIndexed", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", ",", 
+                    "DualNumbers`Private`d$"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
                     RowBox[{"MapIndexed", "[", 
                     RowBox[{"_", ",", "_Dual", ",", "___"}], "]"}], "/;", 
                     RowBox[{"(", 
@@ -5781,6 +6925,14 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     {
                     RowBox[{
                     RowBox[{
+                    RowBox[{"Apply", "[", "DualNumbers`Private`fun$_", "]"}], 
+                    "[", "DualNumbers`Private`d$_Dual", "]"}], "^:=", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", "@@", 
+                    "DualNumbers`Private`d$"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
                     RowBox[{"Apply", "[", 
                     RowBox[{"_", ",", "_Dual", ",", "___"}], "]"}], "/;", 
                     RowBox[{"(", 
@@ -5790,6 +6942,133 @@ to construct a dual quantity.\"\>", "InformationUsageText",
                     StyleBox[
                     RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
                     "Apply"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
+                    "Undefined"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{"DualNumbers`Private`fun_", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`dualArr_Dual", "?", "DualArrayQ"}]}],
+                     "]"}], "^:=", 
+                    RowBox[{"PackDualArray", "[", 
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{"DualNumbers`Private`fun", ",", 
+                    RowBox[{
+                    "UnpackDualArray", "[", "DualNumbers`Private`dualArr", 
+                    "]"}]}], "]"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun_", ",", 
+                    "DualNumbers`Private`val_", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`dualArr_Dual", "?", "DualArrayQ"}]}],
+                     "]"}], "^:=", 
+                    RowBox[{"PackDualArray", "[", 
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun", ",", "DualNumbers`Private`val",
+                     ",", 
+                    RowBox[{
+                    "UnpackDualArray", "[", "DualNumbers`Private`dualArr", 
+                    "]"}]}], "]"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Fold", "[", 
+                    RowBox[{"DualNumbers`Private`fun_", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`dualArr_Dual", "?", "DualArrayQ"}]}],
+                     "]"}], "^:=", 
+                    RowBox[{"Fold", "[", 
+                    RowBox[{"DualNumbers`Private`fun", ",", 
+                    RowBox[{
+                    "UnpackDualArray", "[", "DualNumbers`Private`dualArr", 
+                    "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"Fold", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun_", ",", 
+                    "DualNumbers`Private`val_", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`dualArr_Dual", "?", "DualArrayQ"}]}],
+                     "]"}], "^:=", 
+                    RowBox[{"Fold", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun", ",", "DualNumbers`Private`val",
+                     ",", 
+                    RowBox[{
+                    "UnpackDualArray", "[", "DualNumbers`Private`dualArr", 
+                    "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Fold", "[", "DualNumbers`Private`fun$_", "]"}], 
+                    "[", "DualNumbers`Private`d$_Dual", "]"}], "^:=", 
+                    RowBox[{"Fold", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", ",", 
+                    "DualNumbers`Private`d$"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Fold", "[", "DualNumbers`Private`fun$_", "]"}], 
+                    "[", 
+                    RowBox[{
+                    "DualNumbers`Private`x$_", ",", 
+                    "DualNumbers`Private`d$_Dual"}], "]"}], "^:=", 
+                    RowBox[{"Fold", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", ",", "DualNumbers`Private`x$",
+                     ",", "DualNumbers`Private`d$"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Fold", "[", 
+                    RowBox[{"__", ",", "_Dual", ",", "___"}], "]"}], "/;", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
+                    "Fold"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
+                    "Undefined"}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "FoldList", "[", "DualNumbers`Private`fun$_", "]"}], "[", 
+                    "DualNumbers`Private`d$_Dual", "]"}], "^:=", 
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", ",", 
+                    "DualNumbers`Private`d$"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "FoldList", "[", "DualNumbers`Private`fun$_", "]"}], "[", 
+                    RowBox[{
+                    "DualNumbers`Private`x$_", ",", 
+                    "DualNumbers`Private`d$_Dual"}], "]"}], "^:=", 
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun$", ",", "DualNumbers`Private`x$",
+                     ",", "DualNumbers`Private`d$"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"FoldList", "[", 
+                    RowBox[{"__", ",", "_Dual", ",", "___"}], "]"}], "/;", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Dual", "::", "arrayOp"}], "MessageName"], ",", 
+                    "FoldList"}], "]"}], ";", "False"}], ")"}]}], "^:=", 
                     "Undefined"}]},
                     {
                     RowBox[{
@@ -6267,6 +7546,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -6428,16 +7708,18 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
 \"TI\"]}], \"]\"}]\) uses ToDual[a, 0] to construct a dual quantity.", 
     "Documentation" -> None, "OwnValues" -> None, "UpValues" -> 
     Information`InformationValueForm[
-     UpValues, DualNumbers`Dual, {DualNumbers`Dual[
-          Pattern[DualNumbers`Private`a, 
-           Blank[]], 
-          Pattern[DualNumbers`Private`b, 
-           Blank[]]] + Pattern[DualNumbers`Private`c, 
-          Except[
-           Blank[DualNumbers`Dual]]] :> 
+     UpValues, DualNumbers`Dual, {Condition[Pattern[DualNumbers`Private`d1, 
+           Blank[DualNumbers`Dual]] + Pattern[DualNumbers`Private`d2, 
+           Longest[
+            Repeated[
+             Blank[DualNumbers`Dual], {20, 
+              DirectedInfinity[1]}]]] + Pattern[DualNumbers`Private`rest, 
+           BlankNullSequence[]], True] :> DualNumbers`Dual[Total[
+           Part[{DualNumbers`Private`d1, DualNumbers`Private`d2}, All, 1]] + 
+         DualNumbers`Private`rest, 
+         Total[
+          Part[{DualNumbers`Private`d1, DualNumbers`Private`d2}, All, 2]]], 
        DualNumbers`Dual[
-        DualNumbers`Private`c + DualNumbers`Private`a, DualNumbers`Private`b],
-        DualNumbers`Dual[
           Pattern[DualNumbers`Private`a1, 
            Blank[]], 
           Pattern[DualNumbers`Private`b1, 
@@ -6452,12 +7734,25 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           Pattern[DualNumbers`Private`a, 
            Blank[]], 
           Pattern[DualNumbers`Private`b, 
-           Blank[]]] Pattern[DualNumbers`Private`c, 
+           Blank[]]] + Pattern[DualNumbers`Private`c, 
           Except[
            Blank[DualNumbers`Dual]]] :> 
        DualNumbers`Dual[
-        DualNumbers`Private`c DualNumbers`Private`a, DualNumbers`Private`c 
-         DualNumbers`Private`b], DualNumbers`Dual[
+        DualNumbers`Private`c + DualNumbers`Private`a, DualNumbers`Private`b],
+        Condition[Pattern[DualNumbers`Private`d1, 
+           Blank[DualNumbers`Dual]] Pattern[DualNumbers`Private`d2, 
+           Longest[
+            Repeated[
+             Blank[DualNumbers`Dual], {20, 
+              DirectedInfinity[1]}]]] Pattern[DualNumbers`Private`rest, 
+           BlankNullSequence[]], True] :> DualNumbers`Dual[Apply[Times, 
+           Part[{DualNumbers`Private`d1, DualNumbers`Private`d2}, All, 1]] 
+         DualNumbers`Private`rest, Total[
+           Apply[Times, 
+            
+            DualNumbers`DualTuples[{
+             DualNumbers`Private`d1, DualNumbers`Private`d2}], {1}]] 
+         DualNumbers`Private`rest], DualNumbers`Dual[
           Pattern[DualNumbers`Private`a1, 
            Blank[]], 
           Pattern[DualNumbers`Private`b1, 
@@ -6469,7 +7764,16 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
        DualNumbers`Dual[
         DualNumbers`Private`a1 DualNumbers`Private`a2, 
          DualNumbers`Private`b1 DualNumbers`Private`a2 + 
-         DualNumbers`Private`a1 DualNumbers`Private`b2], HoldPattern[
+         DualNumbers`Private`a1 DualNumbers`Private`b2], DualNumbers`Dual[
+          Pattern[DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[DualNumbers`Private`b, 
+           Blank[]]] Pattern[DualNumbers`Private`c, 
+          Except[
+           Blank[DualNumbers`Dual]]] :> 
+       DualNumbers`Dual[
+        DualNumbers`Private`c DualNumbers`Private`a, DualNumbers`Private`c 
+         DualNumbers`Private`b], HoldPattern[
          Subtract[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a1, 
@@ -6596,7 +7900,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcCsc[
-         DualNumbers`Private`a$], ((-(1 - #^(-2))^Rational[-1, 2]) #^(-2)& )[
+         DualNumbers`Private`a$], (-(1 - #^(-2))^Rational[-1, 2] #^(-2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ArcCsch[
           DualNumbers`Dual[
@@ -6605,7 +7909,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcCsch[
-         DualNumbers`Private`a$], ((-(1 + #^(-2))^Rational[-1, 2]) #^(-2)& )[
+         DualNumbers`Private`a$], (-(1 + #^(-2))^Rational[-1, 2] #^(-2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ArcSec[
           DualNumbers`Dual[
@@ -6623,9 +7927,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcSech[
-         DualNumbers`Private`a$], (((-1)/#) (((1 - #)/(1 + #))^
-            Rational[-1, 2]/(1 + #))& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (-#^(-1) ((1 - #)/(1 + #))^Rational[-1, 2]/(
+          1 + #)& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
+       HoldPattern[
          ArcSin[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6681,10 +7985,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BartlettHannWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 50] (24 - (38 Pi) Sin[(2 Pi) #]), 
+            Rational[1, 50] (24 - 38 Pi Sin[2 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 0]}, {
-            Rational[1, 50] (-24 - (38 Pi) Sin[(2 Pi) #]), 
+            Rational[1, 50] (-24 - 38 Pi Sin[2 Pi #]), 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
@@ -6710,8 +8014,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanHarrisWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 100000] (((-97658) Pi) Sin[(2 Pi) #] - (56512 Pi) 
-              Sin[(4 Pi) #] - (7008 Pi) Sin[(6 Pi) #]), 
+            Rational[1, 100000] ((-97658) Pi Sin[2 Pi #] - 56512 Pi 
+              Sin[4 Pi #] - 7008 Pi Sin[6 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -6725,9 +8029,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanNuttallWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[
-              1, 10000000] (((-9783550) Pi) Sin[(2 Pi) #] - (5463980 Pi) 
-              Sin[(4 Pi) #] - (638466 Pi) Sin[(6 Pi) #]), 
+            Rational[1, 10000000] ((-9783550) Pi Sin[2 Pi #] - 5463980 Pi 
+              Sin[4 Pi #] - 638466 Pi Sin[6 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -6741,8 +8044,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Rational[1, 50] (((-50) Pi) Sin[(2 Pi) #] - (16 Pi) 
-              Sin[(4 Pi) #]), 
+            Rational[1, 50] ((-50) Pi Sin[2 Pi #] - 16 Pi Sin[4 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -6756,12 +8058,23 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BohmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Pi^(-1) (((-2) Pi^2) Sin[(2 Pi) #] - ((4 Pi^2) Sin[(2 Pi) #]) #), 
+            Pi^(-1) ((-2) Pi^2 Sin[2 Pi #] - 4 Pi^2 Sin[2 Pi #] #), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 0]}, {
-            Pi^(-1) (((-2) Pi^2) Sin[(2 Pi) #] + ((4 Pi^2) Sin[(2 Pi) #]) #), 
+            Pi^(-1) ((-2) Pi^2 Sin[2 Pi #] + 4 Pi^2 Sin[2 Pi #] #), 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         CatalanNumber[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         CatalanNumber[
+         DualNumbers`Private`a$], (
+          CatalanNumber[#] (Log[4] + PolyGamma[# + 1/2] - 
+           PolyGamma[# + 2])& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          CauchyWindow[
           DualNumbers`Dual[
@@ -6771,7 +8084,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          CauchyWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {((-72) #) (1 + 36 #^2)^(-2), 
+          Piecewise[{{0, # < Rational[-1, 2]}, {(-72) # (1 + 36 #^2)^(-2), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -6786,6 +8099,15 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Ceiling[#]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         ChampernowneNumber[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         ChampernowneNumber[
+         DualNumbers`Private`a$], (0& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Clip[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6804,7 +8126,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          ConnesWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # <= Rational[-1, 2]}, {((-16) #) (1 - 4 #^2), 
+          Piecewise[{{0, # <= Rational[-1, 2]}, {(-16) # (1 - 4 #^2), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -6825,6 +8147,15 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Cosh[DualNumbers`Private`a$], (Sinh[#]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
+         CoshIntegral[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         CoshIntegral[
+         DualNumbers`Private`a$], (Cosh[#]/#& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          CosineWindow[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6833,11 +8164,20 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          CosineWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {(-Pi) Sin[Pi #], 
+          Piecewise[{{0, # < Rational[-1, 2]}, {-Pi Sin[Pi #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         CosIntegral[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         CosIntegral[
+         DualNumbers`Private`a$], (Cos[#]/#& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Cot[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6861,8 +8201,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Csc[
-         DualNumbers`Private`a$], ((-Cot[#]) Csc[#]& )[DualNumbers`Private`a$]
-           DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (-Cot[#] Csc[#]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Csch[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6870,8 +8210,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Csch[
-         DualNumbers`Private`a$], ((-Coth[#]) Csch[#]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (-Coth[#] Csch[#]& )[DualNumbers`Private`a$]
+           DualNumbers`Private`b$], HoldPattern[
          CubeRoot[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6888,7 +8228,43 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          DawsonF[
-         DualNumbers`Private`a$], (1 - (2 #) DawsonF[#]& )[
+         DualNumbers`Private`a$], (1 - 2 # DawsonF[#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DirichletBeta[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         DirichletBeta[
+         DualNumbers`Private`a$], (-2^(-#) Log[2] (2^(-#) Zeta[#, 
+               Rational[1, 4]] - 2^(-#) Zeta[#, 
+              Rational[3, 4]]) + 2^(-#) (-2^(-#) Log[2] Zeta[#, 
+               Rational[1, 4]] + 2^(-#) Log[2] Zeta[#, 
+               Rational[3, 4]] + 2^(-#) Derivative[1, 0][Zeta][#, 
+               Rational[1, 4]] - 2^(-#) Derivative[1, 0][Zeta][#, 
+              Rational[3, 4]])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         DirichletEta[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         DirichletEta[
+         DualNumbers`Private`a$], (
+          2^(1 - #) Log[2] Zeta[#] + (1 - 2^(1 - #)) 
+           Derivative[1][Zeta][#]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         DirichletLambda[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         DirichletLambda[
+         DualNumbers`Private`a$], (Log[2] Zeta[#] - 2^(-#) (-1 + 2^#) Log[2] 
+          Zeta[#] + 2^(-#) (-1 + 2^#) Derivative[1][Zeta][#]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          DirichletWindow[
           DualNumbers`Dual[
@@ -6915,7 +8291,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          EllipticE[
          DualNumbers`Private`a$], (
-          Rational[1, 2] ((EllipticE[#] - EllipticK[#])/#)& )[
+          Rational[1, 2] (EllipticE[#] - EllipticK[#])/#& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          EllipticK[
           DualNumbers`Dual[
@@ -6924,10 +8300,20 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          EllipticK[
-         DualNumbers`Private`a$], ((
-           Rational[1, 2] (EllipticE[#] - 
-            EllipticK[#] (1 - #))) ((1 - #)^(-1)/#)& )[DualNumbers`Private`a$]
-           DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (
+          Rational[1, 2] (EllipticE[#] - 
+           EllipticK[#] (1 - #)) (1 - #)^(-1)/#& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         EllipticNomeQ[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         EllipticNomeQ[
+         DualNumbers`Private`a$], (-((Pi^2 EllipticNomeQ[#])/(4 (-1 + #) # 
+           EllipticK[#]^2))& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Erf[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -6935,7 +8321,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erf[
-         DualNumbers`Private`a$], ((2 E^(-#^2)) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], (2 E^(-#^2) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Erfc[
           DualNumbers`Dual[
@@ -6944,7 +8330,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erfc[
-         DualNumbers`Private`a$], (((-2) E^(-#^2)) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], ((-2) E^(-#^2) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Erfi[
           DualNumbers`Dual[
@@ -6953,7 +8339,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erfi[
-         DualNumbers`Private`a$], ((2 E^(#^2)) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], (2 E^(#^2) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ExactBlackmanWindow[
           DualNumbers`Dual[
@@ -6964,8 +8350,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          ExactBlackmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 9304] (((-9240) Pi) Sin[(2 Pi) #] - (2860 Pi) 
-              Sin[(4 Pi) #]), 
+            Rational[1, 9304] ((-9240) Pi Sin[2 Pi #] - 2860 Pi Sin[4 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7003,11 +8388,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Factorial2[
-         DualNumbers`Private`a$], ((Rational[1, 2] Factorial2[#]) (Log[2] + 
-           PolyGamma[
-            0, 1 + Rational[1, 2] #] + ((Rational[1, 2] Pi) Log[2/Pi]) 
-            Sin[Pi #])& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
-       HoldPattern[
+         DualNumbers`Private`a$], (Rational[1, 2] 
+          Factorial2[#] (Log[2] + PolyGamma[0, 1 + Rational[1, 2] #] + 
+           Rational[1, 2] Pi Log[2/Pi] Sin[Pi #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Fibonacci[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7015,10 +8399,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Fibonacci[
-         DualNumbers`Private`a$], ((5^Rational[-1, 2] GoldenRatio^(-#)) (
-           GoldenRatio^(2 #) Log[GoldenRatio] + Cos[Pi #] Log[GoldenRatio] + 
-           Pi Sin[Pi #])& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
-       HoldPattern[
+         DualNumbers`Private`a$], (5^Rational[-1, 2] 
+          GoldenRatio^(-#) (GoldenRatio^(2 #) Log[GoldenRatio] + 
+           Cos[Pi #] Log[GoldenRatio] + Pi Sin[Pi #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          FlatTopWindow[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7028,10 +8412,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          FlatTopWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[
-              1, 1000000000] (((-833263160) Pi) Sin[(2 Pi) #] - (1109052632 
-               Pi) Sin[(4 Pi) #] - (501473682 Pi) 
-              Sin[(6 Pi) #] - (55578944 Pi) Sin[(8 Pi) #]), 
+            Rational[1, 1000000000] ((-833263160) Pi Sin[2 Pi #] - 1109052632 
+              Pi Sin[4 Pi #] - 501473682 Pi Sin[6 Pi #] - 55578944 Pi 
+              Sin[8 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7061,6 +8444,42 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
                NotElement[
                 Im[#], Integers]]]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         FresnelC[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         FresnelC[
+         DualNumbers`Private`a$], (Cos[Pi 2^(-1) #^2]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         FresnelF[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         FresnelF[
+         DualNumbers`Private`a$], (-Pi # FresnelG[#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         FresnelG[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         FresnelG[
+         DualNumbers`Private`a$], (Pi # FresnelF[#] - 1& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         FresnelS[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         FresnelS[
+         DualNumbers`Private`a$], (Sin[Pi 2^(-1) #^2]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Gamma[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7078,10 +8497,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          GaussianWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{
-            0, # < 
-             Rational[-1, 2]}, {(Rational[-100, 9] 
-              E^(Rational[-50, 9] #^2)) #, 
+          Piecewise[{{0, # < Rational[-1, 2]}, {
+            Rational[-100, 9] E^(Rational[-50, 9] #^2) #, 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7103,8 +8520,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          HammingWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{
-            0, # < Rational[-1, 2]}, {(Rational[-21, 23] Pi) Sin[(2 Pi) #], 
+          Piecewise[{{0, # < Rational[-1, 2]}, {
+            Rational[-21, 23] Pi Sin[2 Pi #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7118,11 +8535,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          HannPoissonWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            E^(2 #) (1 + Cos[(2 Pi) #]) - (E^(2 #) Pi) Sin[(2 Pi) #], 
+            E^(2 #) (1 + Cos[2 Pi #]) - E^(2 #) Pi Sin[2 Pi #], 
              Inequality[
-              Rational[-1, 2], Less, #, Less, 
-              0]}, {(-E^((-2) #)) (1 + Cos[(2 Pi) #]) - (E^((-2) #) Pi) 
-             Sin[(2 Pi) #], 
+              Rational[-1, 2], Less, #, Less, 0]}, {-
+              E^((-2) #) (1 + Cos[2 Pi #]) - E^((-2) #) Pi Sin[2 Pi #], 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}, {0, # >= Rational[1, 2]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
@@ -7134,11 +8550,20 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          HannWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # <= Rational[-1, 2]}, {(-Pi) Sin[(2 Pi) #], 
+          Piecewise[{{0, # <= Rational[-1, 2]}, {-Pi Sin[2 Pi #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
+         HarmonicNumber[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         HarmonicNumber[
+         DualNumbers`Private`a$], (Pi^2/6 - HarmonicNumber[#, 2]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Haversine[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7168,6 +8593,16 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          DualNumbers`Private`a$], ((-2) DiracDelta[-1 + 2 #] + 
           2 DiracDelta[1 + 2 #]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
+         Hyperfactorial[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         Hyperfactorial[
+         DualNumbers`Private`a$], (
+          Hyperfactorial[#] ((1 - Log[2 Pi])/2 + LogGamma[1 + #] + #)& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          IntegerPart[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7182,6 +8617,36 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
               Or[Im[#] == 0, 
                NotElement[
                 Im[#], Integers]]]}}, Indeterminate]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         InverseEllipticNomeQ[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         InverseEllipticNomeQ[
+         DualNumbers`Private`a$], (
+          With[{System`EllipticDump`t = InverseEllipticNomeQ[#]}, (4 
+            EllipticK[System`EllipticDump`t]^2 (1 - System`EllipticDump`t) 
+            System`EllipticDump`t)/(# Pi^2)]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         InverseErf[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         InverseErf[
+         DualNumbers`Private`a$], (E^(InverseErf[0, #]^2) Sqrt[Pi]/2& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         InverseErfc[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         InverseErfc[
+         DualNumbers`Private`a$], (-E^(InverseErfc[#]^2) Sqrt[Pi]/2& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          InverseGudermannian[
           DualNumbers`Dual[
@@ -7210,8 +8675,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          KaiserBesselWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 1000] (((-996) Pi) Sin[(2 Pi) #] - (396 Pi) 
-              Sin[(4 Pi) #] - (6 Pi) Sin[(6 Pi) #]), 
+            Rational[1, 1000] ((-996) Pi Sin[2 Pi #] - 396 Pi Sin[4 Pi #] - 6 
+              Pi Sin[6 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7225,8 +8690,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          KaiserWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{
-            0, # < Rational[-1, 2]}, {((((-12)/BesselI[0, 3]) 
-               BesselI[1, 3 (1 - 4 #^2)^Rational[1, 2]]) #) (1 - 4 #^2)^
+            0, # < Rational[-1, 2]}, {(-12) BesselI[0, 3]^(-1) 
+             BesselI[1, 3 (1 - 4 #^2)^Rational[1, 2]] # (1 - 4 #^2)^
               Rational[-1, 2], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
@@ -7239,9 +8704,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinBei[
-         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
-           2 KelvinBei[1, #] - 2 KelvinBer[1, #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Rational[1, 2] 
+          2^Rational[-1, 2] (2 KelvinBei[1, #] - 2 KelvinBer[1, #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          KelvinBer[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7249,9 +8714,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinBer[
-         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
-           2 KelvinBei[1, #] + 2 KelvinBer[1, #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Rational[1, 2] 
+          2^Rational[-1, 2] (2 KelvinBei[1, #] + 2 KelvinBer[1, #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          KelvinKei[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7259,9 +8724,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinKei[
-         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
-           2 KelvinKei[1, #] - 2 KelvinKer[1, #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Rational[1, 2] 
+          2^Rational[-1, 2] (2 KelvinKei[1, #] - 2 KelvinKer[1, #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          KelvinKer[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7269,9 +8734,25 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinKer[
-         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
-           2 KelvinKei[1, #] + 2 KelvinKer[1, #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Rational[1, 2] 
+          2^Rational[-1, 2] (2 KelvinKei[1, #] + 2 KelvinKer[1, #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         KleinInvariantJ[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         KleinInvariantJ[
+         DualNumbers`Private`a$], (
+          With[{System`EllipticDump`t = 
+            ModularLambda[#]}, -((16 
+             I (-2 + System`EllipticDump`t) (1 + System`EllipticDump`t) (-1 + 
+              2 System`EllipticDump`t) (
+               1 + (-1 + System`EllipticDump`t) System`EllipticDump`t)^2 
+             EllipticK[System`EllipticDump`t]^2)/(27 
+            Pi (-1 + System`EllipticDump`t)^2 System`EllipticDump`t^2))]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          KroneckerDelta[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7289,10 +8770,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          LanczosWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{
-            0, # < Rational[-1, 2]}, {(2 
-              Pi) (((Rational[-1, 4] Pi^(-2)) Sin[(2 Pi) #]) #^(-2) + (
-                Rational[1, 2]/Pi) (Cos[(2 Pi) #]/#)), 
+          Piecewise[{{0, # < Rational[-1, 2]}, {
+            2 Pi (Rational[-1, 4] Pi^(-2) Sin[2 Pi #] #^(-2) + 
+              Rational[1, 2] Pi^(-1) Cos[2 Pi #]/#), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -7367,10 +8847,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          LucasL[
-         DualNumbers`Private`a$], (
-          GoldenRatio^# Log[GoldenRatio] - (GoldenRatio^(-#) Cos[Pi #]) 
-          Log[GoldenRatio] - (GoldenRatio^(-#) Pi) Sin[Pi #]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (GoldenRatio^# Log[GoldenRatio] - 
+          GoldenRatio^(-#) Cos[Pi #] Log[GoldenRatio] - GoldenRatio^(-#) Pi 
+          Sin[Pi #]& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
+       HoldPattern[
          Max[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7395,6 +8875,18 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Minus[DualNumbers`Private`a$], (-1& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
+         ModularLambda[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         ModularLambda[
+         DualNumbers`Private`a$], (
+          With[{System`EllipticDump`t = ModularLambda[#]}, (4 
+            I (1 - System`EllipticDump`t) System`EllipticDump`t 
+            EllipticK[System`EllipticDump`t]^2)/Pi]& )[DualNumbers`Private`a$]
+           DualNumbers`Private`b$], HoldPattern[
          Multinomial[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7412,8 +8904,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          NuttallWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Rational[1, 250000] (((-243698) Pi) Sin[(2 Pi) #] - (144232 Pi) 
-              Sin[(4 Pi) #] - (18906 Pi) Sin[(6 Pi) #]), 
+            Rational[1, 250000] ((-243698) Pi Sin[2 Pi #] - 144232 Pi 
+              Sin[4 Pi #] - 18906 Pi Sin[6 Pi #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -7471,8 +8963,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          QPochhammer[
-         DualNumbers`Private`a$], ((((-1)/Log[#]) 
-            QPochhammer[#, #]) ((Log[1 - #] + QPolyGamma[0, 1, #])/#) + 
+         DualNumbers`Private`a$], (-Log[#]^(-1) 
+           QPochhammer[#, #] (Log[1 - #] + QPolyGamma[0, 1, #])/# + 
           Derivative[0, 1][QPochhammer][#, #]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          Ramp[
@@ -7520,11 +9012,27 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          RiemannSiegelZ[
-         DualNumbers`Private`a$], ((((-I)/4) 
-           E^(I RiemannSiegelTheta[#])) ((2 Log[Pi] - PolyGamma[
-             0, (1 - (2 I) #)/4] - PolyGamma[0, (1 + (2 I) #)/4]) 
-            Zeta[1/2 + I #] - 4 Derivative[1][Zeta][1/2 + I #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (-I 4^(-1) 
+          E^(I RiemannSiegelTheta[#]) ((2 Log[Pi] - PolyGamma[
+             0, (1 - 2 I #)/4] - PolyGamma[0, (1 + 2 I #)/4]) Zeta[1/2 + I #] - 
+           4 Derivative[1][Zeta][1/2 + I #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         RiemannXi[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         RiemannXi[
+         DualNumbers`Private`a$], (
+          Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] Zeta[#] + 
+          Rational[-1, 2] Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] 
+           Log[Pi] (-1 + #) Zeta[#] + 
+          Rational[1, 2] Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] 
+           PolyGamma[0, 1 + Rational[1, 2] #] (-1 + #) Zeta[#] + 
+          Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] (-1 + #) 
+           Derivative[1][Zeta][#]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Round[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7571,8 +9079,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Sech[
-         DualNumbers`Private`a$], ((-Sech[#]) Tanh[#]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (-Sech[#] Tanh[#]& )[DualNumbers`Private`a$]
+           DualNumbers`Private`b$], HoldPattern[
          Sin[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7588,7 +9096,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Sinc[
-         DualNumbers`Private`a$], ((-Sin[#]) #^(-2) + Cos[#]/#& )[
+         DualNumbers`Private`a$], (-Sin[#] #^(-2) + Cos[#]/#& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Sinh[
           DualNumbers`Dual[
@@ -7598,6 +9106,24 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Sinh[DualNumbers`Private`a$], (Cosh[#]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
+         SinhIntegral[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         SinhIntegral[
+         DualNumbers`Private`a$], (Sinh[#]/#& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
+         SinIntegral[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         SinIntegral[
+         DualNumbers`Private`a$], (Sinc[#]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Sqrt[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7606,6 +9132,16 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Sqrt[
          DualNumbers`Private`a$], (Rational[1, 2] #^Rational[-1, 2]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         Subfactorial[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]]]] :> DualNumbers`Dual[
+         Subfactorial[
+         DualNumbers`Private`a$], (I Pi Subfactorial[#] + 
+          1 E^(-1) MeijerG[{{}, {1, 1}}, {{0, 0, 1 + #}, {}}, -1]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Tan[
           DualNumbers`Dual[
@@ -7630,11 +9166,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          TukeyWindow[
-         DualNumbers`Private`a$], (
-          Piecewise[{{(Rational[3, 2] Pi) Cos[(3 Pi) #], 
+         DualNumbers`Private`a$], (Piecewise[{{Rational[3, 2] Pi Cos[3 Pi #], 
              Inequality[
               Rational[1, 6], Less, #, Less, 
-              Rational[1, 2]]}, {(Rational[-3, 2] Pi) Cos[(3 Pi) #], 
+              Rational[1, 2]]}, {Rational[-3, 2] Pi Cos[3 Pi #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[-1, 6]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -7731,7 +9266,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Log[
          DualNumbers`Private`a1$, 
-          DualNumbers`Private`a2$], (((-1) Log[#]^(-2)) (Log[#2]/#)& )[
+          DualNumbers`Private`a2$], (-Log[#]^(-2) Log[#2]/#& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b1$ + (Log[#]^(-1)/#2& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
@@ -7745,9 +9280,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           Pattern[DualNumbers`Private`c$, 
            Blank[]]]] :> DualNumbers`Dual[
          Log[
-         DualNumbers`Private`a$, 
-          DualNumbers`Private`c$], (((-1) Log[#]^(-2)) (Log[#2]/#)& )[
-          DualNumbers`Private`a$, DualNumbers`Private`c$] 
+         DualNumbers`Private`a$, DualNumbers`Private`c$], (-Log[#]^(-2) 
+          Log[#2]/#& )[DualNumbers`Private`a$, DualNumbers`Private`c$] 
          DualNumbers`Private`b$], HoldPattern[
          Log[
           Pattern[DualNumbers`Private`c$, 
@@ -7778,7 +9312,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate]& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b1$ + (-Floor[#/#2] + 
-           Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] (#/#2)& )[
+           Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b2$], HoldPattern[
          Mod[
@@ -7804,7 +9338,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Mod[
          DualNumbers`Private`c$, DualNumbers`Private`a$], (-Floor[#/#2] + 
-          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] (#/#2)& )[
+          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
           DualNumbers`Private`c$, DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          Binomial[
@@ -7870,7 +9404,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           DualNumbers`Private`a2$], (Gamma[#, #2] Log[#2] + 
            MeijerG[{{}, {1, 1}}, {{0, 0, #}, {}}, #2]& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
-          DualNumbers`Private`b1$ + ((-E^(-#2)) #2^(-1 + #)& )[
+          DualNumbers`Private`b1$ + (-E^(-#2) #2^(-1 + #)& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b2$], HoldPattern[
          Gamma[
@@ -7896,8 +9430,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Gamma[
-         DualNumbers`Private`c$, 
-          DualNumbers`Private`a$], ((-E^(-#2)) #2^(-1 + #)& )[
+         DualNumbers`Private`c$, DualNumbers`Private`a$], (-
+          E^(-#2) #2^(-1 + #)& )[
           DualNumbers`Private`c$, DualNumbers`Private`a$] 
          DualNumbers`Private`b$], Abs[
          DualNumbers`Dual[
@@ -8095,7 +9629,42 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b, 
             Blank[]]], DualNumbers`DualScalarQ], 
          BlankNullSequence[]] :> Abs[
-         DualNumbers`Dual[DualNumbers`Private`a, DualNumbers`Private`b]], Dot[
+         DualNumbers`Dual[DualNumbers`Private`a, DualNumbers`Private`b]], 
+       Condition[
+         Dot[
+          PatternTest[
+           Pattern[DualNumbers`Private`d1, 
+            Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ], 
+          Pattern[DualNumbers`Private`d2, 
+           Longest[
+            Repeated[
+             PatternTest[
+              Blank[DualNumbers`Dual], DualNumbers`DualArrayQ], {3, 
+              DirectedInfinity[1]}]]]], True] :> DualNumbers`Dual[
+         Apply[Dot, 
+          Part[{DualNumbers`Private`d1, DualNumbers`Private`d2}, All, 1]], 
+         Total[
+          Apply[Dot, 
+           Map[Developer`ToPackedArray, 
+            
+            DualNumbers`DualTuples[{
+             DualNumbers`Private`d1, DualNumbers`Private`d2}], {2}], {1}]]], 
+       Dot[
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a1, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b1, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a2, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b2, 
+            Blank[]]], DualNumbers`DualArrayQ]] :> DualNumbers`Dual[
+         Dot[DualNumbers`Private`a1, DualNumbers`Private`a2], 
+         Dot[DualNumbers`Private`a1, DualNumbers`Private`b2] + 
+         Dot[DualNumbers`Private`b1, DualNumbers`Private`a2]], Dot[
          PatternTest[
           Pattern[DualNumbers`Private`c, 
            Blank[]], ArrayQ], 
@@ -8117,22 +9686,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           Pattern[DualNumbers`Private`c, 
            Blank[]], ArrayQ]] :> DualNumbers`Dual[
          Dot[DualNumbers`Private`a, DualNumbers`Private`c], 
-         Dot[DualNumbers`Private`b, DualNumbers`Private`c]], Dot[
-         PatternTest[
-          DualNumbers`Dual[
-           Pattern[DualNumbers`Private`a1, 
-            Blank[]], 
-           Pattern[DualNumbers`Private`b1, 
-            Blank[]]], DualNumbers`DualArrayQ], 
-         PatternTest[
-          DualNumbers`Dual[
-           Pattern[DualNumbers`Private`a2, 
-            Blank[]], 
-           Pattern[DualNumbers`Private`b2, 
-            Blank[]]], DualNumbers`DualArrayQ]] :> DualNumbers`Dual[
-         Dot[DualNumbers`Private`a1, DualNumbers`Private`a2], 
-         Dot[DualNumbers`Private`a1, DualNumbers`Private`b2] + 
-         Dot[DualNumbers`Private`b1, DualNumbers`Private`a2]], MatrixPower[
+         Dot[DualNumbers`Private`b, DualNumbers`Private`c]], MatrixPower[
          PatternTest[
           Pattern[DualNumbers`Private`d, 
            Blank[DualNumbers`Dual]], SquareMatrixQ], 
@@ -8490,9 +10044,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            BlankNullSequence[]]], Message[
            MessageName[DualNumbers`Dual, "arrayOp"], Most]; False] :> 
        Undefined, Join[
-         PatternTest[
-          Pattern[DualNumbers`Private`arrays, 
-           BlankSequence[DualNumbers`Dual]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`arrays, 
+          Longest[
+           PatternTest[
+            BlankSequence[DualNumbers`Dual], DualNumbers`DualArrayQ]]], 
          Pattern[DualNumbers`Private`n, 
           Blank[Integer]]] :> 
        With[{DualNumbers`Private`a = 
@@ -8510,9 +10065,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            DualNumbers`Private`try, Message[
              MessageName[DualNumbers`Dual, "join"]]; 
            Inactive[Join][DualNumbers`Private`arrays]]]], Join[
-         PatternTest[
-          Pattern[DualNumbers`Private`arrays, 
-           BlankSequence[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+         Pattern[DualNumbers`Private`arrays, 
+          Longest[
+           PatternTest[
+            BlankSequence[DualNumbers`Dual], DualNumbers`DualArrayQ]]]] :> 
        With[{DualNumbers`Private`a = 
           DualNumbers`Standard[{DualNumbers`Private`arrays}], 
           DualNumbers`Private`b = 
@@ -8548,10 +10104,16 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
        With[{DualNumbers`Private`pos = 
           DualNumbers`Private`listPosition[DualNumbers`Private`a, 
             PatternTest[
-             Blank[], DualNumbers`Private`selFun]]}, 
+             Blank[], DualNumbers`Private`selFun], {1}, 
+            DualNumbers`Private`n]}, 
          DualNumbers`Dual[
           Extract[DualNumbers`Private`a, DualNumbers`Private`pos], 
-          Extract[DualNumbers`Private`b, DualNumbers`Private`pos]]], Condition[
+          Extract[DualNumbers`Private`b, DualNumbers`Private`pos]]], Select[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d, 
+          Blank[DualNumbers`Dual]]] :> 
+       Select[DualNumbers`Private`d, DualNumbers`Private`fun], Condition[
          Select[
           Blank[DualNumbers`Dual], 
           BlankNullSequence[]], Message[
@@ -8580,7 +10142,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`patt, 
             Blank[]], True]], Length[DualNumbers`Private`list] === 
          Length[DualNumbers`Private`sel]] :> 
-       With[{DualNumbers`Private`pos = 
+       With[{
+         DualNumbers`Private`pos = 
           DualNumbers`Private`listPosition[
            DualNumbers`Private`sel, DualNumbers`Private`patt]}, 
          Extract[DualNumbers`Private`list, DualNumbers`Private`pos]], 
@@ -8603,14 +10166,161 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          Pick[
           Blank[DualNumbers`Dual], 
           BlankNullSequence[]], Message[
-           MessageName[DualNumbers`Dual, "arrayOp"], DualNumbers`Dual]; 
-         False] :> Undefined, Condition[
+           MessageName[DualNumbers`Dual, "arrayOp"], Pick]; False] :> 
+       Undefined, Condition[
          Pick[
           Blank[], 
           Blank[DualNumbers`Dual], 
           BlankNullSequence[]], Message[
-           MessageName[DualNumbers`Dual, "arrayOp"], DualNumbers`Dual]; 
-         False] :> Undefined, Map[
+           MessageName[DualNumbers`Dual, "arrayOp"], Pick]; False] :> 
+       Undefined, GroupBy[
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`fun1, 
+           Blank[]] -> Pattern[DualNumbers`Private`fun2, 
+           Blank[]], 
+         Optional[
+          Pattern[DualNumbers`Private`red, 
+           Blank[]], Identity]] :> 
+       With[{DualNumbers`Private`vals = 
+          Map[DualNumbers`Private`fun1, DualNumbers`Private`a]}, 
+         With[{
+          DualNumbers`Private`uniqueVals = 
+           DeleteDuplicates[DualNumbers`Private`vals]}, 
+          AssociationMap[DualNumbers`Private`red[
+            Map[DualNumbers`Private`fun2, 
+             DualNumbers`Dual[
+              Developer`ToPackedArray[
+               Pick[DualNumbers`Private`a, DualNumbers`Private`vals, #]], 
+              Developer`ToPackedArray[
+               Pick[DualNumbers`Private`b, DualNumbers`Private`vals, #]]]]]& ,
+            DualNumbers`Private`uniqueVals]]], GroupBy[
+         Pattern[DualNumbers`Private`d, 
+          Blank[DualNumbers`Dual]], 
+         Pattern[DualNumbers`Private`fun, 
+          Except[
+           Blank[List]]], 
+         Pattern[DualNumbers`Private`rest, 
+          BlankNullSequence[]]] :> 
+       GroupBy[DualNumbers`Private`d, DualNumbers`Private`fun -> Identity, 
+         DualNumbers`Private`rest], GroupBy[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d, 
+          Blank[DualNumbers`Dual]]] :> 
+       GroupBy[DualNumbers`Private`d, DualNumbers`Private`fun], Condition[
+         GroupBy[
+          PatternTest[
+           DualNumbers`Dual[
+            Pattern[DualNumbers`Private`a, 
+             Blank[]], 
+            Pattern[DualNumbers`Private`b, 
+             Blank[]]], DualNumbers`DualArrayQ], 
+          Pattern[DualNumbers`Private`fun, 
+           Blank[]], 
+          BlankNullSequence[]], Message[
+           MessageName[DualNumbers`Dual, "groupbyfun"], 
+           Short[DualNumbers`Private`fun]]; False] :> Undefined, Condition[
+         GroupBy[
+          Blank[DualNumbers`Dual], 
+          BlankNullSequence[]], Message[
+           MessageName[DualNumbers`Dual, "arrayOp"], GroupBy]; False] :> 
+       Undefined, Map[Identity, 
+         PatternTest[
+          Pattern[DualNumbers`Private`d, 
+           Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+       DualNumbers`Private`d, Map[First, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[First, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[First, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Last, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Last, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Last, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Most, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Most, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Most, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Rest, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Rest, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Rest, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Transpose, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Transpose, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Transpose, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Mean, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Mean, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Mean, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Total, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Total, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Total, DualNumbers`Private`b$, DualNumbers`Private`rest$]], 
+       Map[Flatten, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a$, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b$, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`rest$, 
+          BlankNullSequence[]]] :> DualNumbers`Dual[
+         Map[Flatten, DualNumbers`Private`a$, DualNumbers`Private`rest$], 
+         Map[Flatten, DualNumbers`Private`b$, DualNumbers`Private`rest$]], Map[
          Pattern[DualNumbers`Private`fun$, 
           Blank[]], 
          PatternTest[
@@ -8620,7 +10330,12 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           BlankNullSequence[]]] :> DualNumbers`PackDualArray[
          Map[DualNumbers`Private`fun$, 
           DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr$], 
-          DualNumbers`Private`rest$]], Condition[
+          DualNumbers`Private`rest$]], Map[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       Map[DualNumbers`Private`fun$, DualNumbers`Private`d$], Condition[
          Map[
           Blank[], 
           Blank[DualNumbers`Dual], 
@@ -8636,7 +10351,12 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           BlankNullSequence[]]] :> DualNumbers`PackDualArray[
          MapIndexed[DualNumbers`Private`fun$, 
           DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr$], 
-          DualNumbers`Private`rest$]], Condition[
+          DualNumbers`Private`rest$]], MapIndexed[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       MapIndexed[DualNumbers`Private`fun$, DualNumbers`Private`d$], Condition[
          MapIndexed[
           Blank[], 
           Blank[DualNumbers`Dual], 
@@ -8652,12 +10372,90 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           BlankNullSequence[]]] :> DualNumbers`PackDualArray[
          Apply[DualNumbers`Private`fun$, 
           DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr$], 
-          DualNumbers`Private`rest$]], Condition[
+          DualNumbers`Private`rest$]], Apply[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       Apply[DualNumbers`Private`fun$, DualNumbers`Private`d$], Condition[
          Apply[
           Blank[], 
           Blank[DualNumbers`Dual], 
           BlankNullSequence[]], Message[
            MessageName[DualNumbers`Dual, "arrayOp"], Apply]; False] :> 
+       Undefined, FoldList[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]], 
+         PatternTest[
+          Pattern[DualNumbers`Private`dualArr, 
+           Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+       DualNumbers`PackDualArray[
+         FoldList[DualNumbers`Private`fun, 
+          DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr]]], FoldList[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`val, 
+          Blank[]], 
+         PatternTest[
+          Pattern[DualNumbers`Private`dualArr, 
+           Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+       DualNumbers`PackDualArray[
+         FoldList[DualNumbers`Private`fun, DualNumbers`Private`val, 
+          DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr]]], Fold[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]], 
+         PatternTest[
+          Pattern[DualNumbers`Private`dualArr, 
+           Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+       Fold[DualNumbers`Private`fun, 
+         DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr]], Fold[
+         Pattern[DualNumbers`Private`fun, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`val, 
+          Blank[]], 
+         PatternTest[
+          Pattern[DualNumbers`Private`dualArr, 
+           Blank[DualNumbers`Dual]], DualNumbers`DualArrayQ]] :> 
+       Fold[DualNumbers`Private`fun, DualNumbers`Private`val, 
+         DualNumbers`UnpackDualArray[DualNumbers`Private`dualArr]], Fold[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       Fold[DualNumbers`Private`fun$, DualNumbers`Private`d$], Fold[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`x$, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       Fold[DualNumbers`Private`fun$, DualNumbers`Private`x$, 
+         DualNumbers`Private`d$], Condition[
+         Fold[
+          BlankSequence[], 
+          Blank[DualNumbers`Dual], 
+          BlankNullSequence[]], Message[
+           MessageName[DualNumbers`Dual, "arrayOp"], Fold]; False] :> 
+       Undefined, FoldList[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       FoldList[DualNumbers`Private`fun$, DualNumbers`Private`d$], FoldList[
+         Pattern[DualNumbers`Private`fun$, 
+          Blank[]]][
+         Pattern[DualNumbers`Private`x$, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`d$, 
+          Blank[DualNumbers`Dual]]] :> 
+       FoldList[
+        DualNumbers`Private`fun$, DualNumbers`Private`x$, 
+         DualNumbers`Private`d$], Condition[
+         FoldList[
+          BlankSequence[], 
+          Blank[DualNumbers`Dual], 
+          BlankNullSequence[]], Message[
+           MessageName[DualNumbers`Dual, "arrayOp"], FoldList]; False] :> 
        Undefined, HoldPattern[
          MatrixQ[
           PatternTest[
@@ -8906,7 +10704,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`Dual"], False]]], "Output",
- CellLabel->"Out[71]=",ExpressionUUID->"f9f7213d-dd0e-41ce-b202-0dc10ee92088"],
+ CellLabel->"Out[26]=",ExpressionUUID->"198a7869-624f-41a3-9bda-85f3e2999816"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -9135,7 +10933,6 @@ scalar or array with constant nonstandard part. The default value for \
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
-            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -9368,7 +11165,7 @@ array with constant nonstandard part. The default value for \
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`ToDual"], False]]], "Output",
- CellLabel->"Out[72]=",ExpressionUUID->"326a8fe1-492b-470a-926e-f538aa26cf5b"],
+ CellLabel->"Out[27]=",ExpressionUUID->"26cd5e1d-062e-42fe-89a9-f8c7943c086b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -9397,8 +11194,8 @@ Cell[BoxData[
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"Standard\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
 standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
-(i.e., the first argument).\\nDoes not evaluate for symbolic arguments. \
-Threads over lists.\"\>", "InformationUsageText",
+(i.e., the first argument).\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -9431,9 +11228,8 @@ Threads over lists.\"\>", "InformationUsageText",
                     "]"}], ":=", "DualNumbers`Private`a"}]},
                     {
                     RowBox[{
-                    RowBox[{"Standard", "[", 
-                    RowBox[{"DualNumbers`Private`x_", "?", "NumericQ"}], 
-                    "]"}], ":=", "DualNumbers`Private`x"}]}
+                    RowBox[{"Standard", "[", "DualNumbers`Private`x_", "]"}], 
+                    ":=", "DualNumbers`Private`x"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -9550,8 +11346,8 @@ Threads over lists.\"\>", "InformationUsageText",
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"Standard\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
 standard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
-(i.e., the first argument).\\nDoes not evaluate for symbolic arguments. \
-Threads over lists.\"\>", "InformationUsageText",
+(i.e., the first argument).\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -9617,22 +11413,21 @@ Threads over lists.\"\>", "InformationUsageText",
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"Standard\", \"[\", RowBox[{StyleBox[\"d\", \"TI\"]}], \
 \"]\"}]\) extracts the standard part of a dual number \!\(\*StyleBox[\"d\", \
-\"TI\"]\) (i.e., the first argument).\nDoes not evaluate for symbolic \
-arguments. Threads over lists.", "Documentation" -> None, "OwnValues" -> None,
-     "UpValues" -> None, "DownValues" -> 
+\"TI\"]\) (i.e., the first argument).\nSymbolic quantities are assumed to \
+have zero nonstandard parts. Threads over lists.", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
     Information`InformationValueForm[
      DownValues, DualNumbers`Standard, {DualNumbers`Standard[
          DualNumbers`Dual[
           Pattern[DualNumbers`Private`a, 
            Blank[]], 
           Blank[]]] :> DualNumbers`Private`a, DualNumbers`Standard[
-         PatternTest[
-          Pattern[DualNumbers`Private`x, 
-           Blank[]], NumericQ]] :> DualNumbers`Private`x}], "SubValues" -> 
-    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+         Pattern[DualNumbers`Private`x, 
+          Blank[]]] :> DualNumbers`Private`x}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {Listable}, "FullName" -> 
     "DualNumbers`Standard"], False]]], "Output",
- CellLabel->"Out[73]=",ExpressionUUID->"4ff0af4d-cdfd-4670-9eb6-e66e9cf205ce"],
+ CellLabel->"Out[28]=",ExpressionUUID->"3316ba9a-84b1-4d7a-8509-87611b05718b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -9661,8 +11456,8 @@ Cell[BoxData[
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"NonStandard\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
 nonstandard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
-(i.e., the second argument).\\nDoes not evaluate for symbolic arguments. \
-Threads over lists.\"\>", "InformationUsageText",
+(i.e., the second argument).\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -9695,8 +11490,7 @@ Threads over lists.\"\>", "InformationUsageText",
                     "]"}], ":=", "DualNumbers`Private`b"}]},
                     {
                     RowBox[{
-                    RowBox[{"NonStandard", "[", 
-                    RowBox[{"_", "?", "NumericQ"}], "]"}], ":=", "0"}]}
+                    RowBox[{"NonStandard", "[", "_", "]"}], ":=", "0"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -9813,8 +11607,8 @@ Threads over lists.\"\>", "InformationUsageText",
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"NonStandard\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
 nonstandard part of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \\\"TI\\\"]\\) \
-(i.e., the second argument).\\nDoes not evaluate for symbolic arguments. \
-Threads over lists.\"\>", "InformationUsageText",
+(i.e., the second argument).\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -9880,21 +11674,21 @@ Threads over lists.\"\>", "InformationUsageText",
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"NonStandard\", \"[\", RowBox[{StyleBox[\"d\", \"TI\"]}], \
 \"]\"}]\) extracts the nonstandard part of a dual number \
-\!\(\*StyleBox[\"d\", \"TI\"]\) (i.e., the second argument).\nDoes not \
-evaluate for symbolic arguments. Threads over lists.", "Documentation" -> 
-    None, "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+\!\(\*StyleBox[\"d\", \"TI\"]\) (i.e., the second argument).\nSymbolic \
+quantities are assumed to have zero nonstandard parts. Threads over lists.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
     Information`InformationValueForm[
      DownValues, DualNumbers`NonStandard, {DualNumbers`NonStandard[
          DualNumbers`Dual[
           Blank[], 
           Pattern[DualNumbers`Private`b, 
            Blank[]]]] :> DualNumbers`Private`b, DualNumbers`NonStandard[
-         PatternTest[
-          Blank[], NumericQ]] :> 0}], "SubValues" -> None, "DefaultValues" -> 
-    None, "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+         Blank[]] :> 0}], "SubValues" -> None, "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {Listable}, "FullName" -> "DualNumbers`NonStandard"], 
    False]]], "Output",
- CellLabel->"Out[74]=",ExpressionUUID->"805361dc-a0fd-4f8d-bf4d-d5d4ffde6699"],
+ CellLabel->"Out[29]=",ExpressionUUID->"6e7683a9-1f7c-49b8-b64f-8d9a1c55cf1e"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -10144,7 +11938,7 @@ standard parts.\"\>", "InformationUsageText",
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`StandardAll"], False]]], "Output",
- CellLabel->"Out[75]=",ExpressionUUID->"28b86a7f-57dc-45e7-b603-3341ec4c9c4d"]
+ CellLabel->"Out[30]=",ExpressionUUID->"0eb9eb41-93d8-4a8d-ac39-72f498fcb1c4"]
 }, Open  ]]
 }, Open  ]],
 
@@ -10159,8 +11953,7 @@ Cell[BoxData[{
  RowBox[{"?", "PackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "UnpackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualLinearSolveFunction"}]}], "Input",
- CellLabel->
-  "In[120]:=",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
+ CellLabel->"In[23]:=",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -10352,7 +12145,6 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -10511,8 +12303,7 @@ Dual[\!\(\*StyleBox[\"std\", \"TI\"]\), \!\(\*StyleBox[\"nonstd\", \
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`PackDualArray"], False]]], "Output",
- CellLabel->
-  "Out[120]=",ExpressionUUID->"5ca6520a-64b1-496c-8cb4-7332c73a2209"],
+ CellLabel->"Out[23]=",ExpressionUUID->"f91559fe-32c1-427b-b219-a53f0fbdf8a4"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -10642,6 +12433,7 @@ scalars.\"\>", "InformationUsageText",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -10688,6 +12480,7 @@ scalars.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -10843,8 +12636,7 @@ PackDualArray and creates an array of dual scalars.", "Documentation" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`UnpackDualArray"], False]]], "Output",
- CellLabel->
-  "Out[121]=",ExpressionUUID->"e885b2ff-99fe-4994-a7ed-5baec8c14707"],
+ CellLabel->"Out[24]=",ExpressionUUID->"d130291f-2b2f-474f-8060-74dc79179377"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -10980,7 +12772,6 @@ be applied to Dual arrays.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"DualNumbers`DualLinearSolveFunction\"\
 \>"}
@@ -11188,7 +12979,7 @@ to Dual arrays.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualLinearSolveFunction"], 
    False]]], "Output",
- CellLabel->"Out[122]=",ExpressionUUID->"99a865b0-b6e3-440d-8264-d4888583abf9"]
+ CellLabel->"Out[25]=",ExpressionUUID->"73d9cb36-f0d1-4906-b8a9-5d1f7ae50815"]
 }, Open  ]]
 }, Open  ]],
 
@@ -11206,7 +12997,7 @@ Cell[BoxData[{
  RowBox[{"?", "DualArrayQ"}], "\[IndentingNewLine]", 
  RowBox[{"?", "UnpackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFreeArrayQ"}]}], "Input",
- CellLabel->"In[61]:=",ExpressionUUID->"7b7ceb43-1b98-499d-94b8-8cd08dc5d15a"],
+ CellLabel->"In[17]:=",ExpressionUUID->"7b7ceb43-1b98-499d-94b8-8cd08dc5d15a"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -11460,7 +13251,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
          Blank[]] :> False}], "SubValues" -> None, "DefaultValues" -> None, 
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualQ"], False]]], "Output",
- CellLabel->"Out[61]=",ExpressionUUID->"8ae3971f-24d8-4b5a-92e2-0c5efaeb8ad6"],
+ CellLabel->"Out[17]=",ExpressionUUID->"e128e666-fb2e-457d-89be-2034e81c7afc"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -11702,7 +13493,7 @@ different from Dual.", "Documentation" -> None, "OwnValues" -> None,
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`StandardQ"], 
    False]]], "Output",
- CellLabel->"Out[62]=",ExpressionUUID->"af6b2eca-8a6f-44df-84ff-57a9bcdbfda3"],
+ CellLabel->"Out[18]=",ExpressionUUID->"29a4e6e3-df76-45d0-a7aa-f90fdedf254c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -11803,6 +13594,7 @@ dual array.\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -11956,7 +13748,7 @@ not a dual array.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualScalarQ"], 
    False]]], "Output",
- CellLabel->"Out[63]=",ExpressionUUID->"0b5935ca-b42d-4856-a565-edd5a230af26"],
+ CellLabel->"Out[19]=",ExpressionUUID->"edfa8f9f-ccb6-4756-bf32-ef01e39a8771"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12155,6 +13947,7 @@ dual numbers.\"\>", "InformationUsageText",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -12220,7 +14013,7 @@ packed array of dual numbers.", "Documentation" -> None, "OwnValues" -> None,
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualArrayQ"], 
    False]]], "Output",
- CellLabel->"Out[64]=",ExpressionUUID->"11b2c5e1-6552-4d7a-90d3-5ccae1b74489"],
+ CellLabel->"Out[20]=",ExpressionUUID->"67c2151b-dc35-4392-9669-4f0808d3cb3c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12400,7 +14193,6 @@ scalars.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -12553,7 +14345,7 @@ PackDualArray and creates an array of dual scalars.", "Documentation" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`UnpackDualArray"], False]]], "Output",
- CellLabel->"Out[65]=",ExpressionUUID->"a8c57cc9-cff5-4e52-99d1-20f9bdaf1e26"],
+ CellLabel->"Out[21]=",ExpressionUUID->"c1b32d09-6aa7-4590-ae80-7f7e2aa61962"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12679,12 +14471,12 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -12816,7 +14608,7 @@ array that has no dual numbers at the deepest level.", "Documentation" ->
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualFreeArrayQ"], 
    False]]], "Output",
- CellLabel->"Out[66]=",ExpressionUUID->"b615b539-632c-4d6b-84af-aaaf539d9f0b"]
+ CellLabel->"Out[22]=",ExpressionUUID->"a9e3386e-7f0c-4a67-8e73-ec2bbd505e98"]
 }, Open  ]]
 }, Open  ]],
 
@@ -12830,7 +14622,7 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{"?", "DualApply"}], "\[IndentingNewLine]", 
  RowBox[{"?", "AddDualHandling"}]}], "Input",
- CellLabel->"In[93]:=",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
+ CellLabel->"In[15]:=",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12888,7 +14680,11 @@ Dual[\\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"a\\\", \
 \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"b\\\", \
 \\\"TI\\\"]\\)]].\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is the operator \
-form of DualApply.\"\>", "InformationUsageText",
+form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) will use ToDual[\\!\\(\\*StyleBox[\\\"x\\\", \\\
+\"TI\\\"]\\), 0] to cast standard quantities \\!\\(\\*StyleBox[\\\"x\\\", \
+\\\"TI\\\"]\\) to duals.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -12988,7 +14784,18 @@ form of DualApply.\"\>", "InformationUsageText",
                     "MessageName"], ",", 
                     RowBox[{
                     "Short", "[", "DualNumbers`Private`funAll", "]"}]}], 
-                    "]"}], ";", "False"}], ")"}]}]}], "]"}]}]}], "]"}]}]}
+                    "]"}], ";", "False"}], ")"}]}]}], "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{"DualNumbers`Private`f_", ",", 
+                    RowBox[{"DualNumbers`Private`other", ":", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}]}], "]"}], ":=", 
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{"DualNumbers`Private`f", ",", 
+                    RowBox[{"ToDual", "[", 
+                    RowBox[{"DualNumbers`Private`other", ",", "0"}], "]"}]}], 
+                    "]"}]}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -13151,7 +14958,11 @@ Dual[\\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"a\\\", \
 \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"b\\\", \
 \\\"TI\\\"]\\)]].\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is the operator \
-form of DualApply.\"\>", "InformationUsageText",
+form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) will use ToDual[\\!\\(\\*StyleBox[\\\"x\\\", \\\
+\"TI\\\"]\\), 0] to cast standard quantities \\!\\(\\*StyleBox[\\\"x\\\", \
+\\\"TI\\\"]\\) to duals.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -13239,8 +15050,12 @@ StyleBox[\"b\", \"TI\"]}], \"]\"}]}], \"]\"}]\) returns \
 Dual[\!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"a\", \"TI\"]\)], \
 \!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"b\", \"TI\"]\)]].\n\
 \!\(\*RowBox[{\"DualApply\", \"[\", RowBox[{StyleBox[\"f\", \"TI\"]}], \
-\"]\"}]\) is the operator form of DualApply.", "Documentation" -> None, 
-    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+\"]\"}]\) is the operator form of DualApply.\n\!\(\*RowBox[{\"DualApply\", \
+\"[\", RowBox[{StyleBox[\"f\", \"TI\"], \",\",  StyleBox[\"x\", \"TI\"]}], \
+\"]\"}]\) will use ToDual[\!\(\*StyleBox[\"x\", \"TI\"]\), 0] to cast \
+standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
     Information`InformationValueForm[
      DownValues, DualNumbers`DualApply, {DualNumbers`DualApply[{
           Pattern[DualNumbers`Private`funa, 
@@ -13283,7 +15098,15 @@ Dual[\!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"a\", \"TI\"]\)], \
              Blank[], 
              Blank[]}], False :> (Message[
               MessageName[DualNumbers`DualApply, "resultlength"], 
-              Short[DualNumbers`Private`funAll]]; False)]]]}], "SubValues" -> 
+              Short[DualNumbers`Private`funAll]]; False)]]], 
+       DualNumbers`DualApply[
+         Pattern[DualNumbers`Private`f, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`other, 
+          Except[
+           Blank[DualNumbers`Dual]]]] :> 
+       DualNumbers`DualApply[DualNumbers`Private`f, 
+         DualNumbers`ToDual[DualNumbers`Private`other, 0]]}], "SubValues" -> 
     Information`InformationValueForm[
      SubValues, DualNumbers`DualApply, {DualNumbers`DualApply[
          Pattern[DualNumbers`Private`fun, 
@@ -13295,7 +15118,7 @@ Dual[\!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"a\", \"TI\"]\)], \
     None, "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualApply"], 
    False]]], "Output",
- CellLabel->"Out[93]=",ExpressionUUID->"af0f3dac-84f5-4f59-8cd6-57185b57fcfe"],
+ CellLabel->"Out[15]=",ExpressionUUID->"70698223-e4a0-403e-b69e-1d969e3a5ef9"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -13440,8 +15263,7 @@ RowBox[{StyleBox[SubscriptBox[\\\"n\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
                     RowBox[{"DualNumbers`Private`dualPos", "=", 
                     RowBox[{"Flatten", "[", 
                     RowBox[{"DualNumbers`Private`listPosition", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`args", ",", 
+                    RowBox[{"DualNumbers`Private`args", ",", 
                     "DualNumbers`Private`dualPatt"}], "]"}], "]"}]}], ",", 
                     RowBox[{"DualNumbers`Private`inputs", "=", 
                     RowBox[{
@@ -13748,7 +15570,7 @@ infer derivatives of \!\(\*StyleBox[\"f\", \"TI\"]\) for when \!\(\*StyleBox[\
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`AddDualHandling"], False]]], "Output",
- CellLabel->"Out[94]=",ExpressionUUID->"bef5d2a4-f669-4e3b-a1a6-ebe6896764b7"]
+ CellLabel->"Out[16]=",ExpressionUUID->"5bb6e419-0b44-4bca-982c-e5b74f85125e"]
 }, Open  ]]
 }, Open  ]],
 
@@ -13764,7 +15586,7 @@ Cell[BoxData[{
  RowBox[{"?", "DualExpand"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFactor"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualSimplify"}], "\[IndentingNewLine]"}], "Input",
- CellLabel->"In[85]:=",ExpressionUUID->"7ea40ed3-fe9a-4c7c-8a93-08056a9f06a5"],
+ CellLabel->"In[11]:=",ExpressionUUID->"7ea40ed3-fe9a-4c7c-8a93-08056a9f06a5"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -13977,7 +15799,7 @@ algebraic manipulation.", "Documentation" -> None, "OwnValues" -> None,
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`\[Epsilon]"], False]]], "Output",
- CellLabel->"Out[85]=",ExpressionUUID->"f9388418-373e-49a0-b7fd-eddc4689a032"],
+ CellLabel->"Out[11]=",ExpressionUUID->"6d890d9e-2fd4-4240-a997-6d0bf2284ceb"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -14177,6 +15999,7 @@ Dual[\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\), \
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
@@ -14249,7 +16072,7 @@ Dual[\!\(\*StyleBox[\"a\", \"TI\"]\), \!\(\*StyleBox[\"b\", \"TI\"]\)] with \
     None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualExpand"], False]]], "Output",
- CellLabel->"Out[86]=",ExpressionUUID->"f7fb2240-3cde-462e-96b4-fcd5bb5852c3"],
+ CellLabel->"Out[12]=",ExpressionUUID->"3bcd535d-bc69-4ef9-a178-065bf269bf95"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -14505,7 +16328,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
     None, "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualFactor"], 
    False]]], "Output",
- CellLabel->"Out[87]=",ExpressionUUID->"90b3e915-bff5-483a-bae0-d51fda094512"],
+ CellLabel->"Out[13]=",ExpressionUUID->"8bf6fda6-55b6-4e3d-97ff-8db7fa203e06"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -14760,7 +16583,7 @@ keeping only the 0th and 1st order terms.\"\>", "InformationUsageText",
      "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualSimplify"], False]]], "Output",
- CellLabel->"Out[88]=",ExpressionUUID->"ec8dff3c-254b-40c1-8913-b511680feedd"]
+ CellLabel->"Out[14]=",ExpressionUUID->"3dd4c1c1-fb54-4fb2-84cb-79483810716a"]
 }, Open  ]]
 }, Open  ]],
 
@@ -14776,7 +16599,7 @@ Cell[BoxData[{
  RowBox[{"?", "DualFindMinimum"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFindMaximum"}], "\[IndentingNewLine]", 
  RowBox[{"?", "FindDualSolution"}]}], "Input",
- CellLabel->"In[89]:=",ExpressionUUID->"682653f7-3b28-4eeb-976f-b4dedabf2c59"],
+ CellLabel->"In[7]:=",ExpressionUUID->"682653f7-3b28-4eeb-976f-b4dedabf2c59"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -14901,8 +16724,7 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
                     RowBox[{
                     RowBox[{"DualNumbers`Private`firstSol", "[", 
                     RowBox[{"FindDualSolution", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`equations", ",", 
+                    RowBox[{"DualNumbers`Private`equations", ",", 
                     "DualNumbers`Private`stdSol"}], "]"}], "]"}], ",", 
                     RowBox[{"{", 
                     StyleBox[
@@ -15127,7 +16949,7 @@ equations.", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualFindRoot"], False]]], "Output",
- CellLabel->"Out[89]=",ExpressionUUID->"1f75b8e5-2828-48ba-9e29-637035aad537"],
+ CellLabel->"Out[7]=",ExpressionUUID->"854f0262-56a4-490c-8c32-e697182c462b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -15499,7 +17321,7 @@ independent variables.", "Documentation" -> None, "OwnValues" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualFindMinimum"], False]]], "Output",
- CellLabel->"Out[90]=",ExpressionUUID->"b9ae90e3-9b84-4b44-bf12-abcf2973e7de"],
+ CellLabel->"Out[8]=",ExpressionUUID->"e618d2cd-6c02-426d-9899-81115f53e0c3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -15871,7 +17693,7 @@ independent variables.", "Documentation" -> None, "OwnValues" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualFindMaximum"], False]]], "Output",
- CellLabel->"Out[91]=",ExpressionUUID->"695cfeac-e143-49de-ab6a-1c8888ed4ba2"],
+ CellLabel->"Out[9]=",ExpressionUUID->"08b2530f-1e93-475b-91e4-7c1db5dc2cd8"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -16255,7 +18077,7 @@ solution to \!\(\*StyleBox[\"eqs\", \"TI\"]\) where \!\(\*StyleBox[\"sol\", \
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`FindDualSolution"], False]]], "Output",
- CellLabel->"Out[92]=",ExpressionUUID->"e74cbe75-a347-46e6-9656-3d0467ca6890"]
+ CellLabel->"Out[10]=",ExpressionUUID->"c0390f1b-a3f9-4405-87f5-9a2b5b49fac7"]
 }, Open  ]]
 }, Open  ]]
 }, Closed]]
@@ -16292,7 +18114,7 @@ Cell[BoxData[{
        RowBox[{"#", "[", "\"\<TestResultRules\>\"", "]"}]}], "&"}], ",", 
      "\[IndentingNewLine]", "testReport"}], "\[IndentingNewLine]", "]"}], "//",
     "Dataset"}], "//", "Rasterize"}]}], "Input",
- CellLabel->"In[25]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+ CellLabel->"In[5]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
 Cell[BoxData[
  GraphicsBox[
@@ -16381,7 +18203,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADn9H+f6+AB
   DefaultBaseStyle->"ImageGraphics",
   ImageSizeRaw->{768., 108.},
   PlotRange->{{0, 768.}, {0, 108.}}]], "Output",
- CellLabel->"Out[26]=",ExpressionUUID->"854d0011-2e29-4a05-8adf-a04da7101a15"]
+ CellLabel->"Out[6]=",ExpressionUUID->"4c03ba9d-c044-44f4-9800-a167cfe42c36"]
 }, Open  ]]
 }, Closed]],
 
