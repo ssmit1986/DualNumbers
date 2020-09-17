@@ -4,7 +4,7 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 
 ## Installation instructions
 
-To automatically download and install the currently released paclet, simply run:
+To automatically download and install the currently released version of the paclet, simply run:
 
 ```
 PacletInstall["https://github.com/ssmit1986/DualNumbers/releases/download/1.0/DualNumbers-1.0.paclet"]
