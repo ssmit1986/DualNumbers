@@ -4,10 +4,16 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 
 ## Installation instructions
 
-To install the package, download the paclet file from the [GitHub repository](https://github.com/ssmit1986/DualNumbers) and run:
+To automatically download and install the currently released version of the paclet, simply run:
 
 ```
-PacletInstall["/path/to/DualNumbers-1.0.paclet"]
+PacletInstall["https://github.com/ssmit1986/DualNumbers/releases/download/1.0/DualNumbers-1.0.paclet"]
+```
+
+To install the latest version of the package, download the latest paclet file from the GitHub [paclet archive](https://github.com/ssmit1986/DualNumbers/tree/main/Paclet%20archives) and run:
+
+```
+PacletInstall["/path/to/DualNumbers-x.y.z.paclet"]
 <<DualNumbers`
 ```
 
