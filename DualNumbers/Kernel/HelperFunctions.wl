@@ -78,7 +78,7 @@ DualApply[{funAll_}, Dual[a_, b_]] := With[{
         False :> (Message[DualApply::resultlength, Short[funAll]]; False)
     ]
 ];
-DualApply[f_, other_] := DualApply[f, ToDual[other, 0]];
+DualApply[f_, other : standardPatt] := DualApply[f, ToDual[other, 0]];
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
