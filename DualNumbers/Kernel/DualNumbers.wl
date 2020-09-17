@@ -221,6 +221,28 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
+(* 
+    dualTuples[{Dual[a1, b1], Dual[a2, b2], ..., Dual[an, bn]}] finds all ways to pick one 
+    b from all dual numbers and returns: 
+    {
+        {b1, a2, a3, ..., an},
+        {a1, b2, a3, ..., an},
+        ...,
+        {a1, a2, a3, ..., bn}
+    }
+*)
+dualTuples[dList : {__Dual}] := Map[Extract[dList, #]&, dualTuples[Length[dList]]];
+dualTuples[n_Integer] := With[{
+    perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
+    rng = Range[n]
+},
+    Map[
+        Transpose[{rng, #}]&,
+        perm
+    ]
+];
+
+
 (* Basic properties of dual numbers *)
 Dual[Dual[a1_, b1_], Dual[a2_, _]] := Dual[a1, a2 + b1];
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
