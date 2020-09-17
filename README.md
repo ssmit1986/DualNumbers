@@ -322,3 +322,5 @@ Use `UnpackDualArray` if you want to use `Pick` at level 2 or deeper.
 
 * 2020-09-14
     * Release of V1.0 . This release is still subject to change because no stable version has been reached yet.
+* 2020-09-17
+    * Beta release of V1.0.
