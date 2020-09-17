@@ -74,6 +74,16 @@ DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][
 DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
 DualApply[f$] is the operator form of DualApply."
 ];
+GeneralUtilities`SetUsage[DualTuples,
+    "DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
+from the list of dual numbers and returns the length-n$ list: 
+{
+    {b$1, a$2, a$3, $$, a$n},
+    {a$1, b$2, a$3, $$, a$n},
+    $$,
+    {a$1, a$2, a$3, $$, b$n}
+}"
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -221,6 +231,21 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
+DualTuples[dList : {__Dual}] := Map[
+    Extract[dList, #]&,
+    DualTuples[Length[dList]]
+];
+DualTuples[n_Integer] := With[{
+    perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
+    range = Range[n]
+},
+    Map[
+        Transpose[{range, #}]&,
+        perm
+    ]
+];
+
+
 (* Basic properties of dual numbers *)
 Dual[Dual[a1_, b1_], Dual[a2_, _]] := Dual[a1, a2 + b1];
 Dual[Dual[a_, b_], c_] := Dual[a, b + c];
@@ -229,7 +254,7 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 (* I found that making Dual randomly disappear is more trouble than it's worth. Enable this at your own peril. *)
 (* Dual[a_, 0] := a; *)
 
-(* Plus UpValue for long sums. The /; True condition makes sure this one gets priority when possible *)
+(* Plus UpValue for long sums. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Plus[
     d1_Dual,
     d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
@@ -242,6 +267,19 @@ Dual /: Plus[
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 
+(* Times UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
+Dual /: Times[
+    d1_Dual,
+    d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
+    rest___
+] /; True := Dual[
+    Times[Times @@ {d1, d2}[[All, 1]], rest],
+    Times[
+        Total[Times @@@ DualTuples[{d1, d2}]],
+        rest
+    ]
+];
+(* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
 
@@ -404,13 +442,27 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
-Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
-Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
-
+(* Dot UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
+Dual /: Dot[
+    d1_Dual?DualArrayQ,
+    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}]
+] /; True := Dual[
+    Dot @@ {d1, d2}[[All, 1]],
+    Total[
+        Dot @@@ Map[
+            Developer`ToPackedArray,
+            DualTuples[{d1, d2}],
+            {2}
+        ]
+    ]
+];
+(* UpValues for shorter arguments *)
 Dual /: Dot[
     Dual[a1_, b1_]?DualArrayQ,
     Dual[a2_, b2_]?DualArrayQ
 ] := Dual[a1.a2, a1.b2 + b1.a2];
+Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
+Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
 
 Dual /: MatrixPower[
     d_Dual?SquareMatrixQ,
@@ -499,7 +551,7 @@ Scan[
 ];
 
 Dual::join = "Warning: Join attempted, but it did not produce a valid DualArray.";
-Dual /: Join[arrays__Dual?DualArrayQ, n_Integer] := With[{
+Dual /: Join[arrays : Longest[__Dual?DualArrayQ], n_Integer] := With[{
     a = Standard[{arrays}],
     b = NonStandard[{arrays}]
 },
@@ -515,7 +567,7 @@ Dual /: Join[arrays__Dual?DualArrayQ, n_Integer] := With[{
         ]
     ]
 ];
-Dual /: Join[arrays__Dual?DualArrayQ] := With[{
+Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
     a = Standard[{arrays}],
     b = NonStandard[{arrays}]
 },
