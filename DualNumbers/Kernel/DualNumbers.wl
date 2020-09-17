@@ -74,6 +74,16 @@ DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][
 DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
 DualApply[f$] is the operator form of DualApply."
 ];
+GeneralUtilities`SetUsage[DualTuples,
+    "DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
+from the list of dual numbers and returns the length-n$ list: 
+{
+    {b$1, a$2, a$3, $$, a$n},
+    {a$1, b$2, a$3, $$, a$n},
+    $$,
+    {a$1, a$2, a$3, $$, b$n}
+}"
+];
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -221,21 +231,11 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
-(* 
-    dualTuples[{Dual[a1, b1], Dual[a2, b2], ..., Dual[an, bn]}] finds all ways to pick one 
-    b from all dual numbers and returns: 
-    {
-        {b1, a2, a3, ..., an},
-        {a1, b2, a3, ..., an},
-        ...,
-        {a1, a2, a3, ..., bn}
-    }
-*)
-dualTuples[dList : {__Dual}] := Map[
+DualTuples[dList : {__Dual}] := Map[
     Extract[dList, #]&,
-    dualTuples[Length[dList]]
+    DualTuples[Length[dList]]
 ];
-dualTuples[n_Integer] := With[{
+DualTuples[n_Integer] := With[{
     perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
     range = Range[n]
 },
@@ -275,7 +275,7 @@ Dual /: Times[
 ] /; True := Dual[
     Times[Times @@ {d1, d2}[[All, 1]], rest],
     Times[
-        Total[Times @@@ dualTuples[{d1, d2}]],
+        Total[Times @@@ DualTuples[{d1, d2}]],
         rest
     ]
 ];
@@ -451,7 +451,7 @@ Dual /: Dot[
     Total[
         Dot @@@ Map[
             Developer`ToPackedArray,
-            dualTuples[{d1, d2}],
+            DualTuples[{d1, d2}],
             {2}
         ]
     ]
