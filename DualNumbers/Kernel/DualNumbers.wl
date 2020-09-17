@@ -72,7 +72,9 @@ GeneralUtilities`SetUsage[DualApply,
     "DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
 DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][[2]]]. f$All should return a List of length 2.
 DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
-DualApply[f$] is the operator form of DualApply."
+DualApply[f$] is the operator form of DualApply.
+DualApply[f$, x$] will use ToDual[x$, 0] to cast standard quantities x$ to duals. 
+"
 ];
 GeneralUtilities`SetUsage[DualTuples,
     "DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
@@ -411,7 +413,7 @@ With[{
 (* Array operations *)
 
 (* This comes up frequently enough to warrant a dedicated function *)
-listPosition[list_, patt_, lvl : _ : {1}] := Position[list, patt, lvl, Heads -> False];
+listPosition[list_, patt_, lvl : _ : {1}, n : _ : DirectedInfinity[1]] := Position[list, patt, lvl, n, Heads -> False];
 
 Dual::norm = "Encountered array of depth `1`. Cannot compute norms of dual arrays of depth > 1.";
 Dual::infnorm = "Infinite norms can only be computed for numeric dual vectors.";
@@ -586,10 +588,11 @@ Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
 Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
-    pos = listPosition[a, _?selFun]
+    pos = listPosition[a, _?selFun, {1}, n]
 },
     Dual[Extract[a, pos], Extract[b, pos]]
 ];
+Dual /: Select[fun_][d_Dual] := Select[d, fun];
 Dual /: Select[_Dual, ___] /; (Message[Dual::arrayOp, Select]; False) := Undefined;
 
 Dual /: Position[Dual[a_, _]?DualArrayQ, rest___] := Position[a, rest];
@@ -605,14 +608,53 @@ Dual /: Pick[list_, sel_Dual?DualArrayQ, patt : _ : True] /; Length[list] === Le
 },
     Extract[list, pos]
 ];
-Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
-Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Dual]; False) := Undefined;
+Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
+Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
 
+Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
+Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := With[{
+    vals = fun1 /@ a
+},
+    With[{
+        uniqueVals = DeleteDuplicates[vals]
+    },
+        AssociationMap[
+            red @ Map[fun2,
+                Dual[
+                    Developer`ToPackedArray @ Pick[a, vals, #],
+                    Developer`ToPackedArray @ Pick[b, vals, #]
+                ]
+            ]&,
+            uniqueVals
+        ]
+    ]
+];
+Dual /: GroupBy[d_Dual, fun : Except[_List], rest___] := GroupBy[d, fun -> Identity, rest];
+Dual /: GroupBy[fun_][d_Dual] := GroupBy[d, fun];
+Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun_, ___] /; (Message[Dual::groupbyfun, Short[fun]]; False) := Undefined;
+Dual /: GroupBy[_Dual, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
+
+(* Short-circuit definitions for Map to prevent uncessary unpacking *)
+Dual /: Map[Identity, d_Dual?DualArrayQ] := d;
+Scan[
+    Function[specialCase,
+        Dual /: Map[specialCase, Dual[a_, b_]?DualArrayQ, rest___] := Dual[
+            Map[specialCase, a, rest],
+            Map[specialCase, b, rest]
+        ];
+    ],
+    {
+        First, Last, Most, Rest, Transpose, Mean, Total,
+        Flatten
+    }
+];
+(* General definitions for mapping functions *)
 Scan[
     Function[mapper,
         Dual /: mapper[fun_, dualArr_Dual?DualArrayQ, rest___] := PackDualArray[
             mapper[fun, UnpackDualArray[dualArr], rest]
         ];
+        Dual /: mapper[fun_][d_Dual] := mapper[fun, d];
         Dual /: mapper[_, _Dual, ___] /; (Message[Dual::arrayOp, mapper]; False) := Undefined;
     ],
     {Map, MapIndexed, Apply}
@@ -683,6 +725,7 @@ DualApply[{funAll_}, Dual[a_, b_]] := With[{
         False :> (Message[DualApply::resultlength, Short[funAll]]; False)
     ]
 ];
+DualApply[f_, other_] := DualApply[f, ToDual[other, 0]];
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)

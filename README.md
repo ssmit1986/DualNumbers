@@ -271,7 +271,7 @@ Out[]= True
     * Boolean functions: `Equal`, `Unequal`, `Greater`, `Less`, `NumericQ`, `Positive`, etc.
     * Mathematical array operations: `Dot`, `Transpose`, `MatrixPower`, `Norm`, `Inverse`, `LinearSolve`, `Total`, `Mean`.
     * Accessing arrays: `Part`, `Take`, `Drop`, `Extract`, `First`, `Most`, `Last`, `Rest`.
-    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Join`, `Select`, `Pick`, `Position`.
+    * Structural array manipulation: `Flatten`, `Map`, `Apply`, `MapIndexed`, `Join`, `Select`, `GroupBy`, `Pick` (level 1 only), `Position`.
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
 
 
@@ -302,6 +302,9 @@ The best way around this, is to cast the normal array to a dual array:
 In[]:= Dual[{1, 2}, {3, 4}] + Dual @ {5, 6}
 Out[]= Dual[{6, 8}, {3, 4}]
 ```
+
+* `Pick` only works on level 1 with packed dual arrays because it can return ragged arrays if used at deeper levels. 
+Use `UnpackDualArray` if you want to use `Pick` at level 2 or deeper.
 
 ## Sources:
 * [StackExchange post](https://mathematica.stackexchange.com/a/13926/43522) that provided inspiration
