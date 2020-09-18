@@ -14,11 +14,14 @@ To install the latest version of the package, download the latest paclet file fr
 
 ```
 PacletInstall["/path/to/DualNumbers-x.y.z.paclet"]
-<<DualNumbers`
 ```
 
 The easiest way to get the full path to the file is with the `Insert > File Path...` option from 
-the menu bar.
+the menu bar. After installation, you can load the package with:
+
+```
+<<DualNumbers`
+```
 
 Alternatively, if you want to edit the code for your own purposes, you can also load the package 
 from the source code by cloning the GitHub repository and then using:
@@ -259,6 +262,17 @@ In[]:= DualArrayQ[dvecPacked]
 UnpackedDualArrayQ[dvec]
 
 Out[]= True
+
+Out[]= True
+```
+
+You can define packed dual arrays directly without `PackDualArray`. Any dual with two arrays (satisfying [ArrayQ](https://reference.wolfram.com/language/ref/ArrayQ.html)) of the same dimensions is a valid dual array:
+
+```
+In[]:= myArray = Dual[Range[10], ConstantArray[1, 10]]
+DualArrayQ[myArray]
+
+Out[]= Dual[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}]
 
 Out[]= True
 ```
