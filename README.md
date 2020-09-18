@@ -53,8 +53,7 @@ d == a + b ϵ
 ```
 
 where `ϵ`, (like the imaginary unit `i`) is a new number not found on the real line. It is defined by the property that `ϵ^2 == 0`, but `ϵ != 0`.
-You can think of `ϵ` as the algebraic version of an infinitesimal. So a dual number can be considered to be a tuple of 2 numbers (`a` and `b`) that
-in this package will be represented as: 
+You can think of `ϵ` as the algebraic version of an infinitesimal. So a dual number can be considered to be a tuple of 2 real numbers (`a` and `b`) that in this package will be represented as: 
 
 ```
 Dual[a, b]
