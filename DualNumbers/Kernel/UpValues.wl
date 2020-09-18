@@ -455,7 +455,7 @@ Scan[
     Function[folder,
         Dual /: folder[fun_][d_Dual] := folder[fun, d];
         Dual /: folder[fun_][x_, d_Dual] := folder[fun, x, d];
-        Dual /: folder[__, _Dual, ___] /; (Message[Dual::arrayOp, folder]; False) := Undefined;
+        Dual /: folder[__, _Dual] /; (Message[Dual::arrayOp, folder]; False) := Undefined;
     ],
     {Fold, FoldList}
 ];
