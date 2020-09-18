@@ -61,7 +61,8 @@ GeneralUtilities`SetUsage[PackDualArray,
     "PackDualArray[array$] converts an array of numbers (possibly duals) to the form Dual[std$, nonstd$]."
 ];
 GeneralUtilities`SetUsage[UnpackDualArray,
-    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
+    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars.
+Produces a message if packing messages have been turned on with On[\"Packing\"]."
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
     "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
@@ -168,6 +169,11 @@ Dual[a : Except[arrayPattern], b : arrayPattern] /; (
     Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
     False
 ) := Undefined;
+Dual[a_, b_, c__] /; (
+    Message[Dual::argt, Dual, Length[{a, b, c}], 1, 2];
+    False
+) := Undefined;
+
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
