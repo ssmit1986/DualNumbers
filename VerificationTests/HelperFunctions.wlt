@@ -15,7 +15,7 @@ EndTestSection[]
 BeginTestSection["DualTuples"]
 
 VerificationTest[(* 2 *)
-	Map[DualTuples, Range[0, 4]]
+	Map[DualNumbers`Private`dualTuplesPositions, Range[0, 4]]
 	,
 	List[List[], List[List[List[1, 2]]], List[List[List[1, 2], List[2, 1]], List[List[1, 1], List[2, 2]]], List[List[List[1, 2], List[2, 1], List[3, 1]], List[List[1, 1], List[2, 2], List[3, 1]], List[List[1, 1], List[2, 1], List[3, 2]]], List[List[List[1, 2], List[2, 1], List[3, 1], List[4, 1]], List[List[1, 1], List[2, 2], List[3, 1], List[4, 1]], List[List[1, 1], List[2, 1], List[3, 2], List[4, 1]], List[List[1, 1], List[2, 1], List[3, 1], List[4, 2]]]]	
 	,
