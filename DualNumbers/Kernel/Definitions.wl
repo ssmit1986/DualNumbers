@@ -240,6 +240,35 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 Derivative[1, 0][Dual] = 1&;
 Derivative[0, 1][Dual] = Dual[0, 1]&;
 
+(* SyntaxInformation *)
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {_}}
+    ],
+    {
+        Standard, NonStandard, StandardAll, DualSimplify, DualQ, DualScalarQ,
+        DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ, StandardQ,
+        PackDualArray, UnpackDualArray, DualTuples
+    }
+];
+
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {__}}
+    ],
+    {
+       ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
+       DualFindMaximum, DualApply
+    }
+];
+
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {_, _}}
+    ],
+    {DualLinearSolveFunction, AddDualHandling}
+];
+
 End[] (* End Private Context *)
 
 EndPackage[]
