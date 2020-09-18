@@ -337,6 +337,35 @@ Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
 ];
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
+(* Sort and Ordering functions *)
+MapThread[
+    Function[{orderer, sorter, insertPt},
+        Dual /: orderer[Dual[a_, b_]?DualArrayQ, rest___] := orderer[a, rest];
+        Dual /: sorter[Dual[a_, b_]?DualArrayQ, rest___] := With[{
+            perm = orderer @@ Insert[{a, rest}, All, insertPt]
+        },
+            Dual[a[[perm]], b[[perm]]]
+        ];
+        Dual /: orderer[_Dual, ___] /; (Message[Dual::arrayOp, orderer]; False) := Undefined;
+        Dual /: sorter[_Dual, ___] /; (Message[Dual::arrayOp, sorter]; False) := Undefined;
+    ],
+    {
+        {Ordering,  OrderingBy},
+        {Sort,      SortBy},
+        {2,         3}
+    }
+];
+
+(* Append and Prepend *)
+Scan[
+    Function[{pender},
+        Dual /: pender[Dual[a1_, b1_]?DualArrayQ, Dual[a2_, b2_]] := Dual[pender[a1, a2], pender[b1, b2]];
+        Dual /: pender[d_Dual, a2 : standardPatt] := pender[d, ToDual[a2, 0]];
+        Dual /: pender[_Dual, ___] /; (Message[Dual::arrayOp, pender]; False) := Undefined;
+    ],
+    {Append, Prepend}
+];
+
 Dual /: Select[Dual[a_, b_]?DualArrayQ, selFun_, n : _ : DirectedInfinity[1]] := With[{
     pos = listPosition[a, _?selFun, {1}, n]
 },

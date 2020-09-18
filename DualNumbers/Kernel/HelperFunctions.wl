@@ -28,18 +28,25 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
+DualTuples[{}] := {};
+DualTuples[{Dual[a_, b_]}] := {{b}};
+DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
 DualTuples[dList : {__Dual}] := Map[
     Extract[dList, #]&,
-    DualTuples[Length[dList]]
+    dualTuplesPositions[Length[dList]]
 ];
-DualTuples[n_Integer] := With[{
-    perm = Permutations[Join[{2}, ConstantArray[1, Subtract[n, 1]]]],
-    range = Range[n]
-},
-    Map[
-        Transpose[{range, #}]&,
-        perm
+With[{
+    cf = Compile[{
+        {n, _Integer}
+    },
+        Table[
+            If[ k == 1, j, If[i == j, 2, 1]],
+            {i, n}, {j, n}, {k, 2}
+        ]
     ]
+},
+    dualTuplesPositions[0] := {};
+    dualTuplesPositions[n_Integer] := cf[n]
 ];
 
 (* Set UpValues for custom functions to be used with Dual *)

@@ -11,7 +11,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "DualNumbers`"}]}], "Input",
  InitializationCell->True,
- CellLabel->"In[1]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"]
+ CellLabel->"In[14]:=",ExpressionUUID->"db0bf3fb-3968-4b36-8211-5cb1fa482ae8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7739,12 +7739,12 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Blank[DualNumbers`Dual]]] :> 
        DualNumbers`Dual[
         DualNumbers`Private`c + DualNumbers`Private`a, DualNumbers`Private`b],
-        Condition[Pattern[DualNumbers`Private`d1, 
-           Blank[DualNumbers`Dual]] Pattern[DualNumbers`Private`d2, 
-           Longest[
-            Repeated[
-             Blank[DualNumbers`Dual], {20, 
-              DirectedInfinity[1]}]]] Pattern[DualNumbers`Private`rest, 
+        Condition[(Pattern[DualNumbers`Private`d1, 
+            Blank[DualNumbers`Dual]] Pattern[DualNumbers`Private`d2, 
+            Longest[
+             Repeated[
+              Blank[DualNumbers`Dual], {20, 
+               DirectedInfinity[1]}]]]) Pattern[DualNumbers`Private`rest, 
            BlankNullSequence[]], True] :> DualNumbers`Dual[Apply[Times, 
            Part[{DualNumbers`Private`d1, DualNumbers`Private`d2}, All, 1]] 
          DualNumbers`Private`rest, Total[
@@ -7900,7 +7900,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcCsc[
-         DualNumbers`Private`a$], (-(1 - #^(-2))^Rational[-1, 2] #^(-2)& )[
+         DualNumbers`Private`a$], ((-(1 - #^(-2))^Rational[-1, 2]) #^(-2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ArcCsch[
           DualNumbers`Dual[
@@ -7909,7 +7909,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcCsch[
-         DualNumbers`Private`a$], (-(1 + #^(-2))^Rational[-1, 2] #^(-2)& )[
+         DualNumbers`Private`a$], ((-(1 + #^(-2))^Rational[-1, 2]) #^(-2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ArcSec[
           DualNumbers`Dual[
@@ -7927,9 +7927,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          ArcSech[
-         DualNumbers`Private`a$], (-#^(-1) ((1 - #)/(1 + #))^Rational[-1, 2]/(
-          1 + #)& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
-       HoldPattern[
+         DualNumbers`Private`a$], (((-1)/#) (((1 - #)/(1 + #))^
+            Rational[-1, 2]/(1 + #))& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          ArcSin[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -7985,10 +7985,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BartlettHannWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 50] (24 - 38 Pi Sin[2 Pi #]), 
+            Rational[1, 50] (24 - (38 Pi) Sin[(2 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 0]}, {
-            Rational[1, 50] (-24 - 38 Pi Sin[2 Pi #]), 
+            Rational[1, 50] (-24 - (38 Pi) Sin[(2 Pi) #]), 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
@@ -8014,8 +8014,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanHarrisWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 100000] ((-97658) Pi Sin[2 Pi #] - 56512 Pi 
-              Sin[4 Pi #] - 7008 Pi Sin[6 Pi #]), 
+            Rational[1, 100000] (((-97658) Pi) Sin[(2 Pi) #] - (56512 Pi) 
+              Sin[(4 Pi) #] - (7008 Pi) Sin[(6 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8029,8 +8029,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanNuttallWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 10000000] ((-9783550) Pi Sin[2 Pi #] - 5463980 Pi 
-              Sin[4 Pi #] - 638466 Pi Sin[6 Pi #]), 
+            Rational[
+              1, 10000000] (((-9783550) Pi) Sin[(2 Pi) #] - (5463980 Pi) 
+              Sin[(4 Pi) #] - (638466 Pi) Sin[(6 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8044,7 +8045,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BlackmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Rational[1, 50] ((-50) Pi Sin[2 Pi #] - 16 Pi Sin[4 Pi #]), 
+            Rational[1, 50] (((-50) Pi) Sin[(2 Pi) #] - (16 Pi) 
+              Sin[(4 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -8058,10 +8060,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          BohmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Pi^(-1) ((-2) Pi^2 Sin[2 Pi #] - 4 Pi^2 Sin[2 Pi #] #), 
+            Pi^(-1) (((-2) Pi^2) Sin[(2 Pi) #] - ((4 Pi^2) Sin[(2 Pi) #]) #), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 0]}, {
-            Pi^(-1) ((-2) Pi^2 Sin[2 Pi #] + 4 Pi^2 Sin[2 Pi #] #), 
+            Pi^(-1) (((-2) Pi^2) Sin[(2 Pi) #] + ((4 Pi^2) Sin[(2 Pi) #]) #), 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
@@ -8084,7 +8086,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          CauchyWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {(-72) # (1 + 36 #^2)^(-2), 
+          Piecewise[{{0, # < Rational[-1, 2]}, {((-72) #) (1 + 36 #^2)^(-2), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8126,7 +8128,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          ConnesWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # <= Rational[-1, 2]}, {(-16) # (1 - 4 #^2), 
+          Piecewise[{{0, # <= Rational[-1, 2]}, {((-16) #) (1 - 4 #^2), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8164,7 +8166,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          CosineWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {-Pi Sin[Pi #], 
+          Piecewise[{{0, # < Rational[-1, 2]}, {(-Pi) Sin[Pi #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8201,8 +8203,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Csc[
-         DualNumbers`Private`a$], (-Cot[#] Csc[#]& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((-Cot[#]) Csc[#]& )[DualNumbers`Private`a$]
+           DualNumbers`Private`b$], HoldPattern[
          Csch[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8210,8 +8212,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Csch[
-         DualNumbers`Private`a$], (-Coth[#] Csch[#]& )[DualNumbers`Private`a$]
-           DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((-Coth[#]) Csch[#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          CubeRoot[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8228,7 +8230,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          DawsonF[
-         DualNumbers`Private`a$], (1 - 2 # DawsonF[#]& )[
+         DualNumbers`Private`a$], (1 - (2 #) DawsonF[#]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          DirichletBeta[
           DualNumbers`Dual[
@@ -8237,10 +8239,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          DirichletBeta[
-         DualNumbers`Private`a$], (-2^(-#) Log[2] (2^(-#) Zeta[#, 
+         DualNumbers`Private`a$], (((-2^(-#)) Log[2]) (2^(-#) Zeta[#, 
                Rational[1, 4]] - 2^(-#) Zeta[#, 
-              Rational[3, 4]]) + 2^(-#) (-2^(-#) Log[2] Zeta[#, 
-               Rational[1, 4]] + 2^(-#) Log[2] Zeta[#, 
+              Rational[3, 4]]) + 2^(-#) (((-2^(-#)) Log[2]) Zeta[#, 
+               Rational[1, 4]] + (2^(-#) Log[2]) Zeta[#, 
                Rational[3, 4]] + 2^(-#) Derivative[1, 0][Zeta][#, 
                Rational[1, 4]] - 2^(-#) Derivative[1, 0][Zeta][#, 
               Rational[3, 4]])& )[DualNumbers`Private`a$] 
@@ -8252,10 +8254,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          DirichletEta[
-         DualNumbers`Private`a$], (
-          2^(1 - #) Log[2] Zeta[#] + (1 - 2^(1 - #)) 
-           Derivative[1][Zeta][#]& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((2^(1 - #) Log[2]) 
+           Zeta[#] + (1 - 2^(1 - #)) Derivative[1][Zeta][#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          DirichletLambda[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8263,8 +8264,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          DirichletLambda[
-         DualNumbers`Private`a$], (Log[2] Zeta[#] - 2^(-#) (-1 + 2^#) Log[2] 
-          Zeta[#] + 2^(-#) (-1 + 2^#) Derivative[1][Zeta][#]& )[
+         DualNumbers`Private`a$], (
+          Log[2] Zeta[#] - ((2^(-#) (-1 + 2^#)) Log[2]) 
+          Zeta[#] + (2^(-#) (-1 + 2^#)) Derivative[1][Zeta][#]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          DirichletWindow[
           DualNumbers`Dual[
@@ -8291,7 +8293,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          EllipticE[
          DualNumbers`Private`a$], (
-          Rational[1, 2] (EllipticE[#] - EllipticK[#])/#& )[
+          Rational[1, 2] ((EllipticE[#] - EllipticK[#])/#)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          EllipticK[
           DualNumbers`Dual[
@@ -8300,10 +8302,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          EllipticK[
-         DualNumbers`Private`a$], (
-          Rational[1, 2] (EllipticE[#] - 
-           EllipticK[#] (1 - #)) (1 - #)^(-1)/#& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((
+           Rational[1, 2] (EllipticE[#] - 
+            EllipticK[#] (1 - #))) ((1 - #)^(-1)/#)& )[DualNumbers`Private`a$]
+           DualNumbers`Private`b$], HoldPattern[
          EllipticNomeQ[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8311,8 +8313,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          EllipticNomeQ[
-         DualNumbers`Private`a$], (-((Pi^2 EllipticNomeQ[#])/(4 (-1 + #) # 
-           EllipticK[#]^2))& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`a$], (-((Pi^2 EllipticNomeQ[#])/(((4 (-1 + #)) #)
+             EllipticK[#]^2))& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          Erf[
           DualNumbers`Dual[
@@ -8321,7 +8323,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erf[
-         DualNumbers`Private`a$], (2 E^(-#^2) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], ((2 E^(-#^2)) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Erfc[
           DualNumbers`Dual[
@@ -8330,7 +8332,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erfc[
-         DualNumbers`Private`a$], ((-2) E^(-#^2) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], (((-2) E^(-#^2)) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Erfi[
           DualNumbers`Dual[
@@ -8339,7 +8341,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Erfi[
-         DualNumbers`Private`a$], (2 E^(#^2) Pi^Rational[-1, 2]& )[
+         DualNumbers`Private`a$], ((2 E^(#^2)) Pi^Rational[-1, 2]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          ExactBlackmanWindow[
           DualNumbers`Dual[
@@ -8350,7 +8352,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          ExactBlackmanWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 9304] ((-9240) Pi Sin[2 Pi #] - 2860 Pi Sin[4 Pi #]), 
+            Rational[1, 9304] (((-9240) Pi) Sin[(2 Pi) #] - (2860 Pi) 
+              Sin[(4 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8388,10 +8391,11 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Factorial2[
-         DualNumbers`Private`a$], (Rational[1, 2] 
-          Factorial2[#] (Log[2] + PolyGamma[0, 1 + Rational[1, 2] #] + 
-           Rational[1, 2] Pi Log[2/Pi] Sin[Pi #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Rational[1, 2] Factorial2[#]) (Log[2] + 
+           PolyGamma[
+            0, 1 + Rational[1, 2] #] + ((Rational[1, 2] Pi) Log[2/Pi]) 
+            Sin[Pi #])& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
+       HoldPattern[
          Fibonacci[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8399,10 +8403,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Fibonacci[
-         DualNumbers`Private`a$], (5^Rational[-1, 2] 
-          GoldenRatio^(-#) (GoldenRatio^(2 #) Log[GoldenRatio] + 
-           Cos[Pi #] Log[GoldenRatio] + Pi Sin[Pi #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((5^Rational[-1, 2] GoldenRatio^(-#)) (
+           GoldenRatio^(2 #) Log[GoldenRatio] + Cos[Pi #] Log[GoldenRatio] + 
+           Pi Sin[Pi #])& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
+       HoldPattern[
          FlatTopWindow[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8412,9 +8416,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          FlatTopWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 1000000000] ((-833263160) Pi Sin[2 Pi #] - 1109052632 
-              Pi Sin[4 Pi #] - 501473682 Pi Sin[6 Pi #] - 55578944 Pi 
-              Sin[8 Pi #]), 
+            Rational[
+              1, 1000000000] (((-833263160) Pi) Sin[(2 Pi) #] - (1109052632 
+               Pi) Sin[(4 Pi) #] - (501473682 Pi) 
+              Sin[(6 Pi) #] - (55578944 Pi) Sin[(8 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8451,8 +8456,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          FresnelC[
-         DualNumbers`Private`a$], (Cos[Pi 2^(-1) #^2]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Cos[(Pi/2) #^2]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          FresnelF[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8460,7 +8465,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          FresnelF[
-         DualNumbers`Private`a$], (-Pi # FresnelG[#]& )[
+         DualNumbers`Private`a$], (((-Pi) #) FresnelG[#]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          FresnelG[
           DualNumbers`Dual[
@@ -8469,7 +8474,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          FresnelG[
-         DualNumbers`Private`a$], (Pi # FresnelF[#] - 1& )[
+         DualNumbers`Private`a$], ((Pi #) FresnelF[#] - 1& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          FresnelS[
           DualNumbers`Dual[
@@ -8478,8 +8483,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          FresnelS[
-         DualNumbers`Private`a$], (Sin[Pi 2^(-1) #^2]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], (Sin[(Pi/2) #^2]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          Gamma[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8497,8 +8502,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          GaussianWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[-100, 9] E^(Rational[-50, 9] #^2) #, 
+          Piecewise[{{
+            0, # < Rational[-1, 2]}, {(Rational[-100, 9] 
+              E^(Rational[-50, 9] #^2)) #, 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8520,8 +8526,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          HammingWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[-21, 23] Pi Sin[2 Pi #], 
+          Piecewise[{{
+            0, # < Rational[-1, 2]}, {(Rational[-21, 23] Pi) Sin[(2 Pi) #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8535,10 +8541,11 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          HannPoissonWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            E^(2 #) (1 + Cos[2 Pi #]) - E^(2 #) Pi Sin[2 Pi #], 
+            E^(2 #) (1 + Cos[(2 Pi) #]) - (E^(2 #) Pi) Sin[(2 Pi) #], 
              Inequality[
-              Rational[-1, 2], Less, #, Less, 0]}, {-
-              E^((-2) #) (1 + Cos[2 Pi #]) - E^((-2) #) Pi Sin[2 Pi #], 
+              Rational[-1, 2], Less, #, Less, 
+              0]}, {(-E^((-2) #)) (1 + Cos[(2 Pi) #]) - (E^((-2) #) Pi) 
+             Sin[(2 Pi) #], 
              Inequality[0, Less, #, Less, 
               Rational[1, 2]]}, {0, # >= Rational[1, 2]}}, Indeterminate]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
@@ -8550,7 +8557,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          HannWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # <= Rational[-1, 2]}, {-Pi Sin[2 Pi #], 
+          Piecewise[{{0, # <= Rational[-1, 2]}, {(-Pi) Sin[(2 Pi) #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -8626,9 +8633,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          InverseEllipticNomeQ[
          DualNumbers`Private`a$], (
-          With[{System`EllipticDump`t = InverseEllipticNomeQ[#]}, (4 
-            EllipticK[System`EllipticDump`t]^2 (1 - System`EllipticDump`t) 
-            System`EllipticDump`t)/(# Pi^2)]& )[DualNumbers`Private`a$] 
+          With[{System`EllipticDump`t = 
+            InverseEllipticNomeQ[#]}, (((4 
+              EllipticK[System`EllipticDump`t]^2) (1 - System`EllipticDump`t))
+              System`EllipticDump`t)/(# Pi^2)]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          InverseErf[
           DualNumbers`Dual[
@@ -8637,7 +8645,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          InverseErf[
-         DualNumbers`Private`a$], (E^(InverseErf[0, #]^2) Sqrt[Pi]/2& )[
+         DualNumbers`Private`a$], (E^(InverseErf[0, #]^2) (Sqrt[Pi]/2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          InverseErfc[
           DualNumbers`Dual[
@@ -8646,7 +8654,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          InverseErfc[
-         DualNumbers`Private`a$], (-E^(InverseErfc[#]^2) Sqrt[Pi]/2& )[
+         DualNumbers`Private`a$], ((-E^(InverseErfc[#]^2)) (Sqrt[Pi]/2)& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          InverseGudermannian[
           DualNumbers`Dual[
@@ -8675,8 +8683,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          KaiserBesselWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # < Rational[-1, 2]}, {
-            Rational[1, 1000] ((-996) Pi Sin[2 Pi #] - 396 Pi Sin[4 Pi #] - 6 
-              Pi Sin[6 Pi #]), 
+            Rational[1, 1000] (((-996) Pi) Sin[(2 Pi) #] - (396 Pi) 
+              Sin[(4 Pi) #] - (6 Pi) Sin[(6 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8690,8 +8698,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          KaiserWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{
-            0, # < Rational[-1, 2]}, {(-12) BesselI[0, 3]^(-1) 
-             BesselI[1, 3 (1 - 4 #^2)^Rational[1, 2]] # (1 - 4 #^2)^
+            0, # < Rational[-1, 2]}, {((((-12)/BesselI[0, 3]) 
+               BesselI[1, 3 (1 - 4 #^2)^Rational[1, 2]]) #) (1 - 4 #^2)^
               Rational[-1, 2], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
@@ -8704,9 +8712,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinBei[
-         DualNumbers`Private`a$], (Rational[1, 2] 
-          2^Rational[-1, 2] (2 KelvinBei[1, #] - 2 KelvinBer[1, #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
+           2 KelvinBei[1, #] - 2 KelvinBer[1, #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          KelvinBer[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8714,9 +8722,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinBer[
-         DualNumbers`Private`a$], (Rational[1, 2] 
-          2^Rational[-1, 2] (2 KelvinBei[1, #] + 2 KelvinBer[1, #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
+           2 KelvinBei[1, #] + 2 KelvinBer[1, #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          KelvinKei[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8724,9 +8732,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinKei[
-         DualNumbers`Private`a$], (Rational[1, 2] 
-          2^Rational[-1, 2] (2 KelvinKei[1, #] - 2 KelvinKer[1, #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
+           2 KelvinKei[1, #] - 2 KelvinKer[1, #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          KelvinKer[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8734,9 +8742,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          KelvinKer[
-         DualNumbers`Private`a$], (Rational[1, 2] 
-          2^Rational[-1, 2] (2 KelvinKei[1, #] + 2 KelvinKer[1, #])& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Rational[1, 2] 2^Rational[-1, 2]) (
+           2 KelvinKei[1, #] + 2 KelvinKer[1, #])& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          KleinInvariantJ[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8746,13 +8754,13 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          KleinInvariantJ[
          DualNumbers`Private`a$], (
           With[{System`EllipticDump`t = 
-            ModularLambda[#]}, -((16 
-             I (-2 + System`EllipticDump`t) (1 + System`EllipticDump`t) (-1 + 
-              2 System`EllipticDump`t) (
-               1 + (-1 + System`EllipticDump`t) System`EllipticDump`t)^2 
-             EllipticK[System`EllipticDump`t]^2)/(27 
-            Pi (-1 + System`EllipticDump`t)^2 System`EllipticDump`t^2))]& )[
-          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
+            ModularLambda[#]}, -(((((((16 I) (-2 + System`EllipticDump`t)) (1 + 
+                 System`EllipticDump`t)) (-1 + 2 System`EllipticDump`t)) (
+                1 + (-1 + System`EllipticDump`t) System`EllipticDump`t)^2) 
+             EllipticK[System`EllipticDump`t]^2)/(((27 
+              Pi) (-1 + System`EllipticDump`t)^2) 
+            System`EllipticDump`t^2))]& )[DualNumbers`Private`a$] 
+         DualNumbers`Private`b$], HoldPattern[
          KroneckerDelta[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8770,9 +8778,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          LanczosWindow[
          DualNumbers`Private`a$], (
-          Piecewise[{{0, # < Rational[-1, 2]}, {
-            2 Pi (Rational[-1, 4] Pi^(-2) Sin[2 Pi #] #^(-2) + 
-              Rational[1, 2] Pi^(-1) Cos[2 Pi #]/#), 
+          Piecewise[{{
+            0, # < Rational[-1, 2]}, {(2 
+              Pi) (((Rational[-1, 4] Pi^(-2)) Sin[(2 Pi) #]) #^(-2) + (
+                Rational[1, 2]/Pi) (Cos[(2 Pi) #]/#)), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}, {0, # > Rational[1, 2]}}, Indeterminate]& )[
@@ -8847,10 +8856,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          LucasL[
-         DualNumbers`Private`a$], (GoldenRatio^# Log[GoldenRatio] - 
-          GoldenRatio^(-#) Cos[Pi #] Log[GoldenRatio] - GoldenRatio^(-#) Pi 
-          Sin[Pi #]& )[DualNumbers`Private`a$] DualNumbers`Private`b$], 
-       HoldPattern[
+         DualNumbers`Private`a$], (
+          GoldenRatio^# Log[GoldenRatio] - (GoldenRatio^(-#) Cos[Pi #]) 
+          Log[GoldenRatio] - (GoldenRatio^(-#) Pi) Sin[Pi #]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Max[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8883,10 +8892,10 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          ModularLambda[
          DualNumbers`Private`a$], (
-          With[{System`EllipticDump`t = ModularLambda[#]}, (4 
-            I (1 - System`EllipticDump`t) System`EllipticDump`t 
-            EllipticK[System`EllipticDump`t]^2)/Pi]& )[DualNumbers`Private`a$]
-           DualNumbers`Private`b$], HoldPattern[
+          With[{System`EllipticDump`t = 
+            ModularLambda[#]}, ((((4 I) (1 - System`EllipticDump`t)) 
+             System`EllipticDump`t) EllipticK[System`EllipticDump`t]^2)/
+           Pi]& )[DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Multinomial[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -8904,8 +8913,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          NuttallWindow[
          DualNumbers`Private`a$], (
           Piecewise[{{0, # <= Rational[-1, 2]}, {
-            Rational[1, 250000] ((-243698) Pi Sin[2 Pi #] - 144232 Pi 
-              Sin[4 Pi #] - 18906 Pi Sin[6 Pi #]), 
+            Rational[1, 250000] (((-243698) Pi) Sin[(2 Pi) #] - (144232 Pi) 
+              Sin[(4 Pi) #] - (18906 Pi) Sin[(6 Pi) #]), 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[1, 2]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -8963,8 +8972,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          QPochhammer[
-         DualNumbers`Private`a$], (-Log[#]^(-1) 
-           QPochhammer[#, #] (Log[1 - #] + QPolyGamma[0, 1, #])/# + 
+         DualNumbers`Private`a$], ((((-1)/Log[#]) 
+            QPochhammer[#, #]) ((Log[1 - #] + QPolyGamma[0, 1, #])/#) + 
           Derivative[0, 1][QPochhammer][#, #]& )[DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          Ramp[
@@ -9012,11 +9021,11 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          RiemannSiegelZ[
-         DualNumbers`Private`a$], (-I 4^(-1) 
-          E^(I RiemannSiegelTheta[#]) ((2 Log[Pi] - PolyGamma[
-             0, (1 - 2 I #)/4] - PolyGamma[0, (1 + 2 I #)/4]) Zeta[1/2 + I #] - 
-           4 Derivative[1][Zeta][1/2 + I #])& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((((-I)/4) 
+           E^(I RiemannSiegelTheta[#])) ((2 Log[Pi] - PolyGamma[
+             0, (1 - (2 I) #)/4] - PolyGamma[0, (1 + (2 I) #)/4]) 
+            Zeta[1/2 + I #] - 4 Derivative[1][Zeta][1/2 + I #])& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          RiemannXi[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -9024,15 +9033,16 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          RiemannXi[
-         DualNumbers`Private`a$], (
-          Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] Zeta[#] + 
-          Rational[-1, 2] Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] 
-           Log[Pi] (-1 + #) Zeta[#] + 
-          Rational[1, 2] Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] 
-           PolyGamma[0, 1 + Rational[1, 2] #] (-1 + #) Zeta[#] + 
-          Pi^(Rational[-1, 2] #) Gamma[1 + Rational[1, 2] #] (-1 + #) 
-           Derivative[1][Zeta][#]& )[DualNumbers`Private`a$] 
-         DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((Pi^(Rational[-1, 2] #) 
+            Gamma[1 + Rational[1, 2] #]) 
+           Zeta[#] + ((((Rational[-1, 2] Pi^(Rational[-1, 2] #)) 
+              Gamma[1 + Rational[1, 2] #]) Log[Pi]) (-1 + #)) 
+           Zeta[#] + ((((Rational[1, 2] Pi^(Rational[-1, 2] #)) 
+              Gamma[1 + Rational[1, 2] #]) 
+             PolyGamma[0, 1 + Rational[1, 2] #]) (-1 + #)) 
+           Zeta[#] + ((Pi^(Rational[-1, 2] #) 
+             Gamma[1 + Rational[1, 2] #]) (-1 + #)) Derivative[1][Zeta][#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Round[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -9079,8 +9089,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Sech[
-         DualNumbers`Private`a$], (-Sech[#] Tanh[#]& )[DualNumbers`Private`a$]
-           DualNumbers`Private`b$], HoldPattern[
+         DualNumbers`Private`a$], ((-Sech[#]) Tanh[#]& )[
+          DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Sin[
           DualNumbers`Dual[
            Pattern[DualNumbers`Private`a$, 
@@ -9096,7 +9106,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Sinc[
-         DualNumbers`Private`a$], (-Sin[#] #^(-2) + Cos[#]/#& )[
+         DualNumbers`Private`a$], ((-Sin[#]) #^(-2) + Cos[#]/#& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Sinh[
           DualNumbers`Dual[
@@ -9140,8 +9150,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Subfactorial[
-         DualNumbers`Private`a$], (I Pi Subfactorial[#] + 
-          1 E^(-1) MeijerG[{{}, {1, 1}}, {{0, 0, 1 + #}, {}}, -1]& )[
+         DualNumbers`Private`a$], ((I Pi) Subfactorial[#] + (1/E) 
+           MeijerG[{{}, {1, 1}}, {{0, 0, 1 + #}, {}}, -1]& )[
           DualNumbers`Private`a$] DualNumbers`Private`b$], HoldPattern[
          Tan[
           DualNumbers`Dual[
@@ -9166,10 +9176,11 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          TukeyWindow[
-         DualNumbers`Private`a$], (Piecewise[{{Rational[3, 2] Pi Cos[3 Pi #], 
+         DualNumbers`Private`a$], (
+          Piecewise[{{(Rational[3, 2] Pi) Cos[(3 Pi) #], 
              Inequality[
               Rational[1, 6], Less, #, Less, 
-              Rational[1, 2]]}, {Rational[-3, 2] Pi Cos[3 Pi #], 
+              Rational[1, 2]]}, {(Rational[-3, 2] Pi) Cos[(3 Pi) #], 
              Inequality[
               Rational[-1, 2], Less, #, Less, 
               Rational[-1, 6]]}}, 0]& )[DualNumbers`Private`a$] 
@@ -9266,7 +9277,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Log[
          DualNumbers`Private`a1$, 
-          DualNumbers`Private`a2$], (-Log[#]^(-2) Log[#2]/#& )[
+          DualNumbers`Private`a2$], (((-1) Log[#]^(-2)) (Log[#2]/#)& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b1$ + (Log[#]^(-1)/#2& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
@@ -9280,8 +9291,9 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           Pattern[DualNumbers`Private`c$, 
            Blank[]]]] :> DualNumbers`Dual[
          Log[
-         DualNumbers`Private`a$, DualNumbers`Private`c$], (-Log[#]^(-2) 
-          Log[#2]/#& )[DualNumbers`Private`a$, DualNumbers`Private`c$] 
+         DualNumbers`Private`a$, 
+          DualNumbers`Private`c$], (((-1) Log[#]^(-2)) (Log[#2]/#)& )[
+          DualNumbers`Private`a$, DualNumbers`Private`c$] 
          DualNumbers`Private`b$], HoldPattern[
          Log[
           Pattern[DualNumbers`Private`c$, 
@@ -9312,7 +9324,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate]& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b1$ + (-Floor[#/#2] + 
-           Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
+           Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] (#/#2)& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b2$], HoldPattern[
          Mod[
@@ -9338,7 +9350,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]]]] :> DualNumbers`Dual[
          Mod[
          DualNumbers`Private`c$, DualNumbers`Private`a$], (-Floor[#/#2] + 
-          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] #/#2& )[
+          Piecewise[{{0, #/#2 > Floor[#/#2]}}, Indeterminate] (#/#2)& )[
           DualNumbers`Private`c$, DualNumbers`Private`a$] 
          DualNumbers`Private`b$], HoldPattern[
          Binomial[
@@ -9404,7 +9416,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
           DualNumbers`Private`a2$], (Gamma[#, #2] Log[#2] + 
            MeijerG[{{}, {1, 1}}, {{0, 0, #}, {}}, #2]& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
-          DualNumbers`Private`b1$ + (-E^(-#2) #2^(-1 + #)& )[
+          DualNumbers`Private`b1$ + ((-E^(-#2)) #2^(-1 + #)& )[
            DualNumbers`Private`a1$, DualNumbers`Private`a2$] 
           DualNumbers`Private`b2$], HoldPattern[
          Gamma[
@@ -9430,8 +9442,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`b$, 
             Blank[]]]]] :> DualNumbers`Dual[
          Gamma[
-         DualNumbers`Private`c$, DualNumbers`Private`a$], (-
-          E^(-#2) #2^(-1 + #)& )[
+         DualNumbers`Private`c$, 
+          DualNumbers`Private`a$], ((-E^(-#2)) #2^(-1 + #)& )[
           DualNumbers`Private`c$, DualNumbers`Private`a$] 
          DualNumbers`Private`b$], Abs[
          DualNumbers`Dual[
@@ -10142,8 +10154,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
            Pattern[DualNumbers`Private`patt, 
             Blank[]], True]], Length[DualNumbers`Private`list] === 
          Length[DualNumbers`Private`sel]] :> 
-       With[{
-         DualNumbers`Private`pos = 
+       With[{DualNumbers`Private`pos = 
           DualNumbers`Private`listPosition[
            DualNumbers`Private`sel, DualNumbers`Private`patt]}, 
          Extract[DualNumbers`Private`list, DualNumbers`Private`pos]], 
@@ -10186,7 +10197,8 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
          Optional[
           Pattern[DualNumbers`Private`red, 
            Blank[]], Identity]] :> 
-       With[{DualNumbers`Private`vals = 
+       With[{
+         DualNumbers`Private`vals = 
           Map[DualNumbers`Private`fun1, DualNumbers`Private`a]}, 
          With[{
           DualNumbers`Private`uniqueVals = 
@@ -10596,7 +10608,6 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
             Blank[]]] >= Pattern[DualNumbers`Private`rest$, 
            BlankNullSequence[]]] :> 
        With[{DualNumbers`Private`test = Apply[GreaterEqual, 
-            
             DualNumbers`Private`std[{
              DualNumbers`Private`first$, DualNumbers`Private`d$, 
               DualNumbers`Private`rest$}]]}, 
@@ -10933,6 +10944,7 @@ scalar or array with constant nonstandard part. The default value for \
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -11365,7 +11377,6 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -11953,7 +11964,7 @@ Cell[BoxData[{
  RowBox[{"?", "PackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "UnpackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualLinearSolveFunction"}]}], "Input",
- CellLabel->"In[23]:=",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
+ CellLabel->"In[5]:=",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12145,6 +12156,7 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -12303,7 +12315,7 @@ Dual[\!\(\*StyleBox[\"std\", \"TI\"]\), \!\(\*StyleBox[\"nonstd\", \
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`PackDualArray"], False]]], "Output",
- CellLabel->"Out[23]=",ExpressionUUID->"f91559fe-32c1-427b-b219-a53f0fbdf8a4"],
+ CellLabel->"Out[5]=",ExpressionUUID->"864ceaec-5452-4a2a-b43a-4e689b1b3a22"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12332,7 +12344,8 @@ Cell[BoxData[
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"UnpackDualArray\\\", \
 \\\"[\\\", RowBox[{StyleBox[\\\"dualArray\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
 reverses to operation of PackDualArray and creates an array of dual \
-scalars.\"\>", "InformationUsageText",
+scalars.\\nProduces a message if packing messages have been turned on with \
+On[\\\"Packing\\\"].\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -12380,9 +12393,8 @@ scalars.\"\>", "InformationUsageText",
                     StyleBox[
                     RowBox[{"UnpackDualArray", "::", "unpack"}], 
                     "MessageName"], ",", 
-                    RowBox[{
-                    "Dimensions", "[", "DualNumbers`Private`a", "]"}]}], 
-                    "]"}], ",", 
+                    RowBox[{"Dimensions", "[", "DualNumbers`Private`a", 
+                    "]"}]}], "]"}], ",", 
                     RowBox[{"{", 
                     RowBox[{
                     StyleBox[
@@ -12537,7 +12549,8 @@ scalars.\"\>", "InformationUsageText",
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"UnpackDualArray\\\", \
 \\\"[\\\", RowBox[{StyleBox[\\\"dualArray\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) \
 reverses to operation of PackDualArray and creates an array of dual \
-scalars.\"\>", "InformationUsageText",
+scalars.\\nProduces a message if packing messages have been turned on with \
+On[\\\"Packing\\\"].\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -12603,8 +12616,9 @@ scalars.\"\>", "InformationUsageText",
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"UnpackDualArray\", \"[\", \
 RowBox[{StyleBox[\"dualArray\", \"TI\"]}], \"]\"}]\) reverses to operation of \
-PackDualArray and creates an array of dual scalars.", "Documentation" -> None,
-     "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+PackDualArray and creates an array of dual scalars.\nProduces a message if \
+packing messages have been turned on with On[\"Packing\"].", "Documentation" -> 
+    None, "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
     Information`InformationValueForm[
      DownValues, DualNumbers`UnpackDualArray, {DualNumbers`UnpackDualArray[
          PatternTest[
@@ -12636,7 +12650,7 @@ PackDualArray and creates an array of dual scalars.", "Documentation" -> None,
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`UnpackDualArray"], False]]], "Output",
- CellLabel->"Out[24]=",ExpressionUUID->"d130291f-2b2f-474f-8060-74dc79179377"],
+ CellLabel->"Out[6]=",ExpressionUUID->"82ad6d2f-7fcf-4c4f-aa79-0c0cbe2ce875"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -12772,6 +12786,7 @@ be applied to Dual arrays.\"\>", "InformationUsageText",
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"DualNumbers`DualLinearSolveFunction\"\
 \>"}
@@ -12979,7 +12994,7 @@ to Dual arrays.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {}, "FullName" -> "DualNumbers`DualLinearSolveFunction"], 
    False]]], "Output",
- CellLabel->"Out[25]=",ExpressionUUID->"73d9cb36-f0d1-4906-b8a9-5d1f7ae50815"]
+ CellLabel->"Out[7]=",ExpressionUUID->"0c2b8e04-4466-4c5e-8214-4af875e0f93b"]
 }, Open  ]]
 }, Open  ]],
 
@@ -14193,6 +14208,7 @@ scalars.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -14477,6 +14493,7 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -15263,7 +15280,8 @@ RowBox[{StyleBox[SubscriptBox[\\\"n\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
                     RowBox[{"DualNumbers`Private`dualPos", "=", 
                     RowBox[{"Flatten", "[", 
                     RowBox[{"DualNumbers`Private`listPosition", "[", 
-                    RowBox[{"DualNumbers`Private`args", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`args", ",", 
                     "DualNumbers`Private`dualPatt"}], "]"}], "]"}]}], ",", 
                     RowBox[{"DualNumbers`Private`inputs", "=", 
                     RowBox[{
@@ -16191,7 +16209,6 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -16724,7 +16741,8 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
                     RowBox[{
                     RowBox[{"DualNumbers`Private`firstSol", "[", 
                     RowBox[{"FindDualSolution", "[", 
-                    RowBox[{"DualNumbers`Private`equations", ",", 
+                    RowBox[{
+                    "DualNumbers`Private`equations", ",", 
                     "DualNumbers`Private`stdSol"}], "]"}], "]"}], ",", 
                     RowBox[{"{", 
                     StyleBox[
@@ -16868,7 +16886,6 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
              ImageMargins->0,
              ImageSize->Full,
              Method->"Preemptive"],
-            
             EventHandlerTag[{
              "MouseEntered" :> 
               FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
@@ -17790,8 +17807,8 @@ Cell[BoxData[
                     RowBox[{
                     RowBox[{"DualFactor", "[", 
                     RowBox[{"Apply", "[", 
-                    RowBox[{
-                    "Subtract", ",", "DualNumbers`Private`equations", ",", 
+                    RowBox[{"Subtract", ",", "DualNumbers`Private`equations", 
+                    ",", 
                     RowBox[{"{", "1", "}"}]}], "]"}], "]"}], "/.", 
                     "\[VeryThinSpace]", "DualNumbers`Private`dualRules"}]}], 
                     ";", 
@@ -18114,96 +18131,117 @@ Cell[BoxData[{
        RowBox[{"#", "[", "\"\<TestResultRules\>\"", "]"}]}], "&"}], ",", 
      "\[IndentingNewLine]", "testReport"}], "\[IndentingNewLine]", "]"}], "//",
     "Dataset"}], "//", "Rasterize"}]}], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
 Cell[BoxData[
  GraphicsBox[
   TagBox[RasterBox[CompressedData["
-1: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
-    "], {{0, 108.}, {768., 0}}, {0, 255},
+1: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
+AAAAAAAAAAAAAAAAAAAA0vo/pTYUAg==
+    "], {{0, 130.}, {806., 0}}, {0, 255},
     ColorFunction->RGBColor,
     ImageResolution->72.],
    BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
    Selectable->False],
   DefaultBaseStyle->"ImageGraphics",
-  ImageSizeRaw->{768., 108.},
-  PlotRange->{{0, 768.}, {0, 108.}}]], "Output",
- CellLabel->"Out[6]=",ExpressionUUID->"4c03ba9d-c044-44f4-9800-a167cfe42c36"]
+  ImageSizeRaw->{806., 130.},
+  PlotRange->{{0, 806.}, {0, 130.}}]], "Output",
+ CellLabel->"Out[101]=",ExpressionUUID->"250a8f25-96ed-4296-9a9e-7d6dc16c975e"]
 }, Open  ]]
 }, Closed]],
 

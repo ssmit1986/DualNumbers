@@ -61,7 +61,8 @@ GeneralUtilities`SetUsage[PackDualArray,
     "PackDualArray[array$] converts an array of numbers (possibly duals) to the form Dual[std$, nonstd$]."
 ];
 GeneralUtilities`SetUsage[UnpackDualArray,
-    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars."
+    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars.
+Produces a message if packing messages have been turned on with On[\"Packing\"]."
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
     "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
@@ -168,6 +169,11 @@ Dual[a : Except[arrayPattern], b : arrayPattern] /; (
     Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
     False
 ) := Undefined;
+Dual[a_, b_, c__] /; (
+    Message[Dual::argt, Dual, Length[{a, b, c}], 1, 2];
+    False
+) := Undefined;
+
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
@@ -233,6 +239,35 @@ Dual[a_, Dual[b_, _]] := Dual[a, b];
 (* This makes sure that D[expr, var] works for expressions involving dual numbers *)
 Derivative[1, 0][Dual] = 1&;
 Derivative[0, 1][Dual] = Dual[0, 1]&;
+
+(* SyntaxInformation *)
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {_}}
+    ],
+    {
+        Standard, NonStandard, StandardAll, DualSimplify, DualQ, DualScalarQ,
+        DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ, StandardQ,
+        PackDualArray, UnpackDualArray, DualTuples
+    }
+];
+
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {__}}
+    ],
+    {
+       ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
+       DualFindMaximum, DualApply
+    }
+];
+
+Scan[
+    Function[
+        SyntaxInformation[#] = {"ArgumentsPattern" -> {_, _}}
+    ],
+    {DualLinearSolveFunction, AddDualHandling}
+];
 
 End[] (* End Private Context *)
 
