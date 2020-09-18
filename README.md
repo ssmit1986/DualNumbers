@@ -283,7 +283,7 @@ Out[]= True
     * Array identification: `Length`, `Dimensions`, `ArrayDepth`, `MatrixQ`, `VectorQ`, `SquareMatrixQ`.
 
 
-* Helper functions:
+* Helper functions. Use `?` for more information (e.g., `?ToDual`):
     * `ToDual`: construct dual numbers from scalars or arrays.
     * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
     * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`, `DualFreeArrayQ`: testing different types of dual expressions.

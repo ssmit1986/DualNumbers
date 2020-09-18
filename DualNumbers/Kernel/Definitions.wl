@@ -1,7 +1,6 @@
 (* Wolfram Language Package *)
 
 BeginPackage["DualNumbers`", {"GeneralUtilities`", "Developer`"}]
-ClearAll["DualNumbers`*", "DualNumbers`*`*"];
 
 (* Exported symbols added here with SymbolName::usage *)
 GeneralUtilities`SetUsage[Dual, "Dual[a$, b$] represents a dual number with standard part a$ and infinitesimal part b$.
@@ -23,13 +22,18 @@ GeneralUtilities`SetUsage[StandardAll,
     "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
 ];
 GeneralUtilities`SetUsage[DualExpand,
-    "DualExpand[expr$, eps$] replaces each dual number Dual[a$, b$] with a$ + b$ * eps$."
+    "DualExpand[expr$] replaces each dual number Dual[a$, b$] with a$ + b$ \[Epsilon].
+DualExpand[expr$, eps$] uses eps$ instead."
 ];
 GeneralUtilities`SetUsage[DualFactor,
-    "DualFactor[expr$, eps$] replaces eps$ with Dual[0, 1] in expr$."
+    "DualFactor[expr$] replaces \[Epsilon] with Dual[0, 1] in expr$.
+DualFactor[expr$, eps$] uses eps$ instead.
+"
 ];
 GeneralUtilities`SetUsage[DualSimplify,
-    "DualSimplify[expr$, eps$] expands expr$ around eps$ = 0, keeping only the 0th and 1st order terms."
+    "DualSimplify[expr$] expands expr$ around \[Epsilon] = 0, keeping only the 0th and 1st order terms.
+DualSimplify[expr$, eps$] uses eps$ as symbol for the dual unit.
+"
 ];
 GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
@@ -94,11 +98,15 @@ Begin["`Private`"] (* Begin Private Context *)
     Code inspired by the following post on Mathematica StackExchange:
     https://mathematica.stackexchange.com/a/13926/43522
 *)
+Protect[\[Epsilon]];
 
 derivativePatt = Except[Function[D[__]], _Function];
 arrayPattern = _List | _SparseArray;
 
 numericArrayQ = Function[ArrayQ[#, _, NumericQ]];
+
+(* To avoid ?Dual from dumping all definitions in the summary box *)
+SetAttributes[Dual, ReadProtected];
 
 (* Boolean functions to test validity of Dual objects *)
 dualPatt = Dual[_, _];
@@ -173,7 +181,6 @@ Dual[a_, b_, c__] /; (
     Message[Dual::argt, Dual, Length[{a, b, c}], 1, 2];
     False
 ) := Undefined;
-
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
