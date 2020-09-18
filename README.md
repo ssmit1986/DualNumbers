@@ -59,7 +59,7 @@ You can think of `ϵ` as the algebraic version of an infinitesimal. So a dual nu
 Dual[a, b]
 ```
 
-The first argument `a` will be called the *standard* part while the second argument `b` will be called the *nonstandard* part (this terminology has been borrowed from [https://en.wikipedia.org/wiki/Nonstandard_analysis](nonstandard analysis)). 
+The first argument `a` will be called the *standard* part while the second argument `b` will be called the *nonstandard* part (this terminology has been borrowed from [nonstandard analysis](https://en.wikipedia.org/wiki/Nonstandard_analysis)). 
 You can add and multiply duals much like normal numbers. The standard part behaves exactly as real numbers would and will never be influenced by the nonstandard part. For this reason, you can think of the standard part as the most important part of a dual number. The nonstandard part, on the other hand, keeps track of the derivative and can be thought of as a very tiny perturbation on the standard part. You can see this by expanding a general function as a Taylor series in `ϵ`:
 
 ```
