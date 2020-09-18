@@ -33,7 +33,7 @@ DualTuples[{Dual[a_, b_]}] := {{b}};
 DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
 DualTuples[dList : {__Dual}] := Map[
     Extract[dList, #]&,
-    DualTuples[Length[dList]]
+    dualTuplesPositions[Length[dList]]
 ];
 With[{
     cf = Compile[{
@@ -45,8 +45,8 @@ With[{
         ]
     ]
 },
-    DualTuples[0] := {};
-    DualTuples[n_Integer] := cf[n]
+    dualTuplesPositions[0] := {};
+    dualTuplesPositions[n_Integer] := cf[n]
 ];
 
 (* Set UpValues for custom functions to be used with Dual *)
