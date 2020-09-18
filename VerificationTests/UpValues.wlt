@@ -1,6 +1,6 @@
 BeginTestSection["UpValues"]
 
-BeginTestSection["Initialisation"]
+BeginTestSection["Initialization"]
 
 VerificationTest[(* 1 *)
 	CompoundExpression[Set[$HistoryLength, 10], With[List[Set[dir, ParentDirectory[If[Quiet[TrueQ[FileExistsQ[$TestFileName]]], DirectoryName[$TestFileName], NotebookDirectory[]]]]], PacletDirectoryLoad[dir]], Quiet[Get["DualNumbers`"]], ClearAll["Global`*"], "Done"]
@@ -29,6 +29,22 @@ VerificationTest[(* 3 *)
 	,
 	TestID->"26171df0-0069-4981-8d67-5e2e2efd3d0e"
 ]
+
+EndTestSection[]
+
+BeginTestSection["Arrays"]
+
+BeginTestSection["MatrixPower"]
+
+VerificationTest[(* 4 *)
+	CompoundExpression[Set[angle, Times[Pi, Power[7, -1]]], Set[mat, RotationMatrix[angle]], List[MatrixPower[N[mat], 1000], MatrixPower[N[mat, 20], 1000], MatrixPower[N[mat, 50], 1000]]]
+	,
+	ConstantArray[RotationMatrix[Times[1000, angle]], 3]	
+	,
+	SameTest->Function[Max[Abs[#1 - #2]]<10^(-10)], TimeConstraint->2, TestID->"7175ef12-fab3-41c8-9090-8d7b0294c2db"
+]
+
+EndTestSection[]
 
 EndTestSection[]
 
