@@ -109,12 +109,16 @@ numericArrayQ = Function[ArrayQ[#, _, NumericQ]];
 SetAttributes[Dual, ReadProtected];
 
 (* Boolean functions to test validity of Dual objects *)
-dualPatt = Dual[_, _];
-DualQ[expr : dualPatt] := DualScalarQ[expr] || DualArrayQ[expr];
+dualPatt = _Dual;
+DualQ[expr_Dual] := DualScalarQ[expr] || DualArrayQ[expr];
 DualQ[_] := False;
 
-DualScalarQ[Dual[Except[_?ArrayQ], Except[_?ArrayQ]]] := True;
+DualScalarQ[Dual[___, arrayPattern, ___]] := False;
+DualScalarQ[Dual[a_, b_]] := NoneTrue[{a, b}, ArrayQ];
 DualScalarQ[_] := False;
+
+DualArrayQ[Dual[a_?DualFreeArrayQ, b_?DualFreeArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
+DualArrayQ[_] := False;
 
 UnpackedDualArrayQ[a_?Developer`PackedArrayQ] := False;
 UnpackedDualArrayQ[a_?ArrayQ] := FreeQ[a, Except[_Dual], {ArrayDepth[a]}, Heads -> False];
@@ -123,9 +127,6 @@ UnpackedDualArrayQ[_] := False;
 DualFreeArrayQ[a_?Developer`PackedArrayQ] := True
 DualFreeArrayQ[a_?ArrayQ] := FreeQ[a, _Dual, {ArrayDepth[a]}, Heads -> False];
 DualFreeArrayQ[_] := False;
-
-DualArrayQ[Dual[a_?DualFreeArrayQ, b_?DualFreeArrayQ]] /; Dimensions[a] === Dimensions[b] := True;
-DualArrayQ[_] := False;
 
 StandardQ[_Dual] := False;
 StandardQ[_] := True;
