@@ -439,17 +439,11 @@ Scan[
     {Map, MapIndexed, Apply}
 ];
 
-Dual /: FoldList[fun_, dualArr_Dual?DualArrayQ] := PackDualArray[
-    FoldList[fun, UnpackDualArray[dualArr]]
+Dual /: FoldList[args__, dualArr_Dual?DualArrayQ] := PackDualArray[
+    FoldList[args, UnpackDualArray[dualArr]]
 ];
-Dual /: FoldList[fun_, val_, dualArr_Dual?DualArrayQ] := PackDualArray[
-    FoldList[fun, val, UnpackDualArray[dualArr]]
-];
-Dual /: Fold[fun_, dualArr_Dual?DualArrayQ] := ( 
-    Fold[fun, UnpackDualArray[dualArr]]
-);
-Dual /: Fold[fun_, val_, dualArr_Dual?DualArrayQ] := ( 
-    Fold[fun, val, UnpackDualArray[dualArr]]
+Dual /: Fold[args_, dualArr_Dual?DualArrayQ] := ( 
+    Fold[args, UnpackDualArray[dualArr]]
 );
 Scan[
     Function[folder,
