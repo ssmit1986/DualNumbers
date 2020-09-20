@@ -8,6 +8,7 @@ DualExpand;
 DualFactor;
 DualSimplify;
 DualTuples;
+DualTuplesReduce;
 AddDualHandling;
 DualApply;
 FindDualSolution;
@@ -28,25 +29,78 @@ DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 
 
 DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
-DualTuples[{}] := {};
-DualTuples[{Dual[a_, b_]}] := {{b}};
-DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
-DualTuples[dList : {__Dual}] := Map[
-    Extract[dList, #]&,
-    dualTuplesPositions[Length[dList]]
-];
 With[{
-    cf = Compile[{
+    cf1 = Compile[{
         {n, _Integer}
     },
         Table[
             If[ k == 1, j, If[i == j, 2, 1]],
             {i, n}, {j, n}, {k, 2}
         ]
+    ],
+    cf2 = Compile[{
+        {n, _Integer},
+        {i, _Integer}
+    },
+        With[{
+            mod = If[ Positive[i], Mod[i, n, 1], Mod[i + 1, n, 1]]
+        },
+            Table[
+                If[ k == 1, j, If[mod == j, 2, 1]],
+                {j, n}, {k, 2}
+            ]
+        ]
     ]
 },
-    dualTuplesPositions[0] := {};
-    dualTuplesPositions[n_Integer] := cf[n]
+    dualTuplesPositions[0, ___] := {};
+    dualTuplesPositions[n_Integer] := cf1[n];
+    dualTuplesPositions[n_Integer, i_] := cf2[n, i]
+];
+
+DualTuples[{}, ___] := {};
+DualTuples[{Dual[a_, b_]}] := {{b}};
+DualTuples[{Dual[a_, b_]}, 1] := {b};
+DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
+DualTuples[dList : {__Dual}] := Map[
+    Extract[dList, #]&,
+    dualTuplesPositions[Length[dList]]
+];
+DualTuples[dList : {__Dual}, i : Except[0, _Integer]] := With[{
+    len = Length[dList]
+},
+    Extract[
+        dList,
+        dualTuplesPositions[Length[dList], i]
+    ] /; Abs[i] <= len
+];
+
+DualTuplesReduce[{Dual[a_, b_]}, f_] := {f[b]};
+DualTuplesReduce[{Dual[a_, b_]}, f_, g_] := g[f[b]];
+DualTuplesReduce[dList : {__Dual}, f_] := With[{
+    n = Length[dList]
+},
+    Map[
+        Function[
+            f @@ Extract[dList, dualTuplesPositions[n, #]]
+        ],
+        Range[n]
+    ]
+];
+DualTuplesReduce[dList : {__Dual}, f_, g_] := With[{
+    n = Length[dList]
+},
+    Fold[
+        Function[
+            g[
+                #1,
+                f @@ Extract[dList, dualTuplesPositions[n, #2]]
+            ]
+        ],
+        g[
+            f @@ Extract[dList, dualTuplesPositions[n, 1]]
+        ],
+        Range[2, n]
+    ]
 ];
 
 (* Set UpValues for custom functions to be used with Dual *)

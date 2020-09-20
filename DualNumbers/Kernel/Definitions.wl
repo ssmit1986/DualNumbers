@@ -89,8 +89,14 @@ from the list of dual numbers and returns the length-n$ list:
     {a$1, b$2, a$3, $$, a$n},
     $$,
     {a$1, a$2, a$3, $$, b$n}
-}"
+}
+DualTuples[list$, i$] gives element i$ of DualTuples[list$]."
 ];
+GeneralUtilities`SetUsage[DualTuplesReduce,
+    "DualTuplesReduce[list$, f$] applies f$ to the elements of DualTuples[list$] and is effectively equal to f$ @@@ DualTuples[list$].
+DualTuplesReduce[list$, f$, g$] folds g$ over DualTuplesReduce[list$, f$]."
+];
+
 
 Begin["`Private`"] (* Begin Private Context *) 
 
@@ -256,7 +262,7 @@ Scan[
     {
         Standard, NonStandard, StandardAll, DualSimplify, DualQ, DualScalarQ,
         DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ, StandardQ,
-        PackDualArray, UnpackDualArray, DualTuples
+        PackDualArray, UnpackDualArray
     }
 ];
 
@@ -266,7 +272,7 @@ Scan[
     ],
     {
        ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
-       DualFindMaximum, DualApply
+       DualFindMaximum, DualApply, DualTuples
     }
 ];
 
