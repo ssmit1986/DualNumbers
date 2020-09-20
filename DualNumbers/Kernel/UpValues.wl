@@ -29,7 +29,7 @@ Dual /: Times[
     d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
     rest___
 ] /; True := With[{
-    d = Fold[Times, {d1, d2}],
+    d = Fold[Times, d1, {d2}],
     num = Times[rest]
 },
     d * num
@@ -195,17 +195,18 @@ Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
 (* Dot UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Dot[
+    first___,
     d1_Dual?DualArrayQ,
-    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}]
-] /; True := Dual[
-    Dot @@ {d1, d2}[[All, 1]],
-    Total[
-        Dot @@@ Map[
-            Developer`ToPackedArray,
-            DualTuples[{d1, d2}],
-            {2}
-        ]
-    ]
+    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}],
+    rest___
+] /; True := With[{
+    m1 = Dot[first],
+    m2 = Block[{DualArrayQ = True&}, (* All arrays have already been checked; no need to do it again *)
+        Fold[Dot, d1, {d2}]
+    ],
+    m3 = Dot[rest]
+},
+    Dot[m1, m2, m3]
 ];
 (* UpValues for shorter arguments *)
 Dual /: Dot[
