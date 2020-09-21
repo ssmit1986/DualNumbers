@@ -28,12 +28,11 @@ Dual /: Times[
     d1_Dual,
     d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
     rest___
-] /; True := Dual[
-    Times[Times @@ {d1, d2}[[All, 1]], rest],
-    Times[
-        Total[Times @@@ DualTuples[{d1, d2}]],
-        rest
-    ]
+] /; True := With[{
+    d = Fold[Times, d1, {d2}],
+    num = Times[rest]
+},
+    d * num
 ];
 (* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
@@ -196,17 +195,18 @@ Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
 (* Dot UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Dot[
+    first___,
     d1_Dual?DualArrayQ,
-    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}]
-] /; True := Dual[
-    Dot @@ {d1, d2}[[All, 1]],
-    Total[
-        Dot @@@ Map[
-            Developer`ToPackedArray,
-            DualTuples[{d1, d2}],
-            {2}
-        ]
-    ]
+    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}],
+    rest___
+] /; True := With[{
+    m1 = Dot[first],
+    m2 = Block[{DualArrayQ = True&}, (* All arrays have already been checked; no need to do it again *)
+        Fold[Dot, d1, {d2}]
+    ],
+    m3 = Dot[rest]
+},
+    Dot[m1, m2, m3]
 ];
 (* UpValues for shorter arguments *)
 Dual /: Dot[
@@ -439,17 +439,11 @@ Scan[
     {Map, MapIndexed, Apply}
 ];
 
-Dual /: FoldList[fun_, dualArr_Dual?DualArrayQ] := PackDualArray[
-    FoldList[fun, UnpackDualArray[dualArr]]
+Dual /: FoldList[args__, dualArr_Dual?DualArrayQ] := PackDualArray[
+    FoldList[args, UnpackDualArray[dualArr]]
 ];
-Dual /: FoldList[fun_, val_, dualArr_Dual?DualArrayQ] := PackDualArray[
-    FoldList[fun, val, UnpackDualArray[dualArr]]
-];
-Dual /: Fold[fun_, dualArr_Dual?DualArrayQ] := ( 
-    Fold[fun, UnpackDualArray[dualArr]]
-);
-Dual /: Fold[fun_, val_, dualArr_Dual?DualArrayQ] := ( 
-    Fold[fun, val, UnpackDualArray[dualArr]]
+Dual /: Fold[args_, dualArr_Dual?DualArrayQ] := ( 
+    Fold[args, UnpackDualArray[dualArr]]
 );
 Scan[
     Function[folder,

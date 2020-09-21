@@ -305,7 +305,7 @@ Out[]= True
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
     * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b ϵ`.
-	* `DualTuples`: For a list of dual numbers, find all ways to pick the nonstandard part from one dual number and the standard part from the other ones.
+	* `DualTuples`, `DualTuplesReduce`: For a list of dual numbers, find all ways to pick the nonstandard part from one dual number and the standard part from the other ones.
 
 ## Know issues and limitations
 

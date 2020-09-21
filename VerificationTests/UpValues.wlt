@@ -19,13 +19,13 @@ VerificationTest[(* 2 *)
 	,
 	List[Dual[Plus[\[FormalA][1], \[FormalA][2], \[FormalA][3], \[FormalA][4], \[FormalA][5], \[FormalA][6], \[FormalA][7], \[FormalA][8], \[FormalA][9], \[FormalA][10]], Plus[\[FormalB][1], \[FormalB][2], \[FormalB][3], \[FormalB][4], \[FormalB][5], \[FormalB][6], \[FormalB][7], \[FormalB][8], \[FormalB][9], \[FormalB][10]]], Dual[-8.42866398437041`, -5.969132875714167`], Dual[Times[\[FormalA][1], \[FormalA][2], \[FormalA][3]], Plus[Times[\[FormalA][2], \[FormalA][3], \[FormalB][1]], Times[\[FormalA][1], \[FormalA][3], \[FormalB][2]], Times[\[FormalA][1], \[FormalA][2], \[FormalB][3]]]], Dual[-4.0233586971207944`*^-9, 5.548040846681049`*^-8]]	
 	,
-	TestID->"552e05b9-e03b-481e-b5db-3943808f093a"
+	TestID->"552e05b9-e03b-481e-b5db-3943808f093a", SameTest->Equal
 ]
 
 VerificationTest[(* 3 *)
-	List[Equal[Fold[Plus, testValuesNum], Apply[Plus, testValuesNum]], Equal[Fold[Times, testValuesNum], Apply[Times, testValuesNum]]]
+	List[Equal[Fold[Plus, testValuesNum], Apply[Plus, testValuesNum]], Equal[Fold[Times, testValuesNum], Apply[Times, testValuesNum]], Equal[NonStandard[Fold[Times, testValuesNum]], Total[Apply[Times, DualTuples[testValuesNum], List[1]]]]]
 	,
-	List[True, True]	
+	List[True, True, True]	
 	,
 	TestID->"26171df0-0069-4981-8d67-5e2e2efd3d0e"
 ]
