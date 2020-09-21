@@ -58,8 +58,8 @@ With[{
 ];
 
 DualTuples[{}, ___] := {};
-DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}?VectorQ, {b_}]?DualArrayQ]] := {{b}};
-DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}?VectorQ, {b_}]?DualArrayQ], 1] := {b};
+DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}, {b_}]?DualArrayQ]] := {{b}};
+DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}, {b_}]?DualArrayQ], 1] := {b};
 DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
 DualTuples[dList : {__Dual}] := Map[
     Extract[dList, #]&,
@@ -73,20 +73,20 @@ DualTuples[dList : {__Dual}, i : Except[0, _Integer]] := With[{
         dualTuplesPositions[Length[dList], i]
     ] /; Abs[i] <= len
 ];
-DualTuples[dVec : Dual[a_?VectorQ, b_]?DualArrayQ] := With[{
+DualTuples[dVec : Dual[a_, b_]?DualArrayQ] := With[{
     n = Length[dVec]
 },
     ReplacePart[ConstantArray[a, n],
         Thread[({#, #}& /@ Range[n]) -> b]
     ]
 ];
-DualTuples[dVec : Dual[a_?VectorQ, b_]?DualArrayQ, i : Except[0, _Integer]] := ReplacePart[
+DualTuples[dVec : Dual[a_, b_]?DualArrayQ, i : Except[0, _Integer]] := ReplacePart[
     a,
     i -> b[[i]]
 ];
 
-DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}?VectorQ, {b_}]?DualArrayQ], f_] := {f[b]};
-DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}?VectorQ, {b_}]?DualArrayQ], f_, g_] := g[f[b]];
+DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}, {b_}]?DualArrayQ], f_] := {f[b]};
+DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}, {b_}]?DualArrayQ], f_, g_] := g[f[b]];
 DualTuplesReduce[dList : {__Dual}, f_] := With[{
     n = Length[dList]
 },
@@ -113,7 +113,7 @@ DualTuplesReduce[dList : {__Dual}, f_, g_] := With[{
         Range[2, n]
     ]
 ];
-DualTuplesReduce[dVec : Dual[a_?VectorQ, b_]?DualArrayQ, f_] := With[{
+DualTuplesReduce[dVec : Dual[a_, b_]?DualArrayQ, f_] := With[{
     n = Length[a]
 },
     Map[
@@ -123,7 +123,7 @@ DualTuplesReduce[dVec : Dual[a_?VectorQ, b_]?DualArrayQ, f_] := With[{
         Range[n]
     ]
 ];
-DualTuplesReduce[dVec : Dual[a_?VectorQ, b_]?DualArrayQ, f_, g_] := With[{
+DualTuplesReduce[dVec : Dual[a_, b_]?DualArrayQ, f_, g_] := With[{
     n = Length[a]
 },
     Fold[
