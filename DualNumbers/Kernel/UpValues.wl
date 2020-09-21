@@ -442,7 +442,7 @@ Scan[
 Dual /: FoldList[args__, dualArr_Dual?DualArrayQ] := PackDualArray[
     FoldList[args, UnpackDualArray[dualArr]]
 ];
-Dual /: Fold[args_, dualArr_Dual?DualArrayQ] := ( 
+Dual /: Fold[args__, dualArr_Dual?DualArrayQ] := ( 
     Fold[args, UnpackDualArray[dualArr]]
 );
 Scan[
