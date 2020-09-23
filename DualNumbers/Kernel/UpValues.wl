@@ -10,15 +10,28 @@ DualTuples;
 
 Begin["`Private`"]
 
+(* This comes up frequently enough to warrant a dedicated function *)
+listPosition[list_, patt_, lvl : _ : {1}, n : _ : DirectedInfinity[1]] := Position[list, patt, lvl, n, Heads -> False];
+
 (* Plus UpValue for long sums. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Plus[
     d1_Dual,
-    d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
-    rest___
-] /; True := Dual[
-    Plus[Total[{d1, d2}[[All, 1]]], rest],
-    Total[{d1, d2}[[All, 2]]]
+    rest : Longest @ Repeated[_, {10, DirectedInfinity[1]}]
+] /; True := With[{
+    list = Reap[
+        Replace[{d1, rest},
+            Dual[a_, b_] :> (Sow[b, "dual"]; a),
+            {1}
+        ],
+        "dual"
+    ]
+},
+    Dual[
+        Total[list[[1]]],
+        Total[Join @@ list[[2]]]
+    ]
 ];
+
 (* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
@@ -26,14 +39,8 @@ Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 (* Times UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
 Dual /: Times[
     d1_Dual,
-    d2 : Longest @ Repeated[_Dual, {20, DirectedInfinity[1]}],
-    rest___
-] /; True := With[{
-    d = Fold[Times, d1, {d2}],
-    num = Times[rest]
-},
-    d * num
-];
+    rest : Longest @ Repeated[_, {10, DirectedInfinity[1]}]
+] /; True := Fold[Times, d1, {rest}]; (* The Fold cuts down on pattern matching overhead *)
 (* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
@@ -160,9 +167,6 @@ With[{
 
 
 (* Array operations *)
-
-(* This comes up frequently enough to warrant a dedicated function *)
-listPosition[list_, patt_, lvl : _ : {1}, n : _ : DirectedInfinity[1]] := Position[list, patt, lvl, n, Heads -> False];
 
 Dual::norm = "Encountered array of depth `1`. Cannot compute norms of dual arrays of depth > 1.";
 Dual::infnorm = "Infinite norms can only be computed for numeric dual vectors.";
