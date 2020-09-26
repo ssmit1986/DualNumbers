@@ -54,10 +54,10 @@ With[{
 },
     dualTuplesPositions[0, ___] := {};
     dualTuplesPositions[n_Integer] := cf1[n];
-    dualTuplesPositions[n_Integer, i_] := cf2[n, i]
+    dualTuplesPositions[n_Integer, i_Integer] := cf2[n, i]
 ];
 
-DualTuples[{}, ___] := {};
+DualTuples[{} | Dual[{}, {}], ___] := {};
 DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}, {b_}]?DualArrayQ]] := {{b}};
 DualTuples[{Dual[a_, b_]} | HoldPattern[Dual[{a_}, {b_}]?DualArrayQ], 1] := {b};
 DualTuples[{Dual[a1_, b1_], Dual[a2_, b2_]}] := {{b1, a2}, {a1, b2}};
@@ -85,6 +85,8 @@ DualTuples[dVec : Dual[a_, b_]?DualArrayQ, i : Except[0, _Integer]] := ReplacePa
     i -> b[[i]]
 ];
 
+DualTuplesReduce[{} | Dual[{}, {}], f_] := {};
+DualTuplesReduce[{} | Dual[{}, {}], f_, g_] := g[];
 DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}, {b_}]?DualArrayQ], f_] := {f[b]};
 DualTuplesReduce[HoldPattern[{Dual[a_, b_]} | Dual[{a_}, {b_}]?DualArrayQ], f_, g_] := g[f[b]];
 DualTuplesReduce[dList : {__Dual}, f_] := With[{
@@ -189,6 +191,7 @@ firstSol[other_] := other;
 
 FindDualSolution::nonsol = "Warning: solution `1` could not be verified to solve the standard parts of the provided equations.";
 
+FindDualSolution[eqs_, rule_Rule] := FindDualSolution[eqs, {rule}];
 FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     equations = equationNormalForm[eqs],
     vars = Keys[sol],
@@ -201,7 +204,9 @@ FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     dualRules = Thread[vars -> (Values[sol] + Map[Dual[0, #]&, vars])];
     equations = DualFactor[Subtract @@@ equations] /. dualRules;
     If[ !MatchQ[equations, {Dual[_?(EqualTo[0]), _]..}],
-        Message[FindDualSolution::nonsol, Short @ sol]
+        If[ !MatchQ[equations, {Dual[_?PossibleZeroQ, _]..}],
+            Message[FindDualSolution::nonsol, Short @ sol]
+        ]
     ];
     equations = Function[NonStandard[#] == 0] /@ equations;
     nonstdSol = Solve[equations, vars];
