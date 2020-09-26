@@ -5293,7 +5293,8 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{"?", "DualApply"}], "\[IndentingNewLine]", 
  RowBox[{"?", "AddDualHandling"}]}], "Input",
- CellLabel->"In[43]:=",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
+ CellLabel->
+  "In[127]:=",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5350,9 +5351,15 @@ Dual[\\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"a\\\", \
 \\\"TI\\\"]\\)], \\!\\(\\*StyleBox[\\\"f\\\", \
 \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"b\\\", \
 \\\"TI\\\"]\\)]].\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is the operator \
-form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
+RowBox[{StyleBox[\\\"fspec\\\", \\\"TI\\\"], \\\",\\\",  \
+RowBox[{\\\"Dual\\\", \\\"[\\\", RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \
+\\\",\\\",  StyleBox[\\\"b\\\", \\\"TI\\\"]}], \\\"]\\\"}], \\\",\\\",  \
+StyleBox[\\\"lvlSpec\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) maps the function(s) \
+to deeper levels of \\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) and \
+\\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"DualApply\
+\\\", \\\"[\\\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is \
+the operator form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\
+\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) will use ToDual[\\!\\(\\*StyleBox[\\\"x\\\", \\\
 \"TI\\\"]\\), 0] to cast standard quantities \\!\\(\\*StyleBox[\\\"x\\\", \
 \\\"TI\\\"]\\) to duals.\"\>", "InformationUsageText",
@@ -5406,6 +5413,31 @@ RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
                     RowBox[{
                     RowBox[{"DualApply", "[", 
                     RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`funa_", ",", 
+                    "DualNumbers`Private`funb_"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], ",", 
+                    "DualNumbers`Private`spec_"}], "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`funa", ",", "DualNumbers`Private`a", 
+                    ",", "DualNumbers`Private`spec"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`funb", ",", "DualNumbers`Private`b", 
+                    ",", "DualNumbers`Private`spec"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{
                     RowBox[{"DualNumbers`Private`fun", ":", 
                     RowBox[{"Except", "[", "_List", "]"}]}], ",", 
                     RowBox[{"Dual", "[", 
@@ -5424,6 +5456,29 @@ RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
                     RowBox[{
                     RowBox[{"DualApply", "[", 
                     RowBox[{
+                    RowBox[{"DualNumbers`Private`fun", ":", 
+                    RowBox[{"Except", "[", "_List", "]"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], ",", 
+                    "DualNumbers`Private`spec_"}], "]"}], ":=", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun", ",", "DualNumbers`Private`a", 
+                    ",", "DualNumbers`Private`spec"}], "]"}], ",", 
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`fun", ",", "DualNumbers`Private`b", 
+                    ",", "DualNumbers`Private`spec"}], "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{
                     RowBox[{"{", "DualNumbers`Private`funAll_", "}"}], ",", 
                     RowBox[{"Dual", "[", 
                     RowBox[{
@@ -5434,9 +5489,8 @@ RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
                     RowBox[{"{", 
                     RowBox[{"DualNumbers`Private`try", "=", 
                     RowBox[{"DualNumbers`Private`funAll", "[", 
-                    RowBox[{
-                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
-                    "]"}]}], "}"}], ",", 
+                    RowBox[{"DualNumbers`Private`a", ",", 
+                    "DualNumbers`Private`b"}], "]"}]}], "}"}], ",", 
                     RowBox[{
                     RowBox[{"Dual", "@@", "DualNumbers`Private`try"}], "/;", 
                     RowBox[{"Replace", "[", 
@@ -5459,14 +5513,103 @@ RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
                     {
                     RowBox[{
                     RowBox[{"DualApply", "[", 
+                    RowBox[{
+                    RowBox[{"{", "DualNumbers`Private`funAll_", "}"}], ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ",", "0"}], "]"}], ":=", 
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{
+                    RowBox[{"{", "DualNumbers`Private`funAll", "}"}], ",", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
+                    "]"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{
+                    RowBox[{"{", "DualNumbers`Private`funAll_", "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], ",", 
+                    RowBox[{
+                    "DualNumbers`Private`n_Integer", "?", "Positive"}]}], 
+                    "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"DualNumbers`Private`try", "=", 
+                    RowBox[{"MapThread", "[", 
+                    RowBox[{"DualNumbers`Private`funAll", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
+                    "}"}], ",", "DualNumbers`Private`n"}], "]"}]}], "}"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"Dual", "@@", 
+                    RowBox[{"Transpose", "[", 
+                    RowBox[{"DualNumbers`Private`try", ",", 
+                    RowBox[{"1", "\[TwoWayRule]", 
+                    RowBox[{"DualNumbers`Private`n", "+", "1"}]}]}], "]"}]}], 
+                    "/;", 
+                    RowBox[{"Replace", "[", 
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "Dimensions", "[", "DualNumbers`Private`try", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"_", ",", 
+                    RowBox[{"{", "DualNumbers`Private`n", "}"}]}], "]"}], ",",
+                     "2", ",", "___"}], "}"}]}], "]"}], ",", 
+                    RowBox[{"False", "\[RuleDelayed]", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"DualApply", "::", "resultlength"}], 
+                    "MessageName"], ",", 
+                    RowBox[{
+                    "Short", "[", "DualNumbers`Private`funAll", "]"}]}], 
+                    "]"}], ";", "False"}], ")"}]}]}], "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
                     RowBox[{"DualNumbers`Private`f_", ",", 
                     RowBox[{"DualNumbers`Private`other", ":", 
-                    RowBox[{"Except", "[", "_Dual", "]"}]}]}], "]"}], ":=", 
+                    RowBox[{"Except", "[", "_Dual", "]"}]}], ",", 
+                    "DualNumbers`Private`rest___"}], "]"}], ":=", 
                     RowBox[{"DualApply", "[", 
                     RowBox[{"DualNumbers`Private`f", ",", 
                     RowBox[{"ToDual", "[", 
-                    RowBox[{"DualNumbers`Private`other", ",", "0"}], "]"}]}], 
-                    "]"}]}]}
+                    RowBox[{"DualNumbers`Private`other", ",", "0"}], "]"}], 
+                    ",", "DualNumbers`Private`rest"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"DualApply", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`f_", ",", 
+                    "DualNumbers`Private`d_Dual", ",", 
+                    "DualNumbers`Private`spec_"}], "]"}], "/;", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"DualApply", "::", "arraySpec"}], "MessageName"], 
+                    ",", 
+                    RowBox[{"Short", "[", "DualNumbers`Private`spec", "]"}]}],
+                     "]"}], ";", "False"}], ")"}]}], ":=", "Undefined"}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -5574,7 +5717,6 @@ RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -5656,9 +5798,15 @@ Dual[\\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"a\\\", \
 \\\"TI\\\"]\\)], \\!\\(\\*StyleBox[\\\"f\\\", \
 \\\"TI\\\"]\\)[\\!\\(\\*StyleBox[\\\"b\\\", \
 \\\"TI\\\"]\\)]].\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is the operator \
-form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
+RowBox[{StyleBox[\\\"fspec\\\", \\\"TI\\\"], \\\",\\\",  \
+RowBox[{\\\"Dual\\\", \\\"[\\\", RowBox[{StyleBox[\\\"a\\\", \\\"TI\\\"], \
+\\\",\\\",  StyleBox[\\\"b\\\", \\\"TI\\\"]}], \\\"]\\\"}], \\\",\\\",  \
+StyleBox[\\\"lvlSpec\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) maps the function(s) \
+to deeper levels of \\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) and \
+\\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"DualApply\
+\\\", \\\"[\\\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) is \
+the operator form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\
+\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"x\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) will use ToDual[\\!\\(\\*StyleBox[\\\"x\\\", \\\
 \"TI\\\"]\\), 0] to cast standard quantities \\!\\(\\*StyleBox[\\\"x\\\", \
 \\\"TI\\\"]\\) to duals.\"\>", "InformationUsageText",
@@ -5748,13 +5896,17 @@ RowBox[{\"Dual\", \"[\", RowBox[{StyleBox[\"a\", \"TI\"], \",\",  \
 StyleBox[\"b\", \"TI\"]}], \"]\"}]}], \"]\"}]\) returns \
 Dual[\!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"a\", \"TI\"]\)], \
 \!\(\*StyleBox[\"f\", \"TI\"]\)[\!\(\*StyleBox[\"b\", \"TI\"]\)]].\n\
-\!\(\*RowBox[{\"DualApply\", \"[\", RowBox[{StyleBox[\"f\", \"TI\"]}], \
-\"]\"}]\) is the operator form of DualApply.\n\!\(\*RowBox[{\"DualApply\", \
-\"[\", RowBox[{StyleBox[\"f\", \"TI\"], \",\",  StyleBox[\"x\", \"TI\"]}], \
-\"]\"}]\) will use ToDual[\!\(\*StyleBox[\"x\", \"TI\"]\), 0] to cast \
-standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.", 
-    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
-    "DownValues" -> 
+\!\(\*RowBox[{\"DualApply\", \"[\", RowBox[{StyleBox[\"fspec\", \"TI\"], \
+\",\",  RowBox[{\"Dual\", \"[\", RowBox[{StyleBox[\"a\", \"TI\"], \",\",  \
+StyleBox[\"b\", \"TI\"]}], \"]\"}], \",\",  StyleBox[\"lvlSpec\", \"TI\"]}], \
+\"]\"}]\) maps the function(s) to deeper levels of \!\(\*StyleBox[\"a\", \"TI\
+\"]\) and \!\(\*StyleBox[\"b\", \"TI\"]\).\n\!\(\*RowBox[{\"DualApply\", \
+\"[\", RowBox[{StyleBox[\"f\", \"TI\"]}], \"]\"}]\) is the operator form of \
+DualApply.\n\!\(\*RowBox[{\"DualApply\", \"[\", RowBox[{StyleBox[\"f\", \
+\"TI\"], \",\",  StyleBox[\"x\", \"TI\"]}], \"]\"}]\) will use \
+ToDual[\!\(\*StyleBox[\"x\", \"TI\"]\), 0] to cast standard quantities \
+\!\(\*StyleBox[\"x\", \"TI\"]\) to duals.", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
     Information`InformationValueForm[
      DownValues, DualNumbers`DualApply, {DualNumbers`DualApply[{
           Pattern[DualNumbers`Private`funa, 
@@ -5768,7 +5920,25 @@ standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.",
            Blank[]]]] :> DualNumbers`Dual[
          DualNumbers`Private`funa[DualNumbers`Private`a], 
          DualNumbers`Private`funb[DualNumbers`Private`b]], 
-       DualNumbers`DualApply[
+       DualNumbers`DualApply[{
+          Pattern[DualNumbers`Private`funa, 
+           Blank[]], 
+          Pattern[DualNumbers`Private`funb, 
+           Blank[]]}, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`spec, 
+          Blank[]]] :> DualNumbers`Dual[
+         Map[
+         DualNumbers`Private`funa, DualNumbers`Private`a, 
+          DualNumbers`Private`spec], 
+         Map[
+         DualNumbers`Private`funb, DualNumbers`Private`b, 
+          DualNumbers`Private`spec]], DualNumbers`DualApply[
          Pattern[DualNumbers`Private`fun, 
           Except[
            Blank[List]]], 
@@ -5779,7 +5949,24 @@ standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.",
            Blank[]]]] :> DualNumbers`Dual[
          DualNumbers`Private`fun[DualNumbers`Private`a], 
          DualNumbers`Private`fun[DualNumbers`Private`b]], 
-       DualNumbers`DualApply[{
+       DualNumbers`DualApply[
+         Pattern[DualNumbers`Private`fun, 
+          Except[
+           Blank[List]]], 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         Pattern[DualNumbers`Private`spec, 
+          Blank[]]] :> DualNumbers`Dual[
+         Map[
+         DualNumbers`Private`fun, DualNumbers`Private`a, 
+          DualNumbers`Private`spec], 
+         Map[
+         DualNumbers`Private`fun, DualNumbers`Private`b, 
+          DualNumbers`Private`spec]], DualNumbers`DualApply[{
           Pattern[DualNumbers`Private`funAll, 
            Blank[]]}, 
          DualNumbers`Dual[
@@ -5798,14 +5985,66 @@ standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.",
              Blank[]}], False :> (Message[
               MessageName[DualNumbers`DualApply, "resultlength"], 
               Short[DualNumbers`Private`funAll]]; False)]]], 
+       DualNumbers`DualApply[{
+          Pattern[DualNumbers`Private`funAll, 
+           Blank[]]}, 
+         DualNumbers`Dual[
+          Pattern[DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[DualNumbers`Private`b, 
+           Blank[]]], 0] :> 
+       DualNumbers`DualApply[{DualNumbers`Private`funAll}, 
+         DualNumbers`Dual[DualNumbers`Private`a, DualNumbers`Private`b]], 
+       DualNumbers`DualApply[{
+          Pattern[DualNumbers`Private`funAll, 
+           Blank[]]}, 
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b, 
+            Blank[]]], DualNumbers`DualArrayQ], 
+         PatternTest[
+          Pattern[DualNumbers`Private`n, 
+           Blank[Integer]], Positive]] :> 
+       With[{DualNumbers`Private`try = 
+          MapThread[
+           DualNumbers`Private`funAll, {
+            DualNumbers`Private`a, DualNumbers`Private`b}, 
+            DualNumbers`Private`n]}, 
+         Condition[
+          Apply[DualNumbers`Dual, 
+           Transpose[DualNumbers`Private`try, 
+            TwoWayRule[1, DualNumbers`Private`n + 1]]], 
+          Replace[
+           MatchQ[
+            Dimensions[DualNumbers`Private`try], {
+             Repeated[
+              Blank[], {DualNumbers`Private`n}], 2, 
+             BlankNullSequence[]}], False :> (Message[
+              MessageName[DualNumbers`DualApply, "resultlength"], 
+              Short[DualNumbers`Private`funAll]]; False)]]], 
        DualNumbers`DualApply[
          Pattern[DualNumbers`Private`f, 
           Blank[]], 
          Pattern[DualNumbers`Private`other, 
           Except[
-           Blank[DualNumbers`Dual]]]] :> 
+           Blank[DualNumbers`Dual]]], 
+         Pattern[DualNumbers`Private`rest, 
+          BlankNullSequence[]]] :> 
        DualNumbers`DualApply[DualNumbers`Private`f, 
-         DualNumbers`ToDual[DualNumbers`Private`other, 0]]}], "SubValues" -> 
+         DualNumbers`ToDual[DualNumbers`Private`other, 0], 
+         DualNumbers`Private`rest], Condition[
+         DualNumbers`DualApply[
+          Pattern[DualNumbers`Private`f, 
+           Blank[]], 
+          Pattern[DualNumbers`Private`d, 
+           Blank[DualNumbers`Dual]], 
+          Pattern[DualNumbers`Private`spec, 
+           Blank[]]], Message[
+           MessageName[DualNumbers`DualApply, "arraySpec"], 
+           Short[DualNumbers`Private`spec]]; False] :> Undefined}], 
+    "SubValues" -> 
     Information`InformationValueForm[
      SubValues, DualNumbers`DualApply, {DualNumbers`DualApply[
          Pattern[DualNumbers`Private`fun, 
@@ -5820,7 +6059,8 @@ standard quantities \!\(\*StyleBox[\"x\", \"TI\"]\) to duals.",
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`DualApply"], False]]], "Output",
- CellLabel->"Out[43]=",ExpressionUUID->"b8066ab6-e4ba-47ce-ab68-0860b5016cf5"],
+ CellLabel->
+  "Out[127]=",ExpressionUUID->"b5676b1c-7554-4894-8fcf-3bf68bb1e7d3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6000,10 +6240,20 @@ RowBox[{StyleBox[SubscriptBox[\\\"n\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
                     "]"}]}], "]"}], "/;", 
                     RowBox[{
                     RowBox[{"Length", "[", "DualNumbers`Private`args", "]"}], 
-                    "===", "DualNumbers`Private`n"}]}]}], "]"}]}]}], "]"}]}]}
+                    "===", "DualNumbers`Private`n"}]}]}], "]"}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"AddDualHandling", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`f_", ",", "DualNumbers`Private`g_"}],
+                     "]"}], ":=", 
+                    RowBox[{"AddDualHandling", "[", 
+                    RowBox[{"DualNumbers`Private`f", ",", 
+                    RowBox[{"{", "DualNumbers`Private`g", "}"}]}], "]"}]}]}
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -6299,8 +6549,15 @@ infer derivatives of \!\(\*StyleBox[\"f\", \"TI\"]\) for when \!\(\*StyleBox[\
                  Part[
                  DualNumbers`Private`args, DualNumbers`Private`dualPos, 2]]], 
                ListQ[DualNumbers`Private`dlist]]]], 
-            Length[DualNumbers`Private`args] === DualNumbers`Private`n]]]]}], 
-    "SubValues" -> None, "DefaultValues" -> 
+            Length[DualNumbers`Private`args] === DualNumbers`Private`n]]]], 
+       DualNumbers`AddDualHandling[
+         Pattern[DualNumbers`Private`f, 
+          Blank[]], 
+         Pattern[DualNumbers`Private`g, 
+          Blank[]]] :> 
+       DualNumbers`AddDualHandling[
+        DualNumbers`Private`f, {DualNumbers`Private`g}]}], "SubValues" -> 
+    None, "DefaultValues" -> 
     Information`InformationValueForm[
      DefaultValues, DualNumbers`AddDualHandling, {
       SyntaxInformation[DualNumbers`AddDualHandling] -> {"ArgumentsPattern" -> {
@@ -6308,7 +6565,7 @@ infer derivatives of \!\(\*StyleBox[\"f\", \"TI\"]\) for when \!\(\*StyleBox[\
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`AddDualHandling"], 
    False]]], "Output",
- CellLabel->"Out[44]=",ExpressionUUID->"149af0d8-3bb4-4577-baef-5af0bd61eed9"]
+ CellLabel->"Out[128]=",ExpressionUUID->"22da4791-3fde-48b1-b5c4-908d10e06c71"]
 }, Open  ]]
 }, Open  ]],
 
@@ -6987,6 +7244,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -7002,7 +7260,6 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -7087,6 +7344,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -7371,6 +7629,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
@@ -7649,6 +7908,7 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -8781,7 +9041,6 @@ Cell[BoxData[
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -8930,7 +9189,6 @@ Cell[BoxData[
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
@@ -9074,7 +9332,7 @@ Cell[BoxData[{
       RowBox[{"#", "[", "\"\<TestResultRules\>\"", "]"}]}], "&"}], ",", 
     "\[IndentingNewLine]", "testReport"}], "\[IndentingNewLine]", "]"}], "//",
    "Dataset"}]}], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+ CellLabel->"In[6]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
 Cell[BoxData[
  TagBox[
@@ -9089,12 +9347,12 @@ Cell[BoxData[
          "TestsFailedWithMessages" -> 0, "TestsFailedWithErrors" -> 0], 
        "HelperFunctions.wlt" -> 
        Association[
-        "TestsSucceeded" -> 31, "TestsFailedWrongResults" -> 0, 
+        "TestsSucceeded" -> 36, "TestsFailedWrongResults" -> 0, 
          "TestsFailedWithMessages" -> 0, "TestsFailedWithErrors" -> 0], 
        "UpValues.wlt" -> 
        Association[
-        "TestsSucceeded" -> 29, "TestsFailedWrongResults" -> 0, 
-         "TestsFailedWithMessages" -> 3, "TestsFailedWithErrors" -> 0]], 
+        "TestsSucceeded" -> 34, "TestsFailedWrongResults" -> 0, 
+         "TestsFailedWithMessages" -> 0, "TestsFailedWithErrors" -> 0]], 
      "InitialShape" -> TypeSystem`PackageScope`HeaderShape[
        Association[{All, 
           TypeSystem`PackageScope`KeyDummy[0]} -> 1, {All, "TestsSucceeded"} -> 
@@ -9123,7 +9381,7 @@ Cell[BoxData[
          TypeSystem`Atom[Integer], 
          TypeSystem`Atom[Integer], 
          TypeSystem`Atom[Integer]}], 3], "Meta" -> 
-     Association["ID" -> 219430091751209], "RowTarget" -> 20, "ColumnTarget" -> 
+     Association["ID" -> 204075583672997], "RowTarget" -> 20, "ColumnTarget" -> 
      10, "Shape" -> TypeSystem`PackageScope`HeaderShape[
        Association[{All, 
           TypeSystem`PackageScope`KeyDummy[0]} -> 1, {All, "TestsSucceeded"} -> 
@@ -9180,7 +9438,7 @@ Cell[BoxData[
                     Rational[-1, 2]}}]}, ImageSize -> 6, BaselinePosition -> 
                  Scaled[-0.15]]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{All, Keys}, 
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{All, Keys}, 
                 "KeyDummy", True], "Mouse"], 
               ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9206,7 +9464,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsSucceeded"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                 All, "TestsSucceeded"}, "ColumnHeader", True], "Mouse"], 
               ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9232,7 +9490,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWrongResults"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                 All, "TestsFailedWrongResults"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9258,7 +9516,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWithMessages"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                 All, "TestsFailedWithMessages"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9284,7 +9542,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWithErrors"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                 All, "TestsFailedWithErrors"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9310,7 +9568,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["DualNumbers.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["DualNumbers.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9320,17 +9578,18 @@ Cell[BoxData[
               Annotation[
                RawBoxes["28"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["DualNumbers.wlt"], 
-                 Key["TestsSucceeded"]}, "Item", False], "Mouse"], ImageSize -> {\
-{34, Full}, Automatic}, ImageMargins -> {{5, 3}, {4, 5}}], 
+                 Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
+              ImageSize -> {{34, Full}, Automatic}, 
+              ImageMargins -> {{5, 3}, {4, 5}}], 
              ItemSize -> {Full, Automatic}], 
             Item[
              Pane[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9341,7 +9600,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9352,7 +9611,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9379,7 +9638,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["HelperFunctions.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["HelperFunctions.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9387,9 +9646,9 @@ Cell[BoxData[
             Item[
              Pane[
               Annotation[
-               RawBoxes["31"], 
+               RawBoxes["36"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9400,7 +9659,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9411,7 +9670,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9422,7 +9681,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9449,7 +9708,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["UpValues.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["UpValues.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9457,9 +9716,9 @@ Cell[BoxData[
             Item[
              Pane[
               Annotation[
-               RawBoxes["29"], 
+               RawBoxes["34"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["UpValues.wlt"], 
                  Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9470,7 +9729,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9479,9 +9738,9 @@ Cell[BoxData[
             Item[
              Pane[
               Annotation[
-               RawBoxes["3"], 
+               RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9492,7 +9751,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "dcbd44d1-c393-490d-b890-0c1c81386722"][{
+               "6d27825a-8db1-46fb-880b-69272472dbf6"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9625,7 +9884,8 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
                     TypeSystem`NestedGrid`PackagePrivate`$outputID$$][
                     TypeSystem`NestedGrid`PackagePrivate`lastPath$, 
                     "Ascending"]], MenuEvaluator -> Automatic], Nothing], 
-                    If[TypeSystem`NestedGrid`PackagePrivate`sortDirection$ =!= 
+                    If[
+                    TypeSystem`NestedGrid`PackagePrivate`sortDirection$ =!= 
                     "Descending", 
                     MenuItem["Reverse Sort", 
                     KernelExecute[
@@ -9803,7 +10063,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"156829c7-0ea7-4585-8a85-c6d68d800ff0"]
+ CellLabel->"Out[7]=",ExpressionUUID->"5a89079c-a8e1-4592-a703-d5825e608335"]
 }, Open  ]]
 }, Closed]],
 
@@ -9819,7 +10079,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
     "}"}], "]"}], "]"}]], "Input",
- CellLabel->"In[61]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"]
+ CellLabel->"In[8]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"]
 }, Closed]]
 },
 WindowSize->{1236.75, 676.5},

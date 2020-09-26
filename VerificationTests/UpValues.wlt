@@ -273,7 +273,9 @@ VerificationTest[(* 29 *)
 VerificationTest[(* 30 *)
 	Select[Dual[1, 2], EvenQ]
 	,
-	Dual[2, 0]	
+	Dual[2, 0]
+	,
+	{Dual::arrayOp}
 	,
 	TestID->"3af53e2f-f4df-466b-a0fe-8cc3800c82ad"
 ]
@@ -291,7 +293,7 @@ VerificationTest[(* 32 *)
 	,
 	Pick[Dual[1, 2], List[]]
 	,
-	{Pick::incomp}
+	{Dual::arrayOp, Pick::incomp}
 	,
 	TestID->"2ff42615-1afa-4625-8307-ea5a628bf23d"
 ]
@@ -301,7 +303,7 @@ VerificationTest[(* 33 *)
 	,
 	Pick[List[], Dual[1, 2]]
 	,
-	{Pick::incomp}
+	{Dual::arrayOp, Pick::incomp}
 	,
 	TestID->"4781a4f6-e1eb-47e0-a94d-9ae6f6d84d4d"
 ]

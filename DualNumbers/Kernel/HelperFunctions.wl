@@ -167,7 +167,8 @@ AddDualHandling[f_, g_] := AddDualHandling[f, {g}];
 
 (* Modify standard and nonstandard parts directly *)
 DualApply::resultlength = "Function `1` did not return a list of length 2.";
-DualApply::arraySpec = "Spec `1` can only be used with dual arrays.";
+DualApply::arraySpec = "Level spec `1` can only be used with dual arrays.";
+DualApply::lvlSpec = "Level spec `1` can only take positive integer values for function spec `2`.";
 
 DualApply[{funa_, funb_}, Dual[a_, b_]] := Dual[funa[a], funb[b]];
 DualApply[{funa_, funb_}, Dual[a_, b_]?DualArrayQ, spec_] := Dual[Map[funa, a, spec], Map[funb, b, spec]];
@@ -194,7 +195,8 @@ DualApply[{funAll_}, Dual[a_, b_]?DualArrayQ, n_Integer?Positive] := With[{
 ];
 
 DualApply[f_, other : standardPatt, rest___] := DualApply[f, ToDual[other, 0], rest];
-DualApply[f_, d_Dual, spec_] /; (Message[DualApply::arraySpec, Short[spec]]; False) := Undefined;
+DualApply[f_, d_Dual?DualScalarQ, spec_] /; (Message[DualApply::arraySpec, Short[spec]]; False) := Undefined;
+DualApply[{f_}, d_Dual, spec_] /; (Message[DualApply::lvlSpec, Short[spec], Short[{f}]]; False) := Undefined;
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
