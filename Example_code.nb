@@ -26,13 +26,19 @@ DualNumbers-1.0.paclet\>\"",
 Cell["Load the package from the cloned repository:", \
 "Text",ExpressionUUID->"28f45967-93e7-4046-8b32-cf276cc7b22c"],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"<<", "DualNumbers`"}]}], "Input",
- CellLabel->"In[13]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"]
+  ";"}]], "Input",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+
+Cell["Load the package:", \
+"Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "DualNumbers`"}]], \
+"Input",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -879,6 +885,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{12., {3., 9.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
@@ -9777,13 +9784,13 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
         Hold[
           TypeSystem`NestedGrid`PackagePrivate`localHold[
           TypeSystem`NestedGrid`PackagePrivate`$outputID$$]]], StandardForm],
-      ImageSizeCache->{891., {76.25, 83.75}},
+      ImageSizeCache->{884., {74., 81.}},
       TrackedSymbols:>{
        TypeSystem`NestedGrid`PackagePrivate`$state$$, 
         TypeSystem`NestedGrid`PackagePrivate`$grid$$}], 
      TypeSystem`NestedGrid`PackagePrivate`mouseAnnotation$$ = 
      MouseAnnotation[],
-     ImageSizeCache->{891., {76.25, 83.75}}],
+     ImageSizeCache->{884., {74., 81.}}],
     BaseStyle->{LineBreakWithin -> False},
     DynamicModuleValues:>{},
     Initialization:>
