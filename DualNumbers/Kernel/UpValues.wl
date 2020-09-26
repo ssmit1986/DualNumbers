@@ -197,22 +197,9 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
-(* Dot UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
-Dual /: Dot[
-    first___,
-    d1_Dual?DualArrayQ,
-    d2 : Longest @ Repeated[_Dual?DualArrayQ, {3, DirectedInfinity[1]}],
-    rest___
-] /; True := With[{
-    m1 = Dot[first],
-    m2 = Block[{DualArrayQ = True&}, (* All arrays have already been checked; no need to do it again *)
-        Fold[Dot, d1, {d2}]
-    ],
-    m3 = Dot[rest]
-},
-    Dot[m1, m2, m3]
-];
-(* UpValues for shorter arguments *)
+(* Dot UpValues for many arguments. *)
+Dual /: (dot : Dot[___, d_Dual, ___]) /; Length[Unevaluated[dot]] > 3 && DualArrayQ[d] := Fold[Dot, List @@ Unevaluated[dot]];
+(* UpValues for few arguments *)
 Dual /: Dot[
     Dual[a1_, b1_]?DualArrayQ,
     Dual[a2_, b2_]?DualArrayQ
