@@ -383,20 +383,16 @@ Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefine
 
 Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
 Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := With[{
-    vals = fun1 /@ a
+    posAssoc = PositionIndex[fun1 /@ a]
 },
-    With[{
-        uniqueVals = PositionIndex[vals]
-    },
-        Map[
-            red @ Map[fun2,
-                Dual[
-                    Developer`ToPackedArray @ Part[a, #],
-                    Developer`ToPackedArray @ Part[b, #]
-                ]
-            ]&,
-            uniqueVals
-        ]
+    Map[
+        red @ Map[fun2,
+            Dual[
+                Developer`ToPackedArray @ Part[a, #],
+                Developer`ToPackedArray @ Part[b, #]
+            ]
+        ]&,
+        posAssoc
     ]
 ];
 Dual /: GroupBy[d_Dual, fun : Except[_List], rest___] := GroupBy[d, fun -> Identity, rest];
