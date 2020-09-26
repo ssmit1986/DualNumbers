@@ -386,13 +386,13 @@ Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := 
     vals = fun1 /@ a
 },
     With[{
-        uniqueVals = DeleteDuplicates[vals]
+        uniqueVals = PositionIndex[vals]
     },
-        AssociationMap[
+        Map[
             red @ Map[fun2,
                 Dual[
-                    Developer`ToPackedArray @ Pick[a, vals, #],
-                    Developer`ToPackedArray @ Pick[b, vals, #]
+                    Developer`ToPackedArray @ Part[a, #],
+                    Developer`ToPackedArray @ Part[b, #]
                 ]
             ]&,
             uniqueVals
