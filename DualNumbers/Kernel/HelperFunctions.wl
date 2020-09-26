@@ -163,6 +163,7 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
         ] /; Length[args] === n
     ]
 ];
+AddDualHandling[f_, g_] := AddDualHandling[f, {g}];
 
 (* Modify standard and nonstandard parts directly *)
 DualApply::resultlength = "Function `1` did not return a list of length 2."
