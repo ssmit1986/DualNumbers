@@ -86,18 +86,24 @@ VerificationTest[(* 10 *)
 	List[DualApply[f, Dual[a, b]], DualApply[List[f, g], Dual[a, b]], DualApply[List[Function[List[f[SlotSequence[1]], g[SlotSequence[1]]]]], Dual[a, b]]]
 	,
 	List[Dual[f[a], f[b]], Dual[f[a], g[b]], Dual[f[a, b], g[a, b]]]	
+	,
+	TestID->"b00344b3-e86e-4693-99cb-f765409ac1d2"
 ]
 
 VerificationTest[(* 11 *)
 	List[DualApply[f, a], DualApply[List[f, g], a], DualApply[List[Function[List[f[SlotSequence[1]], g[SlotSequence[1]]]]], a]]
 	,
 	List[Dual[f[a], f[0]], Dual[f[a], g[0]], Dual[f[a, 0], g[a, 0]]]	
+	,
+	TestID->"90de102c-7eea-4479-b782-cfe46dcfa4fd"
 ]
 
 VerificationTest[(* 12 *)
 	List[DualApply[f][Dual[a, b]], DualApply[List[f, g]][Dual[a, b]], DualApply[List[Function[List[f[SlotSequence[1]], g[SlotSequence[1]]]]]][Dual[a, b]]]
 	,
 	List[Dual[f[a], f[b]], Dual[f[a], g[b]], Dual[f[a, b], g[a, b]]]	
+	,
+	TestID->"3c3b5616-b9c4-41e2-901a-c4babd095bf3"
 ]
 
 VerificationTest[(* 13 *)
@@ -106,6 +112,94 @@ VerificationTest[(* 13 *)
 	DualApply[List[f], Dual[a, b]]
 	,
 	{DualApply::resultlength}
+	,
+	TestID->"b3c5b856-bf34-4958-b832-6dc081c7c66a"
+]
+
+EndTestSection[]
+
+BeginTestSection["Equation solving"]
+
+VerificationTest[(* 14 *)
+	List[FindDualSolution[Equal[x, Dual[1, b]], Rule[x, 1]], FindDualSolution[Equal[x, Dual[1, b]], List[Rule[x, 1]]]]
+	,
+	List[List[List[Rule[x, Dual[1, b]]]], List[List[Rule[x, Dual[1, b]]]]]	
+	,
+	TestID->"0f9b56f2-43b3-456c-b3ea-2a9d7be84422"
+]
+
+VerificationTest[(* 15 *)
+	List[FindDualSolution[Equal[Power[x, 2], Dual[2, b]], Rule[x, Sqrt[2]]], FindDualSolution[Equal[Power[x, 2], Dual[2, b]], Rule[x, Times[-1, Sqrt[2]]]], FindDualSolution[Equal[Exp[x], Dual[2, b]], Rule[x, Log[2]]], FindDualSolution[Equal[Log[x], Dual[2, b]], Rule[x, Exp[2]]]]
+	,
+	List[List[List[Rule[x, Dual[Sqrt[2], Times[b, Power[Times[2, Sqrt[2]], -1]]]]]], List[List[Rule[x, Dual[Times[-1, Sqrt[2]], Times[-1, Times[b, Power[Times[2, Sqrt[2]], -1]]]]]]], List[List[Rule[x, Dual[Log[2], Times[b, Power[2, -1]]]]]], List[List[Rule[x, Dual[Power[E, 2], Times[b, Power[E, 2]]]]]]]	
+	,
+	TestID->"14a0b9f2-a16c-4408-b192-9603298cef51"
+]
+
+VerificationTest[(* 16 *)
+	Quiet[List[FindDualSolution[Equal[Power[x, 2], Dual[2.`, b]], Rule[x, Sqrt[2.`]]], FindDualSolution[Equal[Exp[x], Dual[2.`, b]], Rule[x, Log[2.`]]], FindDualSolution[Equal[Log[x], Dual[2.`, b]], Rule[x, Exp[2.`]]]]]
+	,
+	List[List[List[Rule[x, Dual[1.4142135623730951`, Times[0.35355339059327373`, b]]]]], List[List[Rule[x, Dual[0.6931471805599453`, Times[0.5`, b]]]]], List[List[Rule[x, Dual[7.38905609893065`, Times[7.3890560989306495`, b]]]]]]	
+	,
+	TestID->"983bc19e-7dd2-4dc9-8db0-c552e0a86084"
+]
+
+VerificationTest[(* 17 *)
+	Quiet[List[FindDualSolution[Equal[Power[x, 2], Dual[2.`, 1.`]], Rule[x, Sqrt[2.`]]], FindDualSolution[Equal[Exp[x], Dual[2.`, 1.`]], Rule[x, Log[2.`]]], FindDualSolution[Equal[Log[x], Dual[2.`, 1.`]], Rule[x, Exp[2.`]]]]]
+	,
+	List[List[List[Rule[x, Dual[1.4142135623730951`, 0.35355339059327373`]]]], List[List[Rule[x, Dual[0.6931471805599453`, 0.5`]]]], List[List[Rule[x, Dual[7.38905609893065`, 7.3890560989306495`]]]]]	
+	,
+	TestID->"bed46822-1c97-4906-a345-a6fab85f044e"
+]
+
+VerificationTest[(* 18 *)
+	Assuming[Greater[a, 0], List[FindDualSolution[Equal[Power[x, 2], Dual[a, b]], Rule[x, Sqrt[a]]], FindDualSolution[Equal[Exp[x], Dual[a, b]], Rule[x, Log[a]]], FindDualSolution[Equal[Log[x], Dual[a, b]], Rule[x, Exp[a]]]]]
+	,
+	List[List[List[Rule[x, Dual[Sqrt[a], Times[b, Power[Times[2, Sqrt[a]], -1]]]]]], List[List[Rule[x, Dual[Log[a], Times[b, Power[a, -1]]]]]], List[List[Rule[x, Dual[Power[E, a], Times[b, Power[E, a]]]]]]]	
+	,
+	TestID->"615e90c9-7e54-4264-ba16-f6a0c3b9af67"
+]
+
+VerificationTest[(* 19 *)
+	FindDualSolution[Equal[x, Dual[1, b]], Rule[x, 2]]
+	,
+	List[List[Rule[x, Dual[2, b]]]]
+	,
+	{FindDualSolution::nonsol}
+	,
+	TestID->"0e508e37-8eb8-41bb-94b6-7c9bb6447dca"
+]
+
+VerificationTest[(* 20 *)
+	CompoundExpression[Set[standardSol, FindRoot[List[Equal[Exp[Plus[x, -2]], y], Equal[Power[y, 2], x]], List[List[x, 1], List[y, 1]]]], Set[equations, List[List[Equal[Exp[Plus[x, -2]], y], Equal[Power[y, 2], x]], List[Equal[Exp[Plus[x, -2]], y], Equal[Times[Dual[1, 1], Power[y, 2]], x]], List[Equal[Exp[Plus[Times[Dual[1, 1], x], -2]], y], Equal[Power[y, 2], x]], List[Equal[Exp[Plus[x, Times[-1, Dual[2, 1]]]], y], Equal[Power[y, 2], x]], List[Equal[Exp[Plus[x, -2]], y], Equal[Power[y, Dual[2, 1]], x]], List[Equal[Exp[Plus[x, Times[-1, Dual[2, 1]]]], y], Equal[Power[y, Dual[2, 1]], x]]]], Set[sols1, Map[Function[FindDualSolution[Slot[1], standardSol]], equations]]]
+	,
+	List[Repeated[List[List[Rule[x, Dual[PatternTest[Blank[], NumericQ], PatternTest[Blank[], NumericQ]]], Rule[y, Dual[PatternTest[Blank[], NumericQ], PatternTest[Blank[], NumericQ]]]]]]]	
+	,
+	SameTest->MatchQ, TestID->"315543b7-13e2-4547-b678-71c4e5e7f356"
+]
+
+VerificationTest[(* 21 *)
+	List[DualFindRoot[Equal[x, Dual[2, 1]], List[x, 1]], DualFindRoot[Equal[Power[x, 2], Dual[2, 1]], List[x, 1]], DualFindRoot[Equal[Exp[x], Dual[2, 1]], List[x, 1]], DualFindRoot[Equal[Log[x], Dual[2, 1]], List[x, 1]]]
+	,
+	List[List[Rule[x, Dual[2.`, 1]]], List[Rule[x, Dual[1.4142135623730951`, 0.35355339059327373`]]], List[Rule[x, Dual[0.6931471805599453`, 0.5`]]], List[Rule[x, Dual[7.389056098930651`, 7.389056098930651`]]]]	
+	,
+	TestID->"214622c5-e7e7-4b46-be87-a53671012ca2"
+]
+
+VerificationTest[(* 22 *)
+	Set[sols2, Map[Function[DualFindRoot[Slot[1], List[List[x, 1], List[y, 1]]]], equations]]
+	,
+	List[List[Rule[x, Dual[0.019026016103714054`, 0.`]], Rule[y, Dual[0.13793482556524314`, 0.`]]], List[Rule[x, Dual[0.019026016103714054`, 0.019778633294869334`]], Rule[y, Dual[0.13793482556524314`, 0.0027281623334467118`]]], List[Rule[x, Dual[0.019026016103714054`, 0.0007526171911552778`]], Rule[y, Dual[0.13793482556524314`, 0.0027281623334467118`]]], List[Rule[x, Dual[0.019026016103714054`, -0.03955726658973867`]], Rule[y, Dual[0.13793482556524314`, -0.14339115023213655`]]], List[Rule[x, Dual[0.019026016103714054`, -0.039180957994161034`]], Rule[y, Dual[0.13793482556524314`, -0.005404418606403721`]]], List[Rule[x, Dual[0.019026016103714054`, -0.0787382245838997`]], Rule[y, Dual[0.13793482556524314`, -0.14879556883854028`]]]]	
+	,
+	TestID->"a96358af-f5b7-45f7-a063-1ab112e5fdb5"
+]
+
+VerificationTest[(* 23 *)
+	Equal[Part[sols1, All, 1], sols2]
+	,
+	True	
+	,
+	TestID->"5d4de4af-4f1b-4f84-af8e-252c585b2b1f"
 ]
 
 EndTestSection[]

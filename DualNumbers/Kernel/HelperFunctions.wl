@@ -191,6 +191,7 @@ firstSol[other_] := other;
 
 FindDualSolution::nonsol = "Warning: solution `1` could not be verified to solve the standard parts of the provided equations.";
 
+FindDualSolution[eqs_, rule_Rule] := FindDualSolution[eqs, {rule}];
 FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     equations = equationNormalForm[eqs],
     vars = Keys[sol],
@@ -203,7 +204,9 @@ FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     dualRules = Thread[vars -> (Values[sol] + Map[Dual[0, #]&, vars])];
     equations = DualFactor[Subtract @@@ equations] /. dualRules;
     If[ !MatchQ[equations, {Dual[_?(EqualTo[0]), _]..}],
-        Message[FindDualSolution::nonsol, Short @ sol]
+        If[ !MatchQ[equations, {Dual[_?PossibleZeroQ, _]..}],
+            Message[FindDualSolution::nonsol, Short @ sol]
+        ]
     ];
     equations = Function[NonStandard[#] == 0] /@ equations;
     nonstdSol = Solve[equations, vars];
