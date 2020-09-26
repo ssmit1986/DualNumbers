@@ -19,9 +19,9 @@ Cell["Install the paclet:", \
 
 Cell[BoxData[
  RowBox[{"PacletInstall", "[", 
-  "\"\<https://github.com/ssmit1986/DualNumbers/releases/download/1.0/\
-DualNumbers-1.0.paclet\>\"", 
-  "]"}]], "Input",ExpressionUUID->"f518a1ee-3764-4e3c-b526-7d6b66a13f31"],
+  "\"\<https://github.com/ssmit1986/DualNumbers/releases/download/1.1/\
+DualNumbers-1.1.paclet\>\"", "]"}]], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
 
 Cell["Load the package from the cloned repository:", \
 "Text",ExpressionUUID->"28f45967-93e7-4046-8b32-cf276cc7b22c"],
@@ -1203,6 +1203,7 @@ scalar or array with constant nonstandard part. The default value for \
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -1823,7 +1824,6 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
                     RowBox[{"{", "_", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
-                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -1869,7 +1869,6 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
-            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -2116,6 +2115,7 @@ standard parts.\"\>", "InformationUsageText",
                     RowBox[{"{", "_", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
+                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -2459,7 +2459,6 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -2898,6 +2897,7 @@ On[\\\"Packing\\\"].\"\>", "InformationUsageText",
             DefaultBaseStyle->"Column",
             GridBoxAlignment->{"Columns" -> {{Left}}},
             GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
             GridBoxSpacings->{"Columns" -> {
@@ -3229,7 +3229,6 @@ be applied to Dual arrays.\"\>", "InformationUsageText",
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
-                    
                     ColumnForm[{
                     SyntaxInformation[DualNumbers`DualLinearSolveFunction] = {
                     "ArgumentsPattern" -> {
@@ -3570,6 +3569,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
                     ColumnForm[{
                     SyntaxInformation[DualNumbers`DualQ] = {
                     "ArgumentsPattern" -> {
@@ -10079,7 +10079,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
     "}"}], "]"}], "]"}]], "Input",
- CellLabel->"In[8]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"]
+ CellLabel->"In[13]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"]
 }, Closed]]
 },
 WindowSize->{1236.75, 676.5},
