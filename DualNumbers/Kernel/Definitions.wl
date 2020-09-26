@@ -77,9 +77,9 @@ GeneralUtilities`SetUsage[DualApply,
     "DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
 DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][[2]]]. f$All should return a List of length 2.
 DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
+DualApply[fspec$, Dual[a$, b$], lvlSpec$] maps the function(s) to deeper levels of a$ and b$.
 DualApply[f$] is the operator form of DualApply.
-DualApply[f$, x$] will use ToDual[x$, 0] to cast standard quantities x$ to duals. 
-"
+DualApply[f$, x$] will use ToDual[x$, 0] to cast standard quantities x$ to duals."
 ];
 GeneralUtilities`SetUsage[DualTuples,
     "DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
