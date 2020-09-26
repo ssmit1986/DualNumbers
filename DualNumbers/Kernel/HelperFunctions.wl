@@ -166,9 +166,15 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
 AddDualHandling[f_, g_] := AddDualHandling[f, {g}];
 
 (* Modify standard and nonstandard parts directly *)
-DualApply::resultlength = "Function `1` did not return a list of length 2."
+DualApply::resultlength = "Function `1` did not return a list of length 2.";
+DualApply::arraySpec = "Spec `1` can only be used with dual arrays.";
+
 DualApply[{funa_, funb_}, Dual[a_, b_]] := Dual[funa[a], funb[b]];
+DualApply[{funa_, funb_}, Dual[a_, b_]?DualArrayQ, spec_] := Dual[Map[funa, a, spec], Map[funb, b, spec]];
+
 DualApply[fun : Except[_List], Dual[a_, b_]] := Dual[fun[a], fun[b]];
+DualApply[fun : Except[_List], Dual[a_, b_]?DualArrayQ, spec_] := Dual[Map[fun, a, spec], Map[fun, b, spec]];
+
 DualApply[{funAll_}, Dual[a_, b_]] := With[{
     try = funAll[a, b]
 },
@@ -177,7 +183,18 @@ DualApply[{funAll_}, Dual[a_, b_]] := With[{
         False :> (Message[DualApply::resultlength, Short[funAll]]; False)
     ]
 ];
-DualApply[f_, other : standardPatt] := DualApply[f, ToDual[other, 0]];
+DualApply[{funAll_}, Dual[a_, b_], 0] := DualApply[{funAll}, Dual[a, b]];
+DualApply[{funAll_}, Dual[a_, b_]?DualArrayQ, n_Integer?Positive] := With[{
+    try = MapThread[funAll, {a, b}, n]
+},
+    Dual @@ Transpose[try, 1 <-> n + 1] /; Replace[
+        MatchQ[Dimensions[try], {Repeated[_, {n}], 2, ___}],
+        False :> (Message[DualApply::resultlength, Short[funAll]]; False)
+    ]
+];
+
+DualApply[f_, other : standardPatt, rest___] := DualApply[f, ToDual[other, 0], rest];
+DualApply[f_, d_Dual, spec_] /; (Message[DualApply::arraySpec, Short[spec]]; False) := Undefined;
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)
