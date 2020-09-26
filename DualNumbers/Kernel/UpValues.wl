@@ -395,7 +395,7 @@ Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := 
         posAssoc
     ]
 ];
-Dual /: GroupBy[d_Dual, fun : Except[_List], rest___] := GroupBy[d, fun -> Identity, rest];
+Dual /: GroupBy[d_Dual, fun : Except[_List | _Rule], rest___] := GroupBy[d, fun -> Identity, rest];
 Dual /: GroupBy[fun_][d_Dual] := GroupBy[d, fun];
 Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun_, ___] /; (Message[Dual::groupbyfun, Short[fun]]; False) := Undefined;
 Dual /: GroupBy[_Dual, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
