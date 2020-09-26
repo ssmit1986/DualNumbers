@@ -240,4 +240,40 @@ VerificationTest[(* 27 *)
 
 EndTestSection[]
 
+BeginTestSection["AddDualHandling"]
+
+VerificationTest[(* 28 *)
+	CompoundExpression[AddDualHandling[fun, funPrime], List[fun[a], fun[Dual[a, b]], fun[a1, a2], fun[Dual[a1, b1], a2], fun[a1, Dual[a2, b2]], fun[Dual[a1, b1], Dual[a2, b2]]]]
+	,
+	List[fun[a], Dual[fun[a], Times[b, funPrime[a]]], fun[a1, a2], fun[Dual[a1, b1], a2], fun[a1, Dual[a2, b2]], fun[Dual[a1, b1], Dual[a2, b2]]]	
+	,
+	TestID->"24e3267b-6b21-49c9-808a-d31aa5871741"
+]
+
+VerificationTest[(* 29 *)
+	CompoundExpression[AddDualHandling[fun, Array[funPrime, 2]], List[fun[a], fun[Dual[a, b]], fun[a1, a2], fun[Dual[a1, b1], a2], fun[a1, Dual[a2, b2]], fun[Dual[a1, b1], Dual[a2, b2]]]]
+	,
+	List[fun[a], Dual[fun[a], Times[b, funPrime[a]]], fun[a1, a2], Dual[fun[a1, a2], Times[b1, funPrime[1][a1, a2]]], Dual[fun[a1, a2], Times[b2, funPrime[2][a1, a2]]], Dual[fun[a1, a2], Plus[Times[b1, funPrime[1][a1, a2]], Times[b2, funPrime[2][a1, a2]]]]]	
+	,
+	TestID->"1f79cfd6-96c2-402d-8855-17a3eeaaa516"
+]
+
+VerificationTest[(* 30 *)
+	CompoundExpression[AddDualHandling[fun2, 1], List[fun2[a], fun2[Dual[a, b]], fun2[a1, a2], fun2[Dual[a1, b1], a2], fun2[a1, Dual[a2, b2]], fun2[Dual[a1, b1], Dual[a2, b2]]]]
+	,
+	List[fun2[a], Dual[fun2[a], Times[b, Derivative[1][fun2][a]]], fun2[a1, a2], fun2[Dual[a1, b1], a2], fun2[a1, Dual[a2, b2]], fun2[Dual[a1, b1], Dual[a2, b2]]]	
+	,
+	TestID->"be5d31f6-1da0-4fe7-829e-1db0a1f63116"
+]
+
+VerificationTest[(* 31 *)
+	CompoundExpression[AddDualHandling[fun2, 2], List[fun2[a], fun2[Dual[a, b]], fun2[a1, a2], fun2[Dual[a1, b1], a2], fun2[a1, Dual[a2, b2]], fun2[Dual[a1, b1], Dual[a2, b2]]]]
+	,
+	List[fun2[a], Dual[fun2[a], Times[b, Derivative[1][fun2][a]]], fun2[a1, a2], Dual[fun2[a1, a2], Times[b1, Derivative[1, 0][fun2][a1, a2]]], Dual[fun2[a1, a2], Times[b2, Derivative[0, 1][fun2][a1, a2]]], Dual[fun2[a1, a2], Plus[Times[b2, Derivative[0, 1][fun2][a1, a2]], Times[b1, Derivative[1, 0][fun2][a1, a2]]]]]	
+	,
+	TestID->"786f0819-448c-4d99-945a-8c13eabc89f9"
+]
+
+EndTestSection[]
+
 EndTestSection[]
