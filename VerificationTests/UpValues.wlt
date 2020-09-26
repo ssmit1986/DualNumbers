@@ -212,6 +212,94 @@ VerificationTest[(* 22 *)
 
 EndTestSection[]
 
+BeginTestSection["Selecting"]
+
+VerificationTest[(* 23 *)
+	CompoundExpression[Set[arr, Dual[Array[a, List[3, 2]], Array[b, List[3, 2]]]], List[Part[arr, List[1, 2]], Take[arr, 2], Drop[arr, 2], Extract[arr, List[List[1], List[2]]], Extract[arr, List[List[1, 1], List[2, 2]]]]]
+	,
+	List[Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[List[a[3, 1], a[3, 2]]], List[List[b[3, 1], b[3, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[a[1, 1], a[2, 2]], List[b[1, 1], b[2, 2]]]]	
+	,
+	TestID->"56931f4e-6eaf-494c-a315-14a7d8c0c2d7"
+]
+
+VerificationTest[(* 24 *)
+	Through[List[First, Rest, Most, Last][arr]]
+	,
+	List[Dual[List[a[1, 1], a[1, 2]], List[b[1, 1], b[1, 2]]], Dual[List[List[a[2, 1], a[2, 2]], List[a[3, 1], a[3, 2]]], List[List[b[2, 1], b[2, 2]], List[b[3, 1], b[3, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[a[3, 1], a[3, 2]], List[b[3, 1], b[3, 2]]]]	
+	,
+	TestID->"3ea728f1-5171-4f9b-96c7-8e0e046b6361"
+]
+
+VerificationTest[(* 25 *)
+	List[SameQ[Join[Part[arr, List[1]], Part[arr, Span[2, All]]], arr], SameQ[Join[Part[arr, All, List[1]], Part[arr, All, Span[2, All]], 2], arr]]
+	,
+	List[True, True]	
+	,
+	TestID->"083afab6-6a66-4298-abd7-5aaf57544739"
+]
+
+VerificationTest[(* 26 *)
+	Through[List[Transpose, Mean, Total, Flatten][arr]]
+	,
+	List[Dual[List[List[a[1, 1], a[2, 1], a[3, 1]], List[a[1, 2], a[2, 2], a[3, 2]]], List[List[b[1, 1], b[2, 1], b[3, 1]], List[b[1, 2], b[2, 2], b[3, 2]]]], Dual[List[Times[Times[1, Power[3, -1]], Plus[a[1, 1], a[2, 1], a[3, 1]]], Times[Times[1, Power[3, -1]], Plus[a[1, 2], a[2, 2], a[3, 2]]]], List[Times[Times[1, Power[3, -1]], Plus[b[1, 1], b[2, 1], b[3, 1]]], Times[Times[1, Power[3, -1]], Plus[b[1, 2], b[2, 2], b[3, 2]]]]], Dual[List[Plus[a[1, 1], a[2, 1], a[3, 1]], Plus[a[1, 2], a[2, 2], a[3, 2]]], List[Plus[b[1, 1], b[2, 1], b[3, 1]], Plus[b[1, 2], b[2, 2], b[3, 2]]]], Dual[List[a[1, 1], a[1, 2], a[2, 1], a[2, 2], a[3, 1], a[3, 2]], List[b[1, 1], b[1, 2], b[2, 1], b[2, 2], b[3, 1], b[3, 2]]]]	
+	,
+	TestID->"2e63fc1c-c822-4ca4-94e0-2dfd7937906f"
+]
+
+VerificationTest[(* 27 *)
+	List[Select[Dual[List[], List[]], EvenQ], Select[Dual[List[1, 2], List[a, b]], Function[False]], Select[Dual[List[1, 2], List[a, b]], Function[True]], Select[Dual[List[1, 2], List[a, b]], EvenQ], Select[UnpackDualArray[Dual[List[1, 2], List[a, b]]], EvenQ]]
+	,
+	List[Dual[List[], List[]], Dual[List[], List[]], Dual[List[1, 2], List[a, b]], Dual[List[2], List[b]], List[Dual[2, b]]]	
+	,
+	TestID->"5a4fbafa-117c-41e4-821a-aa4e30b7a195"
+]
+
+VerificationTest[(* 28 *)
+	Select[Dual[1, 2], EvenQ]
+	,
+	Dual[2, 0]	
+	,
+	TestID->"3af53e2f-f4df-466b-a0fe-8cc3800c82ad"
+]
+
+VerificationTest[(* 29 *)
+	List[Pick[Dual[List[], List[]], List[]], Pick[List[], Dual[List[], List[]]], Pick[Dual[List[], List[]], Dual[List[], List[]]], Pick[Dual[List[a1, a2], List[b1, b2]], List[True, False]], Pick[List[a1, a2], Dual[List[0, 1], List[b1, b2]], 1], Pick[Dual[List[a1, a2], List[b1, b2]], Dual[List[0, 1], List[5, 6]], 1]]
+	,
+	List[Dual[List[], List[]], List[], Dual[List[], List[]], Dual[List[a1], List[b1]], List[a2], Dual[List[a2], List[b2]]]	
+	,
+	TestID->"b4e494d1-0f16-40bb-a66b-e1ad69a55efc"
+]
+
+VerificationTest[(* 30 *)
+	Pick[Dual[1, 2], List[]]
+	,
+	Pick[Dual[1, 2], List[]]
+	,
+	{Pick::incomp}
+	,
+	TestID->"2ff42615-1afa-4625-8307-ea5a628bf23d"
+]
+
+VerificationTest[(* 31 *)
+	Pick[List[], Dual[1, 2]]
+	,
+	Pick[List[], Dual[1, 2]]
+	,
+	{Pick::incomp}
+	,
+	TestID->"4781a4f6-e1eb-47e0-a94d-9ae6f6d84d4d"
+]
+
+VerificationTest[(* 32 *)
+	List[Position[Dual[List[], List[]], 1], Position[Dual[List[1], List[2]], 1]]
+	,
+	List[List[], List[List[1]]]	
+	,
+	TestID->"4f21f8bb-a42e-4795-af1e-9f9730e8c620"
+]
+
+EndTestSection[]
+
 EndTestSection[]
 
 EndTestSection[]
