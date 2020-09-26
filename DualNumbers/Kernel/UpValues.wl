@@ -198,14 +198,14 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[D
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
 (* Dot UpValues for many arguments. *)
-Dual /: (dot : Dot[___, _Dual, ___]) /; Length[Unevaluated[dot]] > 3 := Fold[Dot, Unevaluated[dot]];
+Dual /: (dot : Dot[___, _Dual, ___]) /; Length[Unevaluated[dot]] > 5 := Fold[Dot, Unevaluated[dot]];
 (* UpValues for few arguments *)
 Dual /: Dot[
     Dual[a1_, b1_]?DualArrayQ,
     Dual[a2_, b2_]?DualArrayQ
 ] := Dual[a1.a2, a1.b2 + b1.a2];
-Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
-Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
+Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b];
+Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c];
 
 Dual /: MatrixPower[
     d_Dual?SquareMatrixQ,
