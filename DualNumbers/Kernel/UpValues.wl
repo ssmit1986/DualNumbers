@@ -197,7 +197,7 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
-(* Dot UpValues for many arguments. *)
+(* Dot UpValue for many arguments. *)
 Dual /: (dot : Dot[___, _Dual, ___]) /; Length[Unevaluated[dot]] > 5 := Fold[Dot, Unevaluated[dot]];
 (* UpValues for few arguments *)
 Dual /: Dot[
