@@ -381,24 +381,36 @@ Dual /: Pick[list_, sel_Dual?DualArrayQ, patt : _ : True] /; Length[list] === Le
 Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
 Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
 
-Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
-Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := With[{
-    posAssoc = PositionIndex[fun1 /@ a]
+groupDual[
+    d_Dual,
+    (fun1 : Except[_Rule | _List]) -> (fun2 : Except[_Rule | _List])
+] := Map[Map[fun2], groupDual[d, fun1]];
+groupDual[Dual[a_, b_], fun : Except[_Rule | _List]] := With[{
+    posAssoc = PositionIndex[fun /@ a]
 },
     Map[
-        red @ Map[fun2,
-            Dual[
-                Developer`ToPackedArray @ Part[a, #],
-                Developer`ToPackedArray @ Part[b, #]
-            ]
+        Dual[
+            Developer`ToPackedArray @ Part[a, #],
+            Developer`ToPackedArray @ Part[b, #]
         ]&,
         posAssoc
     ]
 ];
-Dual /: GroupBy[d_Dual, fun : Except[_List | _Rule], rest___] := GroupBy[d, fun -> Identity, rest];
+
+Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
+Dual /: GroupBy[d_Dual?DualArrayQ, fun : Except[_List]] := With[{
+    assoc = groupDual[d, fun]
+},
+    assoc /; AssociationQ[assoc]
+];
+Dual /: GroupBy[d_Dual?DualArrayQ, fun : Except[_List], reducer_] := With[{
+    assoc = groupDual[d, fun]
+},
+    Map[reducer, assoc] /; AssociationQ[assoc]
+];
 Dual /: GroupBy[fun_][d_Dual] := GroupBy[d, fun];
 Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun_, ___] /; (Message[Dual::groupbyfun, Short[fun]]; False) := Undefined;
-Dual /: GroupBy[_Dual, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
+Dual /: GroupBy[_Dual?DualScalarQ, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
 
 (* Short-circuit definitions for Map to prevent uncessary unpacking *)
 Dual /: Map[Identity, d_Dual?DualArrayQ] := d;
