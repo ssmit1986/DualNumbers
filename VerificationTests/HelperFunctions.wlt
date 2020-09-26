@@ -204,4 +204,40 @@ VerificationTest[(* 23 *)
 
 EndTestSection[]
 
+BeginTestSection["DualFindMinimum & DualFindMaximum"]
+
+VerificationTest[(* 24 *)
+	List[DualFindMinimum[Times[Dual[1, 1], x, Cos[x]], List[x, 2]], DualFindMinimum[Times[x, Cos[Times[Dual[1, 1], x]]], List[x, 2]]]
+	,
+	List[List[Dual[-3.2883713955908966`, -3.2883713955908966`], List[Rule[x, Dual[3.425618459492147`, -1.0418883362877956`*^-11]]]], List[Dual[-3.2883713955908966`, 3.2883713955908966`], List[Rule[x, Dual[3.425618459492147`, -3.425618459492147`]]]]]	
+	,
+	TestID->"f33d863f-ebff-4abb-b0ad-f9bad0e75aa4"
+]
+
+VerificationTest[(* 25 *)
+	List[DualFindMaximum[Times[Times[-1, Dual[1, 1]], x, Cos[x]], List[x, 2]], DualFindMaximum[Times[Times[-1, x], Cos[Times[Dual[1, 1], x]]], List[x, 2]]]
+	,
+	List[List[Dual[3.2883713955908966`, 3.2883713955908966`], List[Rule[x, Dual[3.425618459492147`, -1.0418883362877956`*^-11]]]], List[Dual[3.2883713955908966`, -3.2883713955908966`], List[Rule[x, Dual[3.425618459492147`, -3.425618459492147`]]]]]	
+	,
+	TestID->"29d62661-bf9e-4ce0-ad29-d4fda175f628"
+]
+
+VerificationTest[(* 26 *)
+	List[DualFindMinimum[Times[Sin[x], Sin[Times[Dual[2, 1], y]]], List[List[x, 2], List[y, 2]]], DualFindMinimum[Times[Sin[Times[Dual[1, 1], x]], Sin[Times[2, y]]], List[List[x, 2], List[y, 2]]], DualFindMinimum[Plus[Dual[0, 1], Times[Sin[Times[1, x]], Sin[Times[2, y]]]], List[List[x, 2], List[y, 2]]]]
+	,
+	List[List[Dual[-1.`, -6.0641305537977`*^-18], List[Rule[x, Dual[1.5707963225561392`, 2.5704377344461602`*^-26]], Rule[y, Dual[2.356194488451062`, -1.1780972433548897`]]]], List[Dual[-1.`, -1.7967064353811206`*^-17], List[Rule[x, Dual[1.5707963225561392`, -1.5707963183173819`]], Rule[y, Dual[2.356194488451062`, 3.1285739149167003`*^-26]]]], List[Dual[-1.`, 1.`], List[Rule[x, Dual[1.5707963225561392`, 0.`]], Rule[y, Dual[2.356194488451062`, 0.`]]]]]	
+	,
+	TestID->"66b29d4b-b1b6-41b7-9dfe-d4a5a528e986"
+]
+
+VerificationTest[(* 27 *)
+	List[DualFindMaximum[Times[Times[-1, Sin[x]], Sin[Times[Dual[2, 1], y]]], List[List[x, 2], List[y, 2]]], DualFindMaximum[Times[Times[-1, Sin[Times[Dual[1, 1], x]]], Sin[Times[2, y]]], List[List[x, 2], List[y, 2]]], DualFindMaximum[Plus[Times[-1, Dual[0, 1]], Times[-1, Times[Sin[Times[1, x]], Sin[Times[2, y]]]]], List[List[x, 2], List[y, 2]]]]
+	,
+	List[List[Dual[1.`, 6.0641305537977`*^-18], List[Rule[x, Dual[1.5707963225561392`, 2.5704377344461602`*^-26]], Rule[y, Dual[2.356194488451062`, -1.1780972433548897`]]]], List[Dual[1.`, 1.7967064353811206`*^-17], List[Rule[x, Dual[1.5707963225561392`, -1.5707963183173819`]], Rule[y, Dual[2.356194488451062`, 3.1285739149167003`*^-26]]]], List[Dual[1.`, -1.`], List[Rule[x, Dual[1.5707963225561392`, 0.`]], Rule[y, Dual[2.356194488451062`, 0.`]]]]]	
+	,
+	TestID->"aaff126c-2c10-4635-ac9f-3a544d2bdbaa"
+]
+
+EndTestSection[]
+
 EndTestSection[]
