@@ -146,6 +146,8 @@ VerificationTest[(* 17 *)
 	DualApply[List[f], Dual[List[List[a[1, 1]], List[a[2, 1]], List[a[3, 1]]], List[List[b[1, 1]], List[b[2, 1]], List[b[3, 1]]]], 2]
 	,
 	{DualApply::resultlength}
+	,
+	TestID->"ea63f1ae-5b4b-46ab-aa88-6499e19f3394"
 ]
 
 VerificationTest[(* 18 *)

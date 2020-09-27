@@ -203,6 +203,14 @@ VerificationTest[(* 21 *)
 ]
 
 VerificationTest[(* 22 *)
+	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]]]
+	,
+	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]]]	
+	,
+	TestID->"c5b5445e-2a00-4eef-b536-58381696d908"
+]
+
+VerificationTest[(* 23 *)
 	With[List[Set[manyDuals, RandomSample[Join[Map[PackDualArray, Apply[Dual, RandomReal[1, List[1000, 2, 3, 3]], List[1]]], RandomReal[1, List[1000, 3, 3]]]]]], Through[List[DualArrayQ, Dimensions][Apply[Dot, manyDuals]]]]
 	,
 	List[True, List[3, 3]]	
@@ -210,7 +218,7 @@ VerificationTest[(* 22 *)
 	TimeConstraint->5, TestID->"a69d21a2-abad-4299-8cd2-a73d6e46f276"
 ]
 
-VerificationTest[(* 23 *)
+VerificationTest[(* 24 *)
 	With[List[Set[manyDuals, RandomSample[Join[Map[PackDualArray, Apply[Dual, RandomInteger[10, List[20, 2, 5, 5]], List[1]]], RandomInteger[10, List[20, 5, 5]]]]]], SameQ[Apply[Dot, manyDuals], Fold[Dot, manyDuals]]]
 	,
 	True	
@@ -222,7 +230,7 @@ EndTestSection[]
 
 BeginTestSection["Selecting"]
 
-VerificationTest[(* 24 *)
+VerificationTest[(* 25 *)
 	CompoundExpression[Set[arr, Dual[Array[a, List[3, 2]], Array[b, List[3, 2]]]], List[Part[arr, List[1, 2]], Take[arr, 2], Drop[arr, 2], Extract[arr, List[List[1], List[2]]], Extract[arr, List[List[1, 1], List[2, 2]]]]]
 	,
 	List[Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[List[a[3, 1], a[3, 2]]], List[List[b[3, 1], b[3, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[a[1, 1], a[2, 2]], List[b[1, 1], b[2, 2]]]]	
@@ -230,7 +238,7 @@ VerificationTest[(* 24 *)
 	TestID->"56931f4e-6eaf-494c-a315-14a7d8c0c2d7"
 ]
 
-VerificationTest[(* 25 *)
+VerificationTest[(* 26 *)
 	Through[List[First, Rest, Most, Last][arr]]
 	,
 	List[Dual[List[a[1, 1], a[1, 2]], List[b[1, 1], b[1, 2]]], Dual[List[List[a[2, 1], a[2, 2]], List[a[3, 1], a[3, 2]]], List[List[b[2, 1], b[2, 2]], List[b[3, 1], b[3, 2]]]], Dual[List[List[a[1, 1], a[1, 2]], List[a[2, 1], a[2, 2]]], List[List[b[1, 1], b[1, 2]], List[b[2, 1], b[2, 2]]]], Dual[List[a[3, 1], a[3, 2]], List[b[3, 1], b[3, 2]]]]	
@@ -238,7 +246,7 @@ VerificationTest[(* 25 *)
 	TestID->"3ea728f1-5171-4f9b-96c7-8e0e046b6361"
 ]
 
-VerificationTest[(* 26 *)
+VerificationTest[(* 27 *)
 	List[SameQ[Join[Part[arr, List[1]], Part[arr, Span[2, All]]], arr], SameQ[Join[Part[arr, All, List[1]], Part[arr, All, Span[2, All]], 2], arr]]
 	,
 	List[True, True]	
@@ -246,7 +254,7 @@ VerificationTest[(* 26 *)
 	TestID->"083afab6-6a66-4298-abd7-5aaf57544739"
 ]
 
-VerificationTest[(* 27 *)
+VerificationTest[(* 28 *)
 	Through[List[Transpose, Mean, Total, Flatten][arr]]
 	,
 	List[Dual[List[List[a[1, 1], a[2, 1], a[3, 1]], List[a[1, 2], a[2, 2], a[3, 2]]], List[List[b[1, 1], b[2, 1], b[3, 1]], List[b[1, 2], b[2, 2], b[3, 2]]]], Dual[List[Times[Times[1, Power[3, -1]], Plus[a[1, 1], a[2, 1], a[3, 1]]], Times[Times[1, Power[3, -1]], Plus[a[1, 2], a[2, 2], a[3, 2]]]], List[Times[Times[1, Power[3, -1]], Plus[b[1, 1], b[2, 1], b[3, 1]]], Times[Times[1, Power[3, -1]], Plus[b[1, 2], b[2, 2], b[3, 2]]]]], Dual[List[Plus[a[1, 1], a[2, 1], a[3, 1]], Plus[a[1, 2], a[2, 2], a[3, 2]]], List[Plus[b[1, 1], b[2, 1], b[3, 1]], Plus[b[1, 2], b[2, 2], b[3, 2]]]], Dual[List[a[1, 1], a[1, 2], a[2, 1], a[2, 2], a[3, 1], a[3, 2]], List[b[1, 1], b[1, 2], b[2, 1], b[2, 2], b[3, 1], b[3, 2]]]]	
@@ -254,7 +262,7 @@ VerificationTest[(* 27 *)
 	TestID->"2e63fc1c-c822-4ca4-94e0-2dfd7937906f"
 ]
 
-VerificationTest[(* 28 *)
+VerificationTest[(* 29 *)
 	List[GroupBy[arr, First], GroupBy[arr, Function[EvenQ[Part[Slot[1], 1, 1]]]], GroupBy[arr, Rule[First, Sin]], GroupBy[arr, Rule[First, Sin], Function[Total[Slot[1], 2]]]]
 	,
 	List[Association[Rule[a[1, 1], Dual[List[List[a[1, 1], a[1, 2]]], List[List[b[1, 1], b[1, 2]]]]], Rule[a[2, 1], Dual[List[List[a[2, 1], a[2, 2]]], List[List[b[2, 1], b[2, 2]]]]], Rule[a[3, 1], Dual[List[List[a[3, 1], a[3, 2]]], List[List[b[3, 1], b[3, 2]]]]]], Association[Rule[False, Dual[List[List[a[1, 1], a[1, 2]], List[a[3, 1], a[3, 2]]], List[List[b[1, 1], b[1, 2]], List[b[3, 1], b[3, 2]]]]], Rule[True, Dual[List[List[a[2, 1], a[2, 2]]], List[List[b[2, 1], b[2, 2]]]]]], Association[Rule[a[1, 1], Dual[List[List[Sin[a[1, 1]], Sin[a[1, 2]]]], List[List[Times[b[1, 1], Cos[a[1, 1]]], Times[b[1, 2], Cos[a[1, 2]]]]]]], Rule[a[2, 1], Dual[List[List[Sin[a[2, 1]], Sin[a[2, 2]]]], List[List[Times[b[2, 1], Cos[a[2, 1]]], Times[b[2, 2], Cos[a[2, 2]]]]]]], Rule[a[3, 1], Dual[List[List[Sin[a[3, 1]], Sin[a[3, 2]]]], List[List[Times[b[3, 1], Cos[a[3, 1]]], Times[b[3, 2], Cos[a[3, 2]]]]]]]], Association[Rule[a[1, 1], Dual[Plus[Sin[a[1, 1]], Sin[a[1, 2]]], Plus[Times[b[1, 1], Cos[a[1, 1]]], Times[b[1, 2], Cos[a[1, 2]]]]]], Rule[a[2, 1], Dual[Plus[Sin[a[2, 1]], Sin[a[2, 2]]], Plus[Times[b[2, 1], Cos[a[2, 1]]], Times[b[2, 2], Cos[a[2, 2]]]]]], Rule[a[3, 1], Dual[Plus[Sin[a[3, 1]], Sin[a[3, 2]]], Plus[Times[b[3, 1], Cos[a[3, 1]]], Times[b[3, 2], Cos[a[3, 2]]]]]]]]	
@@ -262,7 +270,7 @@ VerificationTest[(* 28 *)
 	TestID->"e4067233-cde4-458e-988c-82e17b75cb70"
 ]
 
-VerificationTest[(* 29 *)
+VerificationTest[(* 30 *)
 	GroupBy[Dual[1, 2], f]
 	,
 	GroupBy[Dual[1, 2], f]
@@ -272,7 +280,7 @@ VerificationTest[(* 29 *)
 	TestID->"5ac38c7c-bda0-4821-9361-a5629eb09265"
 ]
 
-VerificationTest[(* 30 *)
+VerificationTest[(* 31 *)
 	GroupBy[Dual[1, 2], f, g]
 	,
 	GroupBy[Dual[1, 2], f, g]
@@ -282,7 +290,7 @@ VerificationTest[(* 30 *)
 	TestID->"ad7e9d62-cc10-4fb1-82cf-5db2d37450b8"
 ]
 
-VerificationTest[(* 31 *)
+VerificationTest[(* 32 *)
 	GroupBy[Dual[1, 2], List[f]]
 	,
 	GroupBy[Dual[1, 2], List[f]]
@@ -292,7 +300,7 @@ VerificationTest[(* 31 *)
 	TestID->"3cc02ffc-c1a5-41a1-bbfd-631cd3f546f0"
 ]
 
-VerificationTest[(* 32 *)
+VerificationTest[(* 33 *)
 	GroupBy[Dual[List[1], List[2]], List[f]]
 	,
 	GroupBy[Dual[List[1], List[2]], List[f]]
@@ -302,7 +310,7 @@ VerificationTest[(* 32 *)
 	TestID->"03f34999-0633-4cd6-93d8-580c9dedb0a1"
 ]
 
-VerificationTest[(* 33 *)
+VerificationTest[(* 34 *)
 	GroupBy[Dual[List[1], List[2]], List[f], g]
 	,
 	GroupBy[Dual[List[1], List[2]], List[f], g]
@@ -312,7 +320,7 @@ VerificationTest[(* 33 *)
 	TestID->"ab3ce908-750e-4e32-b377-a022621be77e"
 ]
 
-VerificationTest[(* 34 *)
+VerificationTest[(* 35 *)
 	Module[List[res], CompoundExpression[On["Packing"], Set[res, List[Through[Map[Map, List[First, Last, Most, Rest]][arr]], GroupBy[arr, Rule[First, Rest]]]], Off["Packing"], res]]
 	,
 	List[List[Dual[List[a[1, 1], a[2, 1], a[3, 1]], List[b[1, 1], b[2, 1], b[3, 1]]], Dual[List[a[1, 2], a[2, 2], a[3, 2]], List[b[1, 2], b[2, 2], b[3, 2]]], Dual[List[List[a[1, 1]], List[a[2, 1]], List[a[3, 1]]], List[List[b[1, 1]], List[b[2, 1]], List[b[3, 1]]]], Dual[List[List[a[1, 2]], List[a[2, 2]], List[a[3, 2]]], List[List[b[1, 2]], List[b[2, 2]], List[b[3, 2]]]]], Association[Rule[a[1, 1], Dual[List[List[a[1, 2]]], List[List[b[1, 2]]]]], Rule[a[2, 1], Dual[List[List[a[2, 2]]], List[List[b[2, 2]]]]], Rule[a[3, 1], Dual[List[List[a[3, 2]]], List[List[b[3, 2]]]]]]]	
@@ -320,7 +328,7 @@ VerificationTest[(* 34 *)
 	TestID->"8c51c238-f95d-4a48-87ab-c2af2b64984c"
 ]
 
-VerificationTest[(* 35 *)
+VerificationTest[(* 36 *)
 	List[Select[Dual[List[], List[]], EvenQ], Select[Dual[List[1, 2], List[a, b]], Function[False]], Select[Dual[List[1, 2], List[a, b]], Function[True]], Select[Dual[List[1, 2], List[a, b]], EvenQ], Select[UnpackDualArray[Dual[List[1, 2], List[a, b]]], EvenQ]]
 	,
 	List[Dual[List[], List[]], Dual[List[], List[]], Dual[List[1, 2], List[a, b]], Dual[List[2], List[b]], List[Dual[2, b]]]	
@@ -328,7 +336,7 @@ VerificationTest[(* 35 *)
 	TestID->"5a4fbafa-117c-41e4-821a-aa4e30b7a195"
 ]
 
-VerificationTest[(* 36 *)
+VerificationTest[(* 37 *)
 	Select[Dual[1, 2], EvenQ]
 	,
 	Dual[2, 0]
@@ -338,7 +346,7 @@ VerificationTest[(* 36 *)
 	TestID->"3af53e2f-f4df-466b-a0fe-8cc3800c82ad"
 ]
 
-VerificationTest[(* 37 *)
+VerificationTest[(* 38 *)
 	List[Pick[Dual[List[], List[]], List[]], Pick[List[], Dual[List[], List[]]], Pick[Dual[List[], List[]], Dual[List[], List[]]], Pick[Dual[List[a1, a2], List[b1, b2]], List[True, False]], Pick[List[a1, a2], Dual[List[0, 1], List[b1, b2]], 1], Pick[Dual[List[a1, a2], List[b1, b2]], Dual[List[0, 1], List[5, 6]], 1]]
 	,
 	List[Dual[List[], List[]], List[], Dual[List[], List[]], Dual[List[a1], List[b1]], List[a2], Dual[List[a2], List[b2]]]	
@@ -346,7 +354,7 @@ VerificationTest[(* 37 *)
 	TestID->"b4e494d1-0f16-40bb-a66b-e1ad69a55efc"
 ]
 
-VerificationTest[(* 38 *)
+VerificationTest[(* 39 *)
 	Pick[Dual[1, 2], List[]]
 	,
 	Pick[Dual[1, 2], List[]]
@@ -356,7 +364,7 @@ VerificationTest[(* 38 *)
 	TestID->"2ff42615-1afa-4625-8307-ea5a628bf23d"
 ]
 
-VerificationTest[(* 39 *)
+VerificationTest[(* 40 *)
 	Pick[List[], Dual[1, 2]]
 	,
 	Pick[List[], Dual[1, 2]]
@@ -366,7 +374,7 @@ VerificationTest[(* 39 *)
 	TestID->"4781a4f6-e1eb-47e0-a94d-9ae6f6d84d4d"
 ]
 
-VerificationTest[(* 40 *)
+VerificationTest[(* 41 *)
 	List[Position[Dual[List[], List[]], 1], Position[Dual[List[1], List[2]], 1]]
 	,
 	List[List[], List[List[1]]]	
@@ -375,6 +383,10 @@ VerificationTest[(* 40 *)
 ]
 
 EndTestSection[]
+
+EndTestSection[]
+
+BeginTestSection["End"]
 
 EndTestSection[]
 
