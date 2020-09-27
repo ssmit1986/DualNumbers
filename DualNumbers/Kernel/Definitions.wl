@@ -191,6 +191,7 @@ Dual[a_, b_, c__] /; (
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
+PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[array_?UnpackedDualArrayQ] := With[{
     depth = ArrayDepth[array]
 },
@@ -204,7 +205,6 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[other_] := (
     Message[PackDualArray::arrayQ, Short[other]];
     other

@@ -188,15 +188,18 @@ DualApply[{funAll_}, Dual[a_, b_], 0] := DualApply[{funAll}, Dual[a, b]];
 DualApply[{funAll_}, Dual[a_, b_]?DualArrayQ, n_Integer?Positive] := With[{
     try = MapThread[funAll, {a, b}, n]
 },
-    Dual @@ Transpose[try, 1 <-> n + 1] /; Replace[
-        MatchQ[Dimensions[try], {Repeated[_, {n}], 2, ___}],
-        False :> (Message[DualApply::resultlength, Short[funAll]]; False)
+    Condition[
+        PackDualArray[Dual @@ Transpose[try, 1 <-> n + 1]],
+        Replace[
+            MatchQ[Dimensions[try], {Repeated[_, {n}], 2, ___}],
+            False :> (Message[DualApply::resultlength, Short[funAll]]; False)
+        ]
     ]
 ];
 
 DualApply[f_, other : standardPatt, rest___] := DualApply[f, ToDual[other, 0], rest];
-DualApply[f_, d_Dual?DualScalarQ, spec_] /; (Message[DualApply::arraySpec, Short[spec]]; False) := Undefined;
-DualApply[{f_}, d_Dual, spec_] /; (Message[DualApply::lvlSpec, Short[spec], Short[{f}]]; False) := Undefined;
+DualApply[f_, _Dual?DualScalarQ, spec_] /; (Message[DualApply::arraySpec, Short[spec]]; False) := Undefined;
+DualApply[{f_}, _Dual, spec : Except[_Integer?Positive]] /; (Message[DualApply::lvlSpec, Short[spec], Short[{f}]]; False) := Undefined;
 DualApply[fun_][d_Dual] := DualApply[fun, d];
 
 (* Helper functions for equation solving with Dual numbers *)

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    269095,       6888]
-NotebookOptionsPosition[    251660,       6546]
-NotebookOutlinePosition[    252307,       6569]
-CellTagsIndexPosition[    252264,       6566]
+NotebookDataLength[    269383,       6894]
+NotebookOptionsPosition[    251828,       6550]
+NotebookOutlinePosition[    252475,       6573]
+CellTagsIndexPosition[    252432,       6570]
 WindowTitle->DualNumbers.nb
 WindowFrame->Normal*)
 
@@ -6542,7 +6542,11 @@ Cell[BoxData[
   ImageSize->Full]], "BottomCell",
  CellID->103465612,ExpressionUUID->"2f1637f5-a089-4779-8a7b-ad5b5306319f"]
 }, Open  ]]
-}, Closed]]
+}, Closed]],
+
+Cell["End", "Subsection",
+ CellChangeTimes->{{3.810184427038498*^9, 3.810184427354369*^9}},
+ CellID->30981364,ExpressionUUID->"83d363fe-278f-4696-8d4d-8e84d1797df4"]
 },
 WindowSize->{1222, 844},
 WindowMargins->{{Automatic, 294}, {Automatic, 87}},
@@ -6889,7 +6893,9 @@ Cell[245186, 6378, 341, 7, 48, "TestOptions",ExpressionUUID->"e65f1551-0d67-4e07
 Cell[245530, 6387, 6102, 155, 43, "BottomCell",ExpressionUUID->"2f1637f5-a089-4779-8a7b-ad5b5306319f",
  CellID->103465612]
 }, Open  ]]
-}, Closed]]
+}, Closed]],
+Cell[251659, 6546, 165, 2, 45, "Subsection",ExpressionUUID->"83d363fe-278f-4696-8d4d-8e84d1797df4",
+ CellID->30981364]
 }
 ]
 *)
