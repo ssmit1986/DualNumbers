@@ -229,7 +229,7 @@ Block[{Dot}, (* Block Dot to temporarily get rid of the Flat attribute *)
         foldDotQ = False,
         try
     },  (* Folding cuts down on pattern matching overhead *)
-        try = Fold[Dot, Unevaluated[dot]];
+        try = Fold[Dot, Block[{Dual}, Hold @@ dot]]; (* Dot all normal matrices first to save computation *)
         try /; Head[try] === Dual
     ];
 ];
