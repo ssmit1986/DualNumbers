@@ -203,11 +203,11 @@ VerificationTest[(* 21 *)
 ]
 
 VerificationTest[(* 22 *)
-	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]]]
+	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]], Dot[Dual[a, b], x, y, z]]
 	,
-	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]]]	
+	List[Dot[Dual[1, 2], List[1, 2]], Dot[List[1, 2], Dual[1, 2]], Dot[Dual[1, 2], Dual[1, 2]], Dot[Dual[List[1], List[2]], 3], Dot[3, Dual[List[1], List[2]]], Dot[Dual[a, b], x, y, z]]	
 	,
-	TestID->"c5b5445e-2a00-4eef-b536-58381696d908"
+	TestID->"c5b5445e-2a00-4eef-b536-58381696d908", TimeConstraint->2
 ]
 
 VerificationTest[(* 23 *)
