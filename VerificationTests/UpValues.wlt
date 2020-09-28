@@ -408,6 +408,46 @@ VerificationTest[(* 44 *)
 
 EndTestSection[]
 
+BeginTestSection["Modifying"]
+
+VerificationTest[(* 45 *)
+	List[Prepend[Dual[List[1], List[2]], 3], Append[Dual[List[1], List[2]], 3], Prepend[Dual[List[1], List[2]], Dual[3, 4]], Append[Dual[List[1], List[2]], Dual[3, 4]]]
+	,
+	List[Dual[List[3, 1], List[0, 2]], Dual[List[1, 3], List[2, 0]], Dual[List[3, 1], List[4, 2]], Dual[List[1, 3], List[2, 4]]]	
+	,
+	TestID->"b210c438-fa7e-49d6-a6f6-66f1348e392e"
+]
+
+VerificationTest[(* 46 *)
+	List[Prepend[3][Dual[List[1], List[2]]], Append[3][Dual[List[1], List[2]]], Prepend[Dual[3, 4]][Dual[List[1], List[2]]], Append[Dual[3, 4]][Dual[List[1], List[2]]]]
+	,
+	List[Dual[List[3, 1], List[0, 2]], Dual[List[1, 3], List[2, 0]], Dual[List[3, 1], List[4, 2]], Dual[List[1, 3], List[2, 4]]]	
+	,
+	TestID->"a9b10011-0cb8-4681-b886-06d154177eaa"
+]
+
+VerificationTest[(* 47 *)
+	Prepend[Dual[1, 2], 3]
+	,
+	Dual[Dual[3, 0], 1, 2]
+	,
+	{Dual::arrayOp, Dual::argt}
+	,
+	TestID->"cdf03783-a870-4aee-8577-d636f5641f8b"
+]
+
+VerificationTest[(* 48 *)
+	Append[Dual[1, 2], 3]
+	,
+	Dual[1, 2, Dual[3, 0]]
+	,
+	{Dual::arrayOp, Dual::argt}
+	,
+	TestID->"fd694949-0637-46fa-89ed-99a846b88d27"
+]
+
+EndTestSection[]
+
 EndTestSection[]
 
 BeginTestSection["End"]
