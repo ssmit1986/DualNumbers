@@ -29,15 +29,15 @@ Cell["Load the package from the cloned repository:", \
 Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
-  ";"}]], "Input",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
 
 Cell["Load the package:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[44]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[51]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9330,7 +9330,7 @@ Cell[BoxData[{
       RowBox[{"#", "[", "\"\<TestResultRules\>\"", "]"}]}], "&"}], ",", 
     "\[IndentingNewLine]", "testReport"}], "\[IndentingNewLine]", "]"}], "//",
    "Dataset"}]}], "Input",
- CellLabel->"In[56]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+ CellLabel->"In[52]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
 Cell[BoxData[
  TagBox[
@@ -9349,11 +9349,11 @@ Cell[BoxData[
          "TestsFailedWithMessages" -> 0, "TestsFailedWithErrors" -> 0], 
        "UpValues.wlt" -> 
        Association[
-        "TestsSucceeded" -> 41, "TestsFailedWrongResults" -> 0, 
+        "TestsSucceeded" -> 43, "TestsFailedWrongResults" -> 0, 
          "TestsFailedWithMessages" -> 0, "TestsFailedWithErrors" -> 0]], 
      "InitialShape" -> TypeSystem`PackageScope`HeaderShape[
        Association[{All, 
-          TypeSystem`PackageScope`KeyDummy[2]} -> 1, {All, "TestsSucceeded"} -> 
+          TypeSystem`PackageScope`KeyDummy[1]} -> 1, {All, "TestsSucceeded"} -> 
         1, {All, "TestsFailedWrongResults"} -> 
         1, {All, "TestsFailedWithMessages"} -> 
         1, {All, "TestsFailedWithErrors"} -> 1], 
@@ -9379,10 +9379,10 @@ Cell[BoxData[
          TypeSystem`Atom[Integer], 
          TypeSystem`Atom[Integer], 
          TypeSystem`Atom[Integer]}], 3], "Meta" -> 
-     Association["ID" -> 1554990827661], "RowTarget" -> 20, "ColumnTarget" -> 
+     Association["ID" -> 140746291047190], "RowTarget" -> 20, "ColumnTarget" -> 
      10, "Shape" -> TypeSystem`PackageScope`HeaderShape[
        Association[{All, 
-          TypeSystem`PackageScope`KeyDummy[2]} -> 1, {All, "TestsSucceeded"} -> 
+          TypeSystem`PackageScope`KeyDummy[1]} -> 1, {All, "TestsSucceeded"} -> 
         1, {All, "TestsFailedWrongResults"} -> 
         1, {All, "TestsFailedWithMessages"} -> 
         1, {All, "TestsFailedWithErrors"} -> 1], 
@@ -9436,7 +9436,7 @@ Cell[BoxData[
                     Rational[-1, 2]}}]}, ImageSize -> 6, BaselinePosition -> 
                  Scaled[-0.15]]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{All, Keys}, 
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{All, Keys}, 
                 "KeyDummy", True], "Mouse"], 
               ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9462,7 +9462,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsSucceeded"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                 All, "TestsSucceeded"}, "ColumnHeader", True], "Mouse"], 
               ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9488,7 +9488,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWrongResults"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                 All, "TestsFailedWrongResults"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9514,7 +9514,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWithMessages"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                 All, "TestsFailedWithMessages"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9540,7 +9540,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                   All, "TestsFailedWithErrors"}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                 All, "TestsFailedWithErrors"}, "ColumnHeader", True], 
                "Mouse"], ImageSize -> {{1, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9566,7 +9566,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["DualNumbers.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["DualNumbers.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9576,7 +9576,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["28"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9587,7 +9587,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9598,7 +9598,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9609,7 +9609,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["DualNumbers.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9636,7 +9636,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["HelperFunctions.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["HelperFunctions.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9646,7 +9646,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["37"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9657,7 +9657,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9668,7 +9668,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9679,7 +9679,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["HelperFunctions.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9706,7 +9706,7 @@ Cell[BoxData[
                   TypeSystem`NestedGrid`PackagePrivate`$outputID$$]][{
                    Key["UpValues.wlt"]}, 1]], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["UpValues.wlt"]}, "RowHeader", False], "Mouse"], 
               ImageSize -> {{182.40000000000003`, Full}, Automatic}, 
               ImageMargins -> {{5, 3}, {4, 5}}], Background -> 
@@ -9714,9 +9714,9 @@ Cell[BoxData[
             Item[
              Pane[
               Annotation[
-               RawBoxes["41"], 
+               RawBoxes["43"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["UpValues.wlt"], 
                  Key["TestsSucceeded"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9727,7 +9727,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWrongResults"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9738,7 +9738,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWithMessages"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -9749,7 +9749,7 @@ Cell[BoxData[
               Annotation[
                RawBoxes["0"], 
                TypeSystem`NestedGrid`PackagePrivate`$SliceMarker[
-               "e28cd26c-ad58-4dd5-9539-a08c299a75c1"][{
+               "bc5767f4-3ee3-451d-95b2-1592f44cf208"][{
                  Key["UpValues.wlt"], 
                  Key["TestsFailedWithErrors"]}, "Item", False], "Mouse"], 
               ImageSize -> {{34, Full}, Automatic}, 
@@ -10061,7 +10061,7 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
- CellLabel->"Out[57]=",ExpressionUUID->"cb411686-9112-4783-9f51-84b100edd6ee"]
+ CellLabel->"Out[53]=",ExpressionUUID->"004a13f5-93ec-465b-adcc-ee8d10089267"]
 }, Open  ]],
 
 Cell["Reset docked cells in testing notebooks:", \
@@ -10075,7 +10075,7 @@ Cell[BoxData[
      RowBox[{"#", ",", 
       RowBox[{"DockedCells", "\[Rule]", "Inherited"}]}], "]"}], "&"}], "/@", 
    RowBox[{"Notebooks", "[", "]"}]}], ";"}]], "Input",
- CellLabel->"In[55]:=",ExpressionUUID->"f02bec0c-c9d4-4217-a676-fc3261674141"]
+ CellLabel->"In[48]:=",ExpressionUUID->"f02bec0c-c9d4-4217-a676-fc3261674141"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -10094,10 +10094,10 @@ Cell[BoxData[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
      "}"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"FileNameTake", "[", "%", "]"}]}], "Input",
- CellLabel->"In[59]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
+ CellLabel->"In[45]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
 
 Cell[BoxData["\<\"DualNumbers-1.1.0.1.paclet\"\>"], "Output",
- CellLabel->"Out[60]=",ExpressionUUID->"12f3033a-cea5-4f43-9f10-983db50dc0b4"]
+ CellLabel->"Out[46]=",ExpressionUUID->"df7808d3-d6c1-44b3-9dd2-3c9ff30ca4d9"]
 }, Open  ]]
 }, Closed]]
 },

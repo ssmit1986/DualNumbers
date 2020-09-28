@@ -37,10 +37,20 @@ Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 
 (* Times UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
-Dual /: (times : Times[
-    _Dual,
-    Longest @ Repeated[_, {10, DirectedInfinity[1]}]
-]) /; True := Fold[Times, Unevaluated[times]]; (* The Fold cuts down on pattern matching overhead *)
+foldTimesQ = True;
+Block[{Times}, (* Get rid of the Flat attribute to make sure Times can only match with all its arguments *)
+    SetAttributes[Times, Orderless]; 
+    Dual /: (times : Times[
+        _Dual,
+        Repeated[_, {10, DirectedInfinity[1]}]
+    ]) /; foldTimesQ := Block[{
+        foldTimesQ  = False,
+        try
+    },
+        try = Fold[Times, Unevaluated[times]];
+        try /; Head[try] === Dual
+    ]; (* The Fold cuts down on pattern matching overhead *)
+];
 (* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
@@ -197,16 +207,26 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
+foldDotQ = True;
 Block[{Dot}, (* Block Dot to temporarily get rid of the Flat attribute *)
     (* UpValues for few arguments *)
+    Dual /: Dot[d_Dual] := d;
     Dual /: Dot[
-        Dual[a1_, b1_]?DualArrayQ,
-        Dual[a2_, b2_]?DualArrayQ
+        Dual[a1_, b1_],
+        Dual[a2_, b2_]
     ] := Dual[a1.a2, a1.b2 + b1.a2];
-    Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b];
-    Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c];
+    Dual /: Dot[c : standardPatt, Dual[a_, b_]] := Dual[c.a, c.b];
+    Dual /: Dot[Dual[a_, b_], c : standardPatt] := Dual[a.c, b.c];
     (* Dot UpValue for many arguments. *)
-    Dual /: (dot : Dot[___, _Dual, ___]) /; Length[Unevaluated[dot]] > 2 := Fold[Dot, Unevaluated[dot]];
+    Dual /: (
+        dot : Dot[___, _Dual, ___]
+    ) /; foldDotQ && Length[Unevaluated[dot]] > 2 := Block[{
+        foldDotQ = False,
+        try
+    },
+        try = Fold[Dot, Unevaluated[dot]];
+        try /; Head[try] === Dual
+    ];
 ];
 Dual /: MatrixPower[
     d_Dual?SquareMatrixQ,
