@@ -7,6 +7,8 @@ Dual;
 DualArrayQ;
 DualLinearSolveFunction;
 DualTuples;
+Standard;
+NonStandard;
 
 Begin["`Private`"]
 
@@ -143,14 +145,14 @@ With[{
     clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
 },
     Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] /; NoneTrue[{xmin, xmax}, DualArrayQ] := With[{
-        stdargs = {a, std @ xmin, std @ xmax}
+        stdargs = {a, Standard @ xmin, Standard @ xmax}
     },
         Dual[
             Clip[#[[1]], #[[{2, 3}]]]& @ stdargs,
             Plus[
                 b * clipDerivatives3arg1 @ stdargs,
-                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives3arg2 @ stdargs, 0],
-                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives3arg3 @ stdargs, 0]
+                If[ DualQ[xmin], NonStandard[xmin] * clipDerivatives3arg2 @ stdargs, 0],
+                If[ DualQ[xmax], NonStandard[xmax] * clipDerivatives3arg3 @ stdargs, 0]
             ]
         ]
     ];
@@ -159,7 +161,7 @@ With[{
         {xmin_, xmax_},
         {ymin_, ymax_}
     ] /; NoneTrue[{xmin, xmax, ymin, ymax}, DualArrayQ] := With[{
-        stdargs = {a, std @ xmin, std @ xmax, std @ ymin, std @ ymax}
+        stdargs = {a, Standard @ xmin, Standard @ xmax, Standard @ ymin, Standard @ ymax}
     },
         Dual[
             Clip[#[[1]], #[[{2, 3}]], #[[{4, 5}]]]& @ stdargs,
@@ -170,8 +172,8 @@ With[{
                 If[ DualQ[xmin], nonstd[xmin] * clipDerivatives5arg2 @@ stdargs, 0],
                 If[ DualQ[xmax], nonstd[xmax] * clipDerivatives5arg3 @@ stdargs, 0],
                 *)
-                If[ DualQ[ymin], nonstd[ymin] * clipDerivatives5arg4 @ stdargs, 0],
-                If[ DualQ[ymax], nonstd[ymax] * clipDerivatives5arg5 @ stdargs, 0]
+                If[ DualQ[ymin], NonStandard[ymin] * clipDerivatives5arg4 @ stdargs, 0],
+                If[ DualQ[ymax], NonStandard[ymax] * clipDerivatives5arg5 @ stdargs, 0]
             ]
         ]
     ]
@@ -355,6 +357,7 @@ Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
 (* Sort and Ordering functions *)
+Dual /: SortBy[f_][d_Dual?DualArrayQ] := SortBy[d, f];
 MapThread[
     Function[{orderer, sorter, insertPt},
         Dual /: orderer[Dual[a_, b_]?DualArrayQ, rest___] := orderer[a, rest];
@@ -501,7 +504,7 @@ Dual /: HoldPattern[ArrayDepth[Dual[_, _]]] := 0;
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
         Dual /: HoldPattern[fun[first___, d : Dual[_?NumericQ, _], rest___]] := With[{
-            test = fun @@ std[{first, d, rest}]
+            test = fun @@ Standard[{first, d, rest}]
         },
             test /; BooleanQ[test]
         ]

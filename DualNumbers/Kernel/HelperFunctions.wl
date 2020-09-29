@@ -4,6 +4,8 @@ BeginPackage["DualNumbers`", {"GeneralUtilities`", "Developer`"}]
 
 Dual;
 StandardAll;
+Standard;
+NonStandard;
 DualExpand;
 DualFactor;
 DualSimplify;
@@ -149,7 +151,7 @@ AddDualHandling[f_, derivatives_List] := With[{n = Length[derivatives]},
     },
         With[{
             dualPos = Flatten @ listPosition[args, dualPatt],
-            inputs = std[args]
+            inputs = Standard[args]
         },
             With[{dlist = derivatives[[dualPos]]},
                 Dual[

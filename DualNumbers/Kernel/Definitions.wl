@@ -147,14 +147,6 @@ SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
 NonStandard[_] := 0;
 
-SetAttributes[std, Listable];
-std[Dual[a_, _]] := a;
-std[x_] := x;
-
-SetAttributes[nonstd, Listable];
-nonstd[Dual[_, b_]] := b;
-nonstd[x_] := 0;
-
 (* Constructors *)
 Dual[] := Dual[0, 1];
 Dual[a_] := ToDual[a, 0];
