@@ -503,7 +503,9 @@ Dual /: HoldPattern[ArrayDepth[Dual[_, _]]] := 0;
 
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
-        Dual /: HoldPattern[fun[first___, d : Dual[_?NumericQ, _], rest___]] := With[{
+        Dual /: HoldPattern[
+            fun[first___, d : Dual[_?NumericQ, _], rest___]
+        ] := With[{
             test = fun @@ Standard[{first, d, rest}]
         },
             test /; BooleanQ[test]
@@ -511,6 +513,19 @@ Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dua
     ],
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
+Scan[ (* Comparing arrays *)
+    Function[fun,
+        Dual /: HoldPattern[
+            fun[first___, d : Dual[_?(ArrayQ[#, _, NumericQ]&), _], rest___]
+        ] := With[{
+            test = fun @@ Standard[{first, d, rest}]
+        },
+            test /; BooleanQ[test]
+        ]
+    ],
+    {Equal, Unequal}
+];
+
 
 End[] (* End Private Context *)
 
