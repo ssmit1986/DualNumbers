@@ -19,9 +19,9 @@ Cell["Install the paclet:", \
 
 Cell[BoxData[
  RowBox[{"PacletInstall", "[", 
-  "\"\<https://github.com/ssmit1986/DualNumbers/releases/download/1.1/\
-DualNumbers-1.1.paclet\>\"", "]"}]], "Input",
- CellLabel->"In[14]:=",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
+  "\"\<https://github.com/ssmit1986/DualNumbers/releases/download/1.2/\
+DualNumbers-1.2.paclet\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
 
 Cell["Load the package from the cloned repository:", \
 "Text",ExpressionUUID->"28f45967-93e7-4046-8b32-cf276cc7b22c"],
