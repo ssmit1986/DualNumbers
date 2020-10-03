@@ -4,7 +4,7 @@
 
 Paclet[
     Name -> "DualNumbers",
-    Version -> "1.1.0.1",
+    Version -> "1.2",
     MathematicaVersion -> "12.1+",
     Creator -> "Sjoerd Smit",
     Extensions -> {
