@@ -7,6 +7,8 @@ Dual;
 DualArrayQ;
 DualLinearSolveFunction;
 DualTuples;
+Standard;
+NonStandard;
 
 Begin["`Private`"]
 
@@ -14,12 +16,12 @@ Begin["`Private`"]
 listPosition[list_, patt_, lvl : _ : {1}, n : _ : DirectedInfinity[1]] := Position[list, patt, lvl, n, Heads -> False];
 
 (* Plus UpValue for long sums. The /; True condition makes sure this one gets priority whenever it matches *)
-Dual /: Plus[
-    d1_Dual,
-    rest : Longest @ Repeated[_, {10, DirectedInfinity[1]}]
-] /; True := With[{
-    list = Reap[
-        Replace[{d1, rest},
+Dual /: (plus : Plus[
+    _Dual,
+    Longest @ Repeated[_, {10, DirectedInfinity[1]}]
+]) /; True := With[{
+    reap = Reap[
+        Replace[Unevaluated[plus],
             Dual[a_, b_] :> (Sow[b, "dual"]; a),
             {1}
         ],
@@ -27,8 +29,8 @@ Dual /: Plus[
     ]
 },
     Dual[
-        Total[list[[1]]],
-        Total[Join @@ list[[2]]]
+        reap[[1]],
+        Total[reap[[2]], 2]
     ]
 ];
 
@@ -36,11 +38,23 @@ Dual /: Plus[
 Dual /: Dual[a1_, b1_] + Dual[a2_, b2_] := Dual[a1 + a2, b1 + b2];
 Dual /: (c : standardPatt) + Dual[a_, b_] := Dual[c + a, b];
 
-(* Times UpValue for many arguments. The /; True condition makes sure this one gets priority whenever it matches *)
-Dual /: Times[
-    d1_Dual,
-    rest : Longest @ Repeated[_, {10, DirectedInfinity[1]}]
-] /; True := Fold[Times, d1, {rest}]; (* The Fold cuts down on pattern matching overhead *)
+Unprotect[foldTimesQ];
+foldTimesQ = True;
+Protect[foldTimesQ];
+Block[{Times}, (* Get rid of the Flat attribute to make sure Times can only match with all its arguments *)
+    SetAttributes[Times, Orderless];
+    (* Times UpValue for many arguments. *) 
+    Dual /: (times : Times[
+        _Dual,
+        Repeated[_, {10, DirectedInfinity[1]}]
+    ]) /; foldTimesQ := Block[{
+        foldTimesQ  = False,
+        try
+    },  (* The Fold cuts down on pattern matching overhead *)
+        try = Fold[Times, Unevaluated[times]];
+        try /; Head[try] === Dual
+    ];
+];
 (* And one that's faster for short ones *)
 Dual /: Dual[a1_, b1_] * Dual[a2_, b2_] := Dual[a1 * a2, b1 * a2 + a1 * b2];
 Dual /: (c : standardPatt) * Dual[a_, b_] := Dual[c * a, c * b];
@@ -131,14 +145,14 @@ With[{
     clipDerivatives5arg5 = Piecewise[{{1, #[[1]] > #[[3]] && #[[1]] >= #[[2]]}}, 0]&
 },
     Dual /: Clip[Dual[a_, b_], {xmin_, xmax_}] /; NoneTrue[{xmin, xmax}, DualArrayQ] := With[{
-        stdargs = {a, std @ xmin, std @ xmax}
+        stdargs = {a, Standard @ xmin, Standard @ xmax}
     },
         Dual[
             Clip[#[[1]], #[[{2, 3}]]]& @ stdargs,
             Plus[
                 b * clipDerivatives3arg1 @ stdargs,
-                If[ DualQ[xmin], nonstd[xmin] * clipDerivatives3arg2 @ stdargs, 0],
-                If[ DualQ[xmax], nonstd[xmax] * clipDerivatives3arg3 @ stdargs, 0]
+                If[ DualQ[xmin], NonStandard[xmin] * clipDerivatives3arg2 @ stdargs, 0],
+                If[ DualQ[xmax], NonStandard[xmax] * clipDerivatives3arg3 @ stdargs, 0]
             ]
         ]
     ];
@@ -147,7 +161,7 @@ With[{
         {xmin_, xmax_},
         {ymin_, ymax_}
     ] /; NoneTrue[{xmin, xmax, ymin, ymax}, DualArrayQ] := With[{
-        stdargs = {a, std @ xmin, std @ xmax, std @ ymin, std @ ymax}
+        stdargs = {a, Standard @ xmin, Standard @ xmax, Standard @ ymin, Standard @ ymax}
     },
         Dual[
             Clip[#[[1]], #[[{2, 3}]], #[[{4, 5}]]]& @ stdargs,
@@ -158,8 +172,8 @@ With[{
                 If[ DualQ[xmin], nonstd[xmin] * clipDerivatives5arg2 @@ stdargs, 0],
                 If[ DualQ[xmax], nonstd[xmax] * clipDerivatives5arg3 @@ stdargs, 0],
                 *)
-                If[ DualQ[ymin], nonstd[ymin] * clipDerivatives5arg4 @ stdargs, 0],
-                If[ DualQ[ymax], nonstd[ymax] * clipDerivatives5arg5 @ stdargs, 0]
+                If[ DualQ[ymin], NonStandard[ymin] * clipDerivatives5arg4 @ stdargs, 0],
+                If[ DualQ[ymax], NonStandard[ymax] * clipDerivatives5arg5 @ stdargs, 0]
             ]
         ]
     ]
@@ -197,16 +211,30 @@ Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] := With[{
 Dual /: Norm[Dual[a_?VectorQ, b_]?DualArrayQ, DirectedInfinity[1]] /; (Message[Dual::infnorm]; False):= Undefined;
 Dual /: Norm[Dual[a_, b_]?DualScalarQ, ___] := Abs[Dual[a, b]];
 
-(* Dot UpValues for many arguments. *)
-Dual /: (dot : Dot[___, d_Dual, ___]) /; Length[Unevaluated[dot]] > 3 && DualArrayQ[d] := Fold[Dot, List @@ Unevaluated[dot]];
-(* UpValues for few arguments *)
-Dual /: Dot[
-    Dual[a1_, b1_]?DualArrayQ,
-    Dual[a2_, b2_]?DualArrayQ
-] := Dual[a1.a2, a1.b2 + b1.a2];
-Dual /: Dot[c_?ArrayQ, Dual[a_, b_]?DualArrayQ] := Dual[c.a, c.b]
-Dual /: Dot[Dual[a_, b_]?DualArrayQ, c_?ArrayQ] := Dual[a.c, b.c]
+Unprotect[foldDotQ];
+foldDotQ = True;
+Protect[foldDotQ];
 
+Block[{Dot}, (* Block Dot to temporarily get rid of the Flat attribute *)
+    (* Dot UpValues for few arguments *)
+    Dual /: Dot[d_Dual] := d;
+    Dual /: Dot[
+        Dual[a1_, b1_],
+        Dual[a2_, b2_]
+    ] := Dual[a1.a2, a1.b2 + b1.a2];
+    Dual /: Dot[c : standardPatt, Dual[a_, b_]] := Dual[c.a, c.b];
+    Dual /: Dot[Dual[a_, b_], c : standardPatt] := Dual[a.c, b.c];
+    (* Dot UpValue for many arguments *)
+    Dual /: (
+        dot : Dot[___, _Dual, ___]
+    ) /; foldDotQ && Length[Unevaluated[dot]] > 2 := Block[{
+        foldDotQ = False,
+        try
+    },  (* Folding cuts down on pattern matching overhead *)
+        try = Fold[Dot, Block[{Dual}, Hold @@ dot]]; (* Dot all normal matrices first to save computation *)
+        try /; Head[try] === Dual
+    ];
+];
 Dual /: MatrixPower[
     d_Dual?SquareMatrixQ,
     n_Integer?Positive
@@ -329,6 +357,7 @@ Dual /: Join[arrays : Longest[__Dual?DualArrayQ]] := With[{
 Dual /: Join[___, _Dual, ___] /; (Message[Dual::arrayOp, Join]; False) := Undefined; 
 
 (* Sort and Ordering functions *)
+Dual /: SortBy[f_][d_Dual?DualArrayQ] := SortBy[d, f];
 MapThread[
     Function[{orderer, sorter, insertPt},
         Dual /: orderer[Dual[a_, b_]?DualArrayQ, rest___] := orderer[a, rest];
@@ -350,9 +379,10 @@ MapThread[
 (* Append and Prepend *)
 Scan[
     Function[{pender},
+        HoldPattern[pender[el_][d_Dual]] ^:= pender[d, el];
         Dual /: pender[Dual[a1_, b1_]?DualArrayQ, Dual[a2_, b2_]] := Dual[pender[a1, a2], pender[b1, b2]];
         Dual /: pender[d_Dual, a2 : standardPatt] := pender[d, ToDual[a2, 0]];
-        Dual /: pender[_Dual, ___] /; (Message[Dual::arrayOp, pender]; False) := Undefined;
+        Dual /: pender[_Dual, _] /; (Message[Dual::arrayOp, pender]; False) := Undefined;
     ],
     {Append, Prepend}
 ];
@@ -381,28 +411,36 @@ Dual /: Pick[list_, sel_Dual?DualArrayQ, patt : _ : True] /; Length[list] === Le
 Dual /: Pick[_Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
 Dual /: Pick[_, _Dual, ___] /; (Message[Dual::arrayOp, Pick]; False) := Undefined;
 
-Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
-Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun1_ -> fun2_, red : _ : Identity] := With[{
-    vals = fun1 /@ a
+groupDual[
+    d_Dual,
+    (fun1 : Except[_Rule | _List]) -> (fun2 : Except[_Rule | _List])
+] := Map[Map[fun2], groupDual[d, fun1]];
+groupDual[Dual[a_, b_], fun : Except[_Rule | _List]] := With[{
+    posAssoc = PositionIndex[fun /@ a]
 },
-    With[{
-        uniqueVals = PositionIndex[vals]
-    },
-        Map[
-            red @ Map[fun2,
-                Dual[
-                    Developer`ToPackedArray @ Part[a, #],
-                    Developer`ToPackedArray @ Part[b, #]
-                ]
-            ]&,
-            uniqueVals
-        ]
+    Map[
+        Dual[
+            Developer`ToPackedArray @ Part[a, #],
+            Developer`ToPackedArray @ Part[b, #]
+        ]&,
+        posAssoc
     ]
 ];
-Dual /: GroupBy[d_Dual, fun : Except[_List], rest___] := GroupBy[d, fun -> Identity, rest];
+
+Dual::groupbyfun = "Function spec `1` is currently not supported for GroupBy.";
+Dual /: GroupBy[d_Dual?DualArrayQ, fun : Except[_List]] := With[{
+    assoc = groupDual[d, fun]
+},
+    assoc /; AssociationQ[assoc]
+];
+Dual /: GroupBy[d_Dual?DualArrayQ, fun : Except[_List], reducer_] := With[{
+    assoc = groupDual[d, fun]
+},
+    Map[reducer, assoc] /; AssociationQ[assoc]
+];
 Dual /: GroupBy[fun_][d_Dual] := GroupBy[d, fun];
 Dual /: GroupBy[Dual[a_, b_]?DualArrayQ, fun_, ___] /; (Message[Dual::groupbyfun, Short[fun]]; False) := Undefined;
-Dual /: GroupBy[_Dual, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
+Dual /: GroupBy[_Dual?DualScalarQ, ___] /; (Message[Dual::arrayOp, GroupBy]; False) := Undefined;
 
 (* Short-circuit definitions for Map to prevent uncessary unpacking *)
 Dual /: Map[Identity, d_Dual?DualArrayQ] := d;
@@ -465,14 +503,29 @@ Dual /: HoldPattern[ArrayDepth[Dual[_, _]]] := 0;
 
 Scan[ (* Make sure comparing functions throw away the infinitesimal parts of dual numbers *)
     Function[fun,
-        Dual /: HoldPattern[fun[first___, d : Dual[_?NumericQ, _], rest___]] := With[{
-            test = fun @@ std[{first, d, rest}]
+        Dual /: HoldPattern[
+            fun[first___, d : Dual[_?NumericQ, _], rest___]
+        ] := With[{
+            test = fun @@ Standard[{first, d, rest}]
         },
             test /; BooleanQ[test]
         ]
     ],
     {Equal, Unequal, Greater, GreaterEqual, Less, LessEqual}
 ];
+Scan[ (* Comparing arrays *)
+    Function[fun,
+        Dual /: HoldPattern[
+            fun[first___, d : Dual[_?(ArrayQ[#, _, NumericQ]&), _], rest___]
+        ] := With[{
+            test = fun @@ Standard[{first, d, rest}]
+        },
+            test /; BooleanQ[test]
+        ]
+    ],
+    {Equal, Unequal}
+];
+
 
 End[] (* End Private Context *)
 

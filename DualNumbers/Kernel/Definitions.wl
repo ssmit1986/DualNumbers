@@ -147,14 +147,6 @@ SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
 NonStandard[_] := 0;
 
-SetAttributes[std, Listable];
-std[Dual[a_, _]] := a;
-std[x_] := x;
-
-SetAttributes[nonstd, Listable];
-nonstd[Dual[_, b_]] := b;
-nonstd[x_] := 0;
-
 (* Constructors *)
 Dual[] := Dual[0, 1];
 Dual[a_] := ToDual[a, 0];
@@ -191,6 +183,7 @@ Dual[a_, b_, c__] /; (
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
+PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[array_?UnpackedDualArrayQ] := With[{
     depth = ArrayDepth[array]
 },
@@ -204,7 +197,6 @@ PackDualArray[array_?ArrayQ] := Dual[
     Developer`ToPackedArray @ Standard[array],
     Developer`ToPackedArray @ NonStandard[array]
 ];
-PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[other_] := (
     Message[PackDualArray::arrayQ, Short[other]];
     other

@@ -3,7 +3,7 @@ BeginTestSection["DualNumbers"]
 BeginTestSection["Initialization"]
 
 VerificationTest[(* 1 *)
-	CompoundExpression[Set[$HistoryLength, 10], With[List[Set[dir, ParentDirectory[If[Quiet[TrueQ[FileExistsQ[$TestFileName]]], DirectoryName[$TestFileName], NotebookDirectory[]]]]], PacletDirectoryLoad[dir]], Quiet[Get["DualNumbers`"]], ClearAll["Global`*"], "Done"]
+	CompoundExpression[Set[$HistoryLength, 10], With[List[Set[dir, ParentDirectory[If[Quiet[TrueQ[FileExistsQ[$TestFileName]]], DirectoryName[$TestFileName], NotebookDirectory[]]]]], PacletDirectoryLoad[dir]], Quiet[Get["DualNumbers`"]], Unprotect["Global`*"], ClearAll["Global`*"], "Done"]
 	,
 	"Done"	
 	,
@@ -263,6 +263,10 @@ VerificationTest[(* 28 *)
 	,
 	TestID->"50df5c1e-7003-41b9-850d-916fe5680919", TimeConstraint->5
 ]
+
+EndTestSection[]
+
+BeginTestSection["End"]
 
 EndTestSection[]
 
