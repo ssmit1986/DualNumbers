@@ -7,7 +7,7 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 To automatically download and install the currently released version of the paclet, simply run:
 
 ```
-PacletInstall["https://github.com/ssmit1986/DualNumbers/releases/download/1.1/DualNumbers-1.1.paclet"]
+PacletInstall["https://github.com/ssmit1986/DualNumbers/releases/download/1.2/DualNumbers-1.2.paclet"]
 ```
 
 To install the latest version of the package, download the latest paclet file from the GitHub [paclet archive](https://github.com/ssmit1986/DualNumbers/tree/main/Paclet%20archives) and run:
@@ -340,3 +340,5 @@ Use `UnpackDualArray` if you want to use `Pick` at level 2 or deeper.
     * Beta release of V1.0.
 * 2020-09-26
     * Release of V1.1. Contains mostly performance improvements and bug fixes.
+* 2020-10-03
+    * Release of V1.2 with some more fixes and improvements.
