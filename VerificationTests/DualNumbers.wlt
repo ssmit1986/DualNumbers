@@ -109,18 +109,34 @@ VerificationTest[(* 11 *)
 ]
 
 VerificationTest[(* 12 *)
-	List[Standard[Dual[a, b]], NonStandard[Dual[a, b]], Standard[a], NonStandard[a]]
+	List[Standard[Dual[a, b]], NonStandard[Dual[a, b]], Standard[a], NonStandard[a], Standard[1], NonStandard[1]]
 	,
-	List[a, b, a, 0]	
+	List[a, b, a, 0, 1, 0]	
 	,
 	TestID->"f19cabd3-30a7-4d3c-9b22-39b696d33b8a"
+]
+
+VerificationTest[(* 13 *)
+	List[StandardNonStandard[Dual[a, b]], StandardNonStandard[a], StandardNonStandard[1], StandardNonStandard[Dual[List[1, 2], List[3, 4]]]]
+	,
+	List[List[a, b], List[a, 0], List[1, 0], List[List[1, 3], List[2, 4]]]	
+	,
+	TestID->"4dcc20d1-5362-45d7-a90e-f0899acb899d"
+]
+
+VerificationTest[(* 14 *)
+	With[List[Set[testArray, Dual[RandomReal[1, List[10, 20, 50]], RandomReal[1, List[10, 20, 50]]]]], SameQ[StandardNonStandard[testArray], StandardNonStandard[UnpackDualArray[testArray]]]]
+	,
+	True	
+	,
+	TestID->"cb33752e-7489-4846-9e0c-dce476a069a0"
 ]
 
 EndTestSection[]
 
 BeginTestSection["Type verification"]
 
-VerificationTest[(* 13 *)
+VerificationTest[(* 15 *)
 	CompoundExpression[Set[testValues, List[1, Dual[0, 1], Dual[1, 0], Dual[List[0, 1], List[2, 3]], Dual[List[List[0, 1]], List[List[2, 3]]], List[Dual[0, 2], Dual[1, 3]], List[Dual[0, 2], List[Dual[1, 3]]], List[Dual[0, 2], 1], List[0, 1]]], AssociationMap[DualQ, testValues]]
 	,
 	Association[Rule[1, False], Rule[Dual[0, 1], True], Rule[Dual[1, 0], True], Rule[Dual[List[0, 1], List[2, 3]], True], Rule[Dual[List[List[0, 1]], List[List[2, 3]]], True], Rule[List[Dual[0, 2], Dual[1, 3]], False], Rule[List[Dual[0, 2], List[Dual[1, 3]]], False], Rule[List[Dual[0, 2], 1], False], Rule[List[0, 1], False]]	
@@ -128,7 +144,7 @@ VerificationTest[(* 13 *)
 	TestID->"a5e32721-7666-452f-880e-17f429e50f98"
 ]
 
-VerificationTest[(* 14 *)
+VerificationTest[(* 16 *)
 	AssociationMap[DualScalarQ, testValues]
 	,
 	Association[Rule[1, False], Rule[Dual[0, 1], True], Rule[Dual[1, 0], True], Rule[Dual[List[0, 1], List[2, 3]], False], Rule[Dual[List[List[0, 1]], List[List[2, 3]]], False], Rule[List[Dual[0, 2], Dual[1, 3]], False], Rule[List[Dual[0, 2], List[Dual[1, 3]]], False], Rule[List[Dual[0, 2], 1], False], Rule[List[0, 1], False]]	
@@ -136,7 +152,7 @@ VerificationTest[(* 14 *)
 	TestID->"e9013855-ed21-4b42-91fa-570483ef2b95"
 ]
 
-VerificationTest[(* 15 *)
+VerificationTest[(* 17 *)
 	AssociationMap[StandardQ, testValues]
 	,
 	Association[Rule[1, True], Rule[Dual[0, 1], False], Rule[Dual[1, 0], False], Rule[Dual[List[0, 1], List[2, 3]], False], Rule[Dual[List[List[0, 1]], List[List[2, 3]]], False], Rule[List[Dual[0, 2], Dual[1, 3]], True], Rule[List[Dual[0, 2], List[Dual[1, 3]]], True], Rule[List[Dual[0, 2], 1], True], Rule[List[0, 1], True]]	
@@ -144,7 +160,7 @@ VerificationTest[(* 15 *)
 	TestID->"a75a8c93-81f8-4613-9791-42e7b1f53f1e"
 ]
 
-VerificationTest[(* 16 *)
+VerificationTest[(* 18 *)
 	AssociationMap[UnpackedDualArrayQ, testValues]
 	,
 	Association[Rule[1, False], Rule[Dual[0, 1], False], Rule[Dual[1, 0], False], Rule[Dual[List[0, 1], List[2, 3]], False], Rule[Dual[List[List[0, 1]], List[List[2, 3]]], False], Rule[List[Dual[0, 2], Dual[1, 3]], True], Rule[List[Dual[0, 2], List[Dual[1, 3]]], False], Rule[List[Dual[0, 2], 1], False], Rule[List[0, 1], False]]	
@@ -152,7 +168,7 @@ VerificationTest[(* 16 *)
 	TestID->"af6eba64-c63a-4afb-b49b-4a23de45cea7"
 ]
 
-VerificationTest[(* 17 *)
+VerificationTest[(* 19 *)
 	AssociationMap[DualFreeArrayQ, testValues]
 	,
 	Association[Rule[1, False], Rule[Dual[0, 1], False], Rule[Dual[1, 0], False], Rule[Dual[List[0, 1], List[2, 3]], False], Rule[Dual[List[List[0, 1]], List[List[2, 3]]], False], Rule[List[Dual[0, 2], Dual[1, 3]], False], Rule[List[Dual[0, 2], List[Dual[1, 3]]], False], Rule[List[Dual[0, 2], 1], False], Rule[List[0, 1], True]]	
@@ -164,7 +180,7 @@ EndTestSection[]
 
 BeginTestSection["Packing and unpacking"]
 
-VerificationTest[(* 18 *)
+VerificationTest[(* 20 *)
 	CompoundExpression[Set[arrays, List[List[], List[List[]], List[Dual[1, 2]], List[List[Dual[1, 2]]]]], Set[packedArrays, Map[PackDualArray, arrays]]]
 	,
 	List[Dual[List[], List[]], Dual[List[List[]], List[List[]]], Dual[List[1], List[2]], Dual[List[List[1]], List[List[2]]]]	
@@ -172,7 +188,7 @@ VerificationTest[(* 18 *)
 	TestID->"bea93e5d-4ea8-413f-9c79-a65ba06c8d0b"
 ]
 
-VerificationTest[(* 19 *)
+VerificationTest[(* 21 *)
 	SameQ[Map[PackDualArray, packedArrays], packedArrays]
 	,
 	True	
@@ -180,7 +196,7 @@ VerificationTest[(* 19 *)
 	TestID->"9daf85e7-8cce-4ce1-ad9a-b6f940199ca8"
 ]
 
-VerificationTest[(* 20 *)
+VerificationTest[(* 22 *)
 	PackDualArray[List[1, List[2]]]
 	,
 	List[1, List[2]]
@@ -190,7 +206,7 @@ VerificationTest[(* 20 *)
 	TestID->"0af5fc63-90b3-46ee-8659-4d2abb65afc3"
 ]
 
-VerificationTest[(* 21 *)
+VerificationTest[(* 23 *)
 	SameQ[Map[UnpackDualArray, packedArrays], arrays]
 	,
 	True	
@@ -198,7 +214,7 @@ VerificationTest[(* 21 *)
 	TestID->"6905b47f-3aa6-4e15-b6fc-a024625e149c"
 ]
 
-VerificationTest[(* 22 *)
+VerificationTest[(* 24 *)
 	UnpackDualArray[Dual[1, 2]]
 	,
 	Dual[1, 2]
@@ -208,7 +224,7 @@ VerificationTest[(* 22 *)
 	TestID->"8abc302c-78fd-48dc-ac5d-7907eb47a76f"
 ]
 
-VerificationTest[(* 23 *)
+VerificationTest[(* 25 *)
 	UnpackDualArray[Dual[List[1], List[List[2]]]]
 	,
 	Dual[List[1], List[List[2]]]
@@ -218,7 +234,7 @@ VerificationTest[(* 23 *)
 	TestID->"ff2bb1be-a7c2-40d1-939d-d1f93ed866f3"
 ]
 
-VerificationTest[(* 24 *)
+VerificationTest[(* 26 *)
 	UnpackDualArray[List[]]
 	,
 	List[]
@@ -228,7 +244,7 @@ VerificationTest[(* 24 *)
 	TestID->"ac548930-8edf-42e2-b141-d69c02b39224"
 ]
 
-VerificationTest[(* 25 *)
+VerificationTest[(* 27 *)
 	UnpackDualArray[List[Dual[1, 2]]]
 	,
 	List[Dual[1, 2]]
@@ -238,7 +254,7 @@ VerificationTest[(* 25 *)
 	TestID->"7433757c-e92e-4bcb-b97b-0647cfaed159"
 ]
 
-VerificationTest[(* 26 *)
+VerificationTest[(* 28 *)
 	Module[List[res], CompoundExpression[On["Packing"], Set[res, UnpackDualArray[Dual[List[1], List[2]]]], Off["Packing"], res]]
 	,
 	List[Dual[1, 2]]
@@ -248,7 +264,7 @@ VerificationTest[(* 26 *)
 	TestID->"3b73554c-17cc-4e7c-a782-94d26b7fc4da"
 ]
 
-VerificationTest[(* 27 *)
+VerificationTest[(* 29 *)
 	CompoundExpression[Set[largePackedArray, Dual[RandomReal[1, Power[10, 6]], RandomReal[1, Power[10, 6]]]], Set[largeUnPackedArray, UnpackDualArray[largePackedArray]], MatchQ[largeUnPackedArray, List[BlankSequence[Dual]]]]
 	,
 	True	
@@ -256,7 +272,7 @@ VerificationTest[(* 27 *)
 	TimeConstraint->10, TestID->"99560401-d610-495e-bbf3-17b0becdc712"
 ]
 
-VerificationTest[(* 28 *)
+VerificationTest[(* 30 *)
 	With[List[Set[tests, List[DualQ, DualScalarQ, StandardQ, DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ]], Set[arr, RandomReal[1, Power[10, 6]]]], List[AssociationMap[Function[Slot[1][largePackedArray]], tests], AssociationMap[Function[Slot[1][largeUnPackedArray]], tests], AssociationMap[Function[Slot[1][arr]], tests]]]
 	,
 	List[Association[Rule[DualQ, True], Rule[DualScalarQ, False], Rule[StandardQ, False], Rule[DualArrayQ, True], Rule[UnpackedDualArrayQ, False], Rule[DualFreeArrayQ, False]], Association[Rule[DualQ, False], Rule[DualScalarQ, False], Rule[StandardQ, True], Rule[DualArrayQ, False], Rule[UnpackedDualArrayQ, True], Rule[DualFreeArrayQ, False]], Association[Rule[DualQ, False], Rule[DualScalarQ, False], Rule[StandardQ, True], Rule[DualArrayQ, False], Rule[UnpackedDualArrayQ, False], Rule[DualFreeArrayQ, True]]]	

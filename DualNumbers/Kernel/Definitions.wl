@@ -18,6 +18,11 @@ GeneralUtilities`SetUsage[NonStandard,
     "NonStandard[d$] extracts the nonstandard part of a dual number d$ (i.e., the second argument).
 Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
+GeneralUtilities`SetUsage[StandardNonStandard,
+    "StandardNonStandard[d$] extracts the standard and nonstandard parts of a dual number d$ and returns them as a list.
+StandardNonStandard[dualArray$] returns the same as StandardNonStandard[UnpackDualArray[dualArray$]].
+Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
+];
 GeneralUtilities`SetUsage[StandardAll,
     "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
 ];
@@ -146,6 +151,18 @@ Standard[x_] := x;
 SetAttributes[NonStandard, Listable];
 NonStandard[Dual[_, b_]] := b;
 NonStandard[_] := 0;
+
+SetAttributes[StandardNonStandard, Listable];
+StandardNonStandard[Dual[a_, b_]?DualArrayQ] := With[{
+    depth = ArrayDepth[a]
+},
+    Transpose[
+        Developer`ToPackedArray @ {a, b},
+        Prepend[Range[depth], depth + 1]
+    ]
+];
+StandardNonStandard[Dual[a_, b_]] := {a, b};
+StandardNonStandard[x_] := {x, 0};
 
 (* Constructors *)
 Dual[] := Dual[0, 1];

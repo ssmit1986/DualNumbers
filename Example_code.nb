@@ -30,14 +30,14 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[60]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+ CellLabel->"In[1]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
 
 Cell["Load the package:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[61]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[2]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -685,8 +685,9 @@ Cell[BoxData[{
  RowBox[{"?", "ToDual"}], "\[IndentingNewLine]", 
  RowBox[{"?", "Standard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "NonStandard"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "StandardNonStandard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "StandardAll"}]}], "Input",
- CellLabel->"In[29]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
+ CellLabel->"In[3]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -798,12 +799,10 @@ to construct a dual quantity.\"\>", "InformationUsageText",
              PaneSelectorBox[{False->
               
               DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpener"],
-               ImageSizeCache->{12., {3., 9.}}], True->
+               "FEBitmaps", "UpPointerOpener"]], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
-               "FEBitmaps", "UpPointerOpenerHot"],
-               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -947,7 +946,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {ReadProtected}, "FullName" -> "DualNumbers`Dual"], 
    False]]], "Output",
- CellLabel->"Out[29]=",ExpressionUUID->"9917a1ec-8c3f-4c79-924b-f41aa689cb67"],
+ CellLabel->"Out[3]=",ExpressionUUID->"faa0880a-a7d8-4ebe-b319-782509ba3be1"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1441,7 +1440,7 @@ array with constant nonstandard part. The default value for \
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
     "DualNumbers`ToDual"], False]]], "Output",
- CellLabel->"Out[30]=",ExpressionUUID->"080ed82d-0e8a-4cf0-b7f0-6ede0d5e98a5"],
+ CellLabel->"Out[4]=",ExpressionUUID->"c0abb32c-af31-47ca-9088-749b61c36e74"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1735,7 +1734,7 @@ have zero nonstandard parts. Threads over lists.", "Documentation" -> None,
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {Listable}, "FullName" -> "DualNumbers`Standard"], 
    False]]], "Output",
- CellLabel->"Out[31]=",ExpressionUUID->"0f8559ac-7116-43d9-b719-82188ee2ff9e"],
+ CellLabel->"Out[5]=",ExpressionUUID->"70e8537a-caaf-4bd5-aecc-3174dad25148"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2026,7 +2025,335 @@ quantities are assumed to have zero nonstandard parts. Threads over lists.",
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {Listable}, "FullName" -> 
     "DualNumbers`NonStandard"], False]]], "Output",
- CellLabel->"Out[32]=",ExpressionUUID->"30bb7284-4ffc-4a76-b5eb-6274c61d5e88"],
+ CellLabel->"Out[6]=",ExpressionUUID->"cfb8cdb7-6a17-4910-8139-05d5648b63c7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"StandardNonStandard\\\", \\\"[\
+\\\", RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
+standard and nonstandard parts of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \
+\\\"TI\\\"]\\) and returns them as a \
+list.\\n\\!\\(\\*RowBox[{\\\"StandardNonStandard\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"dualArray\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) returns the \
+same as StandardNonStandard[UnpackDualArray[\\!\\(\\*StyleBox[\\\"dualArray\\\
+\", \\\"TI\\\"]\\)]].\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"StandardNonStandard", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], ")"}], "?", "DualArrayQ"}], "]"}], ":=", 
+                    RowBox[{"With", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"DualNumbers`Private`depth", "=", 
+                    RowBox[{
+                    "ArrayDepth", "[", "DualNumbers`Private`a", "]"}]}], 
+                    "}"}], ",", 
+                    RowBox[{"Transpose", "[", 
+                    RowBox[{
+                    RowBox[{"ToPackedArray", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
+                    "}"}], "]"}], ",", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{
+                    RowBox[{"Range", "[", 
+                    RowBox[{"DualNumbers`Private`depth", "-", "1"}], "]"}], 
+                    ",", "DualNumbers`Private`depth"}], "]"}]}], "]"}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"StandardNonStandard", "[", 
+                    RowBox[{"Dual", "[", 
+                    RowBox[{
+                    "DualNumbers`Private`a_", ",", "DualNumbers`Private`b_"}],
+                     "]"}], "]"}], ":=", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
+                    "}"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "StandardNonStandard", "[", "DualNumbers`Private`x_", 
+                    "]"}], ":=", 
+                    RowBox[{"{", 
+                    RowBox[{"DualNumbers`Private`x", ",", "0"}], "}"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "Listable", "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"DualNumbers`StandardNonStandard\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"StandardNonStandard\\\", \\\"[\
+\\\", RowBox[{StyleBox[\\\"d\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) extracts the \
+standard and nonstandard parts of a dual number \\!\\(\\*StyleBox[\\\"d\\\", \
+\\\"TI\\\"]\\) and returns them as a \
+list.\\n\\!\\(\\*RowBox[{\\\"StandardNonStandard\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"dualArray\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) returns the \
+same as StandardNonStandard[UnpackDualArray[\\!\\(\\*StyleBox[\\\"dualArray\\\
+\", \\\"TI\\\"]\\)]].\\nSymbolic quantities are assumed to have zero \
+nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{12., {3., 9.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{12., {3., 9.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"StandardNonStandard\", \"[\", RowBox[{StyleBox[\"d\", \
+\"TI\"]}], \"]\"}]\) extracts the standard and nonstandard parts of a dual \
+number \!\(\*StyleBox[\"d\", \"TI\"]\) and returns them as a list.\n\
+\!\(\*RowBox[{\"StandardNonStandard\", \"[\", RowBox[{StyleBox[\"dualArray\", \
+\"TI\"]}], \"]\"}]\) returns the same as StandardNonStandard[UnpackDualArray[\
+\!\(\*StyleBox[\"dualArray\", \"TI\"]\)]].\nSymbolic quantities are assumed \
+to have zero nonstandard parts. Threads over lists.", "Documentation" -> None,
+     "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, DualNumbers`StandardNonStandard, {
+      DualNumbers`StandardNonStandard[
+         PatternTest[
+          DualNumbers`Dual[
+           Pattern[DualNumbers`Private`a, 
+            Blank[]], 
+           Pattern[DualNumbers`Private`b, 
+            Blank[]]], DualNumbers`DualArrayQ]] :> 
+       With[{DualNumbers`Private`depth = ArrayDepth[DualNumbers`Private`a]}, 
+         Transpose[
+          
+          Developer`ToPackedArray[{
+           DualNumbers`Private`a, DualNumbers`Private`b}], 
+          Prepend[
+           Range[
+            Subtract[DualNumbers`Private`depth, 1]], 
+           DualNumbers`Private`depth]]], DualNumbers`StandardNonStandard[
+         DualNumbers`Dual[
+          Pattern[DualNumbers`Private`a, 
+           Blank[]], 
+          Pattern[DualNumbers`Private`b, 
+           Blank[]]]] :> {DualNumbers`Private`a, DualNumbers`Private`b}, 
+       DualNumbers`StandardNonStandard[
+         Pattern[DualNumbers`Private`x, 
+          Blank[]]] :> {DualNumbers`Private`x, 0}}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {Listable}, "FullName" -> 
+    "DualNumbers`StandardNonStandard"], False]]], "Output",
+ CellLabel->"Out[7]=",ExpressionUUID->"cc9bfce0-b532-4568-bad4-4c6fc529d0a2"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2309,7 +2636,7 @@ standard parts.\"\>", "InformationUsageText",
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`StandardAll"], 
    False]]], "Output",
- CellLabel->"Out[33]=",ExpressionUUID->"84162c88-fae6-41e4-bfb2-adbaae2f65d4"]
+ CellLabel->"Out[8]=",ExpressionUUID->"7da75bb3-6065-4c4d-933a-0fbd55cf83fc"]
 }, Open  ]]
 }, Open  ]],
 
