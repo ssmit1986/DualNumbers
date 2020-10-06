@@ -298,7 +298,7 @@ Out[]= True
 
 * Helper functions. Use `?` for more information (e.g., `?ToDual`):
     * `ToDual`: construct dual numbers from scalars or arrays.
-    * `Standard`, `NonStandard`: Extract the first/second argument of a dual quantity.
+    * `Standard`, `NonStandard`, `StandardNonStandard`: Extract the first/second argument of a dual quantity.
     * `DualQ`, `DualScalarQ`, `DualArrayQ`, `UnpackedDualArrayQ`, `DualFreeArrayQ`: testing different types of dual expressions.
     * `DualApply`: apply functions directly to the standard and nonstandard parts of a dual quantity.
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
@@ -342,3 +342,5 @@ Use `UnpackDualArray` if you want to use `Pick` at level 2 or deeper.
     * Release of V1.1. Contains mostly performance improvements and bug fixes.
 * 2020-10-03
     * Release of V1.2 with some more fixes and improvements.
+* 20yy-mm-dd
+    * Add `StandardNonStandard`.
