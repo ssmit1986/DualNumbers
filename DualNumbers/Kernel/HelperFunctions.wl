@@ -224,7 +224,7 @@ FindDualSolution[eqs_, sol : {__Rule}] := Module[{
     nonstdSol
 },
     If[ FailureQ[equations],
-        Return[$Failed]
+        Return[$Failed, Module]
     ];
     dualRules = Thread[vars -> (Values[sol] + Map[Dual[0, #]&, vars])];
     equations = DualFactor[Subtract @@@ equations] /. dualRules;
@@ -250,13 +250,13 @@ DualFindRoot[eqs_, spec : {{_, __?NumericQ}..}, rest___] := Module[{
     stdEqs, stdSol
 },
     If[ FailureQ[equations],
-        Return[$Failed]
+        Return[$Failed, Module]
     ];
     stdEqs = Subtract @@@ equations;
     stdEqs = StandardAll[DualFactor[stdEqs]];
     stdSol = FindRoot[stdEqs, spec, rest];
     If[ !MatchQ[stdSol, {(_ -> _?NumericQ)..}],
-        Return[$Failed]
+        Return[$Failed, Module]
     ];
     Quiet[firstSol @ FindDualSolution[equations, stdSol], {FindDualSolution::nonsol}]
 ];
@@ -272,7 +272,7 @@ KeyValueMap[
             stdfun = StandardAll[DualFactor[fun]];
             stdSol = existingFun[stdfun, spec, rest];
             If[ !MatchQ[stdSol, {_?NumericQ, {(_ -> _?NumericQ)..}}],
-                Return[$Failed]
+                Return[$Failed, Module]
             ];
             dualSol = Quiet[
                 firstSol @ FindDualSolution[
