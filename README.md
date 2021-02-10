@@ -220,7 +220,7 @@ Out[]= {Dual[0.704343, 1.], Dual[0.384163, 1.], Dual[0.189591, 1.], Dual[0.26614
 Out[]= Dual[1.02964, 4.14524]
 ``` 
 
-This works just fine, but because `dvec` is not a list of normal numbers, the `Dot` operation doesn't evaluate as fast as it can be:
+This works just fine, but because `dvec` is not a list of normal numbers, the `Dot` operation isn't as fast as it could be:
 
 ```
 In[]:= dvec = Dual[#, 1.] & /@ RandomReal[1, 10^3];
@@ -246,7 +246,7 @@ In[]:= dvecPacked . dvecPacked // RepeatedTiming
 Out[]= {0.000079, Dual[335.28, 992.399]}
 ```
 
-You can convert back to the `dvecPacked` back to `dvec` if necessary with `UnpackDualArray`:
+You can convert `dvecPacked` back to unpacked form if necessary with `UnpackDualArray`:
 
 ```
 In[]:= UnpackDualArray[dvecPacked] === dvec
