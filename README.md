@@ -343,5 +343,5 @@ Use `UnpackDualArray` if you want to use `Pick` at level 2 or deeper.
     * Release of V1.1. Contains mostly performance improvements and bug fixes.
 * 2020-10-03
     * Release of V1.2 with some more fixes and improvements.
-* 20yy-mm-dd
+* 2021-04-30
     * Add `StandardNonStandard`.
