@@ -16,11 +16,11 @@ VerificationTest[
 
 VerificationTest[
     {Dual[{}], Dual[{1}], Dual[{{1}}], Dual[SparseArray[{1}]], Dual[{}, {
-    }], Dual[{0}, {1}]}
+        }], Dual[{0}, {1}]}
     ,
     {Dual[{}, {}], Dual[{1}, {0}], Dual[{{1}}, {{0}}], Dual[SparseArray[Automatic,
-     {1}, 0, {1, {{0, 1}, {{1}}}, {1}}], SparseArray[Automatic, {1}, 0, {
-    1, {{0, 0}, {}}, {}}]], Dual[{}, {}], Dual[{0}, {1}]}
+         {1}, 0, {1, {{0, 1}, {{1}}}, {1}}], SparseArray[Automatic, {1}, 0, {
+        1, {{0, 0}, {}}, {}}]], Dual[{}, {}], Dual[{0}, {1}]}
     ,
     TestID -> "2cf6f84c-11a7-45e4-b0c5-b9941eb9bbb2"
 ]
@@ -67,11 +67,11 @@ VerificationTest[
 
 VerificationTest[
     {ToDual[1, 2], ToDual[{1}, 2], ToDual[{Dual[1], 1}, 2], ToDual[1, {2,
-     3}], ToDual[1, SparseArray[{2, 3}]]}
+         3}], ToDual[1, SparseArray[{2, 3}]]}
     ,
     {Dual[1, 2], Dual[{1}, {2}], Dual[{1, 1}, {0, 2}], Dual[{1, 1}, {2, 3
-    }], Dual[SparseArray[Automatic, {2}, 1, {1, {{0, 0}, {}}, {}}], SparseArray[
-    Automatic, {2}, 0, {1, {{0, 2}, {{1}, {2}}}, {2, 3}}]]}
+        }], Dual[SparseArray[Automatic, {2}, 1, {1, {{0, 0}, {}}, {}}], SparseArray[
+        Automatic, {2}, 0, {1, {{0, 2}, {{1}, {2}}}, {2, 3}}]]}
     ,
     TestID -> "38ad5d2a-af92-453f-9914-f8efe977fc20"
 ]
@@ -92,7 +92,7 @@ BeginTestSection["Elementary properties"]
 
 VerificationTest[
     {Dual[Dual[a, b], c], Dual[a, Dual[c, d]], Dual[Dual[a, b], Dual[c, d
-    ]]}
+        ]]}
     ,
     {Dual[a, b + c], Dual[a, c], Dual[a, b + c]}
     ,
@@ -101,18 +101,18 @@ VerificationTest[
 
 VerificationTest[
     {D[Dual[f[x], g[y]], x], D[Dual[f[x], g[y]], y], D[Dual[f[x, y], g[x,
-     y]], {{x, y}}]}
+         y]], {{x, y}}]}
     ,
     {Derivative[1][f][x], Dual[0, Derivative[1][g][y]], {Dual[Derivative[
-    1, 0][f][x, y], Derivative[1, 0][g][x, y]], Dual[Derivative[0, 1][f][
-    x, y], Derivative[0, 1][g][x, y]]}}
+        1, 0][f][x, y], Derivative[1, 0][g][x, y]], Dual[Derivative[0, 1][f][
+        x, y], Derivative[0, 1][g][x, y]]}}
     ,
     TestID -> "e752d07a-1151-4fd8-bf34-570d9e99dd40"
 ]
 
 VerificationTest[
     {Standard[Dual[a, b]], NonStandard[Dual[a, b]], Standard[a], NonStandard[
-    a], Standard[1], NonStandard[1]}
+        a], Standard[1], NonStandard[1]}
     ,
     {a, b, a, 0, 1, 0}
     ,
@@ -121,7 +121,7 @@ VerificationTest[
 
 VerificationTest[
     {StandardNonStandard[Dual[a, b]], StandardNonStandard[a], StandardNonStandard[
-    1], StandardNonStandard[Dual[{1, 2}, {3, 4}]]}
+        1], StandardNonStandard[Dual[{1, 2}, {3, 4}]]}
     ,
     {{a, b}, {a, 0}, {1, 0}, {{1, 3}, {2, 4}}}
     ,
@@ -130,9 +130,9 @@ VerificationTest[
 
 VerificationTest[
     With[{testArray = Dual[RandomReal[1, {10, 20, 50}], RandomReal[1, {10,
-     20, 50}]]},
-    StandardNonStandard[testArray] === StandardNonStandard[UnpackDualArray[
-        testArray]]
+         20, 50}]]},
+        StandardNonStandard[testArray] === StandardNonStandard[UnpackDualArray[
+            testArray]]
 ]
     ,
     True
@@ -146,13 +146,13 @@ BeginTestSection["Type verification"]
 
 VerificationTest[
     testValues = {1, Dual[0, 1], Dual[1, 0], Dual[{0, 1}, {2, 3}], Dual[{
-    {0, 1}}, {{2, 3}}], {Dual[0, 2], Dual[1, 3]}, {Dual[0, 2], {Dual[1, 3
-    ]}}, {Dual[0, 2], 1}, {0, 1}}; AssociationMap[DualQ, testValues]
+        {0, 1}}, {{2, 3}}], {Dual[0, 2], Dual[1, 3]}, {Dual[0, 2], {Dual[1, 3
+        ]}}, {Dual[0, 2], 1}, {0, 1}}; AssociationMap[DualQ, testValues]
     ,
     Association[1 -> False, Dual[0, 1] -> True, Dual[1, 0] -> True, Dual[
-    {0, 1}, {2, 3}] -> True, Dual[{{0, 1}}, {{2, 3}}] -> True, {Dual[0, 2
-    ], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[0,
-     2], 1} -> False, {0, 1} -> False]
+        {0, 1}, {2, 3}] -> True, Dual[{{0, 1}}, {{2, 3}}] -> True, {Dual[0, 2
+        ], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[0,
+         2], 1} -> False, {0, 1} -> False]
     ,
     TestID -> "a5e32721-7666-452f-880e-17f429e50f98"
 ]
@@ -161,9 +161,9 @@ VerificationTest[
     AssociationMap[DualScalarQ, testValues]
     ,
     Association[1 -> False, Dual[0, 1] -> True, Dual[1, 0] -> True, Dual[
-    {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
-     2], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
-    0, 2], 1} -> False, {0, 1} -> False]
+        {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
+         2], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
+        0, 2], 1} -> False, {0, 1} -> False]
     ,
     TestID -> "e9013855-ed21-4b42-91fa-570483ef2b95"
 ]
@@ -172,9 +172,9 @@ VerificationTest[
     AssociationMap[StandardQ, testValues]
     ,
     Association[1 -> True, Dual[0, 1] -> False, Dual[1, 0] -> False, Dual[
-    {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
-     2], Dual[1, 3]} -> True, {Dual[0, 2], {Dual[1, 3]}} -> True, {Dual[0,
-     2], 1} -> True, {0, 1} -> True]
+        {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
+         2], Dual[1, 3]} -> True, {Dual[0, 2], {Dual[1, 3]}} -> True, {Dual[0,
+         2], 1} -> True, {0, 1} -> True]
     ,
     TestID -> "a75a8c93-81f8-4613-9791-42e7b1f53f1e"
 ]
@@ -183,9 +183,9 @@ VerificationTest[
     AssociationMap[UnpackedDualArrayQ, testValues]
     ,
     Association[1 -> False, Dual[0, 1] -> False, Dual[1, 0] -> False, Dual[
-    {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
-     2], Dual[1, 3]} -> True, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
-    0, 2], 1} -> False, {0, 1} -> False]
+        {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
+         2], Dual[1, 3]} -> True, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
+        0, 2], 1} -> False, {0, 1} -> False]
     ,
     TestID -> "af6eba64-c63a-4afb-b49b-4a23de45cea7"
 ]
@@ -194,9 +194,9 @@ VerificationTest[
     AssociationMap[DualFreeArrayQ, testValues]
     ,
     Association[1 -> False, Dual[0, 1] -> False, Dual[1, 0] -> False, Dual[
-    {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
-     2], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
-    0, 2], 1} -> False, {0, 1} -> True]
+        {0, 1}, {2, 3}] -> False, Dual[{{0, 1}}, {{2, 3}}] -> False, {Dual[0,
+         2], Dual[1, 3]} -> False, {Dual[0, 2], {Dual[1, 3]}} -> False, {Dual[
+        0, 2], 1} -> False, {0, 1} -> True]
     ,
     TestID -> "f19aa1b7-b932-458a-8218-a48c3183a732"
 ]
@@ -207,7 +207,7 @@ BeginTestSection["Packing and unpacking"]
 
 VerificationTest[
     arrays = {{}, {{}}, {Dual[1, 2]}, {{Dual[1, 2]}}}; packedArrays = PackDualArray /@
-     arrays
+         arrays
     ,
     {Dual[{}, {}], Dual[{{}}, {{}}], Dual[{1}, {2}], Dual[{{1}}, {{2}}]}
     ,
@@ -282,10 +282,10 @@ VerificationTest[
 
 VerificationTest[
     Module[{res},
-    On["Packing"];
-    res = UnpackDualArray[Dual[{1}, {2}]];
-    Off["Packing"];
-    res
+        On["Packing"];
+        res = UnpackDualArray[Dual[{1}, {2}]];
+        Off["Packing"];
+        res
 ]
     ,
     {Dual[1, 2]}
@@ -297,7 +297,7 @@ VerificationTest[
 
 VerificationTest[
     largePackedArray = Dual[RandomReal[1, 10^6], RandomReal[1, 10^6]]; largeUnPackedArray = UnpackDualArray[
-    largePackedArray]; MatchQ[largeUnPackedArray, {__Dual}]
+        largePackedArray]; MatchQ[largeUnPackedArray, {__Dual}]
     ,
     True
     ,
@@ -308,18 +308,18 @@ VerificationTest[
 
 VerificationTest[
     With[{tests = {DualQ, DualScalarQ, StandardQ, DualArrayQ, UnpackedDualArrayQ,
-     DualFreeArrayQ}, arr = RandomReal[1, 10^6]},
-    {AssociationMap[#1[largePackedArray]&, tests], AssociationMap[#1[
-        largeUnPackedArray]&, tests], AssociationMap[#1[arr]&, tests]}
+         DualFreeArrayQ}, arr = RandomReal[1, 10^6]},
+        {AssociationMap[#1[largePackedArray]&, tests], AssociationMap[#1[
+            largeUnPackedArray]&, tests], AssociationMap[#1[arr]&, tests]}
 ]
     ,
     {Association[DualQ -> True, DualScalarQ -> False, StandardQ -> False,
-     DualArrayQ -> True, UnpackedDualArrayQ -> False, DualFreeArrayQ -> False
-    ], Association[DualQ -> False, DualScalarQ -> False, StandardQ -> True,
-     DualArrayQ -> False, UnpackedDualArrayQ -> True, DualFreeArrayQ -> False
-    ], Association[DualQ -> False, DualScalarQ -> False, StandardQ -> True,
-     DualArrayQ -> False, UnpackedDualArrayQ -> False, DualFreeArrayQ -> 
-    True]}
+         DualArrayQ -> True, UnpackedDualArrayQ -> False, DualFreeArrayQ -> False
+        ], Association[DualQ -> False, DualScalarQ -> False, StandardQ -> True,
+         DualArrayQ -> False, UnpackedDualArrayQ -> True, DualFreeArrayQ -> False
+        ], Association[DualQ -> False, DualScalarQ -> False, StandardQ -> True,
+         DualArrayQ -> False, UnpackedDualArrayQ -> False, DualFreeArrayQ -> 
+        True]}
     ,
     TestID -> "50df5c1e-7003-41b9-850d-916fe5680919"
     ,
