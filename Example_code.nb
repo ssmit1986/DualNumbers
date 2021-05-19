@@ -23,21 +23,23 @@ Cell[BoxData[
 DualNumbers-1.2.paclet\>\"", "]"}]], "Input",
  CellLabel->"In[1]:=",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
 
-Cell["Load the package from the cloned repository:", \
-"Text",ExpressionUUID->"28f45967-93e7-4046-8b32-cf276cc7b22c"],
+Cell["\<\
+or, if you want to load the source code, point the PacletManager at the \
+cloned repository:\
+\>", "Text",ExpressionUUID->"28f45967-93e7-4046-8b32-cf276cc7b22c"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[4]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+ CellLabel->"In[1]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
 
-Cell["Load the package:", \
+Cell["Load the paclet:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[2]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10447,13 +10449,13 @@ lastPathIsLeafHeader, TypeSystem`NestedGrid`PackagePrivate`headerHidden$ = And[
         Hold[
           TypeSystem`NestedGrid`PackagePrivate`localHold[
           TypeSystem`NestedGrid`PackagePrivate`$outputID$$]]], StandardForm],
-      ImageSizeCache->{884., {74., 81.}},
+      ImageSizeCache->{871., {67.56083975965157, 74.43916024034843}},
       TrackedSymbols:>{
        TypeSystem`NestedGrid`PackagePrivate`$state$$, 
         TypeSystem`NestedGrid`PackagePrivate`$grid$$}], 
      TypeSystem`NestedGrid`PackagePrivate`mouseAnnotation$$ = 
      MouseAnnotation[],
-     ImageSizeCache->{884., {74., 81.}}],
+     ImageSizeCache->{871., {67.56083975965157, 74.43916024034843}}],
     BaseStyle->{LineBreakWithin -> False},
     DynamicModuleValues:>{},
     Initialization:>
@@ -10491,7 +10493,8 @@ Cell[CellGroupData[{
 Cell["Re-building the paclet", \
 "Section",ExpressionUUID->"b17fd04e-5216-4de6-9df2-053310fbcad6"],
 
-Cell[CellGroupData[{
+Cell["This will create a simple archive without documentation:", \
+"Text",ExpressionUUID->"a6bc7406-af3f-4d55-8fda-f1f222735969"],
 
 Cell[BoxData[{
  RowBox[{
@@ -10502,12 +10505,215 @@ Cell[BoxData[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
      "}"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"FileNameTake", "[", "%", "]"}]}], "Input",
- CellLabel->"In[54]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
+ CellLabel->"In[7]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
 
-Cell[BoxData["\<\"DualNumbers-1.2.0.1.paclet\"\>"], "Output",
- CellLabel->"Out[55]=",ExpressionUUID->"2b77de37-97fd-4d96-b111-41326e18d4c3"]
+Cell[TextData[{
+ "This will build the paclet including the documentation pages. The result \
+will be placed in the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{".", 
+     StyleBox[
+      RowBox[{"/", "DualNumbers"}],
+      FontWeight->"Bold"]}], 
+    StyleBox["/",
+     FontWeight->"Bold"], 
+    StyleBox["build",
+     FontWeight->"Bold"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8bf18102-b751-4574-8473-64294d3503fd"],
+ " subdirectory (which is not tracked by git):"
+}], "Text",ExpressionUUID->"1ed33cf2-9889-477d-ac2d-9b897b8346e0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<PacletTools`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PacletBuild", "[", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
+    "}"}], "]"}], 
+  "]"}]}], "Input",ExpressionUUID->"683fcd1e-e78c-4556-94ab-8cf6dea606e4"],
+
+Cell["Inspect the build results:", \
+"Text",ExpressionUUID->"e9d9f284-7b1a-448a-91ac-f005b72faf81"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "[", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\"", 
+     ",", "\"\<build\>\""}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"1fa01895-2934-427c-8169-6030674e64cd"],
+
+Cell[TextData[{
+ "To write documentation, use the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["DocumentationTools`",
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2f9ebe75-590b-4a7f-887d-37d3703b3ea9"],
+ " palette:"
+}], "Text",ExpressionUUID->"75a4296a-5669-4af1-9a32-418ff9263821"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", "\"\<DocumentationTools`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"OpenDocumentationToolsPalette", "[", "]"}], ";"}]}], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"3f72e2c7-bc89-4a7c-9c21-969428ced8de"],
+
+Cell[TextData[{
+ "Be sure to use the ",
+ Cell[BoxData[
+  FormBox["\"\<Add Paclet\[Ellipsis]\>\"", TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "54c39604-2294-4826-b4c2-36bd2b5ac059"],
+ " button in the palette to add the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{".", 
+    StyleBox[
+     RowBox[{"/", "DualNumbers"}],
+     FontWeight->"Bold"]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "158d21ff-ea3e-4d75-937d-5fa2b7a3a701"],
+ " directory (i.e., the directory containing ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"PacletInfo", ".", "wl"}],
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a3f88867-0168-4f47-87bb-b098e8cd7e97"],
+ ")."
+}], "Text",ExpressionUUID->"68bd7a3a-e90c-484f-b165-ace7ba0a33e7"],
+
+Cell["To test the documentation after building, you can:", \
+"Text",ExpressionUUID->"e846a306-a4a4-4fef-91df-985605b54994"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Temporarily load the build directory with ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["PacletDirectoryLoad",
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8728a579-a0ca-45ff-a609-bdf5140f4872"],
+ ":"
+}], "Item",ExpressionUUID->"961c308d-ca1d-4c6d-b3cc-f5e3b7c2cb8c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PacletDirectoryLoad", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\"", 
+      ",", "\"\<build\>\""}], "}"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "DualNumbers`"}]}], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"af87cf35-c2c7-42d8-8702-86609261e753"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Install the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{".", "paclet"}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0058aa42-9d8a-4671-a481-0fcde106edca"],
+ " file with ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["PacletInstall",
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "eb15706b-7906-416a-ba17-8ae24a8df163"],
+ " or you can temporarily load the build directory with ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["PacletDirectoryLoad",
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "707ab3c4-4f1e-4457-8f93-2aae8a170e98"],
+ ":"
+}], "Item",ExpressionUUID->"07c14d54-ba84-4ba0-a434-21a41324ca7a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pacletFile", "=", 
+   RowBox[{"First", "[", 
+    RowBox[{
+     RowBox[{"FileNames", "[", 
+      RowBox[{"\"\<*.paclet\>\"", ",", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\"",
+           ",", "\"\<build\>\""}], "}"}], "]"}]}], "]"}], ",", "$Failed"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"And", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"StringQ", "[", "pacletFile", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"TrueQ", "@", 
+      RowBox[{"ChoiceDialog", "[", 
+       RowBox[{
+       "\"\<Are you sure you want to install\\n\>\"", "<>", "pacletFile"}], 
+       "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"PacletInstall", "[", "pacletFile", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"<<", "DualNumbers`"}]}]}], "\[IndentingNewLine]", 
+  "]"}]}], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"4c7af375-e69f-4ccb-921d-0b9d9a9bfe87"]
+}, Open  ]],
+
+Cell["\<\
+You may need to restart the kernel to pick up the newly installed paclet. \
+After that, you can load it with:\
+\>", "Text",ExpressionUUID->"3460d80e-2076-46b0-b0f2-57bce3efa34c"],
+
+Cell[BoxData[
+ RowBox[{"<<", "DualNumbers`", " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Load", " ", "in", " ", "a", " ", "fresh", " ", "kernel", " ", "after", 
+    " ", "installing"}], " ", "*)"}]}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"9be2c07e-f561-4c04-8305-e2fc6c3acc53"],
+
+Cell[TextData[{
+ "If the documentation build and paclet installation were successful, you \
+should be able to use the standard Mathematica shortcuts to find the new \
+documentation. For example, try finding ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox["Dual",
+    FontWeight->"Bold"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "d77ef51a-dfae-43b8-aa8c-d400b44ab21d"],
+ " in the documentation browser."
+}], "Text",ExpressionUUID->"8c06e411-5fe7-48e6-a092-17a798fbb5e1"],
+
+Cell["To uninstall again (if necessary):", \
+"Text",ExpressionUUID->"67743de5-39c1-4424-9915-d826071c26af"],
+
+Cell[BoxData[
+ RowBox[{"PacletUninstall", "[", "\"\<DualNumbers\>\"", "]"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"fe46789e-4b7b-42ae-b9fe-c46c17c425a9"]
 }, Open  ]]
-}, Closed]]
 },
 WindowSize->{1236.75, 676.5},
 WindowMargins->{{92.25, Automatic}, {Automatic, 66.75}},
@@ -10517,7 +10723,7 @@ TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 ShowCellLabel->True,
 TrackCellChangeTimes->False,
 Magnification:>1.2 Inherited,
-FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

@@ -9,8 +9,11 @@ Paclet[
     "Creator" -> "Sjoerd Smit",
     "Extensions" -> {
         {
-            "Kernel", "Root" -> "Kernel",
+            "Kernel", "Root" -> "./Kernel",
             "Context" -> "DualNumbers`"
+        },
+        {
+            "Documentation", "Root" -> "./Documentation"
         }
     }
 ]
