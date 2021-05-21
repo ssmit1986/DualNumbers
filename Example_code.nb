@@ -10520,8 +10520,7 @@ will be placed in the ",
     StyleBox["/",
      FontWeight->"Bold"], 
     StyleBox["build",
-     FontWeight->"Bold"]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     FontWeight->"Bold"]}], TraditionalForm]],ExpressionUUID->
   "8bf18102-b751-4574-8473-64294d3503fd"],
  " subdirectory (which is not tracked by git):"
 }], "Text",ExpressionUUID->"1ed33cf2-9889-477d-ac2d-9b897b8346e0"],
@@ -10555,8 +10554,7 @@ Cell[TextData[{
  Cell[BoxData[
   FormBox[
    StyleBox["DocumentationTools`",
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "2f9ebe75-590b-4a7f-887d-37d3703b3ea9"],
  " palette:"
 }], "Text",ExpressionUUID->"75a4296a-5669-4af1-9a32-418ff9263821"],
@@ -10572,8 +10570,7 @@ Cell[BoxData[{
 Cell[TextData[{
  "Be sure to use the ",
  Cell[BoxData[
-  FormBox["\"\<Add Paclet\[Ellipsis]\>\"", TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+  FormBox["\"\<Add Paclet\[Ellipsis]\>\"", TraditionalForm]],ExpressionUUID->
   "54c39604-2294-4826-b4c2-36bd2b5ac059"],
  " button in the palette to add the ",
  Cell[BoxData[
@@ -10581,16 +10578,14 @@ Cell[TextData[{
    RowBox[{".", 
     StyleBox[
      RowBox[{"/", "DualNumbers"}],
-     FontWeight->"Bold"]}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+     FontWeight->"Bold"]}], TraditionalForm]],ExpressionUUID->
   "158d21ff-ea3e-4d75-937d-5fa2b7a3a701"],
  " directory (i.e., the directory containing ",
  Cell[BoxData[
   FormBox[
    StyleBox[
     RowBox[{"PacletInfo", ".", "wl"}],
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "a3f88867-0168-4f47-87bb-b098e8cd7e97"],
  ")."
 }], "Text",ExpressionUUID->"68bd7a3a-e90c-484f-b165-ace7ba0a33e7"],
@@ -10605,8 +10600,7 @@ Cell[TextData[{
  Cell[BoxData[
   FormBox[
    StyleBox["PacletDirectoryLoad",
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "8728a579-a0ca-45ff-a609-bdf5140f4872"],
  ":"
 }], "Item",ExpressionUUID->"961c308d-ca1d-4c6d-b3cc-f5e3b7c2cb8c"],
@@ -10630,22 +10624,19 @@ Cell[TextData[{
  "Install the ",
  Cell[BoxData[
   FormBox[
-   RowBox[{".", "paclet"}], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+   RowBox[{".", "paclet"}], TraditionalForm]],ExpressionUUID->
   "0058aa42-9d8a-4671-a481-0fcde106edca"],
  " file with ",
  Cell[BoxData[
   FormBox[
    StyleBox["PacletInstall",
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "eb15706b-7906-416a-ba17-8ae24a8df163"],
  " or you can temporarily load the build directory with ",
  Cell[BoxData[
   FormBox[
    StyleBox["PacletDirectoryLoad",
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "707ab3c4-4f1e-4457-8f93-2aae8a170e98"],
  ":"
 }], "Item",ExpressionUUID->"07c14d54-ba84-4ba0-a434-21a41324ca7a"],
@@ -10701,8 +10692,7 @@ documentation. For example, try finding ",
  Cell[BoxData[
   FormBox[
    StyleBox["Dual",
-    FontWeight->"Bold"], TraditionalForm]],
-  FormatType->TraditionalForm,ExpressionUUID->
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
   "d77ef51a-dfae-43b8-aa8c-d400b44ab21d"],
  " in the documentation browser."
 }], "Text",ExpressionUUID->"8c06e411-5fe7-48e6-a092-17a798fbb5e1"],
@@ -10713,7 +10703,7 @@ Cell["To uninstall again (if necessary):", \
 Cell[BoxData[
  RowBox[{"PacletUninstall", "[", "\"\<DualNumbers\>\"", "]"}]], "Input",
  CellLabel->"In[2]:=",ExpressionUUID->"fe46789e-4b7b-42ae-b9fe-c46c17c425a9"]
-}, Open  ]]
+}, Closed]]
 },
 WindowSize->{1236.75, 676.5},
 WindowMargins->{{92.25, Automatic}, {Automatic, 66.75}},
