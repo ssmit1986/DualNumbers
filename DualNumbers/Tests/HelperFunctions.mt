@@ -2,6 +2,15 @@ BeginTestSection["HelperFunctions"]
 
 BeginTestSection["Initialization"]
 
+VerificationTest[
+    Needs["DualNumbers`"];
+    "Done"
+    ,
+    "Done"
+    ,
+    TestID -> "958503ac-fcd4-47e9-91bc-9adbc3ee11ad"
+]
+
 EndTestSection[]
 
 BeginTestSection["DualTuples"]

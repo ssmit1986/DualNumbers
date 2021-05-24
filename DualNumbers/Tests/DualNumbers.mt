@@ -2,6 +2,15 @@ BeginTestSection["DualNumbers"]
 
 BeginTestSection["Initialization"]
 
+VerificationTest[
+    Needs["DualNumbers`"];
+    "Done"
+    ,
+    "Done"
+    ,
+    TestID -> "bbaf5d11-3f62-40b1-ba65-58d0209ef9e9"
+]
+
 EndTestSection[]
 
 BeginTestSection["Construction"]
