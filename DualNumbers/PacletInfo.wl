@@ -12,8 +12,7 @@ Paclet[
             "Kernel", "Root" -> "./Kernel",
             "Context" -> "DualNumbers`"
         },
-        {
-            "Documentation", "Root" -> "./Documentation"
-        }
+        {"Documentation", "Root" -> "./Documentation"},
+        {"Tests", "Root" -> "./Tests"}
     }
 ]
