@@ -13,6 +13,6 @@ Paclet[
             "Context" -> "DualNumbers`"
         },
         {"Documentation", "Root" -> "./Documentation"},
-        {"Tests", "Root" -> "./Tests"}
+        {"Tests", "Root" -> "./Tests", Method -> "Experimental-v1"}
     }
 ]
