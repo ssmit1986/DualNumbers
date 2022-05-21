@@ -52,7 +52,7 @@ Cell[TextData[{
   "740093c7-9dd4-4714-9ed4-8beeb34abeee"],
  " as a series in ",
  Cell[BoxData[
-  FormBox["\[Epsilon]", TraditionalForm]],ExpressionUUID->
+  FormBox["\[CurlyEpsilon]", TraditionalForm]],ExpressionUUID->
   "379162a3-f901-413a-935e-289e5b37aa00"]
 }], "Text",ExpressionUUID->"d212c0cc-0228-4e55-8dfe-a522fe2bf7b0"],
 
@@ -65,12 +65,12 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"f", "[", 
       RowBox[{"a", "+", 
-       RowBox[{"b", " ", "\[Epsilon]"}]}], "]"}], ",", 
+       RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"\[Epsilon]", ",", "0", ",", "4"}], "}"}]}], "]"}]}], "/.", 
+      RowBox[{"\[CurlyEpsilon]", ",", "0", ",", "4"}], "}"}]}], "]"}]}], "/.", 
   RowBox[{
    RowBox[{"Power", "[", 
-    RowBox[{"\[Epsilon]", ",", 
+    RowBox[{"\[CurlyEpsilon]", ",", 
      RowBox[{"_", "?", 
       RowBox[{"(", 
        RowBox[{"GreaterEqualThan", "[", "2", "]"}], ")"}]}]}], "]"}], 
@@ -80,7 +80,7 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{
   RowBox[{"f", "[", "a", "]"}], "+", 
-  RowBox[{"b", " ", "\[Epsilon]", " ", 
+  RowBox[{"b", " ", "\[CurlyEpsilon]", " ", 
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
      MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
@@ -102,13 +102,13 @@ Cell[BoxData[
  RowBox[{"DualSimplify", "[", 
   RowBox[{"f", "[", 
    RowBox[{"a", "+", 
-    RowBox[{"b", " ", "\[Epsilon]"}]}], "]"}], "]"}]], "Input",
+    RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], "]"}]], "Input",
  CellLabel->"In[72]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"f", "[", "a", "]"}], "+", 
-  RowBox[{"b", " ", "\[Epsilon]", " ", 
+  RowBox[{"b", " ", "\[CurlyEpsilon]", " ", 
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
      MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
@@ -6905,7 +6905,7 @@ Cell["Symbolic manipulation of dual numbers", \
 Cell[CellGroupData[{
 
 Cell[BoxData[{
- RowBox[{"?", "\[Epsilon]"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "\[CurlyEpsilon]"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualExpand"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFactor"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualSimplify"}], "\[IndentingNewLine]"}], "Input",
@@ -6935,7 +6935,7 @@ Cell[BoxData[
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"\[Epsilon] is an inactive form of Dual[0, 1] that \
+            StyleBox["\<\"\[CurlyEpsilon] is an inactive form of Dual[0, 1] that \
 can be used for algebraic manipulation.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
@@ -6971,7 +6971,7 @@ can be used for algebraic manipulation.\"\>", "InformationUsageText",
                     TooltipStyle->"TextStyling"],
                     
                     Annotation[#, "FullName", 
-                    "Tooltip"]& ], "\<\"DualNumbers`\[Epsilon]\"\>"}
+                    "Tooltip"]& ], "\<\"DualNumbers`\[CurlyEpsilon]\"\>"}
                  },
                  AutoDelete->False,
                  GridBoxAlignment->{"Columns" -> {Right, Left}},
@@ -7060,7 +7060,7 @@ can be used for algebraic manipulation.\"\>", "InformationUsageText",
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"\[Epsilon] is an inactive form of Dual[0, 1] that \
+            StyleBox["\<\"\[CurlyEpsilon] is an inactive form of Dual[0, 1] that \
 can be used for algebraic manipulation.\"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
@@ -7125,12 +7125,12 @@ can be used for algebraic manipulation.\"\>", "InformationUsageText",
   InformationData[
    Association[
    "ObjectType" -> "Symbol", "Usage" -> 
-    "\[Epsilon] is an inactive form of Dual[0, 1] that can be used for \
+    "\[CurlyEpsilon] is an inactive form of Dual[0, 1] that can be used for \
 algebraic manipulation.", "Documentation" -> None, "OwnValues" -> None, 
     "UpValues" -> None, "DownValues" -> None, "SubValues" -> None, 
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {Protected}, "FullName" -> 
-    "DualNumbers`\[Epsilon]"], False]]], "Output",
+    "DualNumbers`\[CurlyEpsilon]"], False]]], "Output",
  CellLabel->"Out[45]=",ExpressionUUID->"2bb62ef2-fb75-417b-ba06-ca42cc3a6678"],
 
 Cell[BoxData[
@@ -7162,7 +7162,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) replaces each \
 dual number Dual[\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\), \
 \\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\)] with \
 \\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) + \\!\\(\\*StyleBox[\\\"b\\\", \\\
-\"TI\\\"]\\) \[Epsilon].\\n\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
+\"TI\\\"]\\) \[CurlyEpsilon].\\n\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\
 \\) instead.\"\>", "InformationUsageText",
@@ -7194,7 +7194,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
                     RowBox[{
                     RowBox[{"DualExpand", "[", 
                     RowBox[{"DualNumbers`Private`expr_", ",", 
-                    RowBox[{"DualNumbers`Private`eps_", ":", "\[Epsilon]"}]}],
+                    RowBox[{"DualNumbers`Private`eps_", ":", "\[CurlyEpsilon]"}]}],
                      "]"}], ":=", 
                     RowBox[{
                     "DualNumbers`Private`expr", "//.", "\[VeryThinSpace]", 
@@ -7345,7 +7345,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) replaces each \
 dual number Dual[\\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\), \
 \\!\\(\\*StyleBox[\\\"b\\\", \\\"TI\\\"]\\)] with \
 \\!\\(\\*StyleBox[\\\"a\\\", \\\"TI\\\"]\\) + \\!\\(\\*StyleBox[\\\"b\\\", \\\
-\"TI\\\"]\\) \[Epsilon].\\n\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
+\"TI\\\"]\\) \[CurlyEpsilon].\\n\\!\\(\\*RowBox[{\\\"DualExpand\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\
 \\) instead.\"\>", "InformationUsageText",
@@ -7415,7 +7415,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
     "\!\(\*RowBox[{\"DualExpand\", \"[\", RowBox[{StyleBox[\"expr\", \
 \"TI\"]}], \"]\"}]\) replaces each dual number Dual[\!\(\*StyleBox[\"a\", \
 \"TI\"]\), \!\(\*StyleBox[\"b\", \"TI\"]\)] with \!\(\*StyleBox[\"a\", \
-\"TI\"]\) + \!\(\*StyleBox[\"b\", \"TI\"]\) \[Epsilon].\n\
+\"TI\"]\) + \!\(\*StyleBox[\"b\", \"TI\"]\) \[CurlyEpsilon].\n\
 \!\(\*RowBox[{\"DualExpand\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
 \",\",  StyleBox[\"eps\", \"TI\"]}], \"]\"}]\) uses \!\(\*StyleBox[\"eps\", \
 \"TI\"]\) instead.", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> 
@@ -7426,7 +7426,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
           Blank[]], 
          Optional[
           Pattern[DualNumbers`Private`eps, 
-           Blank[]], DualNumbers`\[Epsilon]]] :> 
+           Blank[]], DualNumbers`\[CurlyEpsilon]]] :> 
        ReplaceRepeated[DualNumbers`Private`expr, DualNumbers`Dual[
            Pattern[DualNumbers`Private`a, 
             Blank[]], 
@@ -7469,7 +7469,7 @@ Cell[BoxData[
             
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) replaces \
-\[Epsilon] with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\
+\[CurlyEpsilon] with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\
 \\n\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\
@@ -7502,7 +7502,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
                     RowBox[{
                     RowBox[{"DualFactor", "[", 
                     RowBox[{"DualNumbers`Private`expr_", ",", 
-                    RowBox[{"DualNumbers`Private`eps_", ":", "\[Epsilon]"}]}],
+                    RowBox[{"DualNumbers`Private`eps_", ":", "\[CurlyEpsilon]"}]}],
                      "]"}], ":=", 
                     RowBox[{
                     "DualNumbers`Private`expr", "//.", "\[VeryThinSpace]", 
@@ -7643,7 +7643,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
             
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) replaces \
-\[Epsilon] with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\
+\[CurlyEpsilon] with Dual[0, 1] in \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\).\
 \\n\\!\\(\\*RowBox[{\\\"DualFactor\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
 \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\"eps\\\", \\\"TI\\\"]\
@@ -7712,7 +7712,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
    Association[
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"DualFactor\", \"[\", RowBox[{StyleBox[\"expr\", \
-\"TI\"]}], \"]\"}]\) replaces \[Epsilon] with Dual[0, 1] in \
+\"TI\"]}], \"]\"}]\) replaces \[CurlyEpsilon] with Dual[0, 1] in \
 \!\(\*StyleBox[\"expr\", \"TI\"]\).\n\!\(\*RowBox[{\"DualFactor\", \"[\", \
 RowBox[{StyleBox[\"expr\", \"TI\"], \",\",  StyleBox[\"eps\", \"TI\"]}], \
 \"]\"}]\) uses \!\(\*StyleBox[\"eps\", \"TI\"]\) instead.", "Documentation" -> 
@@ -7723,7 +7723,7 @@ RowBox[{StyleBox[\"expr\", \"TI\"], \",\",  StyleBox[\"eps\", \"TI\"]}], \
           Blank[]], 
          Optional[
           Pattern[DualNumbers`Private`eps, 
-           Blank[]], DualNumbers`\[Epsilon]]] :> 
+           Blank[]], DualNumbers`\[CurlyEpsilon]]] :> 
        ReplaceRepeated[
         DualNumbers`Private`expr, DualNumbers`Private`eps :> 
          DualNumbers`Dual[0, 1]]}], "SubValues" -> None, "DefaultValues" -> 
@@ -7761,7 +7761,7 @@ Cell[BoxData[
             
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualSimplify\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) expands \
-\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) around \[Epsilon] = 0, keeping \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) around \[CurlyEpsilon] = 0, keeping \
 only the 0th and 1st order terms.\\n\\!\\(\\*RowBox[{\\\"DualSimplify\\\", \\\
 \"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
 StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
@@ -7795,7 +7795,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
                     RowBox[{
                     RowBox[{"DualSimplify", "[", 
                     RowBox[{"DualNumbers`Private`expr_", ",", 
-                    RowBox[{"DualNumbers`Private`eps_", ":", "\[Epsilon]"}]}],
+                    RowBox[{"DualNumbers`Private`eps_", ":", "\[CurlyEpsilon]"}]}],
                      "]"}], ":=", 
                     RowBox[{"Normal", "[", 
                     RowBox[{"Series", "[", 
@@ -7938,7 +7938,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
             
             StyleBox["\<\"\\!\\(\\*RowBox[{\\\"DualSimplify\\\", \\\"[\\\", \
 RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) expands \
-\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) around \[Epsilon] = 0, keeping \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) around \[CurlyEpsilon] = 0, keeping \
 only the 0th and 1st order terms.\\n\\!\\(\\*RowBox[{\\\"DualSimplify\\\", \\\
 \"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  \
 StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
@@ -8009,7 +8009,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
    "ObjectType" -> "Symbol", "Usage" -> 
     "\!\(\*RowBox[{\"DualSimplify\", \"[\", RowBox[{StyleBox[\"expr\", \
 \"TI\"]}], \"]\"}]\) expands \!\(\*StyleBox[\"expr\", \"TI\"]\) around \
-\[Epsilon] = 0, keeping only the 0th and 1st order terms.\n\
+\[CurlyEpsilon] = 0, keeping only the 0th and 1st order terms.\n\
 \!\(\*RowBox[{\"DualSimplify\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \
 \",\",  StyleBox[\"eps\", \"TI\"]}], \"]\"}]\) uses \!\(\*StyleBox[\"eps\", \
 \"TI\"]\) as symbol for the dual unit.", "Documentation" -> None, "OwnValues" -> 
@@ -8020,7 +8020,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
           Blank[]], 
          Optional[
           Pattern[DualNumbers`Private`eps, 
-           Blank[]], DualNumbers`\[Epsilon]]] :> Normal[
+           Blank[]], DualNumbers`\[CurlyEpsilon]]] :> Normal[
          Series[DualNumbers`Private`expr, {DualNumbers`Private`eps, 0, 1}]]}],
      "SubValues" -> None, "DefaultValues" -> 
     Information`InformationValueForm[
