@@ -49,26 +49,26 @@ One way to accomplish this task of keeping track of derivatives, is to implement
 Dual numbers are somewhat similar to complex numbers in that they can be written in the form:
 
 ```
-d == a + b ϵ
+d == a + b ε
 ```
 
-where `ϵ`, (like the imaginary unit `i`) is a new number not found on the real line. It is defined by the property that `ϵ^2 == 0`, but `ϵ != 0`.
-You can think of `ϵ` as the algebraic version of an infinitesimal. So a dual number can be considered to be a tuple of 2 real numbers (`a` and `b`) that in this package will be represented as: 
+where `ε`, (like the imaginary unit `i`) is a new number not found on the real line. It is defined by the property that `ε^2 == 0`, but `ε != 0`.
+You can think of `ε` as the algebraic version of an infinitesimal. So a dual number can be considered to be a tuple of 2 real numbers (`a` and `b`) that in this package will be represented as: 
 
 ```
 Dual[a, b]
 ```
 
 The first argument `a` will be called the *standard* part while the second argument `b` will be called the *nonstandard* part (this terminology has been borrowed from [nonstandard analysis](https://en.wikipedia.org/wiki/Nonstandard_analysis)). 
-You can add and multiply duals much like normal numbers. The standard part behaves exactly as real numbers would and will never be influenced by the nonstandard part. For this reason, you can think of the standard part as the most important part of a dual number. The nonstandard part, on the other hand, keeps track of the derivative and can be thought of as a very tiny perturbation on the standard part. You can see this by expanding a general function as a Taylor series in `ϵ`:
+You can add and multiply duals much like normal numbers. The standard part behaves exactly as real numbers would and will never be influenced by the nonstandard part. For this reason, you can think of the standard part as the most important part of a dual number. The nonstandard part, on the other hand, keeps track of the derivative and can be thought of as a very tiny perturbation on the standard part. You can see this by expanding a general function as a Taylor series in `ε`:
 
 ```
-In[]:= Normal @ Series[f[a + b ϵ], {ϵ, 0, 4}] /. Power[ϵ, _?(GreaterEqualThan[2])] -> 0
+In[]:= Normal @ Series[f[a + b ε], {ε, 0, 4}] /. Power[ε, _?(GreaterEqualThan[2])] -> 0
 
-Out[]= f[a] + b ϵ f'[a]
+Out[]= f[a] + b ε f'[a]
 ```
 
-Since `ϵ^2 == 0`, the series has only two terms and produces a new dual number `Dual[f[a], b f'[a]]`. So if you call the function as:
+Since `ε^2 == 0`, the series has only two terms and produces a new dual number `Dual[f[a], b f'[a]]`. So if you call the function as:
 
 ```
 f[Dual[a, 1]]
@@ -304,7 +304,7 @@ Out[]= True
     * `AddDualHandling`: specify derivatives for custom functions to be used with dual numbers.
     * `DualFindRoot`, `FindDualSolution`, `DualFindMinimum`, `DualFindMaximum`: solve equations and optimization problems involving dual numbers.
     * `PackDualArray`, `UnpackDualArray`: convert dual arrays between the packed form `Dual[_List, _List]` and the unpacked form (i.e., a normal array with dual numbers at the deepest level).
-    * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b ϵ`.
+    * `DualExpand`, `DualFactor`, `DualSimplify`: convert back and forth between the programmatic form `Dual[_, _]` and the algebraic form `a + b ε`.
 	* `DualTuples`, `DualTuplesReduce`: For a list of dual numbers, find all ways to pick the nonstandard part from one dual number and the standard part from the other ones.
 
 ## Know issues and limitations
