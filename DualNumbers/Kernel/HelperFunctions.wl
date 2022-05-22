@@ -23,13 +23,13 @@ Begin["`Private`"] (* Begin Private Context *)
 (* Manipulating expressions with dual numbers *)
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];
 
-DualExpand[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[
+DualExpand[expr_, eps : _ : \[CurlyEpsilon]] := ReplaceRepeated[
     expr,
     Dual[a_, b_] :> a + b * eps
 ];
-DualFactor[expr_, eps : _ : \[Epsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
+DualFactor[expr_, eps : _ : \[CurlyEpsilon]] := ReplaceRepeated[expr, eps :> Dual[0, 1]];
 
-DualSimplify[expr_, eps : _ : \[Epsilon]] := Normal @ Series[expr, {eps, 0, 1}];
+DualSimplify[expr_, eps : _ : \[CurlyEpsilon]] := Normal @ Series[expr, {eps, 0, 1}];
 
 With[{
     cf1 = Compile[{

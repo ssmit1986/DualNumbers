@@ -27,20 +27,20 @@ GeneralUtilities`SetUsage[StandardAll,
     "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
 ];
 GeneralUtilities`SetUsage[DualExpand,
-    "DualExpand[expr$] replaces each dual number Dual[a$, b$] with a$ + b$ \[Epsilon].
+    "DualExpand[expr$] replaces each dual number Dual[a$, b$] with a$ + b$ \[CurlyEpsilon].
 DualExpand[expr$, eps$] uses eps$ instead."
 ];
 GeneralUtilities`SetUsage[DualFactor,
-    "DualFactor[expr$] replaces \[Epsilon] with Dual[0, 1] in expr$.
+    "DualFactor[expr$] replaces \[CurlyEpsilon] with Dual[0, 1] in expr$.
 DualFactor[expr$, eps$] uses eps$ instead.
 "
 ];
 GeneralUtilities`SetUsage[DualSimplify,
-    "DualSimplify[expr$] expands expr$ around \[Epsilon] = 0, keeping only the 0th and 1st order terms.
+    "DualSimplify[expr$] expands expr$ around \[CurlyEpsilon] = 0, keeping only the 0th and 1st order terms.
 DualSimplify[expr$, eps$] uses eps$ as symbol for the dual unit.
 "
 ];
-GeneralUtilities`SetUsage[\[Epsilon], "\[Epsilon] is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
+GeneralUtilities`SetUsage[\[CurlyEpsilon], "\[CurlyEpsilon] is an inactive form of Dual[0, 1] that can be used for algebraic manipulation."];
 GeneralUtilities`SetUsage[DualQ, "DualQ[expr$] tests if expr$ is a dual number."];
 GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual number but not a dual array."];
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is a valid packed array of dual numbers."];
@@ -109,7 +109,7 @@ Begin["`Private`"] (* Begin Private Context *)
     Code inspired by the following post on Mathematica StackExchange:
     https://mathematica.stackexchange.com/a/13926/43522
 *)
-Protect[\[Epsilon]];
+Protect[\[CurlyEpsilon]];
 
 derivativePatt = Except[Function[D[__]], _Function];
 arrayPattern = _List | _SparseArray;
