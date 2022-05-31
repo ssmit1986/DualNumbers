@@ -321,22 +321,6 @@ MakeBoxes[d : Dual[a_, b_], form : StandardForm] := Which[
 		RowBox[{"Dual", "[", RowBox[{MakeBoxes[a, form], ",", MakeBoxes[b, form]}], "]"}]
 ];
 
-With[{
-	aliases = CurrentValue[$FrontEndSession, "InputAliases"],
-	shortcut = "eps"
-},
-	(* Add input alias for \[CurlyEpsilon] *)
-	If[ And[
-			AssociationQ[aliases] || MatchQ[aliases, {___Rule}],
-			!MemberQ[Keys[aliases], shortcut]
-		],
-		CurrentValue[$FrontEndSession, "InputAliases"] = Append[
-			aliases,
-			shortcut -> "\[CurlyEpsilon]"
-		]
-	]
-];
-
 End[] (* End Private Context *)
 
 EndPackage[]
