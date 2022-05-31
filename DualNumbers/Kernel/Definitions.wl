@@ -75,7 +75,7 @@ Produces a message if packing messages have been turned on with On[\"Packing\"].
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
     "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
-AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with $n arguments.
+AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with n$ arguments.
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
 GeneralUtilities`SetUsage[DualApply,
@@ -124,7 +124,7 @@ dualPatt = _Dual;
 DualQ[expr_Dual] := DualScalarQ[expr] || DualArrayQ[expr];
 DualQ[_] := False;
 
-DualScalarQ[Dual[___, arrayPattern, ___]] := False;
+DualScalarQ[Dual[arrayPattern, _] | Dual[_, arrayPattern]] := False;
 DualScalarQ[Dual[a_, b_]] := NoneTrue[{a, b}, ArrayQ];
 DualScalarQ[_] := False;
 
@@ -290,6 +290,35 @@ Scan[
         SyntaxInformation[#] = {"ArgumentsPattern" -> {_, _}}
     ],
     {DualLinearSolveFunction, AddDualHandling}
+];
+
+MakeBoxes[d : Dual[a_, b_], form : StandardForm] := Which[
+	DualScalarQ[d],
+		With[{
+			boxes = Block[{\[CurlyEpsilon]},
+				MakeBoxes[a + b * \[CurlyEpsilon], form]
+			]
+		},
+			InterpretationBox[
+				boxes, 
+				Dual[a, b]
+			]
+		]
+	,
+	DualArrayQ[d],
+		BoxForm`ArrangeSummaryBox[
+			"Dual",
+			Dual[a, b],
+			"{\[Ellipsis]} + \[CurlyEpsilon] {\[Ellipsis]}",
+			{
+				BoxForm`SummaryItem[{"Dimensions: ", Row[Dimensions[a], "\[Times]"]}]
+			},
+			{},
+			form
+		]
+	,
+	True,
+		RowBox[{"Dual", "[", RowBox[{MakeBoxes[a, form], ",", MakeBoxes[b, form]}], "]"}]
 ];
 
 End[] (* End Private Context *)
