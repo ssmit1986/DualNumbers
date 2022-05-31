@@ -280,8 +280,8 @@ Scan[
 		SyntaxInformation[#] = {"ArgumentsPattern" -> {__}}
 	],
 	{
-	   ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
-	   DualFindMaximum, DualApply, DualTuples
+		ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
+		DualFindMaximum, DualApply, DualTuples
 	}
 ];
 
