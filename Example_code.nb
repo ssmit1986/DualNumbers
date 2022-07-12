@@ -32,14 +32,14 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+ CellLabel->"In[1]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
 
 Cell["Load the paclet:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[10]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[3]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -884,11 +884,11 @@ to construct a dual quantity.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -1183,7 +1183,6 @@ scalar or array with constant nonstandard part. The default value for \
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
-                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"DualNumbers`ToDual\"\>"}
                  },
@@ -1296,11 +1295,11 @@ scalar or array with constant nonstandard part. The default value for \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -1667,11 +1666,11 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -1826,6 +1825,7 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
                     ColumnForm[{
                     SyntaxInformation[DualNumbers`NonStandard] = {
                     "ArgumentsPattern" -> {
@@ -1959,11 +1959,11 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -2268,11 +2268,10 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
-              
+               ImageSizeCache->{10., {3., 7.}}], True->
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -2568,11 +2567,11 @@ standard parts.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -2784,6 +2783,7 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -2868,7 +2868,6 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -2935,11 +2934,11 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -3312,11 +3311,11 @@ On[\\\"Packing\\\"].\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -3680,11 +3679,11 @@ be applied to Dual arrays.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -3892,6 +3891,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
                     ColumnForm[{
                     SyntaxInformation[DualNumbers`DualQ] = {
                     "ArgumentsPattern" -> {
@@ -4015,11 +4015,11 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -4292,11 +4292,11 @@ Dual.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -4428,6 +4428,7 @@ dual array.\"\>", "InformationUsageText",
                   {
                    TagBox[
                     TooltipBox[
+                    
                     StyleBox["\<\" Default Definitions\"\>", 
                     "InformationRowLabel",
                     StripOnInput->False],
@@ -4571,11 +4572,11 @@ dual array.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -4864,15 +4865,14 @@ dual numbers.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -5064,6 +5064,7 @@ On[\\\"Packing\\\"].\"\>", "InformationUsageText",
                     },
                     DefaultBaseStyle->"Column",
                     GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
@@ -5214,11 +5215,11 @@ On[\\\"Packing\\\"].\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -5461,7 +5462,6 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -5526,11 +5526,11 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -5805,8 +5805,9 @@ the operator form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\
                     RowBox[{"{", 
                     RowBox[{"DualNumbers`Private`try", "=", 
                     RowBox[{"DualNumbers`Private`funAll", "[", 
-                    RowBox[{"DualNumbers`Private`a", ",", 
-                    "DualNumbers`Private`b"}], "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    "DualNumbers`Private`a", ",", "DualNumbers`Private`b"}], 
+                    "]"}]}], "}"}], ",", 
                     RowBox[{
                     RowBox[{"Dual", "@@", "DualNumbers`Private`try"}], "/;", 
                     RowBox[{"Replace", "[", 
@@ -6033,6 +6034,7 @@ the operator form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
               System`InformationDump`mouseOver$$]],
@@ -6142,11 +6144,11 @@ the operator form of DualApply.\\n\\!\\(\\*RowBox[{\\\"DualApply\\\", \\\"[\\\
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -6741,11 +6743,11 @@ RowBox[{StyleBox[SubscriptBox[\\\"n\\\", StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -7064,11 +7066,11 @@ that can be used for algebraic manipulation.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -7351,11 +7353,11 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -7524,6 +7526,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
+                    
                     ColumnForm[{
                     SyntaxInformation[DualNumbers`DualFactor] = {
                     "ArgumentsPattern" -> {
@@ -7650,11 +7653,11 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\",  StyleBox[\\\"eps\\\", \
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -7946,11 +7949,11 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -8284,11 +8287,11 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -8678,11 +8681,11 @@ support constraints on the independent variables.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -8956,7 +8959,6 @@ support constraints on the independent variables.\"\>", "InformationUsageText",
                     RowBox[{"{", "__", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
-                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -9082,11 +9084,11 @@ support constraints on the independent variables.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -9436,7 +9438,6 @@ Cell[BoxData[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -9503,11 +9504,11 @@ Cell[BoxData[
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{12., {4., 8.}}], True->
+               ImageSizeCache->{10., {3., 7.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{12., {4., 8.}}]}, Dynamic[
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -9908,8 +9909,8 @@ ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 ShowCellLabel->True,
 TrackCellChangeTimes->False,
-Magnification:>1.2 Inherited,
-FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+Magnification:>1. Inherited,
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]

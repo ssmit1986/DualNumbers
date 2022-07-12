@@ -86,7 +86,7 @@ KeyValueMap[
 	],
 	KeyDrop[{Power, Times, Plus}] @ Select[
 		AssociationMap[
-			Derivative[1],
+			Quiet @ Check[Derivative[1][#], $Failed]&,
 			Symbol /@ Select[
 				Names["System`*"],
 				MemberQ[Attributes[#], NumericFunction]&
