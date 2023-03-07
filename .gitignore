@@ -1,3 +1,4 @@
 /.project
 /*.paclet
 /.settings/*
+/DualNumbers/build/*

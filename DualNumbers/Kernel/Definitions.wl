@@ -11,32 +11,32 @@ GeneralUtilities`SetUsage[ToDual, "ToDual[expr$, const$] constructs a dual scala
 The default value for const$ is 0."
 ];
 GeneralUtilities`SetUsage[Standard,
-    "Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument).
+	"Standard[d$] extracts the standard part of a dual number d$ (i.e., the first argument).
 Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
 GeneralUtilities`SetUsage[NonStandard,
-    "NonStandard[d$] extracts the nonstandard part of a dual number d$ (i.e., the second argument).
+	"NonStandard[d$] extracts the nonstandard part of a dual number d$ (i.e., the second argument).
 Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
 GeneralUtilities`SetUsage[StandardNonStandard,
-    "StandardNonStandard[d$] extracts the standard and nonstandard parts of a dual number d$ and returns them as a list.
+	"StandardNonStandard[d$] extracts the standard and nonstandard parts of a dual number d$ and returns them as a list.
 StandardNonStandard[dualArray$] returns the same as StandardNonStandard[UnpackDualArray[dualArray$]].
 Symbolic quantities are assumed to have zero nonstandard parts. Threads over lists."
 ];
 GeneralUtilities`SetUsage[StandardAll,
-    "StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
+	"StandardAll[expr$] replaces all dual numbers in expr$ with their standard parts."
 ];
 GeneralUtilities`SetUsage[DualExpand,
-    "DualExpand[expr$] replaces each dual number Dual[a$, b$] with a$ + b$ \[CurlyEpsilon].
+	"DualExpand[expr$] replaces each dual number Dual[a$, b$] with a$ + b$ \[CurlyEpsilon].
 DualExpand[expr$, eps$] uses eps$ instead."
 ];
 GeneralUtilities`SetUsage[DualFactor,
-    "DualFactor[expr$] replaces \[CurlyEpsilon] with Dual[0, 1] in expr$.
+	"DualFactor[expr$] replaces \[CurlyEpsilon] with Dual[0, 1] in expr$.
 DualFactor[expr$, eps$] uses eps$ instead.
 "
 ];
 GeneralUtilities`SetUsage[DualSimplify,
-    "DualSimplify[expr$] expands expr$ around \[CurlyEpsilon] = 0, keeping only the 0th and 1st order terms.
+	"DualSimplify[expr$] expands expr$ around \[CurlyEpsilon] = 0, keeping only the 0th and 1st order terms.
 DualSimplify[expr$, eps$] uses eps$ as symbol for the dual unit.
 "
 ];
@@ -46,40 +46,40 @@ GeneralUtilities`SetUsage[DualScalarQ, "DualQ[expr$] tests if expr$ is a dual nu
 GeneralUtilities`SetUsage[DualArrayQ, "DualArrayQ[expr$] tests if expr$ is a valid packed array of dual numbers."];
 GeneralUtilities`SetUsage[UnpackedDualArrayQ, "UnpackedDualArrayQ[expr$] tests if expr$ is an ordinary array where only Dual occurs as a head at the deepest level."];
 GeneralUtilities`SetUsage[DualFreeArrayQ,
-    "DualFreeArrayQ[expr$] tests if expr$ is an ordinary array that has no dual numbers at the deepest level."
+	"DualFreeArrayQ[expr$] tests if expr$ is an ordinary array that has no dual numbers at the deepest level."
 ]
 GeneralUtilities`SetUsage[StandardQ, "StandardQ[expr$] tests if expr$ has a head different from Dual."];
 GeneralUtilities`SetUsage[DualFindRoot,
-    "DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
+	"DualFindRoot works like FindRoot, but allows for Dual numbers in the equations."
 ];
 GeneralUtilities`SetUsage[DualFindMinimum,
-    "DualFindMinimum works like FindMinimum, but allows for Dual numbers in the objective function.
+	"DualFindMinimum works like FindMinimum, but allows for Dual numbers in the objective function.
 DualFindMinimum does not support constraints on the independent variables."
 ];
 GeneralUtilities`SetUsage[DualFindMaximum,
-    "DualFindMaximum works like FindMaximum, but allows for Dual numbers in the objective function.
+	"DualFindMaximum works like FindMaximum, but allows for Dual numbers in the objective function.
 DualFindMaximum does not support constraints on the independent variables."
 ];
 GeneralUtilities`SetUsage[FindDualSolution,
-    "FindDualSolution[eqs$, sol$] finds a Dual-valued solution to eqs$ where sol$ is the standard-valued solution."
+	"FindDualSolution[eqs$, sol$] finds a Dual-valued solution to eqs$ where sol$ is the standard-valued solution."
 ];
 GeneralUtilities`SetUsage[DualLinearSolveFunction,
-    "DualLinearSolveFunction[ls$, b$] is produced from LinearSolve[Dual[a$, b$]]. A DualLinearSolveFunction can be applied to Dual arrays."
+	"DualLinearSolveFunction[ls$, b$] is produced from LinearSolve[Dual[a$, b$]]. A DualLinearSolveFunction can be applied to Dual arrays."
 ];
 GeneralUtilities`SetUsage[PackDualArray,
-    "PackDualArray[array$] converts an array of numbers (possibly duals) to the form Dual[std$, nonstd$]."
+	"PackDualArray[array$] converts an array of numbers (possibly duals) to the form Dual[std$, nonstd$]."
 ];
 GeneralUtilities`SetUsage[UnpackDualArray,
-    "UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars.
+	"UnpackDualArray[dualArray$] reverses to operation of PackDualArray and creates an array of dual scalars.
 Produces a message if packing messages have been turned on with On[\"Packing\"]."
 ];
 GeneralUtilities`SetUsage[AddDualHandling,
-    "AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
-AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with $n arguments.
+	"AddDualHandling[f$, {f$1, $$, f$n}] specifies derivatives for f$ to use with Dual numbers when called with n$ arguments.
+AddDualHandling[f$, n$] uses Derivative to infer derivatives of f$ for when f$ is called with n$ arguments.
 AddDualHandling[f$, {n$1, n$2, $$}] uses Derivative to infer derivatives of f$ for when f$ is called with n$1, n$2, $$ arguments."
 ];
 GeneralUtilities`SetUsage[DualApply,
-    "DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
+	"DualApply[{f$a, f$b}, Dual[a$, b$]] returns Dual[f$a[a$], f$b[b$]].
 DualApply[{f$All}, Dual[a$, b$]] returns Dual[f$All[a$, b$][[1]], f$All[a$, b$][[2]]]. f$All should return a List of length 2.
 DualApply[f$, Dual[a$, b$]] returns Dual[f$[a$], f$[b$]].
 DualApply[fspec$, Dual[a$, b$], lvlSpec$] maps the function(s) to deeper levels of a$ and b$.
@@ -87,18 +87,18 @@ DualApply[f$] is the operator form of DualApply.
 DualApply[f$, x$] will use ToDual[x$, 0] to cast standard quantities x$ to duals."
 ];
 GeneralUtilities`SetUsage[DualTuples,
-    "DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
+	"DualTuples[{Dual[a$1, b$1], Dual[a$2, b$2], $$, Dual[a$n, b$n]}] finds all ways to pick n$ -1 a$'s and one b$ \
 from the list of dual numbers and returns the length-n$ list: 
 {
-    {b$1, a$2, a$3, $$, a$n},
-    {a$1, b$2, a$3, $$, a$n},
-    $$,
-    {a$1, a$2, a$3, $$, b$n}
+	{b$1, a$2, a$3, $$, a$n},
+	{a$1, b$2, a$3, $$, a$n},
+	$$,
+	{a$1, a$2, a$3, $$, b$n}
 }
 DualTuples[list$, i$] gives element i$ of DualTuples[list$]."
 ];
 GeneralUtilities`SetUsage[DualTuplesReduce,
-    "DualTuplesReduce[list$, f$] applies f$ to the elements of DualTuples[list$] and is effectively equal to f$ @@@ DualTuples[list$].
+	"DualTuplesReduce[list$, f$] applies f$ to the elements of DualTuples[list$] and is effectively equal to f$ @@@ DualTuples[list$].
 DualTuplesReduce[list$, f$, g$] folds g$ over DualTuplesReduce[list$, f$]."
 ];
 
@@ -106,8 +106,8 @@ DualTuplesReduce[list$, f$, g$] folds g$ over DualTuplesReduce[list$, f$]."
 Begin["`Private`"] (* Begin Private Context *) 
 
 (* 
-    Code inspired by the following post on Mathematica StackExchange:
-    https://mathematica.stackexchange.com/a/13926/43522
+	Code inspired by the following post on Mathematica StackExchange:
+	https://mathematica.stackexchange.com/a/13926/43522
 *)
 Protect[\[CurlyEpsilon]];
 
@@ -124,7 +124,7 @@ dualPatt = _Dual;
 DualQ[expr_Dual] := DualScalarQ[expr] || DualArrayQ[expr];
 DualQ[_] := False;
 
-DualScalarQ[Dual[___, arrayPattern, ___]] := False;
+DualScalarQ[Dual[arrayPattern, _] | Dual[_, arrayPattern]] := False;
 DualScalarQ[Dual[a_, b_]] := NoneTrue[{a, b}, ArrayQ];
 DualScalarQ[_] := False;
 
@@ -154,12 +154,12 @@ NonStandard[_] := 0;
 
 SetAttributes[StandardNonStandard, Listable];
 StandardNonStandard[Dual[a_, b_]?DualArrayQ] := With[{
-    depth = ArrayDepth[a]
+	depth = ArrayDepth[a]
 },
-    Transpose[
-        Developer`ToPackedArray @ {a, b},
-        Prepend[Range[depth], depth + 1]
-    ]
+	Transpose[
+		Developer`ToPackedArray @ {a, b},
+		Prepend[Range[depth], depth + 1]
+	]
 ];
 StandardNonStandard[Dual[a_, b_]] := {a, b};
 StandardNonStandard[x_] := {x, 0};
@@ -183,72 +183,72 @@ ToDual[args__] /; (Message[ToDual::cons, Short /@ {args}]; False) := Undefined
 (* Messages to warn when invalid Dual arrays have been constructed *)
 Dual::array = "Bad packed dual array found. Dimensions `1` and `2` found for the standard and nonstandard parts of `3`";
 Dual[a : arrayPattern, b_] /; And[
-    !DualArrayQ[Unevaluated @ Dual[a, b]],
-    (
-        Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
-        False
-    )
+	!DualArrayQ[Unevaluated @ Dual[a, b]],
+	(
+		Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
+		False
+	)
 ] := Undefined;
 Dual[a : Except[arrayPattern], b : arrayPattern] /; (
-    Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
-    False
+	Message[Dual::array, Dimensions[a], Dimensions[b], Short[Inactive[Dual][a, b]]];
+	False
 ) := Undefined;
 Dual[a_, b_, c__] /; (
-    Message[Dual::argt, Dual, Length[{a, b, c}], 1, 2];
-    False
+	Message[Dual::argt, Dual, Length[{a, b, c}], 1, 2];
+	False
 ) := Undefined;
 
 (* Packing and unpacking dual arrays *)
 PackDualArray::arrayQ = "`1` is not an array.";
 PackDualArray[Dual[a_, b_]] := Dual[Developer`ToPackedArray[a], Developer`ToPackedArray[b]];
 PackDualArray[array_?UnpackedDualArrayQ] := With[{
-    depth = ArrayDepth[array]
+	depth = ArrayDepth[array]
 },
-    Dual[
-        Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 1],
-        Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 2]
-    ]
+	Dual[
+		Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 1],
+		Developer`ToPackedArray @ Part[array, Sequence @@ ConstantArray[All, depth], 2]
+	]
 ];
 (* Backup definition in case normal numbers are mixed in *)
 PackDualArray[array_?ArrayQ] := Dual[
-    Developer`ToPackedArray @ Standard[array],
-    Developer`ToPackedArray @ NonStandard[array]
+	Developer`ToPackedArray @ Standard[array],
+	Developer`ToPackedArray @ NonStandard[array]
 ];
 PackDualArray[other_] := (
-    Message[PackDualArray::arrayQ, Short[other]];
-    other
+	Message[PackDualArray::arrayQ, Short[other]];
+	other
 );
 
 With[{
-    testArray = Developer`ToPackedArray[{0}]
+	testArray = Developer`ToPackedArray[{0}]
 },
-    packingMessagesEnabledQ[] := TrueQ @ Quiet @ Check[ (* test if packing messages are on (i.e., from On["Packing"]) *)
-        Developer`FromPackedArray @ testArray,
-        True,
-        {FromPackedArray::punpack}
-    ]
+	packingMessagesEnabledQ[] := TrueQ @ Quiet @ Check[ (* test if packing messages are on (i.e., from On["Packing"]) *)
+		Developer`FromPackedArray @ testArray,
+		True,
+		{FromPackedArray::punpack}
+	]
 ];
 
 UnpackDualArray::unpack = "Unpacking Dual array with dimensions `1`.";
 UnpackDualArray::notArray = "Cannot unpack dual scalar `1`.";
 UnpackDualArray::badarray = "Cannot unpack expression `1`."
 UnpackDualArray[Dual[a_, b_]?DualArrayQ] := (
-    If[ packingMessagesEnabledQ[],
-        Quiet[
-            Message[UnpackDualArray::unpack, Dimensions[a]],
-            {FromPackedArray::unpack, FromPackedArray::punpack1}
-        ]
-    ];
-    MapThread[
-        Dual,
-        {a, b},
-        ArrayDepth[a]
-    ]
+	If[ packingMessagesEnabledQ[],
+		Quiet[
+			Message[UnpackDualArray::unpack, Dimensions[a]],
+			{FromPackedArray::unpack, FromPackedArray::punpack1}
+		]
+	];
+	MapThread[
+		Dual,
+		{a, b},
+		ArrayDepth[a]
+	]
 );
 UnpackDualArray[d_Dual?DualScalarQ] := (Message[UnpackDualArray::notArray, Short[d]]; d);
 UnpackDualArray[other_] := (
-    Message[UnpackDualArray::badarray, Short[other]];
-    other
+	Message[UnpackDualArray::badarray, Short[other]];
+	other
 );
 
 (* Basic properties of dual numbers *)
@@ -265,31 +265,60 @@ Derivative[0, 1][Dual] = Dual[0, 1]&;
 
 (* SyntaxInformation *)
 Scan[
-    Function[
-        SyntaxInformation[#] = {"ArgumentsPattern" -> {_}}
-    ],
-    {
-        Standard, NonStandard, StandardAll, DualSimplify, DualQ, DualScalarQ,
-        DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ, StandardQ,
-        PackDualArray, UnpackDualArray
-    }
+	Function[
+		SyntaxInformation[#] = {"ArgumentsPattern" -> {_}}
+	],
+	{
+		Standard, NonStandard, StandardAll, DualSimplify, DualQ, DualScalarQ,
+		DualArrayQ, UnpackedDualArrayQ, DualFreeArrayQ, StandardQ,
+		PackDualArray, UnpackDualArray
+	}
 ];
 
 Scan[
-    Function[
-        SyntaxInformation[#] = {"ArgumentsPattern" -> {__}}
-    ],
-    {
-       ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
-       DualFindMaximum, DualApply, DualTuples
-    }
+	Function[
+		SyntaxInformation[#] = {"ArgumentsPattern" -> {__}}
+	],
+	{
+		ToDual, DualExpand, DualFactor, DualFindMinimum, FindDualSolution,
+		DualFindMaximum, DualApply, DualTuples
+	}
 ];
 
 Scan[
-    Function[
-        SyntaxInformation[#] = {"ArgumentsPattern" -> {_, _}}
-    ],
-    {DualLinearSolveFunction, AddDualHandling}
+	Function[
+		SyntaxInformation[#] = {"ArgumentsPattern" -> {_, _}}
+	],
+	{DualLinearSolveFunction, AddDualHandling}
+];
+
+MakeBoxes[d : Dual[a_, b_], form : StandardForm] := Which[
+	DualScalarQ[d],
+		With[{
+			boxes = Block[{\[CurlyEpsilon]},
+				MakeBoxes[a + b * \[CurlyEpsilon], form]
+			]
+		},
+			InterpretationBox[
+				boxes, 
+				Dual[a, b]
+			]
+		]
+	,
+	DualArrayQ[d],
+		BoxForm`ArrangeSummaryBox[
+			"Dual",
+			Dual[a, b],
+			"{\[Ellipsis]} + \[CurlyEpsilon] {\[Ellipsis]}",
+			{
+				BoxForm`SummaryItem[{"Dimensions: ", Row[Dimensions[a], "\[Times]"]}]
+			},
+			{},
+			form
+		]
+	,
+	True,
+		RowBox[{"Dual", "[", RowBox[{MakeBoxes[a, form], ",", MakeBoxes[b, form]}], "]"}]
 ];
 
 End[] (* End Private Context *)
