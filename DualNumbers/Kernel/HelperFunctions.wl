@@ -18,7 +18,11 @@ DualFindRoot;
 DualFindMinimum;
 DualFindMaximum;
 
+OpenExampleNotebook;
+
 Begin["`Private`"] (* Begin Private Context *) 
+
+OpenExampleNotebook[] := NotebookOpen @ PacletObject["DualNumbers"]["AssetLocation", "ExampleNotebook"];
 
 (* Manipulating expressions with dual numbers *)
 StandardAll[expr_] := ReplaceRepeated[expr, Dual[a_, _] :> a];

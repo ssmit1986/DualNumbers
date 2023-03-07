@@ -4,7 +4,7 @@
 
 Paclet[
 	"Name" -> "DualNumbers",
-	"Version" -> "1.2.0.1",
+	"Version" -> "1.3.0",
 	"MathematicaVersion" -> "12.1+",
 	"Creator" -> "Sjoerd Smit",
 	"Extensions" -> {
@@ -13,6 +13,17 @@ Paclet[
 			"Context" -> "DualNumbers`"
 		},
 		{"Documentation", "Root" -> "./Documentation"},
-		{"Tests", "Root" -> "./Tests", Method -> "Experimental-v1"}
+		{
+			"Resource", "Root" -> "./Tests",
+			"Resources" -> {
+				{"TestDirectory", "."}
+			}
+		},
+		{
+			"Resource", "Root" -> "./Resources",
+			"Resources" -> {
+				{"ExampleNotebook", "Example_code.nb"}
+			}
+		}
 	}
 ]
