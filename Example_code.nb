@@ -31,15 +31,19 @@ cloned repository:\
 Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"4383d9de-ab7f-4838-b1b9-adf412cfdfe7"],
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
+     "}"}], "]"}], "]"}], ";"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"4383d9de-ab7f-4838-b1b9-adf412cfdfe7"],
 
 Cell["Load the paclet:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[18]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -804,6 +808,7 @@ to construct a dual quantity.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
