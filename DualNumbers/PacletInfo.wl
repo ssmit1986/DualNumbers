@@ -14,15 +14,10 @@ Paclet[
 		},
 		{"Documentation", "Root" -> "./Documentation"},
 		{
-			"Resource", "Root" -> "./Tests",
-			"Resources" -> {
-				{"TestDirectory", "."}
-			}
-		},
-		{
 			"Resource", "Root" -> "./Resources",
 			"Resources" -> {
-				{"ExampleNotebook", "Example_code.nb"}
+				{"ExampleNotebook", "Example_code.nb"},
+				{"TestDirectory", "./Tests"}
 			}
 		}
 	}
