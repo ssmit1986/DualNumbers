@@ -51,11 +51,16 @@ Cell[TextData[{
  "Expand ",
  Cell[BoxData[
   FormBox["f", TraditionalForm]],ExpressionUUID->
-  "740093c7-9dd4-4714-9ed4-8beeb34abeee"],
+  "ada4410b-a711-4a68-868a-caa2ffdb21c7"],
  " as a series in ",
  Cell[BoxData[
-  FormBox["\[CurlyEpsilon]", TraditionalForm]],ExpressionUUID->
-  "379162a3-f901-413a-935e-289e5b37aa00"]
+  FormBox[
+   ButtonBox[
+    RowBox[{"\[CurlyEpsilon]", " ", 
+     RowBox[{"(", "CurlyEpsilon", ")"}]}],
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/character/CurlyEpsilon"], TraditionalForm]],
+  ExpressionUUID->"9540089d-7a1f-4c6c-88f1-0eb2fdb4d8ed"]
 }], "Text",ExpressionUUID->"d212c0cc-0228-4e55-8dfe-a522fe2bf7b0"],
 
 Cell[CellGroupData[{
@@ -105,7 +110,7 @@ Cell[BoxData[
   RowBox[{"f", "[", 
    RowBox[{"a", "+", 
     RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[72]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
+ CellLabel->"In[9]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
 
 Cell[BoxData[
  RowBox[{
@@ -114,7 +119,7 @@ Cell[BoxData[
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
      MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
- CellLabel->"Out[72]=",ExpressionUUID->"1e2eb875-42ef-4011-90ee-dac73fccb2ba"]
+ CellLabel->"Out[9]=",ExpressionUUID->"6e9668da-c4da-49d1-9a03-03c7fc6d72cc"]
 }, Open  ]],
 
 Cell["Example of a function with no symbolic derivative:", \
@@ -799,7 +804,6 @@ to construct a dual quantity.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -1183,6 +1187,7 @@ scalar or array with constant nonstandard part. The default value for \
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"DualNumbers`ToDual\"\>"}
                  },
@@ -1674,7 +1679,6 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -2269,6 +2273,7 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{10., {3., 7.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
@@ -2868,6 +2873,7 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -4873,6 +4879,7 @@ dual numbers.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -5462,6 +5469,7 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -8959,6 +8967,7 @@ support constraints on the independent variables.\"\>", "InformationUsageText",
                     RowBox[{"{", "__", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
+                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -9429,7 +9438,6 @@ Cell[BoxData[
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -9438,6 +9446,7 @@ Cell[BoxData[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
