@@ -31,15 +31,19 @@ cloned repository:\
 Cell[BoxData[
  RowBox[{
   RowBox[{"PacletDirectoryLoad", "[", 
-   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"b89bbb37-0b56-4466-a120-bc5cec3058a2"],
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
+     "}"}], "]"}], "]"}], ";"}]], "Input",
+ CellLabel->"In[17]:=",ExpressionUUID->"4383d9de-ab7f-4838-b1b9-adf412cfdfe7"],
 
 Cell["Load the paclet:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
  RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ CellLabel->"In[18]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -51,11 +55,16 @@ Cell[TextData[{
  "Expand ",
  Cell[BoxData[
   FormBox["f", TraditionalForm]],ExpressionUUID->
-  "740093c7-9dd4-4714-9ed4-8beeb34abeee"],
+  "ada4410b-a711-4a68-868a-caa2ffdb21c7"],
  " as a series in ",
  Cell[BoxData[
-  FormBox["\[CurlyEpsilon]", TraditionalForm]],ExpressionUUID->
-  "379162a3-f901-413a-935e-289e5b37aa00"]
+  FormBox[
+   ButtonBox[
+    RowBox[{"\[CurlyEpsilon]", " ", 
+     RowBox[{"(", "CurlyEpsilon", ")"}]}],
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/character/CurlyEpsilon"], TraditionalForm]],
+  ExpressionUUID->"9540089d-7a1f-4c6c-88f1-0eb2fdb4d8ed"]
 }], "Text",ExpressionUUID->"d212c0cc-0228-4e55-8dfe-a522fe2bf7b0"],
 
 Cell[CellGroupData[{
@@ -105,7 +114,7 @@ Cell[BoxData[
   RowBox[{"f", "[", 
    RowBox[{"a", "+", 
     RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[72]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
+ CellLabel->"In[9]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
 
 Cell[BoxData[
  RowBox[{
@@ -114,7 +123,7 @@ Cell[BoxData[
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
      MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
- CellLabel->"Out[72]=",ExpressionUUID->"1e2eb875-42ef-4011-90ee-dac73fccb2ba"]
+ CellLabel->"Out[9]=",ExpressionUUID->"6e9668da-c4da-49d1-9a03-03c7fc6d72cc"]
 }, Open  ]],
 
 Cell["Example of a function with no symbolic derivative:", \
@@ -1183,6 +1192,7 @@ scalar or array with constant nonstandard part. The default value for \
                     StripOnInput->False],
                     "\"FullName\"",
                     TooltipStyle->"TextStyling"],
+                    
                     Annotation[#, "FullName", 
                     "Tooltip"]& ], "\<\"DualNumbers`ToDual\"\>"}
                  },
@@ -1674,7 +1684,6 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
-             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -2269,6 +2278,7 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{10., {3., 7.}}], True->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
@@ -2868,6 +2878,7 @@ Dual[\\!\\(\\*StyleBox[\\\"std\\\", \\\"TI\\\"]\\), \
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -4873,6 +4884,7 @@ dual numbers.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -5462,6 +5474,7 @@ no dual numbers at the deepest level.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -8959,6 +8972,7 @@ support constraints on the independent variables.\"\>", "InformationUsageText",
                     RowBox[{"{", "__", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
+                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -9429,7 +9443,6 @@ Cell[BoxData[
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -9438,6 +9451,7 @@ Cell[BoxData[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, False],
              Evaluator->Automatic,
@@ -9619,8 +9633,6 @@ Cell["Running tests", \
 Cell["Check the version currently loaded:", \
 "Text",ExpressionUUID->"50be5f08-ccff-43d3-9d84-a54889af7a6e"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"Needs", "[", "\"\<DualNumbers`\>\"", "]"}], 
@@ -9628,46 +9640,18 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
   "\"\<Version\>\"", "]"}]}], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+ CellLabel->"In[11]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
-Cell[BoxData["\<\"1.2.0.1\"\>"], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"78b66c3a-a0e9-498e-8d5f-82c8eded406d"]
-}, Open  ]],
-
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"Needs", "[", "\"\<PacletTools`\>\"", "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"testReport", "=", 
-   RowBox[{"Flatten", " ", "@", " ", 
-    RowBox[{"PacletTest", "[", "\[IndentingNewLine]", 
+Cell[BoxData[
+ RowBox[{"testReport", "=", 
+  RowBox[{"TestReport", "[", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*.wlt\>\"", ",", 
      RowBox[{
-      RowBox[{"FileNameJoin", "[", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"NotebookDirectory", "[", "]"}], ",", 
-         "\"\<DualNumbers\>\""}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"Parallelization", "->", "False"}]}], "\[IndentingNewLine]", 
-     "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"testReport", "=", 
-   RowBox[{"Association", "@", 
-    RowBox[{"Map", "[", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"#", "[", "\"\<Title\>\"", "]"}], " ", "->", " ", "#"}], 
-       "&"}], ",", " ", "testReport"}], "]"}]}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"Map", "[", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"Length", "/@", 
-      RowBox[{"#", "[", "\"\<TestResultRules\>\"", "]"}]}], "&"}], ",", 
-    "\[IndentingNewLine]", "testReport"}], "\[IndentingNewLine]", "]"}], "//",
-   "Dataset"}]}], "Input",
- CellLabel->"In[34]:=",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
+      RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
+      RowBox[{"\"\<AssetLocation\>\"", ",", "\"\<TestDirectory\>\""}], 
+      "]"}]}], "]"}], "]"}]}]], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
 
 Cell["\<\
 Reset docked cells in testing notebooks (this can help if the testing \
@@ -9702,7 +9686,7 @@ Cell[BoxData[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
      "}"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"FileNameTake", "[", "%", "]"}]}], "Input",
- CellLabel->"In[7]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
+ CellLabel->"In[6]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
 
 Cell[TextData[{
  "This will build the paclet including the documentation pages. The result \
@@ -9731,8 +9715,8 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
-    "}"}], "]"}], 
-  "]"}]}], "Input",ExpressionUUID->"683fcd1e-e78c-4556-94ab-8cf6dea606e4"],
+    "}"}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"683fcd1e-e78c-4556-94ab-8cf6dea606e4"],
 
 Cell["Inspect the build results:", \
 "Text",ExpressionUUID->"e9d9f284-7b1a-448a-91ac-f005b72faf81"],
@@ -9903,14 +9887,14 @@ Cell[BoxData[
 }, Closed]]
 },
 WindowSize->{1236.75, 676.5},
-WindowMargins->{{92.25, Automatic}, {-7.5, Automatic}},
+WindowMargins->{{94.5, Automatic}, {Automatic, 22.5}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 ShowCellLabel->True,
 TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
-FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (July 24, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"9220aa73-8720-4446-a63d-8589ef2eb51f"
 ]
