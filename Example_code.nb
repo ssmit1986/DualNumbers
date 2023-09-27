@@ -20,8 +20,8 @@ Cell["Install the paclet:", \
 Cell[BoxData[
  RowBox[{"PacletInstall", "[", 
   "\"\<https://github.com/ssmit1986/DualNumbers/releases/download/1.2/\
-DualNumbers-1.2.paclet\>\"", "]"}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
+DualNumbers-1.2.paclet\>\"", 
+  "]"}]], "Input",ExpressionUUID->"0cb9b1cb-4882-46ae-b86d-a755e0d7c69a"],
 
 Cell["\<\
 or, if you want to load the source code, point the PacletManager at the \
@@ -35,15 +35,31 @@ Cell[BoxData[
     RowBox[{"{", 
      RowBox[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
-     "}"}], "]"}], "]"}], ";"}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"4383d9de-ab7f-4838-b1b9-adf412cfdfe7"],
+     "}"}], "]"}], "]"}], 
+  ";"}]], "Input",ExpressionUUID->"4383d9de-ab7f-4838-b1b9-adf412cfdfe7"],
 
 Cell["Load the paclet:", \
 "Text",ExpressionUUID->"5f738776-bbae-4a74-ad28-c0a67f4d5a01"],
 
 Cell[BoxData[
- RowBox[{"<<", "DualNumbers`"}]], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"]
+ RowBox[{"<<", 
+  "DualNumbers`"}]], \
+"Input",ExpressionUUID->"97772dfb-291f-4d8b-91ce-a9ba88494cef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dual", "[", 
+  RowBox[{"1", ",", "2"}], 
+  "]"}]], "Input",ExpressionUUID->"97b62626-abb5-47c6-a458-d040221bb053"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"1", "+", 
+   RowBox[{"2", " ", "\[CurlyEpsilon]"}]}],
+  DualNumbers`Dual[
+  1, 2]]], "Output",ExpressionUUID->"e84b4fef-d18a-4dbb-b284-0633dfae194b"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -85,8 +101,8 @@ Cell[BoxData[
      RowBox[{"_", "?", 
       RowBox[{"(", 
        RowBox[{"GreaterEqualThan", "[", "2", "]"}], ")"}]}]}], "]"}], 
-   "\[Rule]", "0"}]}]], "Input",
- CellLabel->"In[69]:=",ExpressionUUID->"f0bae856-24a1-4159-aa47-a10dfb05f413"],
+   "\[Rule]", 
+   "0"}]}]], "Input",ExpressionUUID->"f0bae856-24a1-4159-aa47-a10dfb05f413"],
 
 Cell[BoxData[
  RowBox[{
@@ -94,8 +110,9 @@ Cell[BoxData[
   RowBox[{"b", " ", "\[CurlyEpsilon]", " ", 
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
-     MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
- CellLabel->"Out[69]=",ExpressionUUID->"ac5792d8-f92c-4ffb-8e79-2c566f57c057"]
+     MultilineFunction->None], "[", "a", 
+    "]"}]}]}]], \
+"Output",ExpressionUUID->"ac5792d8-f92c-4ffb-8e79-2c566f57c057"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -113,8 +130,8 @@ Cell[BoxData[
  RowBox[{"DualSimplify", "[", 
   RowBox[{"f", "[", 
    RowBox[{"a", "+", 
-    RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], "]"}]], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
+    RowBox[{"b", " ", "\[CurlyEpsilon]"}]}], "]"}], 
+  "]"}]], "Input",ExpressionUUID->"a9a4f68a-8e77-483e-a5fd-6bc860934c0f"],
 
 Cell[BoxData[
  RowBox[{
@@ -122,8 +139,9 @@ Cell[BoxData[
   RowBox[{"b", " ", "\[CurlyEpsilon]", " ", 
    RowBox[{
     SuperscriptBox["f", "\[Prime]",
-     MultilineFunction->None], "[", "a", "]"}]}]}]], "Output",
- CellLabel->"Out[9]=",ExpressionUUID->"6e9668da-c4da-49d1-9a03-03c7fc6d72cc"]
+     MultilineFunction->None], "[", "a", 
+    "]"}]}]}]], \
+"Output",ExpressionUUID->"6e9668da-c4da-49d1-9a03-03c7fc6d72cc"]
 }, Open  ]],
 
 Cell["Example of a function with no symbolic derivative:", \
@@ -156,12 +174,12 @@ Cell[BoxData[{
          RowBox[{"i", "++"}]}]}], "]"}], ";", "\[IndentingNewLine]", "x"}]}], 
     "]"}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"Derivative", "[", "1", "]"}], "@", "f"}]}], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"f1ad9e51-c055-44b9-b71d-e2688a2d81ba"],
+  RowBox[{"Derivative", "[", "1", "]"}], "@", 
+  "f"}]}], "Input",ExpressionUUID->"f1ad9e51-c055-44b9-b71d-e2688a2d81ba"],
 
 Cell[BoxData[
- RowBox[{"0", "&"}]], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"9a4ae280-9f7c-4618-b27f-a8618fcbd586"]
+ RowBox[{"0", 
+  "&"}]], "Output",ExpressionUUID->"9a4ae280-9f7c-4618-b27f-a8618fcbd586"]
 }, Open  ]],
 
 Cell["Calculate the derivative by using a dual number as input:", \
@@ -175,21 +193,22 @@ Cell[BoxData[{
    RowBox[{"Dual", "[", 
     RowBox[{"0.5", ",", "1."}], "]"}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{"Standard", "[", "d", "]"}], "\n", 
- RowBox[{"NonStandard", "[", "d", "]"}]}], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"4c18e64e-555b-48f6-acb8-284dd3b85dbe"],
+ RowBox[{"NonStandard", "[", "d", 
+  "]"}]}], "Input",ExpressionUUID->"4c18e64e-555b-48f6-acb8-284dd3b85dbe"],
 
 Cell[BoxData[
  RowBox[{"Dual", "[", 
   RowBox[{"0.900367222589753`", ",", 
-   RowBox[{"-", "0.3217712605132238`"}]}], "]"}]], "Output",
- CellLabel->"Out[6]=",ExpressionUUID->"ba0f66bf-d7c9-4f46-92de-597a5ae36229"],
+   RowBox[{"-", "0.3217712605132238`"}]}], 
+  "]"}]], "Output",ExpressionUUID->"ba0f66bf-d7c9-4f46-92de-597a5ae36229"],
 
-Cell[BoxData["0.900367222589753`"], "Output",
- CellLabel->"Out[7]=",ExpressionUUID->"7ddf3c76-06ec-40df-9fe3-47f735224a0d"],
+Cell[BoxData["0.900367222589753`"], \
+"Output",ExpressionUUID->"7ddf3c76-06ec-40df-9fe3-47f735224a0d"],
 
 Cell[BoxData[
- RowBox[{"-", "0.3217712605132238`"}]], "Output",
- CellLabel->"Out[8]=",ExpressionUUID->"6bbb8549-21c3-4a62-bb2f-6f75a5c5ec0d"]
+ RowBox[{"-", 
+  "0.3217712605132238`"}]], \
+"Output",ExpressionUUID->"6bbb8549-21c3-4a62-bb2f-6f75a5c5ec0d"]
 }, Open  ]],
 
 Cell["Verify with a differential quotient:", \
@@ -212,12 +231,13 @@ Cell[BoxData[
       RowBox[{"f", "[", 
        RowBox[{"a", "-", "h"}], "]"}]}], ")"}], "/", 
     RowBox[{"(", 
-     RowBox[{"2", " ", "h"}], ")"}]}]}], "]"}]], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"f0c8efd2-a193-4511-ad6d-1c5cc76a74d7"],
+     RowBox[{"2", " ", "h"}], ")"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"f0c8efd2-a193-4511-ad6d-1c5cc76a74d7"],
 
 Cell[BoxData[
- RowBox[{"-", "0.32177100547187143`"}]], "Output",
- CellLabel->"Out[9]=",ExpressionUUID->"c03d7322-c448-42d8-864d-c017be8e5e56"]
+ RowBox[{"-", 
+  "0.32177100547187143`"}]], \
+"Output",ExpressionUUID->"c03d7322-c448-42d8-864d-c017be8e5e56"]
 }, Open  ]],
 
 Cell["The nonstandard part does not even need to be numeric:", \
@@ -228,15 +248,15 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"f", "[", 
   RowBox[{"Dual", "[", 
-   RowBox[{"0.5", ",", "b"}], "]"}], "]"}]], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"e1b6a71a-1a67-4c72-8e55-0436bce49fd9"],
+   RowBox[{"0.5", ",", "b"}], "]"}], 
+  "]"}]], "Input",ExpressionUUID->"e1b6a71a-1a67-4c72-8e55-0436bce49fd9"],
 
 Cell[BoxData[
  RowBox[{"Dual", "[", 
   RowBox[{"0.900367222589753`", ",", 
    RowBox[{
-    RowBox[{"-", "0.3217712605132238`"}], " ", "b"}]}], "]"}]], "Output",
- CellLabel->"Out[18]=",ExpressionUUID->"424807e0-313c-4765-8771-0934020956e3"]
+    RowBox[{"-", "0.3217712605132238`"}], " ", "b"}]}], 
+  "]"}]], "Output",ExpressionUUID->"424807e0-313c-4765-8771-0934020956e3"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -309,22 +329,22 @@ Cell[BoxData[{
   RowBox[{"Dual", "[", 
    RowBox[{"x", ",", "1"}], "]"}], "\[Equal]", 
   RowBox[{"Dual", "[", 
-   RowBox[{"y", ",", "2"}], "]"}]}]}], "Input",
- CellLabel->"In[12]:=",ExpressionUUID->"3412a10d-c2cb-4e60-9d6d-a9d0944d0b25"],
+   RowBox[{"y", ",", "2"}], 
+   "]"}]}]}], "Input",ExpressionUUID->"3412a10d-c2cb-4e60-9d6d-a9d0944d0b25"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[12]=",ExpressionUUID->"6886d4d4-d000-4e8d-9646-513e90ff0aac"],
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"6886d4d4-d000-4e8d-9646-513e90ff0aac"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[13]=",ExpressionUUID->"5e8da2f6-a042-4cf3-9e15-bdaca57fb12f"],
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"5e8da2f6-a042-4cf3-9e15-bdaca57fb12f"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"Dual", "[", 
    RowBox[{"x", ",", "1"}], "]"}], "\[Equal]", 
   RowBox[{"Dual", "[", 
-   RowBox[{"y", ",", "2"}], "]"}]}]], "Output",
- CellLabel->"Out[14]=",ExpressionUUID->"1d6bba04-4da9-4fad-8fec-d3453a9980aa"]
+   RowBox[{"y", ",", "2"}], 
+   "]"}]}]], "Output",ExpressionUUID->"1d6bba04-4da9-4fad-8fec-d3453a9980aa"]
 }, Open  ]],
 
 Cell["\<\
@@ -367,22 +387,23 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"x", "\[Rule]", "0.5"}], ",", 
-     RowBox[{"y", "\[Rule]", "2."}]}], "}"}]}]}]}], "Input",
- CellLabel->"In[23]:=",ExpressionUUID->"83d45a49-1509-49f4-b53d-565f75982a08"],
+     RowBox[{"y", "\[Rule]", "2."}]}], 
+    "}"}]}]}]}], \
+"Input",ExpressionUUID->"83d45a49-1509-49f4-b53d-565f75982a08"],
 
 Cell[BoxData[
  RowBox[{"Dual", "[", 
   RowBox[{"0.19799317289597565`", ",", 
    RowBox[{
     RowBox[{"0.20767327972713032`", " ", "b1"}], "-", 
-    RowBox[{"0.12278153850584299`", " ", "b2"}]}]}], "]"}]], "Output",
- CellLabel->"Out[24]=",ExpressionUUID->"272b7b42-adf9-44e5-bb07-52da4e7f3699"],
+    RowBox[{"0.12278153850584299`", " ", "b2"}]}]}], 
+  "]"}]], "Output",ExpressionUUID->"272b7b42-adf9-44e5-bb07-52da4e7f3699"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"0.20767327972713032`", ",", 
-   RowBox[{"-", "0.12278153850584299`"}]}], "}"}]], "Output",
- CellLabel->"Out[25]=",ExpressionUUID->"34777e0f-0e28-4494-951f-1a99c0b6a237"]
+   RowBox[{"-", "0.12278153850584299`"}]}], 
+  "}"}]], "Output",ExpressionUUID->"34777e0f-0e28-4494-951f-1a99c0b6a237"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -399,11 +420,12 @@ Cell[BoxData[
   RowBox[{"NonStandard", "[", "d", "]"}], "\[Equal]", 
   RowBox[{
    RowBox[{"{", 
-    RowBox[{"b1", ",", "b2"}], "}"}], ".", "grad"}]}]], "Input",
- CellLabel->"In[26]:=",ExpressionUUID->"2a5632f8-1447-4c5e-9cea-b4e7f1465746"],
+    RowBox[{"b1", ",", "b2"}], "}"}], ".", 
+   "grad"}]}]], \
+"Input",ExpressionUUID->"2a5632f8-1447-4c5e-9cea-b4e7f1465746"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[26]=",ExpressionUUID->"9fa11209-c172-4aeb-ac80-b50c19d6167a"]
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"9fa11209-c172-4aeb-ac80-b50c19d6167a"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -430,8 +452,8 @@ Cell[BoxData[{
       RowBox[{"2.", ",", "1."}], "]"}]}], "]"}]}], 
   "}"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"NonStandard", "[", "%", "]"}], "\[Equal]", "grad"}]}], "Input",
- CellLabel->"In[29]:=",ExpressionUUID->"c5ed9fc2-aca7-4802-b9a4-c083492bdaf0"],
+  RowBox[{"NonStandard", "[", "%", "]"}], "\[Equal]", 
+  "grad"}]}], "Input",ExpressionUUID->"c5ed9fc2-aca7-4802-b9a4-c083492bdaf0"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -440,11 +462,11 @@ Cell[BoxData[
     RowBox[{"0.19799317289597565`", ",", "0.20767327972713032`"}], "]"}], ",", 
    RowBox[{"Dual", "[", 
     RowBox[{"0.19799317289597565`", ",", 
-     RowBox[{"-", "0.12278153850584299`"}]}], "]"}]}], "}"}]], "Output",
- CellLabel->"Out[29]=",ExpressionUUID->"0870543a-b745-4e8f-8a5b-e8d62b844874"],
+     RowBox[{"-", "0.12278153850584299`"}]}], "]"}]}], 
+  "}"}]], "Output",ExpressionUUID->"0870543a-b745-4e8f-8a5b-e8d62b844874"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[30]=",ExpressionUUID->"d2de42e3-b2fe-4946-8cbc-1cdf6767a136"]
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"d2de42e3-b2fe-4946-8cbc-1cdf6767a136"]
 }, Open  ]]
 }, Closed]],
 
@@ -468,8 +490,8 @@ Cell[BoxData[{
      RowBox[{"#", ",", "1."}], "]"}], "&"}], "/@", 
    RowBox[{"RandomReal", "[", 
     RowBox[{"1", ",", "5"}], "]"}]}]}], "\n", 
- RowBox[{"dvec", ".", "dvec"}]}], "Input",
- CellLabel->"In[31]:=",ExpressionUUID->"f2e79813-517e-4913-958c-7e436a477fc0"],
+ RowBox[{"dvec", ".", 
+  "dvec"}]}], "Input",ExpressionUUID->"f2e79813-517e-4913-958c-7e436a477fc0"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -483,13 +505,13 @@ Cell[BoxData[
    RowBox[{"Dual", "[", 
     RowBox[{"0.21357249566410075`", ",", "1.`"}], "]"}], ",", 
    RowBox[{"Dual", "[", 
-    RowBox[{"0.509544370917058`", ",", "1.`"}], "]"}]}], "}"}]], "Output",
- CellLabel->"Out[31]=",ExpressionUUID->"f74081f9-1e93-4d33-9306-92a49754c7e5"],
+    RowBox[{"0.509544370917058`", ",", "1.`"}], "]"}]}], 
+  "}"}]], "Output",ExpressionUUID->"f74081f9-1e93-4d33-9306-92a49754c7e5"],
 
 Cell[BoxData[
  RowBox[{"Dual", "[", 
-  RowBox[{"0.666979150065776`", ",", "3.3937057880363106`"}], "]"}]], "Output",
- CellLabel->"Out[32]=",ExpressionUUID->"5a6afaee-4398-4e39-b093-50de716c81e9"]
+  RowBox[{"0.666979150065776`", ",", "3.3937057880363106`"}], 
+  "]"}]], "Output",ExpressionUUID->"5a6afaee-4398-4e39-b093-50de716c81e9"]
 }, Open  ]],
 
 Cell["This format is quite slow for large numbers, though:", \
@@ -508,16 +530,16 @@ Cell[BoxData[{
      RowBox[{"1", ",", 
       RowBox[{"10", "^", "3"}]}], "]"}]}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"dvec", ".", "dvec"}], "//", "RepeatedTiming"}]}], "Input",
- CellLabel->"In[35]:=",ExpressionUUID->"e14d81d2-2478-4d2b-b9ee-117e6f2574c5"],
+  RowBox[{"dvec", ".", "dvec"}], "//", 
+  "RepeatedTiming"}]}], \
+"Input",ExpressionUUID->"e14d81d2-2478-4d2b-b9ee-117e6f2574c5"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"0.0134259999999999935`2.", ",", 
    RowBox[{"Dual", "[", 
     RowBox[{"340.35987834982757`", ",", "1013.6016341010367`"}], "]"}]}], 
-  "}"}]], "Output",
- CellLabel->"Out[36]=",ExpressionUUID->"af412c40-5d6c-4293-9bd0-e0861fbe0961"]
+  "}"}]], "Output",ExpressionUUID->"af412c40-5d6c-4293-9bd0-e0861fbe0961"]
 }, Open  ]],
 
 Cell["Convert the list to a more efficient format:", \
@@ -529,8 +551,8 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"dvecPacked", "=", 
    RowBox[{"PackDualArray", "[", "dvec", "]"}]}], ";"}], "\n", 
- RowBox[{"dvecPacked", "//", "Short"}]}], "Input",
- CellLabel->"In[43]:=",ExpressionUUID->"371997b7-b9d2-4c0b-a96e-fc214cf44cf6"],
+ RowBox[{"dvecPacked", "//", 
+  "Short"}]}], "Input",ExpressionUUID->"371997b7-b9d2-4c0b-a96e-fc214cf44cf6"],
 
 Cell[BoxData[
  TagBox[
@@ -547,9 +569,7 @@ Cell[BoxData[
      RowBox[{"1.`", ",", 
       RowBox[{"\[LeftSkeleton]", "998", "\[RightSkeleton]"}], ",", "1.`"}], 
      "}"}]}], "]"}],
-  Short]], "Output",
- CellLabel->
-  "Out[44]//Short=",ExpressionUUID->"4f965baf-5cbf-4844-b3d0-ffca2c566158"]
+  Short]], "Output",ExpressionUUID->"4f965baf-5cbf-4844-b3d0-ffca2c566158"]
 }, Open  ]],
 
 Cell["This inner product can be calculated much faster like this:", \
@@ -560,16 +580,15 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"dvecPacked", ".", "dvecPacked"}], "//", 
-  "RepeatedTiming"}]], "Input",
- CellLabel->"In[39]:=",ExpressionUUID->"2cb33653-32cf-4056-a04a-07e1325b889f"],
+  "RepeatedTiming"}]], \
+"Input",ExpressionUUID->"2cb33653-32cf-4056-a04a-07e1325b889f"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"0.0000528208169506335`2.", ",", 
    RowBox[{"Dual", "[", 
     RowBox[{"340.35987834982757`", ",", "1013.6016341010368`"}], "]"}]}], 
-  "}"}]], "Output",
- CellLabel->"Out[39]=",ExpressionUUID->"23252a72-dd83-4229-82c8-4bb6e3a533f8"]
+  "}"}]], "Output",ExpressionUUID->"23252a72-dd83-4229-82c8-4bb6e3a533f8"]
 }, Open  ]],
 
 Cell["You can always unpack again:", \
@@ -580,11 +599,10 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"UnpackDualArray", "[", "dvecPacked", "]"}], "===", 
-  "dvec"}]], "Input",
- CellLabel->"In[40]:=",ExpressionUUID->"5e7dd383-749b-47e6-8e1a-6ef176169560"],
+  "dvec"}]], "Input",ExpressionUUID->"5e7dd383-749b-47e6-8e1a-6ef176169560"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[40]=",ExpressionUUID->"00c67318-7fdc-47a4-96c6-39a4b5d45316"]
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"00c67318-7fdc-47a4-96c6-39a4b5d45316"]
 }, Open  ]],
 
 Cell["Test if a dual array is in packed or unpacked form:", \
@@ -594,14 +612,14 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{"DualArrayQ", "[", "dvecPacked", "]"}], "\n", 
- RowBox[{"UnpackedDualArrayQ", "[", "dvec", "]"}]}], "Input",
- CellLabel->"In[45]:=",ExpressionUUID->"b870f717-dc08-4d88-90f3-e3f6890df523"],
+ RowBox[{"UnpackedDualArrayQ", "[", "dvec", 
+  "]"}]}], "Input",ExpressionUUID->"b870f717-dc08-4d88-90f3-e3f6890df523"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[45]=",ExpressionUUID->"6efef544-8167-454d-ad7d-eaae5925e7d5"],
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"6efef544-8167-454d-ad7d-eaae5925e7d5"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[46]=",ExpressionUUID->"f73d416a-69d5-4d9b-a81f-7b0c8e47efcf"]
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"f73d416a-69d5-4d9b-a81f-7b0c8e47efcf"]
 }, Open  ]],
 
 Cell[TextData[{
@@ -657,8 +675,8 @@ Cell[BoxData[{
     RowBox[{"Range", "[", "10", "]"}], ",", 
     RowBox[{"ConstantArray", "[", 
      RowBox[{"1", ",", "10"}], "]"}]}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"DualArrayQ", "[", "myArray", "]"}]}], "Input",
- CellLabel->"In[48]:=",ExpressionUUID->"b6ccc2eb-74ac-4fa7-acab-93da9a1517ed"],
+ RowBox[{"DualArrayQ", "[", "myArray", 
+  "]"}]}], "Input",ExpressionUUID->"b6ccc2eb-74ac-4fa7-acab-93da9a1517ed"],
 
 Cell[BoxData[
  RowBox[{"Dual", "[", 
@@ -670,13 +688,13 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
     "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1",
-      ",", "1", ",", "1"}], "}"}]}], "]"}]], "Output",
- CellLabel->"Out[48]=",ExpressionUUID->"0756c45b-3de3-44d5-92da-095e2b79d5b3"],
+      ",", "1", ",", "1"}], "}"}]}], 
+  "]"}]], "Output",ExpressionUUID->"0756c45b-3de3-44d5-92da-095e2b79d5b3"],
 
-Cell[BoxData["True"], "Output",
- CellLabel->"Out[49]=",ExpressionUUID->"ab2deb44-8f20-45cb-9b13-9c08e04ac5c6"]
+Cell[BoxData["True"], \
+"Output",ExpressionUUID->"ab2deb44-8f20-45cb-9b13-9c08e04ac5c6"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -697,8 +715,9 @@ Cell[BoxData[{
  RowBox[{"?", "Standard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "NonStandard"}], "\[IndentingNewLine]", 
  RowBox[{"?", "StandardNonStandard"}], "\[IndentingNewLine]", 
- RowBox[{"?", "StandardAll"}]}], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
+ RowBox[{"?", 
+  "StandardAll"}]}], \
+"Input",ExpressionUUID->"3082b9ef-db93-4ab3-b0ce-e85ddbdee692"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -955,8 +974,7 @@ Dimensions[\!\(\*StyleBox[SubscriptBox[\"array\", StyleBox[\"2\", \"TR\"]], \
     "DownValues" -> None, "SubValues" -> None, "DefaultValues" -> None, 
     "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
     "Attributes" -> {ReadProtected}, "FullName" -> "DualNumbers`Dual"|>, 
-   False]]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"faa0880a-a7d8-4ebe-b319-782509ba3be1"],
+   False]]], "Output",ExpressionUUID->"faa0880a-a7d8-4ebe-b319-782509ba3be1"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1306,7 +1324,6 @@ scalar or array with constant nonstandard part. The default value for \
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{10., {3., 7.}}], True->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
                ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
@@ -1448,8 +1465,8 @@ array with constant nonstandard part. The default value for \
       SyntaxInformation[DualNumbers`ToDual] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`ToDual"|>, False]]], "Output",
- CellLabel->"Out[4]=",ExpressionUUID->"c0abb32c-af31-47ca-9088-749b61c36e74"],
+    "DualNumbers`ToDual"|>, 
+   False]]], "Output",ExpressionUUID->"c0abb32c-af31-47ca-9088-749b61c36e74"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1684,6 +1701,7 @@ nonstandard parts. Threads over lists.\"\>", "InformationUsageText",
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
+             
              ButtonFunction:>FEPrivate`Set[
               System`InformationDump`open$$, True],
              Evaluator->Automatic,
@@ -1740,8 +1758,7 @@ have zero nonstandard parts. Threads over lists.", "Documentation" -> None,
       SyntaxInformation[DualNumbers`Standard] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {Listable}, "FullName" -> "DualNumbers`Standard"|>, 
-   False]]], "Output",
- CellLabel->"Out[5]=",ExpressionUUID->"70e8537a-caaf-4bd5-aecc-3174dad25148"],
+   False]]], "Output",ExpressionUUID->"70e8537a-caaf-4bd5-aecc-3174dad25148"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2032,8 +2049,8 @@ quantities are assumed to have zero nonstandard parts. Threads over lists.",
       SyntaxInformation[DualNumbers`NonStandard] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {Listable}, "FullName" -> 
-    "DualNumbers`NonStandard"|>, False]]], "Output",
- CellLabel->"Out[6]=",ExpressionUUID->"cfb8cdb7-6a17-4910-8139-05d5648b63c7"],
+    "DualNumbers`NonStandard"|>, 
+   False]]], "Output",ExpressionUUID->"cfb8cdb7-6a17-4910-8139-05d5648b63c7"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2359,8 +2376,8 @@ to have zero nonstandard parts. Threads over lists.", "Documentation" -> None,
           Blank[]]] :> {DualNumbers`Private`x, 0}}], "SubValues" -> None, 
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {Listable}, "FullName" -> 
-    "DualNumbers`StandardNonStandard"|>, False]]], "Output",
- CellLabel->"Out[7]=",ExpressionUUID->"cc9bfce0-b532-4568-bad4-4c6fc529d0a2"],
+    "DualNumbers`StandardNonStandard"|>, 
+   False]]], "Output",ExpressionUUID->"cc9bfce0-b532-4568-bad4-4c6fc529d0a2"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -2641,8 +2658,7 @@ standard parts.\"\>", "InformationUsageText",
       SyntaxInformation[DualNumbers`StandardAll] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`StandardAll"|>, 
-   False]]], "Output",
- CellLabel->"Out[8]=",ExpressionUUID->"7da75bb3-6065-4c4d-933a-0fbd55cf83fc"]
+   False]]], "Output",ExpressionUUID->"7da75bb3-6065-4c4d-933a-0fbd55cf83fc"]
 }, Open  ]]
 }, Open  ]],
 
@@ -2656,8 +2672,9 @@ Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{"?", "PackDualArray"}], "\[IndentingNewLine]", 
  RowBox[{"?", "UnpackDualArray"}], "\[IndentingNewLine]", 
- RowBox[{"?", "DualLinearSolveFunction"}]}], "Input",
- CellLabel->"In[34]:=",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
+ RowBox[{"?", 
+  "DualLinearSolveFunction"}]}], \
+"Input",ExpressionUUID->"e0254399-fb4a-4ce7-aa39-18c29b5b34fa"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -3039,8 +3056,7 @@ Dual[\!\(\*StyleBox[\"std\", \"TI\"]\), \!\(\*StyleBox[\"nonstd\", \
       SyntaxInformation[DualNumbers`PackDualArray] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`PackDualArray"|>, 
-   False]]], "Output",
- CellLabel->"Out[34]=",ExpressionUUID->"0ee02c42-be43-45b4-b40c-9748990045eb"],
+   False]]], "Output",ExpressionUUID->"0ee02c42-be43-45b4-b40c-9748990045eb"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -3407,8 +3423,7 @@ packing messages have been turned on with On[\"Packing\"].", "Documentation" ->
       SyntaxInformation[DualNumbers`UnpackDualArray] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`UnpackDualArray"|>, 
-   False]]], "Output",
- CellLabel->"Out[35]=",ExpressionUUID->"1e20e9fc-5f60-4d93-bddd-bd535dcef8df"],
+   False]]], "Output",ExpressionUUID->"1e20e9fc-5f60-4d93-bddd-bd535dcef8df"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -3687,7 +3702,6 @@ be applied to Dual arrays.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
                ImageSizeCache->{10., {3., 7.}}], True->
@@ -3787,8 +3801,8 @@ to Dual arrays.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
            Blank[], 
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualLinearSolveFunction"|>, False]]], "Output",
- CellLabel->"Out[36]=",ExpressionUUID->"5b55c2cd-76eb-461e-ae26-b2f0d2e9bcef"]
+    "DualNumbers`DualLinearSolveFunction"|>, 
+   False]]], "Output",ExpressionUUID->"5b55c2cd-76eb-461e-ae26-b2f0d2e9bcef"]
 }, Open  ]]
 }, Open  ]],
 
@@ -3805,8 +3819,9 @@ Cell[BoxData[{
  RowBox[{"?", "DualScalarQ"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualArrayQ"}], "\[IndentingNewLine]", 
  RowBox[{"?", "UnpackDualArray"}], "\[IndentingNewLine]", 
- RowBox[{"?", "DualFreeArrayQ"}]}], "Input",
- CellLabel->"In[37]:=",ExpressionUUID->"7b7ceb43-1b98-499d-94b8-8cd08dc5d15a"],
+ RowBox[{"?", 
+  "DualFreeArrayQ"}]}], \
+"Input",ExpressionUUID->"7b7ceb43-1b98-499d-94b8-8cd08dc5d15a"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4090,8 +4105,7 @@ RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) tests if \
       SyntaxInformation[DualNumbers`DualQ] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`DualQ"|>, 
-   False]]], "Output",
- CellLabel->"Out[37]=",ExpressionUUID->"3857449b-131c-46a1-8177-a8cc8dbf26d8"],
+   False]]], "Output",ExpressionUUID->"3857449b-131c-46a1-8177-a8cc8dbf26d8"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4362,8 +4376,7 @@ different from Dual.", "Documentation" -> None, "OwnValues" -> None,
       SyntaxInformation[DualNumbers`StandardQ] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`StandardQ"|>, 
-   False]]], "Output",
- CellLabel->"Out[38]=",ExpressionUUID->"d57872e9-a387-414c-9c29-b642309121c3"],
+   False]]], "Output",ExpressionUUID->"d57872e9-a387-414c-9c29-b642309121c3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4648,8 +4661,7 @@ not a dual array.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
       SyntaxInformation[DualNumbers`DualScalarQ] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`DualScalarQ"|>, 
-   False]]], "Output",
- CellLabel->"Out[39]=",ExpressionUUID->"ec014a27-5d53-4a35-bdd9-196885da07e1"],
+   False]]], "Output",ExpressionUUID->"ec014a27-5d53-4a35-bdd9-196885da07e1"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4944,8 +4956,7 @@ packed array of dual numbers.", "Documentation" -> None, "OwnValues" -> None,
       SyntaxInformation[DualNumbers`DualArrayQ] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`DualArrayQ"|>, 
-   False]]], "Output",
- CellLabel->"Out[40]=",ExpressionUUID->"0b2ff386-357b-499b-902a-4f29ba6bd09f"],
+   False]]], "Output",ExpressionUUID->"0b2ff386-357b-499b-902a-4f29ba6bd09f"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5099,7 +5110,6 @@ On[\\\"Packing\\\"].\"\>", "InformationUsageText",
                     RowBox[{"{", "_", "}"}]}], "}"}]}]}
                     },
                     BaselinePosition->{Baseline, {1, 1}},
-                    
                     GridBoxAlignment->{
                     "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}],
                     
@@ -5312,8 +5322,7 @@ packing messages have been turned on with On[\"Packing\"].", "Documentation" ->
       SyntaxInformation[DualNumbers`UnpackDualArray] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`UnpackDualArray"|>, 
-   False]]], "Output",
- CellLabel->"Out[41]=",ExpressionUUID->"a91d802e-e460-4bd3-9454-6a0045201f39"],
+   False]]], "Output",ExpressionUUID->"a91d802e-e460-4bd3-9454-6a0045201f39"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -5607,8 +5616,7 @@ array that has no dual numbers at the deepest level.", "Documentation" ->
       SyntaxInformation[DualNumbers`DualFreeArrayQ] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`DualFreeArrayQ"|>, 
-   False]]], "Output",
- CellLabel->"Out[42]=",ExpressionUUID->"327e75a7-fffd-4b6e-8c4f-082a4f8e5302"]
+   False]]], "Output",ExpressionUUID->"327e75a7-fffd-4b6e-8c4f-082a4f8e5302"]
 }, Open  ]]
 }, Open  ]],
 
@@ -5621,9 +5629,9 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{"?", "DualApply"}], "\[IndentingNewLine]", 
- RowBox[{"?", "AddDualHandling"}]}], "Input",
- CellLabel->
-  "In[127]:=",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
+ RowBox[{"?", 
+  "AddDualHandling"}]}], \
+"Input",ExpressionUUID->"e9a353da-1190-45c1-941a-8ffab2ded58e"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6388,9 +6396,8 @@ ToDual[\!\(\*StyleBox[\"x\", \"TI\"]\), 0] to cast standard quantities \
       SyntaxInformation[DualNumbers`DualApply] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualApply"|>, False]]], "Output",
- CellLabel->
-  "Out[127]=",ExpressionUUID->"b5676b1c-7554-4894-8fcf-3bf68bb1e7d3"],
+    "DualNumbers`DualApply"|>, 
+   False]]], "Output",ExpressionUUID->"b5676b1c-7554-4894-8fcf-3bf68bb1e7d3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -6893,8 +6900,7 @@ infer derivatives of \!\(\*StyleBox[\"f\", \"TI\"]\) for when \!\(\*StyleBox[\
            Blank[], 
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`AddDualHandling"|>, 
-   False]]], "Output",
- CellLabel->"Out[128]=",ExpressionUUID->"22da4791-3fde-48b1-b5c4-908d10e06c71"]
+   False]]], "Output",ExpressionUUID->"22da4791-3fde-48b1-b5c4-908d10e06c71"]
 }, Open  ]]
 }, Open  ]],
 
@@ -6909,8 +6915,9 @@ Cell[BoxData[{
  RowBox[{"?", "\[CurlyEpsilon]"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualExpand"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFactor"}], "\[IndentingNewLine]", 
- RowBox[{"?", "DualSimplify"}], "\[IndentingNewLine]"}], "Input",
- CellLabel->"In[45]:=",ExpressionUUID->"7ea40ed3-fe9a-4c7c-8a93-08056a9f06a5"],
+ RowBox[{"?", 
+  "DualSimplify"}], "\[IndentingNewLine]"}], \
+"Input",ExpressionUUID->"7ea40ed3-fe9a-4c7c-8a93-08056a9f06a5"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -7130,8 +7137,8 @@ algebraic manipulation.", "Documentation" -> None, "OwnValues" -> None,
     "UpValues" -> None, "DownValues" -> None, "SubValues" -> None, 
     "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {Protected}, "FullName" -> 
-    "DualNumbers`\[CurlyEpsilon]"|>, False]]], "Output",
- CellLabel->"Out[45]=",ExpressionUUID->"2bb62ef2-fb75-417b-ba06-ca42cc3a6678"],
+    "DualNumbers`\[CurlyEpsilon]"|>, 
+   False]]], "Output",ExpressionUUID->"2bb62ef2-fb75-417b-ba06-ca42cc3a6678"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -7440,8 +7447,8 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
       SyntaxInformation[DualNumbers`DualExpand] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualExpand"|>, False]]], "Output",
- CellLabel->"Out[46]=",ExpressionUUID->"f0ac10e0-d13d-4a49-a8e2-a5568241e79b"],
+    "DualNumbers`DualExpand"|>, 
+   False]]], "Output",ExpressionUUID->"f0ac10e0-d13d-4a49-a8e2-a5568241e79b"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -7733,8 +7740,8 @@ RowBox[{StyleBox[\"expr\", \"TI\"], \",\",  StyleBox[\"eps\", \"TI\"]}], \
       SyntaxInformation[DualNumbers`DualFactor] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualFactor"|>, False]]], "Output",
- CellLabel->"Out[47]=",ExpressionUUID->"f6038bb2-5c6e-4812-bd47-92254cb91efb"],
+    "DualNumbers`DualFactor"|>, 
+   False]]], "Output",ExpressionUUID->"f6038bb2-5c6e-4812-bd47-92254cb91efb"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -8029,8 +8036,7 @@ StyleBox[\\\"eps\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) uses \\!\\(\\*StyleBox[\\\
       SyntaxInformation[DualNumbers`DualSimplify] -> {"ArgumentsPattern" -> {
            Blank[]}}}], "NValues" -> None, "FormatValues" -> None, "Options" -> 
     None, "Attributes" -> {}, "FullName" -> "DualNumbers`DualSimplify"|>, 
-   False]]], "Output",
- CellLabel->"Out[48]=",ExpressionUUID->"bae4113a-87fd-4745-9d3c-ba7c3d9a6a84"]
+   False]]], "Output",ExpressionUUID->"bae4113a-87fd-4745-9d3c-ba7c3d9a6a84"]
 }, Open  ]]
 }, Open  ]],
 
@@ -8045,8 +8051,9 @@ Cell[BoxData[{
  RowBox[{"?", "DualFindRoot"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFindMinimum"}], "\[IndentingNewLine]", 
  RowBox[{"?", "DualFindMaximum"}], "\[IndentingNewLine]", 
- RowBox[{"?", "FindDualSolution"}]}], "Input",
- CellLabel->"In[49]:=",ExpressionUUID->"682653f7-3b28-4eeb-976f-b4dedabf2c59"],
+ RowBox[{"?", 
+  "FindDualSolution"}]}], \
+"Input",ExpressionUUID->"682653f7-3b28-4eeb-976f-b4dedabf2c59"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -8228,7 +8235,6 @@ Dual numbers in the equations.\"\>", "InformationUsageText",
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
-              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -8395,8 +8401,8 @@ equations.", "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None,
             MessageName[DualNumbers`FindDualSolution, "nonsol"]}]]}], 
     "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
     "FormatValues" -> None, "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualFindRoot"|>, False]]], "Output",
- CellLabel->"Out[49]=",ExpressionUUID->"40042583-541f-4b6d-905b-593ee0190a8e"],
+    "DualNumbers`DualFindRoot"|>, 
+   False]]], "Output",ExpressionUUID->"40042583-541f-4b6d-905b-593ee0190a8e"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -8799,8 +8805,8 @@ independent variables.", "Documentation" -> None, "OwnValues" -> None,
       SyntaxInformation[DualNumbers`DualFindMinimum] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualFindMinimum"|>, False]]], "Output",
- CellLabel->"Out[50]=",ExpressionUUID->"4f383423-4dac-4dc4-a006-047bbc166e70"],
+    "DualNumbers`DualFindMinimum"|>, 
+   False]]], "Output",ExpressionUUID->"4f383423-4dac-4dc4-a006-047bbc166e70"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -9203,8 +9209,8 @@ independent variables.", "Documentation" -> None, "OwnValues" -> None,
       SyntaxInformation[DualNumbers`DualFindMaximum] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`DualFindMaximum"|>, False]]], "Output",
- CellLabel->"Out[51]=",ExpressionUUID->"ea8801f3-907b-4faa-a532-8b2e9119dc19"],
+    "DualNumbers`DualFindMaximum"|>, 
+   False]]], "Output",ExpressionUUID->"ea8801f3-907b-4faa-a532-8b2e9119dc19"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -9443,6 +9449,7 @@ Cell[BoxData[
            TagBox[
             ButtonBox[
              PaneSelectorBox[{False->
+              
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "UpPointerOpener"]], True->
               
@@ -9618,8 +9625,8 @@ solution to \!\(\*StyleBox[\"eqs\", \"TI\"]\) where \!\(\*StyleBox[\"sol\", \
       SyntaxInformation[DualNumbers`FindDualSolution] -> {"ArgumentsPattern" -> {
            BlankSequence[]}}}], "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "DualNumbers`FindDualSolution"|>, False]]], "Output",
- CellLabel->"Out[52]=",ExpressionUUID->"7c9eba13-d517-4427-9ee3-d4be908a5f79"]
+    "DualNumbers`FindDualSolution"|>, 
+   False]]], "Output",ExpressionUUID->"7c9eba13-d517-4427-9ee3-d4be908a5f79"]
 }, Open  ]]
 }, Open  ]]
 }, Closed]]
@@ -9639,8 +9646,8 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
-  "\"\<Version\>\"", "]"}]}], "Input",
- CellLabel->"In[11]:=",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
+  "\"\<Version\>\"", 
+  "]"}]}], "Input",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
 Cell[BoxData[
  RowBox[{"testReport", "=", 
@@ -9650,8 +9657,8 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
       RowBox[{"\"\<AssetLocation\>\"", ",", "\"\<TestDirectory\>\""}], 
-      "]"}]}], "]"}], "]"}]}]], "Input",
- CellLabel->"In[14]:=",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
+      "]"}]}], "]"}], 
+   "]"}]}]], "Input",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
 
 Cell["\<\
 Reset docked cells in testing notebooks (this can help if the testing \
@@ -9665,8 +9672,8 @@ Cell[BoxData[
     RowBox[{"SetOptions", "[", 
      RowBox[{"#", ",", 
       RowBox[{"DockedCells", "\[Rule]", "Inherited"}]}], "]"}], "&"}], "/@", 
-   RowBox[{"Notebooks", "[", "]"}]}], ";"}]], "Input",
- CellLabel->"In[45]:=",ExpressionUUID->"f02bec0c-c9d4-4217-a676-fc3261674141"]
+   RowBox[{"Notebooks", "[", "]"}]}], 
+  ";"}]], "Input",ExpressionUUID->"f02bec0c-c9d4-4217-a676-fc3261674141"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -9685,8 +9692,8 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
      "}"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"FileNameTake", "[", "%", "]"}]}], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
+ RowBox[{"FileNameTake", "[", "%", 
+  "]"}]}], "Input",ExpressionUUID->"40eb1cdb-cbf5-4009-94db-f10d3cd02e26"],
 
 Cell[TextData[{
  "This will build the paclet including the documentation pages. The result \
@@ -9715,8 +9722,8 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\""}], 
-    "}"}], "]"}], "]"}]}], "Input",
- CellLabel->"In[9]:=",ExpressionUUID->"683fcd1e-e78c-4556-94ab-8cf6dea606e4"],
+    "}"}], "]"}], 
+  "]"}]}], "Input",ExpressionUUID->"683fcd1e-e78c-4556-94ab-8cf6dea606e4"],
 
 Cell["Inspect the build results:", \
 "Text",ExpressionUUID->"e9d9f284-7b1a-448a-91ac-f005b72faf81"],
@@ -9727,8 +9734,8 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\"", 
-     ",", "\"\<build\>\""}], "}"}], "]"}], "]"}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"1fa01895-2934-427c-8169-6030674e64cd"],
+     ",", "\"\<build\>\""}], "}"}], "]"}], 
+  "]"}]], "Input",ExpressionUUID->"1fa01895-2934-427c-8169-6030674e64cd"],
 
 Cell[TextData[{
  "To write documentation, use the ",
@@ -9745,8 +9752,8 @@ Cell[BoxData[{
   RowBox[{"Needs", "[", "\"\<DocumentationTools`\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"OpenDocumentationToolsPalette", "[", "]"}], ";"}]}], "Input",
- CellLabel->"In[5]:=",ExpressionUUID->"3f72e2c7-bc89-4a7c-9c21-969428ced8de"],
+  RowBox[{"OpenDocumentationToolsPalette", "[", "]"}], 
+  ";"}]}], "Input",ExpressionUUID->"3f72e2c7-bc89-4a7c-9c21-969428ced8de"],
 
 Cell[TextData[{
  "Be sure to use the ",
@@ -9795,8 +9802,9 @@ Cell[BoxData[{
       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DualNumbers\>\"", 
       ",", "\"\<build\>\""}], "}"}], "]"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{"<<", "DualNumbers`"}]}], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"af87cf35-c2c7-42d8-8702-86609261e753"]
+ RowBox[{"<<", 
+  "DualNumbers`"}]}], \
+"Input",ExpressionUUID->"af87cf35-c2c7-42d8-8702-86609261e753"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9849,8 +9857,7 @@ Cell[BoxData[{
     RowBox[{"PacletInstall", "[", "pacletFile", "]"}], ";", 
     "\[IndentingNewLine]", 
     RowBox[{"<<", "DualNumbers`"}]}]}], "\[IndentingNewLine]", 
-  "]"}]}], "Input",
- CellLabel->"In[6]:=",ExpressionUUID->"4c7af375-e69f-4ccb-921d-0b9d9a9bfe87"]
+  "]"}]}], "Input",ExpressionUUID->"4c7af375-e69f-4ccb-921d-0b9d9a9bfe87"]
 }, Open  ]],
 
 Cell["\<\
@@ -9863,8 +9870,8 @@ Cell[BoxData[
   RowBox[{"(*", 
    RowBox[{
    "Load", " ", "in", " ", "a", " ", "fresh", " ", "kernel", " ", "after", 
-    " ", "installing"}], " ", "*)"}]}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"9be2c07e-f561-4c04-8305-e2fc6c3acc53"],
+    " ", "installing"}], " ", 
+   "*)"}]}]], "Input",ExpressionUUID->"9be2c07e-f561-4c04-8305-e2fc6c3acc53"],
 
 Cell[TextData[{
  "If the documentation build and paclet installation were successful, you \
@@ -9882,8 +9889,8 @@ Cell["To uninstall again (if necessary):", \
 "Text",ExpressionUUID->"67743de5-39c1-4424-9915-d826071c26af"],
 
 Cell[BoxData[
- RowBox[{"PacletUninstall", "[", "\"\<DualNumbers\>\"", "]"}]], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"fe46789e-4b7b-42ae-b9fe-c46c17c425a9"]
+ RowBox[{"PacletUninstall", "[", "\"\<DualNumbers\>\"", 
+  "]"}]], "Input",ExpressionUUID->"fe46789e-4b7b-42ae-b9fe-c46c17c425a9"]
 }, Closed]]
 },
 WindowSize->{1236.75, 676.5},
@@ -9892,6 +9899,7 @@ PrivateNotebookOptions->{"FileOutlineCache"->False},
 ShowGroupOpener->True,
 TaggingRules->{"SaveDialogDataSavesBlog" -> False, "TryRealOnly" -> False},
 ShowCellLabel->True,
+CellLabelAutoDelete->True,
 TrackCellChangeTimes->False,
 Magnification:>1. Inherited,
 FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (July 24, 2023)",
