@@ -11935,14 +11935,17 @@ Cell["Check the version currently loaded:", \
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Needs", "[", "\"\<DualNumbers`\>\"", "]"}], 
+  RowBox[{"Get", "[", "\"\<DualNumbers`\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
   "\"\<Version\>\"", 
   "]"}]}], "Input",ExpressionUUID->"fcd1bea9-7ea9-4a34-80f4-b34bc4b8a10b"],
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{"testReport", "=", 
   RowBox[{"TestReport", "[", 
    RowBox[{"FileNames", "[", 
@@ -11951,7 +11954,7 @@ Cell[BoxData[
       RowBox[{"PacletObject", "[", "\"\<DualNumbers\>\"", "]"}], "[", 
       RowBox[{"\"\<AssetLocation\>\"", ",", "\"\<TestDirectory\>\""}], 
       "]"}]}], "]"}], 
-   "]"}]}]], "Input",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
+   "]"}]}]}], "Input",ExpressionUUID->"d9d61efc-e8e1-477d-8624-f934d35adb63"],
 
 Cell["\<\
 Reset docked cells in testing notebooks (this can help if the testing \
