@@ -7,7 +7,7 @@ This Wolfram Language (WL) Paclet provides an implementations of dual numbers an
 To automatically download and install the currently released version of the paclet, simply run:
 
 ```
-PacletInstall["https://github.com/ssmit1986/DualNumbers/releases/download/1.2/DualNumbers-1.2.paclet"]
+PacletInstall["https://github.com/ssmit1986/DualNumbers/raw/refs/tags/v1.3.1/Paclet%20archives/DualNumbers-1.3.0.paclet"]
 ```
 
 To install the latest version of the package, download the latest paclet file from the GitHub [paclet archive](https://github.com/ssmit1986/DualNumbers/tree/main/Paclet%20archives) and run:
